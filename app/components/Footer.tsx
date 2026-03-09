@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 type CardState = "current" | "next" | "out" | "idle";
 
@@ -42,6 +43,10 @@ const ANIM_CSS = `
 `;
 
 export default function Footer() {
+  const logoRef = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1 });
+  const cardsRef = useScrollAnimation<HTMLDivElement>({ type: "scaleIn", duration: 1.1, delay: 0.1 });
+  const newsletterRef = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1, delay: 0.2 });
+
   const [states, setStates] = useState<CardState[]>([
     "current",
     "next",
@@ -260,7 +265,7 @@ export default function Footer() {
           }}
         >
           {/* Column 1: Logo + Socials */}
-          <div className="flex flex-col gap-6 lg:gap-10 items-center flex-1 min-w-0 w-full lg:w-auto">
+          <div ref={logoRef} className="flex flex-col gap-6 lg:gap-10 items-center flex-1 min-w-0 w-full lg:w-auto">
             <Link href="/">
               <img
                 src="/assets/footer/logo.svg"
@@ -287,13 +292,13 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Card Stack */}
-          <div className="flex-1 min-w-0 flex items-center justify-center w-full lg:w-auto">
+          <div ref={cardsRef} className="flex-1 min-w-0 flex items-center justify-center w-full lg:w-auto">
             <div className="block lg:hidden">{cardStack(260)}</div>
             <div className="hidden lg:block">{cardStack(320)}</div>
           </div>
 
           {/* Column 3: Letter / newsletter */}
-          <div className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-none">
+          <div ref={newsletterRef} className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-none">
             <div className="relative w-full">
               <img src="/assets/footer/letter.svg" className="w-full" alt="" />
               <div className="absolute top-0 w-2/3 left-1/2 -translate-x-1/2 mt-5 flex flex-col gap-3 lg:gap-5 items-center">

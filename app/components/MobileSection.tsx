@@ -1,6 +1,14 @@
+"use client";
+
 import Mobile from "./Mobile";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function MobileSection() {
+  const leftRef = useScrollAnimation<HTMLDivElement>({ type: "fadeLeft", duration: 1.1, distance: 45 });
+  const centerRef = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1.1, delay: 0.15 });
+  const rightRef = useScrollAnimation<HTMLDivElement>({ type: "fadeRight", duration: 1.1, delay: 0.1, distance: 45 });
+  const mobileTextRef = useScrollAnimation<HTMLHeadingElement>({ type: "fadeUp", duration: 0.9, delay: 0.2 });
+
   return (
     <div
       id="loyalty"
@@ -22,7 +30,7 @@ export default function MobileSection() {
         className="absolute left-0 top-20 md:w-40 w-30"
         alt=""
       />
-      <div className="relative flex md:flex-col flex-col-reverse items-center md:gap-8 gap-5">
+      <div ref={leftRef} className="relative flex md:flex-col flex-col-reverse items-center md:gap-8 gap-5">
         <div className="w-fit">
           <Mobile
             content={
@@ -65,13 +73,13 @@ export default function MobileSection() {
           </h1>
         </div>
       </div>
-      <h1 className="text-center text-xl font-semibold md:hidden block text-[#5763FF] -mt-4">
+      <h1 ref={mobileTextRef} className="text-center text-xl font-semibold md:hidden block text-[#5763FF] -mt-4">
         Bij ons staat kwaliteit centraal en verdient elk kind een unieke
         speelbeleving. Door te werken met speelsessies zorgen we voor minder
         drukte en meer speelplezier voor iedereen.
       </h1>
 
-      <div className="md:flex hidden flex-col gap-10 w-1/2 m-auto text-[#5763FF] px-14 items-center mt-20">
+      <div ref={centerRef} className="md:flex hidden flex-col gap-10 w-1/2 m-auto text-[#5763FF] px-14 items-center mt-20">
         <h1 className="text-center text-xl font-semibold">
           Bij ons staat kwaliteit centraal en verdient elk kind een unieke
           speelbeleving. Door te werken met speelsessies zorgen we voor minder
@@ -97,7 +105,7 @@ export default function MobileSection() {
         </div>
       </div>
 
-      <div className="relative flex flex-col items-center md:gap-8 gap-5 md:mt-0 mt-4">
+      <div ref={rightRef} className="relative flex flex-col items-center md:gap-8 gap-5 md:mt-0 mt-4">
         <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
           <img
             src="/assets/icons/hand.svg"

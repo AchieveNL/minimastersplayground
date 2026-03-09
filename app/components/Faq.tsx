@@ -2,6 +2,7 @@
 import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 type FaqItem = {
   question: string;
@@ -264,13 +265,16 @@ const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
 };
 
 export default function Faq() {
+  const badgeRef = useScrollAnimation<HTMLDivElement>({ type: "scaleIn", duration: 1 });
+  const questionsRef = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1, delay: 0.1 });
+
   return (
     <div id="faq" className="md:my-24 my-16 relative" style={{ fontFamily: "Quicksand" }}>
       <img src="/assets/faq/icon1.svg" className="absolute md:w-60 w-30 top-1/2 md:-translate-y-1/2" alt="" />
       <img src="/assets/faq/icon2.svg" className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 " alt="" />
       <img src="/assets/faq/icon3.svg" className="absolute md:w-50 w-20 right-0 top-[70%]" alt="" />
 
-      <div className="flex w-fit  md:px-10 px-5 py-4 md:pl-20 pl-10 md:translate-x-0 translate-x-5 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+      <div ref={badgeRef} className="flex w-fit  md:px-10 px-5 py-4 md:pl-20 pl-10 md:translate-x-0 translate-x-5 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
         <img
           src="/assets/faq/icon.svg"
           className="absolute md:hidden"
@@ -288,7 +292,7 @@ export default function Faq() {
           VEELGESTELDE VRAGEN
         </h1>
       </div>
-      <div className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-5 flex flex-col items-center m-auto mt-10">
+      <div ref={questionsRef} className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-5 flex flex-col items-center m-auto mt-10">
         {data.map((category, index) => (
           <CategoryCard
             bg={category.bg}

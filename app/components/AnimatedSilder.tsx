@@ -1,7 +1,8 @@
 "use client";
 
 import Marquee from "react-fast-marquee";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import gsap from "gsap";
 
 const images = [
   "/assets/hero-imgs/img1.png",

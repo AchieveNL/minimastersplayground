@@ -1,6 +1,10 @@
 "use client";
 
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
+
 export default function Location() {
+  const openingsRef = useScrollAnimation<HTMLDivElement>({ type: "fadeLeft", duration: 1.1, distance: 45 });
+  const mapRef = useScrollAnimation<HTMLDivElement>({ type: "fadeRight", duration: 1.1, delay: 0.15, distance: 45 });
   return (
     <>
       <svg
@@ -48,7 +52,7 @@ export default function Location() {
             alt=""
           />
 
-          <div className="flex flex-col items-center text-[#5763FF] font-bold gap-5 mt-20">
+          <div ref={openingsRef} className="flex flex-col items-center text-[#5763FF] font-bold gap-5 mt-20">
             <img src="/assets/location/img1.svg" className="w-80" alt="" />
             <h1 className="text-xl md:mt-3">OPENINGSTIJDEN</h1>
             <div className="flex gap-10 -mt-4">
@@ -64,7 +68,7 @@ export default function Location() {
               </div>
             </div>
           </div>
-          <div>
+          <div ref={mapRef}>
             <object
               data="/assets/location/img2.svg"
               type="image/svg+xml"
