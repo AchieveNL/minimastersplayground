@@ -36,7 +36,7 @@ export default function Location() {
           className="absolute inset-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
         />
 
-        <div className="relative flex md:flex-row flex-col justify-between items-center md:px-5 lg:px-10 xl:20 px-15 md:top-1/2 md:-translate-y-1/2 bottom-0">
+        <div className="relative flex md:flex-row flex-col justify-center items-center md:gap-40 lg:gap-60 md:px-5 lg:px-10 xl:px-20 px-15 md:top-1/2 md:-translate-y-1/2 bottom-0">
           <img
             src="/assets/location/img3.svg"
             className="absolute left-0 md:-z-10 md:w-30 w-20 top-1/2 md:-translate-y-[20%]"
@@ -65,10 +65,11 @@ export default function Location() {
             </div>
           </div>
           <div>
-            <img
-              src="/assets/location/img2.svg"
+            <object
+              data="/assets/location/img2.svg"
+              type="image/svg+xml"
               className="md:w-120 py-10 md:py-0 mb-10"
-              alt=""
+              aria-label="Map showing Waddinxveen location"
             />
           </div>
         </div>

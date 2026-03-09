@@ -47,16 +47,26 @@ const data: FaqCategory[] = [
         question: "Hoe werken de arrangementen?",
         answer: (
           <>
-            Wij werken dagelijks met drie vaste sessies van elk 2,5 uur. Tussen
-            iedere sessie hebben wij 30 minuten opruimtijd, zodat de ruimte weer
+            Wij werken dagelijks met drie vaste sessies van elk 2,5 uur.
+            <br />
+            Tussen iedere sessie hebben wij 30 minuten opruimtijd, zodat de ruimte weer
             schoon en klaar is voor de volgende groep kinderen. Op deze manier
             zorgen wij iedere sessie opnieuw voor een fijne en veilige
-            speelervaring. Elke sessie heeft een eigen naam, maar het aanbod aan
-            activiteiten en het spelen is in elke sessie hetzelfde. Onze
-            sessies: Sessie 1 – De Kick Start: 09:00 – 11:30 Sessie 2 – Middag
-            Avontuur: 12:00 – 14:30 Sessie 3 – Eindpret: 15:00 – 17:30 Na het
-            selecteren van een sessie kun je aangeven met hoeveel kinderen en
-            volwassenen je komt. De entreeprijs bedraagt €11,00 per persoon,
+            speelervaring.
+            <br />
+            Elke sessie heeft een eigen naam, maar het aanbod aan
+            activiteiten en het spelen is in elke sessie hetzelfde.
+            <br />
+            Onze sessies:
+            <ul className="list-disc pl-5 mt-1">
+              <li>Sessie 1 – De Kick Start: 09:00 – 11:30</li>
+              <li>Sessie 2 – Middag Avontuur: 12:00 – 14:30</li>
+              <li>Sessie 3 – Eindpret: 15:00 – 17:30</li>
+            </ul>
+            Na het selecteren van een sessie kun je aangeven met hoeveel kinderen en
+            volwassenen je komt.
+            <br />
+            De entreeprijs bedraagt €11,00 per persoon,
             zowel voor kinderen als volwassenen.
           </>
         ),
@@ -83,10 +93,16 @@ const data: FaqCategory[] = [
           <>
             Onze ruimte is ingericht als een klein dorp met verschillende
             huisjes, waar kinderen spelenderwijs verschillende beroepen en
-            dagelijkse situaties kunnen ontdekken. Zo kunnen kinderen onder
-            andere: Koeien melk geven Boodschappen doen in de supermarkt Spelen
-            in het politiebureau Sleutelen in de autogarage En nog veel meer!
-            Alles staat in het teken van fantasie, ontdekken en samen spelen.
+            dagelijkse situaties kunnen ontdekken.
+            <br />
+            Zo kunnen kinderen onder andere:
+            <ul className="list-disc pl-5 mt-1">
+              <li>Koeien melk geven</li>
+              <li>Boodschappen doen in de supermarkt</li>
+              <li>Spelen in het politiebureau</li>
+              <li>Sleutelen in de autogarage</li>
+            </ul>
+            En nog veel meer! Alles staat in het teken van fantasie, ontdekken en samen spelen.
           </>
         ),
       },
@@ -95,8 +111,13 @@ const data: FaqCategory[] = [
         answer: (
           <>
             Ja! Bij het reserveren van een sessie kun je ook kiezen voor een
-            verjaardagsarrangement. Wij bieden twee soorten kinderfeestjes aan:
-            Verjaardag type 1 (uitleg volgt) Verjaardag type 2 (uitleg volgt)
+            verjaardagsarrangement.
+            <br />
+            Wij bieden twee soorten kinderfeestjes aan:
+            <ul className="list-disc pl-5 mt-1">
+              <li>Verjaardag type 1 (uitleg volgt)</li>
+              <li>Verjaardag type 2 (uitleg volgt)</li>
+            </ul>
           </>
         ),
       },
@@ -195,7 +216,7 @@ const AccordionItem = ({
           }}
         >
           <div style={{ overflow: "hidden" }}>
-            <p
+            <div
               className="text-white font-medium text-base mt-3"
               style={{
                 opacity: open ? 1 : 0,
@@ -205,7 +226,7 @@ const AccordionItem = ({
               }}
             >
               {answer}
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -244,7 +265,7 @@ const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
 
 export default function Faq() {
   return (
-    <div id="faq" className="my-24 relative" style={{ fontFamily: "Quicksand" }}>
+    <div id="faq" className="md:my-24 my-16 relative" style={{ fontFamily: "Quicksand" }}>
       <img src="/assets/faq/icon1.svg" className="absolute md:w-60 w-30 top-1/2 md:-translate-y-1/2" alt="" />
       <img src="/assets/faq/icon2.svg" className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 " alt="" />
       <img src="/assets/faq/icon3.svg" className="absolute md:w-50 w-20 right-0 top-[70%]" alt="" />

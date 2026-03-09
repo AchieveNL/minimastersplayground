@@ -4,22 +4,25 @@ import { useEffect, useState, useCallback, useRef } from "react";
 
 export default function Slider() {
   const data = [
-    { bg: "img1.jpg", text1: "Losse ticket", text2: "1 persoon" },
-    { bg: "img2.jpg", text1: "Groeps ticket", text2: "2-4 persoon" },
+    { bg: "img1.jpg", text1: "Losse ticket", text2: "1 persoon", link: "https://minimasters.booqi.me/product/296874/entreetickets" },
+    { bg: "img2.jpg", text1: "Groeps ticket", text2: "2-4 persoon", link: "" },
     {
       bg: "img3.png",
       text1: "Abonnement",
       text2: "90 min. lang speelplezier + Speelruimte 1 + Speelruimte 2",
+      link: "",
     },
     {
       bg: "img4.jpg",
       text1: "Jaar abonnement",
       text2: "Onbeperkt speelplezier + Speelruimte 1 + Speelruimte 2",
+      link: "",
     },
     {
       bg: "img5.jpg",
       text1: "Kinderfeestje",
       text2: "150 min. lang speelplezier + Speelruimte 1 & 2 + Restaurant",
+      link: "https://minimasters.booqi.me/product/296875/kinderfeestjes",
     },
   ];
   const SLOTS_NEEDED = 9; // = VISIBLE*2 + EXIT_TRAVEL + ENTER_TRAVEL + 3
@@ -203,7 +206,7 @@ export default function Slider() {
           position: "relative",
           clipPath: `url(#${clipId})`,
         }}
-        className="w-full relative mt-2 md:h-fit h-screen pt-28 md:pt-32 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
+        className="w-full relative mt-2 md:h-fit h-fit pt-28 md:pt-32 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
       >
         <svg
           aria-hidden="true"
@@ -254,39 +257,62 @@ export default function Slider() {
 
         {/* Arc Carousel */}
         <div
-          className="relative mt-10 w-full mb-44"
+          className="relative mt-10 w-full md:mb-44 mb-20"
           style={{ height: `${CARD_HEIGHT + 180}px`, overflow: "visible" }}
         >
           {cards.map((item, index) => {
             const slot = getSlot(index);
             const isTeleporting = teleportingCards.has(index);
 
-            return (
-              <div key={index} style={getCardStyle(slot, isTeleporting)}>
+            const cardContent = (
+              <>
                 <div
                   style={{
-                    background: `url('/assets/slider/${item.bg}') no-repeat center/cover`,
-                    boxShadow: "4px 8px 24px 0px #00000055",
-                    height: `${CARD_HEIGHT}px`,
+                    background:
+                      "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
+                    height: "80%",
                   }}
-                  className="rounded-tr-[60px] rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-between py-5 cursor-pointer"
-                  onClick={next}
-                >
+                  className="absolute bottom-0 left-0 right-0 rounded-bl-[60px]"
+                />
+                <h1 className="z-20 text-center text-sm px-3">
+                  {item.text1}
+                </h1>
+                <h1 className="z-20 text-center px-5 text-sm">
+                  {item.text2}
+                </h1>
+              </>
+            );
+
+            const cardStyle = {
+              background: `url('/assets/slider/${item.bg}') no-repeat center/cover`,
+              boxShadow: "4px 8px 24px 0px #00000055",
+              height: `${CARD_HEIGHT}px`,
+            };
+
+            const cardClass = "rounded-tr-[60px] rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-between py-5 cursor-pointer";
+
+            return (
+              <div key={index} style={getCardStyle(slot, isTeleporting)}>
+                {item.link ? (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ ...cardStyle, textDecoration: "none", color: "inherit" }}
+                    className={cardClass}
+                    onClick={(e) => { e.stopPropagation(); }}
+                  >
+                    {cardContent}
+                  </a>
+                ) : (
                   <div
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
-                      height: "80%",
-                    }}
-                    className="absolute bottom-0 left-0 right-0 rounded-bl-[60px]"
-                  />
-                  <h1 className="z-20 text-center text-sm px-3">
-                    {item.text1}
-                  </h1>
-                  <h1 className="z-20 text-center px-5 text-sm">
-                    {item.text2}
-                  </h1>
-                </div>
+                    style={cardStyle}
+                    className={cardClass}
+                    onClick={next}
+                  >
+                    {cardContent}
+                  </div>
+                )}
               </div>
             );
           })}

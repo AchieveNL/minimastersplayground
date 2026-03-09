@@ -9,10 +9,10 @@ export default function Nav() {
   return (
     <div
       style={{ fontFamily: "StudlyFree, sans-serif" }}
-      className="flex px-10 pt-8 pb-15 bg-[url('/assets/header-bg.svg')] bg-cover gap-50 relative overflow-hidden"
+      className="flex items-center px-10 pt-8 pb-15 bg-[url('/assets/header-bg.svg')] bg-cover sticky top-0 z-50 overflow-hidden"
     >
       {/* Logo */}
-      <Link href="/">
+      <Link href="/" className="flex-shrink-0">
         <img
           src="/assets/logo.svg"
           className="w-72 md:mt-0 mt-5 md:mb-0 mb-10"
@@ -21,7 +21,7 @@ export default function Nav() {
       </Link>
 
       {/* Desktop Nav */}
-      <div className="xl:flex hidden gap-8 text-lg">
+      <div className="xl:flex hidden gap-8 text-lg flex-1 justify-center text-nowrap">
         <Link href="/" className="text-[#FF5757]">
           HOME
         </Link>
@@ -30,6 +30,9 @@ export default function Nav() {
         </Link>
         <Link href="/#tickets" className="text-[#FF5757]">
           TICKETS
+        </Link>
+        <Link href="/#loyalty" className="text-[#67CD8A]">
+          LOYALTY
         </Link>
         <Link href="/#openingstijden" className="text-[#BB76FF]">
           OPENINGSTIJDEN
@@ -117,6 +120,13 @@ export default function Nav() {
           onClick={() => setIsOpen(false)}
         >
           TICKETS
+        </Link>
+        <Link
+          href="/#loyalty"
+          className="text-[#FFCA58]"
+          onClick={() => setIsOpen(false)}
+        >
+          LOYALTY
         </Link>
         <Link
           href="/#openingstijden"

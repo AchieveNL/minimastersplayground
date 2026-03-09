@@ -65,7 +65,7 @@ export default function Hero() {
           BIG ADVENTURES
         </h1>
       </div>
-      <div className="my-28 flex flex-col lg:flex-row  items-center justify-center gap-10 md:mx-24 mx-5">
+      <div className="md:my-28 my-16 flex flex-col lg:flex-row  items-center justify-center gap-10 md:mx-24 mx-5">
         {infoCards.map((card, index) => {
           return (
             <InfoCard
@@ -73,6 +73,7 @@ export default function Hero() {
               posMobile={card.posMobile}
               iconWidth={card.iconWidth}
               key={index}
+              index={index}
               title={card.title}
               description={card.description}
               icon={card.icon}

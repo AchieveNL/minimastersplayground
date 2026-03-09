@@ -3,6 +3,7 @@ import Mobile from "./Mobile";
 export default function MobileSection() {
   return (
     <div
+      id="loyalty"
       style={{ fontFamily: "Quicksand" }}
       className="relative flex md:flex-row flex-col px-10 overflow-hidde pt-10 md:pb-28 pb-20 md:gap-0 gap-10"
     >

@@ -208,6 +208,7 @@ export default function Footer() {
 
   return (
     <div
+      id="contact"
       style={{ fontFamily: "Nunito Variable" }}
       className="relative w-full md:-mt-24 mt-3"
     >
@@ -268,14 +269,14 @@ export default function Footer() {
               />
             </Link>
             <div className="flex gap-5">
-              <Link href="#">
+              <Link href="https://www.instagram.com/minimastersplayground" target="_blank">
                 <img
                   src="/assets/footer/insta.svg"
                   className="rounded-full w-11 lg:w-12"
                   alt=""
                 />
               </Link>
-              <Link href="#">
+              <Link href="https://www.tiktok.com/@minimastersplaygr" target="_blank">
                 <img
                   src="/assets/footer/tiktok.svg"
                   className="rounded-full w-11 lg:w-12"
@@ -317,7 +318,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="flex mt-3 w-full justify-evenly">
-              <Link href="#">
+              <Link href="https://share.google/ZLMrmSLkckXFQ7fsW" target="_blank">
                 <img
                   src="/assets/footer/map.svg"
                   className="w-9 lg:w-10 xl:w-13"
@@ -331,7 +332,7 @@ export default function Footer() {
                   alt=""
                 />
               </Link>
-              <Link href="#">
+              <Link href="mailto:hero@minimastersplayground.nl">
                 <img
                   src="/assets/footer/mail.svg"
                   className="w-9 lg:w-10 xl:w-13"
@@ -347,14 +348,14 @@ export default function Footer() {
         className="bg-[#FFCA58] md:pt-16 pt-5 pb-10 text-white font-semibold flex md:flex-row flex-col justify-between items-center md:px-10 lg:gap-24 px-6 sm:px-10"
       >
         <div className="flex md:flex-row flex-col items-center md:gap-10 gap-1">
-          <Link href="#">Algemene voorwaarden</Link>
-          <Link href="#">Privacy beleid</Link>
-          <Link href="#">Disclaimer</Link>
+          <Link href="#" className="hover:text-[#5763FF] transition-colors duration-300">Algemene voorwaarden</Link>
+          <Link href="#" className="hover:text-[#5763FF] transition-colors duration-300">Privacy beleid</Link>
+          <Link href="#" className="hover:text-[#5763FF] transition-colors duration-300">Disclaimer</Link>
         </div>
         <div className="md:mt-0 mt-4">
           <h1>
             Ontwikkeld door
-            <Link href="https://www.achieve.nl" target="_blank">
+            <Link href="https://www.achieve.nl" target="_blank" className="hover:text-[#5763FF] transition-colors duration-300">
               {" "}
               Achieve.nl
             </Link>
