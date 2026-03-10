@@ -25,14 +25,18 @@ export default function SmoothScroll() {
     // Handle anchor clicks with smooth scroll
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const anchor = target.closest("a[href^='#']");
+      const anchor = target.closest("a[href^='#'], a[href^='/#']");
       if (anchor) {
         const href = anchor.getAttribute("href");
-        if (href && href !== "#") {
-          const el = document.querySelector(href);
-          if (el) {
-            e.preventDefault();
-            lenis.scrollTo(el as HTMLElement, { offset: -80 });
+        if (href) {
+          // Extract the hash part from both "#section" and "/#section" formats
+          const hash = href.startsWith("/#") ? href.slice(1) : href;
+          if (hash && hash !== "#") {
+            const el = document.querySelector(hash);
+            if (el) {
+              e.preventDefault();
+              lenis.scrollTo(el as HTMLElement, { offset: -80 });
+            }
           }
         }
       }

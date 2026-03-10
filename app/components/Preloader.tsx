@@ -6,7 +6,7 @@ import gsap from "gsap";
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
+
   const barTrackRef = useRef<HTMLDivElement>(null);
   const barFillRef = useRef<HTMLDivElement>(null);
   const dotsRef = useRef<HTMLDivElement>(null);
@@ -43,17 +43,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             "-=0.2"
           );
 
-          exitTl.to(
-            titleRef.current,
-            {
-              opacity: 0,
-              y: -20,
-              duration: 0.3,
-              ease: "power2.in",
-            },
-            "-=0.3"
-          );
-
           exitTl.to(overlayRef.current, {
             yPercent: -100,
             duration: 0.7,
@@ -73,24 +62,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           ease: "back.out(1.7)",
         }
       );
-
-      // Title letters stagger in
-      if (titleRef.current) {
-        const chars = titleRef.current.querySelectorAll("span");
-        tl.fromTo(
-          chars,
-          { y: 30, opacity: 0, rotate: 8 },
-          {
-            y: 0,
-            opacity: 1,
-            rotate: 0,
-            duration: 0.4,
-            stagger: 0.03,
-            ease: "back.out(2)",
-          },
-          "-=0.3"
-        );
-      }
 
       // Progress bar appears
       tl.fromTo(
@@ -128,8 +99,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     };
   }, [onComplete]);
 
-  const title = "MINIMASTERS";
-
   return (
     <div
       ref={overlayRef}
@@ -161,26 +130,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         className="w-60 md:w-80"
         style={{ transform: "scale(0)" }}
       />
-
-      {/* Title with individual letters */}
-      <div
-        ref={titleRef}
-        className="mt-3 md:mt-4 flex"
-        style={{ fontFamily: "Luckiest Guy, cursive" }}
-      >
-        {title.split("").map((char, i) => (
-          <span
-            key={i}
-            className="inline-block text-xl md:text-3xl"
-            style={{
-              color: ["#67CD8A", "#5763FF", "#FF5757", "#BB76FF"][i % 4],
-              opacity: 0,
-            }}
-          >
-            {char}
-          </span>
-        ))}
-      </div>
 
       {/* Progress bar */}
       <div className="mt-6 md:mt-8 flex flex-col items-center gap-2 md:gap-3">

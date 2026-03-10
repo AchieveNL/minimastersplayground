@@ -274,13 +274,44 @@ export default function Slider() {
                   }}
                   className="absolute bottom-0 left-0 right-0 rounded-bl-[60px]"
                 />
-                <h1 className="z-20 text-center text-sm px-3">
+                <h1 className="z-20 text-center text-sm px-3 text-white">
                   {item.text1}
                 </h1>
-                <h1 className="z-20 text-center px-5 text-sm">
+                <h1 className="z-20 text-center px-5 text-sm text-white">
                   {item.text2}
                 </h1>
               </>
+            );
+
+            const comingSoonOverlay = !item.link && (
+              <div
+                className="absolute inset-0 rounded-tr-[60px] rounded-bl-[60px] flex flex-col items-center justify-center opacity-0 hover:opacity-100 z-30"
+                style={{
+                  transition: "opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                  background: "radial-gradient(ellipse at center, rgba(87, 99, 255, 0.92) 0%, rgba(103, 205, 138, 0.88) 100%)",
+                  backdropFilter: "blur(2px)",
+                }}
+              >
+                <div
+                  className="px-5 py-2.5 rounded-full mb-2"
+                  style={{
+                    background: "rgba(255, 255, 255, 0.2)",
+                    border: "2px dashed rgba(255, 255, 255, 0.6)",
+                  }}
+                >
+                  <span
+                    className="text-white font-bold text-xs md:text-sm tracking-wider uppercase"
+                    style={{ fontFamily: "Quicksand, sans-serif", textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}
+                  >
+                    Komt binnenkort
+                  </span>
+                </div>
+                <div className="flex gap-1 mt-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FFCA58] animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF5757] animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-bounce" style={{ animationDelay: "300ms" }} />
+                </div>
+              </div>
             );
 
             const cardStyle = {
@@ -298,7 +329,7 @@ export default function Slider() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ ...cardStyle, textDecoration: "none", color: "inherit" }}
+                    style={{ ...cardStyle, textDecoration: "none", color: "white", display: "flex" }}
                     className={cardClass}
                     onClick={(e) => { e.stopPropagation(); }}
                   >
@@ -307,10 +338,11 @@ export default function Slider() {
                 ) : (
                   <div
                     style={cardStyle}
-                    className={cardClass}
+                    className={`${cardClass} group`}
                     onClick={next}
                   >
                     {cardContent}
+                    {comingSoonOverlay}
                   </div>
                 )}
               </div>
