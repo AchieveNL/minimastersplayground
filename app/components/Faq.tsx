@@ -274,7 +274,7 @@ export default function Faq() {
       <img src="/assets/faq/icon2.svg" className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 " alt="" />
       <img src="/assets/faq/icon3.svg" className="absolute md:w-50 w-20 right-0 top-[70%]" alt="" />
 
-      <div ref={badgeRef} className="flex w-fit  md:px-10 px-5 py-4 md:pl-20 pl-10 md:translate-x-0 translate-x-5 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+      <div ref={badgeRef} className="flex w-fit md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
         <img
           src="/assets/faq/icon.svg"
           className="absolute md:hidden"
@@ -292,7 +292,7 @@ export default function Faq() {
           VEELGESTELDE VRAGEN
         </h1>
       </div>
-      <div ref={questionsRef} className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-5 flex flex-col items-center m-auto mt-10">
+      <div ref={questionsRef} className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-4 sm:px-5 flex flex-col items-center m-auto mt-8 md:mt-10">
         {data.map((category, index) => (
           <CategoryCard
             bg={category.bg}

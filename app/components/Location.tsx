@@ -40,7 +40,7 @@ export default function Location() {
           className="absolute inset-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
         />
 
-        <div className="relative flex md:flex-row flex-col justify-center items-center md:gap-40 lg:gap-60 md:px-5 lg:px-10 xl:px-20 px-15 md:top-1/2 md:-translate-y-1/2 bottom-0">
+        <div className="relative flex md:flex-row flex-col justify-center items-center gap-6 md:gap-40 lg:gap-60 px-6 sm:px-10 md:px-5 lg:px-10 xl:px-20 md:top-1/2 md:-translate-y-1/2 bottom-0">
           <img
             src="/assets/location/img3.svg"
             className="absolute left-0 md:-z-10 md:w-30 w-20 top-1/2 md:-translate-y-[20%]"
@@ -52,8 +52,8 @@ export default function Location() {
             alt=""
           />
 
-          <div ref={openingsRef} className="flex flex-col items-center text-[#5763FF] font-bold gap-5 mt-20">
-            <img src="/assets/location/img1.svg" className="w-80" alt="" />
+          <div ref={openingsRef} className="flex flex-col items-center text-[#5763FF] font-bold gap-5 mt-12 md:mt-20">
+            <img src="/assets/location/img1.svg" className="w-56 sm:w-72 md:w-80" alt="" />
             <h1 className="text-xl md:mt-3">OPENINGSTIJDEN</h1>
             <div className="flex gap-10 -mt-4">
               <div>
@@ -72,7 +72,7 @@ export default function Location() {
             <object
               data="/assets/location/img2.svg"
               type="image/svg+xml"
-              className="md:w-120 py-10 md:py-0 mb-10"
+              className="w-full sm:w-96 md:w-120 py-6 md:py-0 mb-6 md:mb-10"
               aria-label="Map showing Waddinxveen location"
             />
           </div>

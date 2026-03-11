@@ -123,14 +123,14 @@ export default function Hero() {
             alt=""
           />
         </div>
-        <h1 ref={tinyRef} style={{ opacity: 0 }} className="md:text-8xl text-5xl font-extrabold text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg">
+        <h1 ref={tinyRef} style={{ opacity: 0 }} className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg">
           TINY HEROES
         </h1>
-        <h1 ref={bigRef} style={{ opacity: 0 }} className="md:text-8xl text-5xl font-extrabold text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFDB8D] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg">
+        <h1 ref={bigRef} style={{ opacity: 0 }} className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFDB8D] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg">
           BIG ADVENTURES
         </h1>
       </div>
-      <div ref={cardsRef} className="md:my-28 my-16 flex flex-col lg:flex-row  items-center justify-center gap-10 md:mx-24 mx-5">
+      <div ref={cardsRef} className="md:my-28 my-12 flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-10 md:mx-24 mx-4 sm:mx-5">
         {infoCards.map((card, index) => {
           return (
             <InfoCard
