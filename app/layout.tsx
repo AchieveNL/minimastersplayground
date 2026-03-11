@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Minimasters Playground - Tiny Heroes Big Adventures",
   description: "Minimasters is een unieke belevingswereld waar kinderen spelenderwijs de grote-mensenwereld ontdekken.",
+  icons: {
+    icon: "/MiniMastersFavicon.png",
+  },
 };
 
 export default function RootLayout({
