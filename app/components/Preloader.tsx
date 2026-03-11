@@ -81,13 +81,13 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         },
       });
 
-      // Bouncing dots during load
+      // Gentle pulse on stars during load
       if (dotsRef.current) {
-        const dots = dotsRef.current.children;
-        gsap.to(dots, {
-          y: -8,
-          duration: 0.4,
-          stagger: { each: 0.12, repeat: -1, yoyo: true },
+        gsap.to(dotsRef.current, {
+          y: -6,
+          duration: 0.6,
+          repeat: -1,
+          yoyo: true,
           ease: "power2.inOut",
         });
       }
@@ -108,18 +108,26 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           "linear-gradient(135deg, #FFCA58 0%, #FFDB8D 30%, #FFCA58 60%, #FFD074 100%)",
       }}
     >
-      {/* Decorative background circles */}
-      <div
-        className="absolute rounded-full opacity-10 w-40 h-40 md:w-[300px] md:h-[300px] -top-16 -left-16 md:-top-20 md:-left-20"
-        style={{ background: "#67CD8A" }}
+      {/* Decorative background illustrations */}
+      <img
+        src="/assets/icons/cards-icon1.svg"
+        className="absolute -top-10 -right-10 md:w-80 w-48 opacity-[0.12]"
+        alt=""
       />
-      <div
-        className="absolute rounded-full opacity-10 w-28 h-28 md:w-[200px] md:h-[200px] -bottom-10 -right-10 md:-bottom-12 md:-right-12"
-        style={{ background: "#BB76FF" }}
+      <img
+        src="/assets/icons/cards-icon2.svg"
+        className="absolute -bottom-5 -left-5 md:w-52 w-32 opacity-[0.12]"
+        alt=""
       />
-      <div
-        className="absolute rounded-full opacity-8 w-20 h-20 md:w-[150px] md:h-[150px] top-[15%] right-[5%] md:top-[20%] md:right-[10%]"
-        style={{ background: "#5763FF" }}
+      <img
+        src="/assets/mobile/icon1.svg"
+        className="absolute top-[10%] -left-8 md:w-48 w-28 opacity-[0.10]"
+        alt=""
+      />
+      <img
+        src="/assets/faq/icon.svg"
+        className="absolute bottom-[15%] -right-5 md:w-56 w-36 opacity-[0.10]"
+        alt=""
       />
 
       {/* Logo */}
@@ -154,20 +162,9 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           />
         </div>
 
-        {/* Loading dots */}
-        <div ref={dotsRef} className="flex gap-1.5 mt-1">
-          <div
-            className="w-2 h-2 rounded-full"
-            style={{ background: "#67CD8A" }}
-          />
-          <div
-            className="w-2 h-2 rounded-full"
-            style={{ background: "#5763FF" }}
-          />
-          <div
-            className="w-2 h-2 rounded-full"
-            style={{ background: "#BB76FF" }}
-          />
+        {/* Loading stars */}
+        <div ref={dotsRef} className="flex mt-1">
+          <img src="/assets/footer/stars.svg" className="w-20 opacity-90" alt="" />
         </div>
       </div>
     </div>
