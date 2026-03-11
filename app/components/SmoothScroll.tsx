@@ -10,8 +10,13 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 2.0,
+      easing: (t: number) => {
+        // Slow ease-in-out curve: gentle start, smooth middle, soft landing
+        return t < 0.5
+          ? 4 * t * t * t
+          : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      },
       smoothWheel: true,
     });
 
@@ -35,7 +40,16 @@ export default function SmoothScroll() {
             const el = document.querySelector(hash);
             if (el) {
               e.preventDefault();
-              lenis.scrollTo(el as HTMLElement, { offset: -80 });
+              lenis.scrollTo(el as HTMLElement, {
+                offset: -80,
+                duration: 3.0,
+                easing: (t: number) => {
+                  // Extra slow cubic ease for anchor navigation
+                  return t < 0.5
+                    ? 4 * t * t * t
+                    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                },
+              });
             }
           }
         }
