@@ -306,11 +306,11 @@ export default function Slider() {
                     Komt binnenkort
                   </span>
                 </div>
-                <div className="flex gap-1 mt-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FFCA58] animate-bounce" style={{ animationDelay: "0ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FF5757] animate-bounce" style={{ animationDelay: "150ms" }} />
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-bounce" style={{ animationDelay: "300ms" }} />
-                </div>
+                <img
+                  src="/assets/footer/stars.svg"
+                  className="w-20 mt-1 opacity-90"
+                  alt=""
+                />
               </div>
             );
 
