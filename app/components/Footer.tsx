@@ -258,7 +258,7 @@ export default function Footer() {
         {/* ✅ Content pulled up by half the wave height using negative marginTop.
             This visually centers the content at the wave/body boundary. */}
         <div
-          className="relative flex flex-col lg:flex-row items-center justify-center gap-18 lg:gap-20 px-6 sm:px-10 pb-10 md:pt-0 pt-5"
+          className="relative flex flex-col lg:flex-row items-center justify-center gap-10 sm:gap-14 lg:gap-20 px-6 sm:px-10 pb-10 md:pt-0 pt-5"
           style={{
             zIndex: 1,
             marginTop: `calc(-1 * ${halfWave})`,
@@ -274,19 +274,25 @@ export default function Footer() {
               />
             </Link>
             <div className="flex gap-5">
-              <Link href="https://www.instagram.com/minimastersplayground" target="_blank">
-                <img
-                  src="/assets/footer/insta.svg"
-                  className="rounded-full w-11 lg:w-12"
-                  alt=""
-                />
+              <Link href="https://www.instagram.com/minimastersplayground" target="_blank" className="group">
+                <div className="relative rounded-full w-11 lg:w-12 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-rotate-6">
+                  <div className="absolute inset-0 rounded-full bg-[#FF5757]/0 group-hover:bg-[#FF5757]/15 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,87,87,0.35)] group-hover:scale-125" />
+                  <img
+                    src="/assets/footer/insta.svg"
+                    className="rounded-full w-full relative z-10"
+                    alt=""
+                  />
+                </div>
               </Link>
-              <Link href="https://www.tiktok.com/@minimastersplaygr" target="_blank">
-                <img
-                  src="/assets/footer/tiktok.svg"
-                  className="rounded-full w-11 lg:w-12"
-                  alt=""
-                />
+              <Link href="https://www.tiktok.com/@minimastersplaygr" target="_blank" className="group">
+                <div className="relative rounded-full w-11 lg:w-12 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-6">
+                  <div className="absolute inset-0 rounded-full bg-[#5763FF]/0 group-hover:bg-[#5763FF]/15 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(87,99,255,0.35)] group-hover:scale-125" />
+                  <img
+                    src="/assets/footer/tiktok.svg"
+                    className="rounded-full w-full relative z-10"
+                    alt=""
+                  />
+                </div>
               </Link>
             </div>
           </div>
@@ -301,7 +307,7 @@ export default function Footer() {
           <div ref={newsletterRef} className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-none">
             <div className="relative w-full">
               <img src="/assets/footer/letter.svg" className="w-full" alt="" />
-              <div className="absolute top-0 w-2/3 left-1/2 -translate-x-1/2 mt-5 flex flex-col gap-3 lg:gap-5 items-center">
+              <div className="absolute top-0 w-2/3 left-1/2 -translate-x-1/2 mt-8 lg:mt-10 flex flex-col gap-3 lg:gap-5 items-center">
                 <h1 className="font-bold text-[#5763FF] text-center text-xs lg:text-sm xl:text-base leading-tight">
                   KRIJG ALS EERSTE EEN SEINTJE WANNEER WIJ OPENEN!
                 </h1>
@@ -323,24 +329,24 @@ export default function Footer() {
               </div>
             </div>
             <div className="flex mt-3 w-full justify-evenly">
-              <Link href="https://share.google/ZLMrmSLkckXFQ7fsW" target="_blank">
+              <Link href="https://share.google/ZLMrmSLkckXFQ7fsW" target="_blank" className="group">
                 <img
                   src="/assets/footer/map.svg"
-                  className="w-9 lg:w-10 xl:w-13"
+                  className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""
                 />
               </Link>
-              <Link href="#">
+              <Link href="#" className="group">
                 <img
                   src="/assets/footer/phone.svg"
-                  className="w-9 lg:w-10 xl:w-13"
+                  className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""
                 />
               </Link>
-              <Link href="mailto:hero@minimastersplayground.nl">
+              <Link href="mailto:hero@minimastersplayground.nl" className="group">
                 <img
                   src="/assets/footer/mail.svg"
-                  className="w-9 lg:w-10 xl:w-13"
+                  className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""
                 />
               </Link>
@@ -353,9 +359,9 @@ export default function Footer() {
         className="bg-[#FFCA58] md:pt-16 pt-5 pb-10 text-white font-semibold flex md:flex-row flex-col justify-between items-center md:px-10 lg:gap-24 px-6 sm:px-10"
       >
         <div className="flex md:flex-row flex-col items-center md:gap-10 gap-1">
-          <Link href="#" className="hover:text-[#5763FF] transition-colors duration-300">Algemene voorwaarden</Link>
-          <Link href="#" className="hover:text-[#5763FF] transition-colors duration-300">Privacy beleid</Link>
-          <Link href="#" className="hover:text-[#5763FF] transition-colors duration-300">Disclaimer</Link>
+          <Link href="/algemene-voorwaarden" className="hover:text-[#5763FF] transition-colors duration-300">Algemene voorwaarden</Link>
+          <Link href="/privacy" className="hover:text-[#5763FF] transition-colors duration-300">Privacy beleid</Link>
+          <Link href="/disclaimer" className="hover:text-[#5763FF] transition-colors duration-300">Disclaimer</Link>
         </div>
         <div className="md:mt-0 mt-4">
           <h1>
