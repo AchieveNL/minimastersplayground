@@ -183,18 +183,18 @@ export default function Nav() {
               aria-label="Toggle menu"
             >
               <span
-                className={`block h-0.5 w-7 bg-blue-600 transition-all duration-300 ${
+                className={`block h-0.5 w-7 bg-white transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-2" : ""
                 }`}
               />
               <span
-                className={`block h-0.5 w-7 bg-red-600 transition-all duration-300 ${
+                className={`block h-0.5 w-7 bg-white transition-all duration-300 ${
                   isOpen ? "opacity-0" : ""
                 }`}
               />
               <span
-                className={`block h-0.5 w-7 transition-all duration-300 ${
-                  isOpen ? "-rotate-45 -translate-y-2 bg-red-600" : "bg-green-600"
+                className={`block h-0.5 w-7 bg-white transition-all duration-300 ${
+                  isOpen ? "-rotate-45 -translate-y-2" : ""
                 }`}
               />
             </button>
@@ -228,9 +228,9 @@ export default function Nav() {
           className="absolute top-3 right-3 flex flex-col justify-center items-center gap-1.5 w-10 h-10"
           aria-label="Close menu"
         >
-          <span className="block h-0.5 w-7 bg-blue-600 rotate-45 translate-y-2 transition-all duration-300" />
-          <span className="block h-0.5 w-7 bg-red-600 opacity-0 transition-all duration-300" />
-          <span className="block h-0.5 w-7 bg-red-600 -rotate-45 -translate-y-2 transition-all duration-300" />
+          <span className="block h-0.5 w-7 bg-white rotate-45 translate-y-2 transition-all duration-300" />
+          <span className="block h-0.5 w-7 bg-white opacity-0 transition-all duration-300" />
+          <span className="block h-0.5 w-7 bg-white -rotate-45 -translate-y-2 transition-all duration-300" />
         </button>
 
         <Link href="/" onClick={() => setIsOpen(false)}>
