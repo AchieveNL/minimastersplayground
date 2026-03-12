@@ -69,8 +69,8 @@ export default function Hero() {
       iconWidth: 120,
       icon: "/assets/icons/group.svg",
       title: (
-        <h1 className="font-bold text-xl text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-8 w-full rounded-br-4xl">
-          DE MINI <br /> MAATSCHAPPIJ
+        <h1 className="font-bold text-lg text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-8 w-full rounded-br-4xl text-nowrap">
+          DE MINI MAATSCHAPPIJ
         </h1>
       ),
       description:
@@ -82,8 +82,8 @@ export default function Hero() {
       iconWidth: 150,
       icon: "/assets/icons/education.svg",
       title: (
-        <h1 className="font-bold text-xl text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-10 w-full rounded-br-4xl">
-          HET EDUCATIEVE <br /> KARAKTER
+        <h1 className="font-bold text-lg text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-10 w-full rounded-br-4xl text-nowrap">
+          HET EDUCATIEVE KARAKTER
         </h1>
       ),
       description:
@@ -95,8 +95,8 @@ export default function Hero() {
       iconWidth: 100,
       icon: "/assets/icons/badge.svg",
       title: (
-        <h1 className="font-bold text-xl text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 pl-1 w-full rounded-br-4xl">
-          DE NIEUWE <br /> STANDAARD
+        <h1 className="font-bold text-lg text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 pl-1 w-full rounded-br-4xl text-nowrap">
+          DE NIEUWE STANDAARD
         </h1>
       ),
       description:
