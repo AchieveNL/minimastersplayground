@@ -1,5 +1,4 @@
 "use client";
-
 import Marquee from "react-fast-marquee";
 import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
@@ -67,7 +66,7 @@ export default function AnimatedSlider({
 
       <div
         style={{ clipPath: "url(#wavyClip)" }}
-        className="w-full mt-2 md:mt-8 xl:mt-0 xl:h-screen lg:h-130 md:h-100 h-62.5 2xl:h-200 overflow-hidden bg-white"
+        className="w-full mt-2 md:mt-8 xl:mt-0 xl:h-screen lg:h-130 md:h-100 h-62.5 2xl:h-200 mb-26 overflow-hidden bg-white"
       >
         <Marquee
           speed={marqueeSpeed}

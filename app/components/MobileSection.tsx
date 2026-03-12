@@ -85,20 +85,24 @@ export default function MobileSection() {
           speelbeleving. Door te werken met speelsessies zorgen we voor minder
           drukte en meer speelplezier voor iedereen.
         </h1>
-        <img
-          src="/assets/mobile/mobile.svg"
-          className="w-20 animate-[float_3s_ease-in-out_infinite]"
-          alt=""
-        />
+        <div className="animate-bounce -rotate-90">
+          <img
+            src="/assets/icons/arrow.svg"
+            className="w-30 rotate-90"
+            alt=""
+          />
+        </div>
         <h1 className="text-center text-xl font-semibold">
           Altijd je spaarpunten bij de hand. Zet ons QR code handig in je
           e-wallet. Spelen worden nu nog leuker met sparen.
         </h1>
-        <img
-          src="/assets/mobile/mobile.svg"
-          className="w-20 animate-[float_3s_ease-in-out_infinite_0.5s]"
-          alt=""
-        />
+        <div className="animate-bounce -rotate-90 -scale-y-100">
+          <img
+            src="/assets/icons/arrow.svg"
+            className="w-30 rotate-90"
+            alt=""
+          />
+        </div>
       </div>
 
       <div ref={rightRef} className="relative flex flex-col items-center md:gap-8 gap-5 md:mt-0 mt-4">

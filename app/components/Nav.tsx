@@ -92,7 +92,7 @@ export default function Nav() {
       {/* Sticky Nav Bar */}
       <div
         ref={navRef}
-        style={{ fontFamily: "StudlyFree, sans-serif", opacity: 0 }}
+        style={{ fontFamily: "Quicksand, sans-serif", opacity: 0 }}
         className="sticky top-0 z-50"
       >
         <div className="relative overflow-visible">
@@ -217,7 +217,7 @@ export default function Nav() {
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
-          fontFamily: "StudlyFree, sans-serif",
+          fontFamily: "Quicksand, sans-serif",
           backgroundColor: "#FFCA58",
           boxShadow: isOpen ? "-4px 0 20px rgba(0,0,0,0.15)" : "none",
         }}

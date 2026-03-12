@@ -1,5 +1,4 @@
-"use client";
-import Link from "next/link";
+"use client";import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
@@ -11,19 +10,26 @@ const cardData = [
     role: "Directrice",
     text: "Alles ziet er veilig, creatief en super speels uit. Mijn zoontje vraagt nu al wanneer het open gaat!",
   },
-  
   {
-    title: "Emily J.",
-    role: "Directrice",
-    text: "Alles ziet er veilig, creatief en super speels uit. Mijn zoontje vraagt nu al wanneer het open gaat!",
+    title: "Mark R.",
+    role: "Toekomstige bezoeker",
+    text: "Dit is precies wat Waddinxveen nodig heeft. Een plek waar kinderen spelenderwijs leren, ontdekken en hun fantasie kunnen gebruiken.",
   },
-
   {
-    title: "Emily J.",
-    role: "Directrice",
-    text: "Alles ziet er veilig, creatief en super speels uit. Mijn zoontje vraagt nu al wanneer het open gaat!",
+    title: "Sophie M.",
+    role: "Toekomstige bezoeker",
+    text: "Dit is precies wat kinderen nodig hebben: spelend leren! Ik kan niet wachten tot mijn dochter hier dokter, piloot of chef kan spelen en ondertussen zoveel leert.",
   },
-  
+  {
+    title: "David K.",
+    role: "Toekomstige bezoeker",
+    text: "Eindelijk een plek waar fantasie en educatie samenkomen. Kinderen leren hier samenwerken, ontdekken beroepen en bouwen zelfvertrouwen op.",
+  },
+  {
+    title: "Laura V.",
+    role: "Toekomstige bezoeker",
+    text: "Rollenspel is één van de krachtigste manieren waarop kinderen leren. Dit concept maakt leren avontuurlijk, creatief en onvergetelijk.",
+  },
 ];
 
 const POSITION_ROTATE: Record<CardState, string> = {
@@ -43,13 +49,26 @@ const ANIM_CSS = `
 `;
 
 export default function Footer() {
-  const logoRef = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1 });
-  const cardsRef = useScrollAnimation<HTMLDivElement>({ type: "scaleIn", duration: 1.1, delay: 0.1 });
-  const newsletterRef = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1, delay: 0.2 });
+  const logoRef = useScrollAnimation<HTMLDivElement>({
+    type: "fadeUp",
+    duration: 1,
+  });
+  const cardsRef = useScrollAnimation<HTMLDivElement>({
+    type: "scaleIn",
+    duration: 1.1,
+    delay: 0.1,
+  });
+  const newsletterRef = useScrollAnimation<HTMLDivElement>({
+    type: "fadeUp",
+    duration: 1,
+    delay: 0.2,
+  });
 
   const [states, setStates] = useState<CardState[]>([
     "current",
     "next",
+    "idle",
+    "idle",
     "idle",
   ]);
   const animating = useRef(false);
@@ -215,7 +234,7 @@ export default function Footer() {
     <div
       id="contact"
       style={{ fontFamily: "Nunito Variable" }}
-      className="relative w-full mt-6 md:mt-10"
+      className="relative w-full -mt-28 md:-mt-52"
     >
       {/* Layer 1: wave curve — sits at the top, drives its own height via aspect-ratio */}
       <div
@@ -234,7 +253,7 @@ export default function Footer() {
           aria-hidden="true"
         >
           <path
-            d="M-1 291L1753 291L1753 174C1753 174 1594.78 143 1327.5 120C1138.62 104 1003.14 125 819.492 155C599.677 194 340.285 238 264 238C43 238 -1 217 -1 217Z"
+            d="M-1 291L1753 281L1753 16.5C1753 19.5 1909 36.5 1588 9.5C1411.715 -7.5 1152.323 36.9 932.508 76.3C748.86 106.3 613.38 126.9 404.5 130.8C157.22 128 -1 56.9 -1 56.9Z"
             fill="url(#curveGradient)"
           />
           <defs>
@@ -258,14 +277,17 @@ export default function Footer() {
         {/* ✅ Content pulled up by half the wave height using negative marginTop.
             This visually centers the content at the wave/body boundary. */}
         <div
-          className="relative flex flex-col lg:flex-row items-center justify-center gap-10 sm:gap-14 lg:gap-20 px-6 sm:px-10 pb-10 md:pt-0 pt-5"
+          className="relative flex flex-col lg:flex-row items-center justify-center gap-10 sm:gap-14 lg:gap-20 px-6 sm:px-10 pb-14 md:pt-16 pt-12"
           style={{
             zIndex: 1,
             marginTop: `calc(-1 * ${halfWave})`,
           }}
         >
           {/* Column 1: Logo + Socials */}
-          <div ref={logoRef} className="flex flex-col gap-6 lg:gap-10 items-center flex-1 min-w-0 w-full lg:w-auto">
+          <div
+            ref={logoRef}
+            className="flex flex-col gap-6 lg:gap-10 items-center flex-1 min-w-0 w-full lg:w-auto"
+          >
             <Link href="/">
               <img
                 src="/assets/footer/logo.svg"
@@ -274,7 +296,11 @@ export default function Footer() {
               />
             </Link>
             <div className="flex gap-5">
-              <Link href="https://www.instagram.com/minimastersplayground" target="_blank" className="group">
+              <Link
+                href="https://www.instagram.com/minimastersplayground"
+                target="_blank"
+                className="group"
+              >
                 <div className="relative rounded-full w-11 lg:w-12 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-rotate-6">
                   <div className="absolute inset-0 rounded-full bg-[#FF5757]/0 group-hover:bg-[#FF5757]/15 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,87,87,0.35)] group-hover:scale-125" />
                   <img
@@ -284,7 +310,11 @@ export default function Footer() {
                   />
                 </div>
               </Link>
-              <Link href="https://www.tiktok.com/@minimastersplaygr" target="_blank" className="group">
+              <Link
+                href="https://www.tiktok.com/@minimastersplaygr"
+                target="_blank"
+                className="group"
+              >
                 <div className="relative rounded-full w-11 lg:w-12 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-6">
                   <div className="absolute inset-0 rounded-full bg-[#5763FF]/0 group-hover:bg-[#5763FF]/15 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(87,99,255,0.35)] group-hover:scale-125" />
                   <img
@@ -298,13 +328,19 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Card Stack */}
-          <div ref={cardsRef} className="flex-1 min-w-0 flex items-center justify-center w-full lg:w-auto">
+          <div
+            ref={cardsRef}
+            className="flex-1 min-w-0 flex items-center justify-center w-full lg:w-auto"
+          >
             <div className="block lg:hidden">{cardStack(260)}</div>
             <div className="hidden lg:block">{cardStack(320)}</div>
           </div>
 
           {/* Column 3: Letter / newsletter */}
-          <div ref={newsletterRef} className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-none">
+          <div
+            ref={newsletterRef}
+            className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-none"
+          >
             <div className="relative w-full">
               <img src="/assets/footer/letter.svg" className="w-full" alt="" />
               <div className="absolute top-0 w-2/3 left-1/2 -translate-x-1/2 mt-8 lg:mt-10 flex flex-col gap-3 lg:gap-5 items-center">
@@ -329,7 +365,11 @@ export default function Footer() {
               </div>
             </div>
             <div className="flex mt-3 w-full justify-evenly">
-              <Link href="https://share.google/ZLMrmSLkckXFQ7fsW" target="_blank" className="group">
+              <Link
+                href="https://share.google/ZLMrmSLkckXFQ7fsW"
+                target="_blank"
+                className="group"
+              >
                 <img
                   src="/assets/footer/map.svg"
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
@@ -343,7 +383,10 @@ export default function Footer() {
                   alt=""
                 />
               </Link>
-              <Link href="mailto:hero@minimastersplayground.nl" className="group">
+              <Link
+                href="mailto:hero@minimastersplayground.nl"
+                className="group"
+              >
                 <img
                   src="/assets/footer/mail.svg"
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
@@ -359,14 +402,33 @@ export default function Footer() {
         className="bg-[#FFCA58] md:pt-16 pt-5 pb-10 text-white font-semibold flex md:flex-row flex-col justify-between items-center md:px-10 lg:gap-24 px-6 sm:px-10"
       >
         <div className="flex md:flex-row flex-col items-center md:gap-10 gap-1">
-          <Link href="/algemene-voorwaarden" className="hover:text-[#5763FF] transition-colors duration-300">Algemene voorwaarden</Link>
-          <Link href="/privacy" className="hover:text-[#5763FF] transition-colors duration-300">Privacy beleid</Link>
-          <Link href="/disclaimer" className="hover:text-[#5763FF] transition-colors duration-300">Disclaimer</Link>
+          <Link
+            href="/algemene-voorwaarden"
+            className="hover:text-[#5763FF] transition-colors duration-300"
+          >
+            Algemene voorwaarden
+          </Link>
+          <Link
+            href="/privacy"
+            className="hover:text-[#5763FF] transition-colors duration-300"
+          >
+            Privacy beleid
+          </Link>
+          <Link
+            href="/disclaimer"
+            className="hover:text-[#5763FF] transition-colors duration-300"
+          >
+            Disclaimer
+          </Link>
         </div>
         <div className="md:mt-0 mt-4">
           <h1>
             Ontwikkeld door
-            <Link href="https://www.achieve.nl" target="_blank" className="hover:text-[#5763FF] transition-colors duration-300">
+            <Link
+              href="https://www.achieve.nl"
+              target="_blank"
+              className="hover:text-[#5763FF] transition-colors duration-300"
+            >
               {" "}
               Achieve.nl
             </Link>
