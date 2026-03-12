@@ -233,8 +233,8 @@ export default function Nav() {
           <span className="block h-0.5 w-7 bg-white -rotate-45 -translate-y-2 transition-all duration-300" />
         </button>
 
-        <Link href="/" onClick={() => setIsOpen(false)}>
-          <img src="/assets/logo.svg" className="w-3/4 p-2 mt-4" alt="" />
+        <Link href="/" onClick={() => setIsOpen(false)} className="flex justify-center w-full mt-4">
+          <img src="/assets/logo.svg" className="w-3/4 p-2" alt="" />
         </Link>
         <Link
           href="/"
