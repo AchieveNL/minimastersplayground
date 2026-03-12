@@ -106,9 +106,9 @@ export default function Nav() {
             xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="none"
           >
-            {/* White/cream wave (slightly larger, sits behind) */}
+            {/* White/cream wave (thin on right, thick on left) */}
             <path
-              d="M-1 0L1753 0L1753 196C1753 196 1594.78 164 1327.5 141C1138.62 125 1003.14 146 819.492 176C599.677 215 340.285 260 264 260C43 260 -1 238 -1 238L-1 0Z"
+              d="M-1 0L1753 0L1753 182C1753 182 1594.78 158 1327.5 145C1138.62 135 1003.14 165 819.492 200C599.677 245 340.285 275 264 278C43 280 -1 270 -1 270L-1 0Z"
               fill="#FDF9EF"
             />
             {/* Yellow wave (main nav background) */}
