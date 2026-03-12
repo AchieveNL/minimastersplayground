@@ -178,22 +178,22 @@ export default function Nav() {
             <button
               ref={hamburgerRef}
               onClick={() => setIsOpen(!isOpen)}
-              className="xl:hidden flex flex-col justify-center items-center gap-1.5 ml-auto z-50 w-10 h-10 absolute top-0 right-0 m-2"
+              className="xl:hidden flex flex-col justify-center items-center gap-1.5 ml-auto z-50 w-10 h-10"
               style={{ opacity: 0 }}
               aria-label="Toggle menu"
             >
               <span
-                className={`block h-0.5 w-7 bg-white transition-all duration-300 ${
+                className={`block h-[3px] w-7 rounded-full bg-white transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-2" : ""
                 }`}
               />
               <span
-                className={`block h-0.5 w-7 bg-white transition-all duration-300 ${
+                className={`block h-[3px] w-7 rounded-full bg-white transition-all duration-300 ${
                   isOpen ? "opacity-0" : ""
                 }`}
               />
               <span
-                className={`block h-0.5 w-7 bg-white transition-all duration-300 ${
+                className={`block h-[3px] w-7 rounded-full bg-white transition-all duration-300 ${
                   isOpen ? "-rotate-45 -translate-y-2" : ""
                 }`}
               />
