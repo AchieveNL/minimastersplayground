@@ -27,9 +27,7 @@ export default function Home() {
         <Location />
         <Faq />
         <AnimatedSlider direction="right" />
-        <div className="-mt-10">
-          <Footer />
-        </div>
+        <Footer />
       </div>
     </>
   );

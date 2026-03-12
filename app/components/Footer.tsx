@@ -215,7 +215,7 @@ export default function Footer() {
     <div
       id="contact"
       style={{ fontFamily: "Nunito Variable" }}
-      className="relative w-full md:-mt-24 mt-3"
+      className="relative w-full mt-6 md:mt-10"
     >
       {/* Layer 1: wave curve — sits at the top, drives its own height via aspect-ratio */}
       <div
