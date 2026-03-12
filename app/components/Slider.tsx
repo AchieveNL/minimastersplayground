@@ -5,7 +5,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 export default function Slider() {
   const data = [
     { bg: "img1.jpg", text1: "Losse ticket", text2: "1 persoon", link: "https://minimasters.booqi.me/product/296874/entreetickets" },
-    { bg: "img2.jpg", text1: "Groeps ticket", text2: "2-4 persoon", link: "" },
+    { bg: "img2.jpg", text1: "Zaalverhuur", text2: "2-4 persoon", link: "" },
     {
       bg: "img3.png",
       text1: "Abonnement",
@@ -14,7 +14,7 @@ export default function Slider() {
     },
     {
       bg: "img4.jpg",
-      text1: "Jaar abonnement",
+      text1: "Schoolopvang",
       text2: "Onbeperkt speelplezier + Speelruimte 1 + Speelruimte 2",
       link: "",
     },
@@ -276,9 +276,6 @@ export default function Slider() {
                 />
                 <h1 className="z-20 text-center text-sm px-3 text-white">
                   {item.text1}
-                </h1>
-                <h1 className="z-20 text-center px-5 text-sm text-white">
-                  {item.text2}
                 </h1>
               </>
             );
