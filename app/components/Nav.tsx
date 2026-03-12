@@ -213,7 +213,7 @@ export default function Nav() {
 
       {/* Mobile Drawer — rendered outside sticky nav to escape stacking context */}
       <div
-        className={`xl:hidden flex flex-col items-center gap-5 sm:gap-6 text-base sm:text-lg fixed top-0 right-0 h-full w-3/4 sm:w-2/3 px-6 py-8 z-[999] transition-transform duration-300 ${
+        className={`xl:hidden flex flex-col items-center gap-5 sm:gap-6 text-base sm:text-lg fixed top-0 right-0 h-full w-2/3 sm:w-1/2 px-6 py-8 z-[999] transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
