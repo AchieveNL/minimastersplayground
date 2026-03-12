@@ -108,7 +108,7 @@ export default function Hero() {
       <div ref={sliderRef} style={{ opacity: 0 }}>
         <AnimatedSilder />
       </div>
-      <div id="over-ons" className="pt-28 relative flex flex-col items-center justify-center gap-5">
+      <div id="over-ons" className="pt-16 md:pt-28 relative flex flex-col items-center justify-center gap-5">
         <div ref={gearsRef}>
           <img
             src="/assets/icons/gear.svg"
