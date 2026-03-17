@@ -67,9 +67,9 @@ export default function Hero() {
       posMobile: -30,
       pos: -70,
       iconWidth: 120,
-      icon: "/assets/icons/group.svg",
+      icon: "/elements/Groep Icoon.svg",
       title: (
-        <h1 className="font-bold text-lg text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-8 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-6 w-full rounded-br-4xl text-nowrap">
           DE MINI MAATSCHAPPIJ
         </h1>
       ),
@@ -80,9 +80,9 @@ export default function Hero() {
       posMobile: -60,
       pos: -90,
       iconWidth: 150,
-      icon: "/assets/icons/education.svg",
+      icon: "/elements/Educatie Icoon.svg",
       title: (
-        <h1 className="font-bold text-lg text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-10 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-8 w-full rounded-br-4xl text-nowrap">
           HET EDUCATIEVE KARAKTER
         </h1>
       ),
@@ -93,9 +93,9 @@ export default function Hero() {
       posMobile: -30,
       pos: -50,
       iconWidth: 100,
-      icon: "/assets/icons/badge.svg",
+      icon: "/elements/Standaard Icoon.svg",
       title: (
-        <h1 className="font-bold text-lg text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 pl-1 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-1 pl-4 w-full rounded-br-4xl text-nowrap">
           DE NIEUWE STANDAARD
         </h1>
       ),

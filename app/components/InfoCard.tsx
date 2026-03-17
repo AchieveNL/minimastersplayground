@@ -38,17 +38,17 @@ export default function InfoCard({
         }
       `}</style>
       <div className="flex items-center relative justify-center xl:w-[75%] xl:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
-        <img
+        <img loading="lazy"
           src={icon}
           className="absolute md:hidden"
           style={{
-            width: iconWidth,
-            left: posMobile,
+            width: (iconWidth ?? 100) * 0.65,
+            left: (posMobile ?? 0) * 0.55,
             animation: `${animationName} ${cycleLength}s ease-in-out ${delay}s infinite`,
           }}
           alt=""
         />
-        <img
+        <img loading="lazy"
           src={icon}
           className="absolute hidden md:block"
           style={{

@@ -26,14 +26,55 @@ const data: FaqCategory[] = [
         question: "Wat is Minimasters?",
         answer: (
           <>
-            Minimasters is een unieke belevingswereld waar kinderen
-            spelenderwijs de grote-mensenwereld ontdekken. Van een eigen
-            restaurant tot verschillende speelruimtes zoals een spa, café en
-            zelfs een supermarkt – alles is ingericht om fantasie, creativiteit
-            en rollenspel te stimuleren. Bij Minimasters kunnen kinderen koken,
-            werken, ontspannen en winkelen in een veilige en interactieve
-            omgeving. Een plek waar leren en spelen samenkomen en elk bezoek een
-            nieuw avontuur is!
+            Minimasters is een unieke belevingswereld waar kinderen spelenderwijs de grote-mensenwereld ontdekken. Van een eigen restaurant tot verschillende speelruimtes zoals een spa, café en zelfs een supermarkt – alles is ingericht om fantasie, creativiteit en rollenspel te stimuleren. Bij Minimasters kunnen kinderen koken, werken, ontspannen en winkelen in een veilige en interactieve omgeving. Een plek waar leren en spelen samenkomen en elk bezoek een nieuw avontuur is!
+          </>
+        ),
+      },
+      {
+        question: "Welke betaalmethoden worden geaccepteerd?",
+        answer: (
+          <>
+            Bij Minimasters is het alleen mogelijk met pin te betalen, contante betalingen worden niet geaccepteerd.
+          </>
+        ),
+      },
+      {
+        question: "Kan ik mijn kinderwagen meenemen?",
+        answer: (
+          <>
+            Bij binnenkomst in de lobby vragen we je om de kinderwagen daar achter te laten. Vanwege hygiëne en de beperkte ruimte is het niet toegestaan om kinderwagens mee te nemen in de speelruimte en zitgedeelte.
+          </>
+        ),
+      },
+      {
+        question: "Kunnen mijn kinderen alleen blijven in Minimasters?",
+        answer: (
+          <>
+            Nee, kinderen dienen altijd onder toezicht van hun ouders of verzorgers te blijven.
+          </>
+        ),
+      },
+      {
+        question: "Is er een borstvoeding ruimte?",
+        answer: (
+          <>
+            Ja, wij hebben een privé ruimte waar je borstvoeding kunt geven.
+          </>
+        ),
+      },
+      {
+        question: "Mag ik eigen eten en drinken meenemen?",
+        answer: (
+          <>
+            In ons café kun je terecht voor eten en drinken. Daarom vragen we je vriendelijk geen eigen consumpties mee te nemen. Babyvoeding en babyflessen zijn wel toegestaan.
+          </>
+        ),
+      },
+      {
+        question: "Verloren items?",
+        answer: (
+          <>
+            We bewaren gevonden voorwerpen meestal 14 dagen, afhankelijk van de beschikbare ruimte. Ben je iets verloren? Mail ons dan naar hero@minimastersplayground.nl. Houd er rekening mee dat wij niet verantwoordelijk is voor verloren spullen en dat we niet kunnen garanderen dat het item wordt teruggevonden.
           </>
         ),
       },
@@ -49,35 +90,65 @@ const data: FaqCategory[] = [
         answer: (
           <>
             Wij werken dagelijks met drie vaste sessies van elk 2,5 uur.
-            <br />
-            Tussen iedere sessie hebben wij 30 minuten opruimtijd, zodat de ruimte weer
-            schoon en klaar is voor de volgende groep kinderen. Op deze manier
-            zorgen wij iedere sessie opnieuw voor een fijne en veilige
-            speelervaring.
-            <br />
-            Elke sessie heeft een eigen naam, maar het aanbod aan
-            activiteiten en het spelen is in elke sessie hetzelfde.
-            <br />
-            Onze sessies:
-            <ul className="list-disc pl-5 mt-1">
-              <li>Sessie 1 – De Kick Start: 09:00 – 11:30</li>
-              <li>Sessie 2 – Middag Avontuur: 12:00 – 14:30</li>
-              <li>Sessie 3 – Eindpret: 15:00 – 17:30</li>
-            </ul>
-            Na het selecteren van een sessie kun je aangeven met hoeveel kinderen en
-            volwassenen je komt.
-            <br />
-            De entreeprijs bedraagt €11,00 per persoon,
-            zowel voor kinderen als volwassenen.
+            <br /><br />
+            Tussen iedere sessie hebben wij 30 minuten opruimtijd, zodat de ruimte weer schoon en klaar is voor de volgende groep kinderen. Op deze manier zorgen wij iedere sessie opnieuw voor een fijne en veilige speelervaring.
+            <br /><br />
+            Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en het spelen is in elke sessie hetzelfde.
           </>
         ),
       },
       {
-        question: "Welke betaalmethoden worden geaccepteerd?",
+        question: "Hoelaat moet ik aankomen?",
         answer: (
           <>
-            Bij Minimasters kun je betalen met Maestro en creditcard. Andere
-            betaalmethoden worden op dit moment niet geaccepteerd.
+            We adviseren om ongeveer 5 minuten van tevoren aanwezig te zijn. Zo heb je rustig de tijd om je schoenen en jas op te bergen voordat je avontuur begint. Kom je eerder aan? Dan kan het zijn dat de deuren nog niet open zijn, omdat we tussen de speelsessies de ruimte nog aan het opruimen zijn.
+          </>
+        ),
+      },
+      {
+        question: "Waarom kopen ouders en verzorgers een kaartje?",
+        answer: (
+          <>
+            Bij Minimasters werken we met een vast aantal plekken per sessie om het spelen voor iedereen veilig en prettig te houden. Omdat ouders en verzorgers ook aanwezig zijn in de speelruimte, vragen we voor hen eveneens een ticket. Zo blijft het overzichtelijk en kan ieder kind volop genieten van het spelen.
+          </>
+        ),
+      },
+      {
+        question: "Mag ik schoenen aan tijdens het spelen?",
+        answer: (
+          <>
+            Om hygiënische redenen is het niet toegestaan om schoenen te dragen tijdens het spelen. Daarom spelen we op sokken. Ben je je sokken vergeten? Geen probleem, je kunt sokken kopen bij de receptie.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    text: "#FF5757",
+    bg: "#FFEEEE",
+    title: "Tickets",
+    items: [
+      {
+        question: "Zijn er tickets aan de deur verkrijgbaar?",
+        answer: (
+          <>
+            Zolang een sessie niet is uitverkocht, kun je tickets kopen aan de deur bij Minimasters. De huidige beschikbaarheid vind je op onze ticketpagina. Wil je verzekerd zijn van een tijdslot? Dan adviseren we je tickets online te bestellen.
+          </>
+        ),
+      },
+      {
+        question: "Kan ik mijn ticket nog annuleren?",
+        answer: (
+          <>
+            Vooraf gekochte tickets worden niet terugbetaald. Je kunt je reservering wel tot 24 uur van tevoren kosteloos wijzigen naar een andere datum. Neem hiervoor contact op met de locatie.
+          </>
+        ),
+      },
+      {
+        question: "Wat gebeurt er als ik later aankom?",
+        answer: (
+          <>
+            Geen probleem als je iets later aankomt. Houd er wel rekening mee dat de speelsessie een vaste eindtijd heeft. Deze eindtijd blijft hetzelfde voor alle spelers, ook als je later begint.
           </>
         ),
       },
@@ -92,10 +163,8 @@ const data: FaqCategory[] = [
         question: "Welke activiteiten zijn er?",
         answer: (
           <>
-            Onze ruimte is ingericht als een klein dorp met verschillende
-            huisjes, waar kinderen spelenderwijs verschillende beroepen en
-            dagelijkse situaties kunnen ontdekken.
-            <br />
+            Onze ruimte is ingericht als een klein dorp met verschillende huisjes, waar kinderen spelenderwijs verschillende beroepen en dagelijkse situaties kunnen ontdekken.
+            <br /><br />
             Zo kunnen kinderen onder andere:
             <ul className="list-disc pl-5 mt-1">
               <li>Koeien melk geven</li>
@@ -111,9 +180,8 @@ const data: FaqCategory[] = [
         question: "Is Minimasters geschikt voor kinderfeestjes?",
         answer: (
           <>
-            Ja! Bij het reserveren van een sessie kun je ook kiezen voor een
-            verjaardagsarrangement.
-            <br />
+            Ja! Bij het reserveren van een sessie kun je ook kiezen voor een verjaardagsarrangement.
+            <br /><br />
             Wij bieden twee soorten kinderfeestjes aan:
             <ul className="list-disc pl-5 mt-1">
               <li>Verjaardag type 1 (uitleg volgt)</li>
@@ -270,26 +338,26 @@ export default function Faq() {
 
   return (
     <div id="faq" className="md:my-24 my-16 relative" style={{ fontFamily: "Quicksand" }}>
-      <img src="/assets/faq/icon1.svg" className="absolute md:w-60 w-30 top-1/2 md:-translate-y-1/2" alt="" />
-      <img src="/assets/faq/icon2.svg" className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 " alt="" />
-      <img src="/assets/faq/icon3.svg" className="absolute md:w-50 w-20 right-0 top-[70%]" alt="" />
+      <img loading="lazy" src="/assets/faq/icon1.svg" className="absolute md:w-60 w-30 top-1/2 md:-translate-y-1/2" alt="" />
+      <img loading="lazy" src="/assets/faq/icon2.svg" className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 " alt="" />
+      <img loading="lazy" src="/assets/faq/icon3.svg" className="absolute md:w-50 w-20 right-0 top-[70%]" alt="" />
 
       <div ref={badgeRef} className="flex w-fit md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
-        <img
-          src="/assets/faq/icon.svg"
+        <img loading="lazy"
+          src="/elements/Vragen Icoon.svg"
           className="absolute md:hidden"
           style={{ width: "120px", left: "-20%" }}
           alt=""
         />
-        <img
-          src="/assets/faq/icon.svg"
+        <img loading="lazy"
+          src="/elements/Vragen Icoon.svg"
           className="absolute hidden md:block"
           style={{ width: "130px", left: -50 }}
           alt=""
         />
 
         <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 w-full rounded-br-4xl">
-          VEELGESTELDE VRAGEN
+          FAQ-ANTWOORDEN
         </h1>
       </div>
       <div ref={questionsRef} className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-4 sm:px-5 flex flex-col items-center m-auto mt-8 md:mt-10">
@@ -303,6 +371,7 @@ export default function Faq() {
           />
         ))}
       </div>
+
     </div>
   );
 }

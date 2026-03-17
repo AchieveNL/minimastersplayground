@@ -109,24 +109,32 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       }}
     >
       {/* Decorative background illustrations */}
-      <img
-        src="/assets/icons/cards-icon1.svg"
-        className="absolute -top-10 -right-10 md:w-80 w-48 opacity-[0.12]"
-        alt=""
-      />
-      <img
-        src="/assets/icons/cards-icon2.svg"
-        className="absolute -bottom-5 -left-5 md:w-52 w-32 opacity-[0.12]"
-        alt=""
-      />
+      {/* Fire extinguisher — top right */}
       <img
         src="/assets/mobile/icon1.svg"
-        className="absolute top-[10%] -left-8 md:w-48 w-28 opacity-[0.10]"
+        className="absolute -top-8 -right-8 md:w-[20rem] w-48 opacity-[0.22]"
+        style={{ filter: "brightness(0) invert(1)" }}
         alt=""
       />
+      {/* Lollipop/spiral — bottom left */}
       <img
-        src="/assets/faq/icon.svg"
-        className="absolute bottom-[15%] -right-5 md:w-56 w-36 opacity-[0.10]"
+        src="/assets/mobile/icon2.svg"
+        className="absolute -bottom-16 -left-14 md:w-[22rem] w-52 opacity-[0.20]"
+        style={{ filter: "brightness(0) invert(1)" }}
+        alt=""
+      />
+      {/* Chick — top left */}
+      <img
+        src="/assets/mobile/icon3.svg"
+        className="absolute top-[3%] left-[2%] md:w-60 w-36 opacity-[0.18]"
+        style={{ filter: "brightness(0) invert(1)" }}
+        alt=""
+      />
+      {/* Barn — bottom right */}
+      <img
+        src="/assets/location/img4.svg"
+        className="absolute -bottom-10 -right-10 md:w-72 w-44 opacity-[0.16]"
+        style={{ filter: "brightness(0) invert(1)" }}
         alt=""
       />
 
@@ -162,10 +170,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           />
         </div>
 
-        {/* Loading stars */}
-        <div ref={dotsRef} className="flex mt-1">
-          <img src="/assets/footer/stars.svg" className="w-20 opacity-90" alt="" />
-        </div>
       </div>
     </div>
   );

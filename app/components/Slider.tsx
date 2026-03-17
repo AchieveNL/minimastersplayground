@@ -4,26 +4,10 @@ import { useEffect, useState, useCallback, useRef } from "react";
 
 export default function Slider() {
   const data = [
-    { bg: "img1.jpg", text1: "Losse ticket", text2: "1 persoon", link: "https://minimasters.booqi.me/product/296874/entreetickets" },
-    { bg: "img2.jpg", text1: "Zaalverhuur", text2: "2-4 persoon", link: "" },
-    {
-      bg: "img3.png",
-      text1: "Abonnement",
-      text2: "90 min. lang speelplezier + Speelruimte 1 + Speelruimte 2",
-      link: "",
-    },
-    {
-      bg: "img4.jpg",
-      text1: "Schoolopvang",
-      text2: "Onbeperkt speelplezier + Speelruimte 1 + Speelruimte 2",
-      link: "",
-    },
-    {
-      bg: "img5.jpg",
-      text1: "Kinderfeestje",
-      text2: "150 min. lang speelplezier + Speelruimte 1 & 2 + Restaurant",
-      link: "https://minimasters.booqi.me/product/296875/kinderfeestjes",
-    },
+    { bg: "img4.jpg", text1: "Schoolopvang", text2: "", link: "https://minimasters.booqi.me/product/297636/scholen-bso" },
+    { bg: "img1.jpg", text1: "Entreeticket", text2: "", link: "https://minimasters.booqi.me/product/296874/entreetickets" },
+    { bg: "img5.jpg", text1: "Kinderfeestje", text2: "", link: "https://minimasters.booqi.me/product/296875/kinderfeestjes" },
+    { bg: "img3.png", text1: "Abonnement", text2: "", link: "" },
   ];
   const SLOTS_NEEDED = 9; // = VISIBLE*2 + EXIT_TRAVEL + ENTER_TRAVEL + 3
   const repeatCount = Math.ceil(SLOTS_NEEDED / data.length);
@@ -135,7 +119,7 @@ export default function Slider() {
     setVirtualIndex((prev) => {
       const nextV = prev + 1;
 
-      const targetSlotNow = RECYCLE_AT + 1; // slot relative to prev
+      const targetSlotNow = RECYCLE_AT + 1;
       const exitingDataIndex = cardVirtual.current.findIndex(
         (v) => v - prev === targetSlotNow,
       );
@@ -165,10 +149,43 @@ export default function Slider() {
     }, 520);
   }, [RECYCLE_AT, ENTER_FROM]);
 
-  useEffect(() => {
-    const interval = setInterval(next, 3000);
-    return () => clearInterval(interval);
-  }, [next]);
+  // ── prev() ─────────────────────────────────────────────────────────────────
+  const prev = useCallback(() => {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+
+    setVirtualIndex((prevV) => {
+      const nextV = prevV - 1;
+
+      const targetSlotNow = -(RECYCLE_AT + 1);
+      const enteringDataIndex = cardVirtual.current.findIndex(
+        (v) => v - prevV === targetSlotNow,
+      );
+
+      if (enteringDataIndex !== -1) {
+        const targetVirtual = nextV - ENTER_FROM;
+
+        setTeleportingCards((s) => new Set(s).add(enteringDataIndex));
+        cardVirtual.current[enteringDataIndex] = targetVirtual;
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setTeleportingCards((s) => {
+              const n = new Set(s);
+              n.delete(enteringDataIndex);
+              return n;
+            });
+          });
+        });
+      }
+
+      return nextV;
+    });
+
+    setTimeout(() => {
+      isAnimating.current = false;
+    }, 520);
+  }, [RECYCLE_AT, ENTER_FROM]);
 
   const W = containerSize.w || 1440;
   const H = containerSize.h || 800;
@@ -225,12 +242,12 @@ export default function Slider() {
           </defs>
         </svg>
 
-        <img
+        <img loading="lazy"
           src="/assets/icons/cards-icon1.svg"
           className="absolute right-0 top-10 md:w-80 w-30"
           alt=""
         />
-        <img
+        <img loading="lazy"
           src="/assets/icons/cards-icon2.svg"
           className="absolute left-0 md:w-40 w-20"
           alt=""
@@ -238,14 +255,14 @@ export default function Slider() {
 
         {/* Header badge */}
         <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
-          <img
-            src="/assets/icons/badge2.svg"
+          <img loading="lazy"
+            src="/elements/Ticket Icoon.svg"
             className="absolute md:hidden"
             style={{ width: "100px", left: "-10%" }}
             alt=""
           />
-          <img
-            src="/assets/icons/badge2.svg"
+          <img loading="lazy"
+            src="/elements/Ticket Icoon.svg"
             className="absolute hidden md:block"
             style={{ width: "130px", left: -50 }}
             alt=""
@@ -260,6 +277,26 @@ export default function Slider() {
           className="relative mt-10 w-full md:mb-44 mb-20"
           style={{ height: `${CARD_HEIGHT + 180}px`, overflow: "visible" }}
         >
+          {/* Left Arrow */}
+          <button
+            onClick={prev}
+            className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/80 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer"
+            aria-label="Previous"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="#5763FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          {/* Right Arrow */}
+          <button
+            onClick={next}
+            className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/80 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer"
+            aria-label="Next"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 18L15 12L9 6" stroke="#5763FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
           {cards.map((item, index) => {
             const slot = getSlot(index);
             const isTeleporting = teleportingCards.has(index);
@@ -274,7 +311,7 @@ export default function Slider() {
                   }}
                   className="absolute bottom-0 left-0 right-0 rounded-bl-[60px]"
                 />
-                <h1 className="z-20 text-center text-sm px-3 text-white">
+                <h1 className="z-20 text-center text-base md:text-lg px-3 text-white">
                   {item.text1}
                 </h1>
               </>
@@ -303,7 +340,7 @@ export default function Slider() {
                     Komt binnenkort
                   </span>
                 </div>
-                <img
+                <img loading="lazy"
                   src="/assets/footer/stars.svg"
                   className="w-20 mt-1 opacity-90"
                   alt=""

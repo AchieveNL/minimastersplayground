@@ -201,7 +201,7 @@ export default function Footer() {
               {card.title}
             </h1>
             <span style={{ fontSize: "1.1rem" }}>{card.role}</span>
-            <img
+            <img loading="lazy"
               src="/assets/footer/stars.svg"
               style={{
                 transform: "rotate(12.5deg)",
@@ -286,24 +286,25 @@ export default function Footer() {
           {/* Column 1: Logo + Socials */}
           <div
             ref={logoRef}
-            className="flex flex-col gap-6 lg:gap-10 items-center flex-1 min-w-0 w-full lg:w-auto"
+            className="flex flex-col items-center flex-1 min-w-0 w-full lg:w-auto"
           >
-            <Link href="/">
-              <img
-                src="/assets/footer/logo.svg"
+            <Link href="/" className="-mt-32 lg:-mt-56">
+              <img loading="lazy"
+                src="/newLogo2.svg"
                 alt=""
-                className="mx-auto md:w-auto w-4/5"
+                style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.2)) drop-shadow(0 4px 8px rgba(0,0,0,0.15))" }}
+                className="mx-auto w-80 md:w-[32rem] lg:w-[42rem]"
               />
             </Link>
-            <div className="flex gap-5">
+            <div className="flex gap-6 -mt-10 lg:-mt-16">
               <Link
                 href="https://www.instagram.com/minimastersplayground"
                 target="_blank"
                 className="group"
               >
-                <div className="relative rounded-full w-11 lg:w-12 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-rotate-6">
+                <div className="relative rounded-full w-12 lg:w-14 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-rotate-6">
                   <div className="absolute inset-0 rounded-full bg-[#FF5757]/0 group-hover:bg-[#FF5757]/15 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,87,87,0.35)] group-hover:scale-125" />
-                  <img
+                  <img loading="lazy"
                     src="/assets/footer/insta.svg"
                     className="rounded-full w-full relative z-10"
                     alt=""
@@ -315,9 +316,9 @@ export default function Footer() {
                 target="_blank"
                 className="group"
               >
-                <div className="relative rounded-full w-11 lg:w-12 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-6">
+                <div className="relative rounded-full w-12 lg:w-14 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-6">
                   <div className="absolute inset-0 rounded-full bg-[#5763FF]/0 group-hover:bg-[#5763FF]/15 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(87,99,255,0.35)] group-hover:scale-125" />
-                  <img
+                  <img loading="lazy"
                     src="/assets/footer/tiktok.svg"
                     className="rounded-full w-full relative z-10"
                     alt=""
@@ -342,7 +343,7 @@ export default function Footer() {
             className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-none"
           >
             <div className="relative w-full">
-              <img src="/assets/footer/letter.svg" className="w-full" alt="" />
+              <img loading="lazy" src="/assets/footer/letter.svg" className="w-full" alt="" />
               <div className="absolute top-0 w-2/3 left-1/2 -translate-x-1/2 mt-8 lg:mt-10 flex flex-col gap-3 lg:gap-5 items-center">
                 <h1 className="font-bold text-[#5763FF] text-center text-xs lg:text-sm xl:text-base leading-tight">
                   KRIJG ALS EERSTE EEN SEINTJE WANNEER WIJ OPENEN!
@@ -370,14 +371,14 @@ export default function Footer() {
                 target="_blank"
                 className="group"
               >
-                <img
+                <img loading="lazy"
                   src="/assets/footer/map.svg"
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""
                 />
               </Link>
               <Link href="#" className="group">
-                <img
+                <img loading="lazy"
                   src="/assets/footer/phone.svg"
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""
@@ -387,7 +388,7 @@ export default function Footer() {
                 href="mailto:hero@minimastersplayground.nl"
                 className="group"
               >
-                <img
+                <img loading="lazy"
                   src="/assets/footer/mail.svg"
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""

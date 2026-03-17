@@ -150,10 +150,10 @@ export default function Nav() {
             </Link>
 
             {/* Desktop Nav */}
-            <div ref={linksRef} className="xl:flex hidden gap-8 text-lg flex-1 justify-center text-nowrap">
-              <Link href="/" className="text-[#FF5757]">
+            <div ref={linksRef} className="xl:flex hidden gap-8 text-lg font-bold flex-1 justify-center text-nowrap">
+              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-[#FF5757] cursor-pointer">
                 HOME
-              </Link>
+              </a>
               <Link href="/#over-ons" className="text-[#5763FF] text-nowrap">
                 OVER ONS
               </Link>
@@ -218,6 +218,7 @@ export default function Nav() {
         }`}
         style={{
           fontFamily: "Quicksand, sans-serif",
+          fontWeight: "bold",
           backgroundColor: "#FFCA58",
           boxShadow: isOpen ? "-4px 0 20px rgba(0,0,0,0.15)" : "none",
         }}
@@ -236,13 +237,13 @@ export default function Nav() {
         <Link href="/" onClick={() => setIsOpen(false)} className="flex justify-center w-full mt-4">
           <img src="/assets/logo.svg" className="w-3/4 p-2" alt="" />
         </Link>
-        <Link
-          href="/"
+        <a
+          href="#"
           className="text-[#FF5757]"
-          onClick={() => setIsOpen(false)}
+          onClick={(e) => { e.preventDefault(); setIsOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
         >
           HOME
-        </Link>
+        </a>
         <Link
           href="/#over-ons"
           className="text-[#5763FF]"

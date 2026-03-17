@@ -51,22 +51,22 @@ export default function Location() {
           className="absolute inset-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
         />
 
-        <div className="relative flex md:flex-row flex-col justify-center items-center gap-6 md:gap-40 lg:gap-60 px-6 sm:px-10 md:px-5 lg:px-10 xl:px-20 md:top-1/2 md:-translate-y-1/2 bottom-0">
-          <img
+        <div className="relative flex md:flex-row flex-col justify-center items-center gap-2 md:gap-32 lg:gap-48 px-6 sm:px-10 md:px-5 lg:px-10 xl:px-20 md:top-1/2 md:-translate-y-1/2 bottom-0 py-8 md:py-0">
+          <img loading="lazy"
             src="/assets/location/img3.svg"
-            className="absolute left-0 md:-z-10 md:w-30 w-20 top-1/2 md:-translate-y-[20%]"
+            className="absolute left-0 md:-z-10 md:w-30 w-14 sm:w-20 top-1/2 md:-translate-y-[20%]"
             alt=""
           />
-          <img
+          <img loading="lazy"
             src="/assets/location/img4.svg"
-            className="absolute right-0 md:-z-10 md:w-50 w-30 top-1/2 md:-translate-y-[20%] -translate-y-[40%]"
+            className="absolute right-0 md:-z-10 md:w-50 w-20 sm:w-30 top-1/2 md:-translate-y-[20%] -translate-y-[40%]"
             alt=""
           />
 
-          <div ref={openingsRef} className="flex flex-col items-center text-[#5763FF] font-bold gap-5 mt-12 md:mt-20">
-            <img src="/assets/location/img1.svg" className="w-56 sm:w-72 md:w-80" alt="" />
-            <h1 className="text-xl md:mt-3">OPENINGSTIJDEN</h1>
-            <div className="flex gap-10 -mt-4">
+          <div ref={openingsRef} className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-5 mt-4 sm:mt-10 md:mt-20">
+            <img loading="lazy" src="/OPENINGSTIJDEN.svg" className="w-52 sm:w-80 md:w-96 lg:w-[28rem]" alt="Openingstijden" />
+            <h1 className="text-base sm:text-xl md:text-2xl md:mt-3">OPENINGSTIJDEN</h1>
+            <div className="flex gap-6 sm:gap-10 -mt-1 sm:-mt-4 text-xs sm:text-base md:text-lg">
               <div>
                 <h1>Ma t/m Vr:</h1>
                 <h1>Zaterdag:</h1>
@@ -79,11 +79,11 @@ export default function Location() {
               </div>
             </div>
           </div>
-          <div ref={mapRef}>
+          <div ref={mapRef} className="w-full md:w-auto flex justify-center">
             <object
               data="/assets/location/img2.svg"
               type="image/svg+xml"
-              className="w-full sm:w-96 md:w-120 py-6 md:py-0 mb-6 md:mb-10"
+              className="w-3/4 max-w-72 sm:w-96 sm:max-w-none md:w-120 lg:w-140 py-2 sm:py-6 md:py-0 mb-2 sm:mb-6 md:mb-10"
               aria-label="Map showing Waddinxveen location"
             />
           </div>
