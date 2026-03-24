@@ -6,10 +6,10 @@ import gsap from "gsap";
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
+  const centerRef = useRef<HTMLDivElement>(null);
 
   const barTrackRef = useRef<HTMLDivElement>(null);
   const barFillRef = useRef<HTMLDivElement>(null);
-  const dotsRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -18,7 +18,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         onComplete: () => {
-          // Exit animation
           const exitTl = gsap.timeline({
             onComplete: () => {
               document.body.style.overflow = "";
@@ -80,17 +79,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           setProgress(Math.round(this.progress() * 100));
         },
       });
-
-      // Gentle pulse on stars during load
-      if (dotsRef.current) {
-        gsap.to(dotsRef.current, {
-          y: -6,
-          duration: 0.6,
-          repeat: -1,
-          yoyo: true,
-          ease: "power2.inOut",
-        });
-      }
     });
 
     return () => {
@@ -102,49 +90,53 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[9999] overflow-hidden"
       style={{
         background:
           "linear-gradient(135deg, #FFCA58 0%, #FFDB8D 30%, #FFCA58 60%, #FFD074 100%)",
       }}
     >
       {/* Decorative background illustrations */}
-      {/* Lollipop/spiral — bottom left */}
       <img
         src="/assets/mobile/icon2.svg"
-        className="absolute -bottom-16 -left-14 md:w-[22rem] w-52 opacity-[0.20]"
+        className="absolute -bottom-16 -left-14 md:w-[22rem] w-52 opacity-[0.20] pointer-events-none"
         style={{ filter: "brightness(0) invert(1)" }}
         alt=""
       />
-      {/* Chick — top left */}
       <img
         src="/assets/mobile/icon3.svg"
-        className="absolute top-[3%] left-[2%] md:w-60 w-36 opacity-[0.18]"
+        className="absolute top-[3%] left-[2%] md:w-60 w-36 opacity-[0.18] pointer-events-none"
         style={{ filter: "brightness(0) invert(1)" }}
         alt=""
       />
-      {/* Barn — bottom right */}
       <img
         src="/assets/location/img4.svg"
-        className="absolute -bottom-10 -right-10 md:w-72 w-44 opacity-[0.16]"
+        className="absolute -bottom-10 -right-10 md:w-72 w-44 opacity-[0.16] pointer-events-none"
         style={{ filter: "brightness(0) invert(1)" }}
         alt=""
       />
 
-      {/* Logo */}
-      <img
-        ref={logoRef}
-        src="/newLogo2.svg"
-        alt="Minimasters"
-        className="w-60 sm:w-80 md:w-[28rem]"
-        style={{ transform: "scale(0)", filter: "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))" }}
-      />
+      {/* Centered content — uses inset+margin:auto so GSAP transforms don't break centering */}
+      <div
+        ref={centerRef}
+        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+        style={{ margin: 0 }}
+      >
+        <img
+          ref={logoRef}
+          src="/LOGO V3 NAV v2.png"
+          alt="Minimasters"
+          className="w-52 sm:w-72 md:w-[24rem] pointer-events-auto"
+          style={{
+            transform: "scale(0)",
+            filter:
+              "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))",
+          }}
+        />
 
-      {/* Progress bar */}
-      <div className="-mt-2 md:-mt-4 flex flex-col items-center gap-2 md:gap-3">
         <div
           ref={barTrackRef}
-          className="w-40 md:w-64 h-2.5 md:h-3 rounded-full overflow-hidden"
+          className="mt-6 w-40 md:w-64 h-2.5 md:h-3 rounded-full overflow-hidden pointer-events-auto"
           style={{
             background: "rgba(255,255,255,0.35)",
             transformOrigin: "center",
@@ -162,7 +154,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             }}
           />
         </div>
-
       </div>
     </div>
   );

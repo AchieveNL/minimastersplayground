@@ -381,7 +381,7 @@ export default function Footer() {
                   alt=""
                 />
               </Link>
-              <Link href="#" className="group">
+              <Link href="tel:+31182231203" className="group">
                 <img loading="lazy"
                   src="/assets/footer/phone.svg"
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
