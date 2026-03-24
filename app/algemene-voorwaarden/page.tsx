@@ -11,7 +11,7 @@ export default function AlgemeneVoorwaardenPage() {
       <SmoothScroll />
       <Nav />
       <main
-        className="min-h-screen px-4 sm:px-8 md:px-16 lg:px-32 py-12 md:py-20"
+        className="min-h-screen px-4 sm:px-8 md:px-16 lg:px-32 py-12 md:py-20 pb-40 md:pb-64"
         style={{ fontFamily: "Quicksand, sans-serif" }}
       >
         <div className="max-w-4xl mx-auto">
