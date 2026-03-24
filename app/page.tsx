@@ -26,7 +26,7 @@ export default function Home() {
         <MobileSection />
         <Location />
         <Faq />
-        <AnimatedSlider direction="right" />
+        <AnimatedSlider direction="right" variant="footer" />
         <Footer />
       </div>
     </>

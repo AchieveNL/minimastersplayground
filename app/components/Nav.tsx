@@ -61,27 +61,23 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Unified GSAP transition between wave and flat states — desktop only
+  // Unified GSAP transition between wave and flat states
   useEffect(() => {
     if (!waveSvgRef.current || !flatBgRef.current || !contentRef.current || !logoImgRef.current) return;
 
     const isMobile = window.innerWidth < 768;
-
-    // On mobile, always flat bar — no animation needed
-    if (isMobile) return;
-
     const tl = gsap.timeline({ defaults: { ease: "power3.inOut", duration: 0.8 } });
 
     if (scrolled) {
       tl.to(waveSvgRef.current, { opacity: 0, y: -15 }, 0)
         .to(flatBgRef.current, { opacity: 1 }, 0)
         .to(contentRef.current, { paddingTop: "0.5rem", paddingBottom: "0.5rem" }, 0)
-        .to(logoImgRef.current, { width: "12rem", marginTop: 0, marginBottom: 0 }, 0);
+        .to(logoImgRef.current, { width: isMobile ? "8rem" : "12rem", marginTop: 0, marginBottom: 0 }, 0);
     } else {
       tl.to(waveSvgRef.current, { opacity: 1, y: 0 }, 0)
         .to(flatBgRef.current, { opacity: 0 }, 0)
-        .to(contentRef.current, { paddingTop: "1rem", paddingBottom: "1rem" }, 0)
-        .to(logoImgRef.current, { width: "18rem", clearProps: "marginTop,marginBottom" }, 0);
+        .to(contentRef.current, { paddingTop: isMobile ? "0.5rem" : "1rem", paddingBottom: isMobile ? "0.5rem" : "1rem" }, 0)
+        .to(logoImgRef.current, { width: isMobile ? "9rem" : "18rem", clearProps: "marginTop,marginBottom" }, 0);
     }
 
     return () => { tl.kill(); };
@@ -99,8 +95,8 @@ export default function Nav() {
           {/* Background wave shape — desktop only */}
           <svg
             ref={waveSvgRef}
-            className="absolute top-0 left-0 w-full hidden md:block"
-            style={{ height: "calc(100% + 100px)" }}
+            className="absolute top-0 left-0 w-full"
+            style={{ height: "calc(100% + 50px)" }}
             viewBox="0 0 1752 280"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +123,7 @@ export default function Nav() {
           {/* Flat background — always visible on mobile, shown on scroll for desktop */}
           <div
             ref={flatBgRef}
-            className="absolute inset-0 md:opacity-0"
+            className="absolute inset-0 opacity-0"
             style={{
               background: "linear-gradient(90deg, #FFCA58 0%, #ffdb8dff 100%)",
               boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
@@ -143,8 +139,9 @@ export default function Nav() {
             <Link href="/" className="flex-shrink-0" ref={logoRef}>
               <img
                 ref={logoImgRef}
-                src="/assets/logo.svg"
+                src="/LOGO V3 NAV v2.png"
                 className="w-36 sm:w-44 md:w-72"
+                style={{ filter: "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))" }}
                 alt=""
               />
             </Link>
@@ -235,7 +232,7 @@ export default function Nav() {
         </button>
 
         <Link href="/" onClick={() => setIsOpen(false)} className="flex justify-center w-full mt-4">
-          <img src="/assets/logo.svg" className="w-3/4 p-2" alt="" />
+          <img src="/LOGO V3 NAV v2.png" className="w-3/4 p-2" alt="" />
         </Link>
         <a
           href="#"

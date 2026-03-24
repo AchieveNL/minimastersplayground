@@ -104,7 +104,7 @@ export default function Hero() {
     },
   ];
   return (
-    <div className="-mt-21 relative" style={{ fontFamily: "Quicksand" }}>
+    <div className="-mt-4 md:-mt-21 relative" style={{ fontFamily: "Quicksand" }}>
       <div ref={sliderRef} style={{ opacity: 0 }}>
         <AnimatedSilder />
       </div>

@@ -78,6 +78,22 @@ const data: FaqCategory[] = [
           </>
         ),
       },
+      {
+        question: "Mogen mijn kinderen alleen blijven?",
+        answer: (
+          <>
+            Kinderen mogen niet zonder begeleiding bij Minimasters verblijven. Een ouder of verzorger dient te allen tijde aanwezig te zijn.
+          </>
+        ),
+      },
+      {
+        question: "Voor welk leeftijd is Minimasters?",
+        answer: (
+          <>
+            Bij Minimasters is iedereen welkom, van jong tot oud! Onze activiteiten zijn wel in het bijzonder afgestemd op kinderen tot en met 6 jaar.
+          </>
+        ),
+      },
     ],
   },
   {
@@ -357,7 +373,7 @@ export default function Faq() {
         />
 
         <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 w-full rounded-br-4xl">
-          FAQ-ANTWOORDEN
+          Veelgestelde vragen
         </h1>
       </div>
       <div ref={questionsRef} className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-4 sm:px-5 flex flex-col items-center m-auto mt-8 md:mt-10">

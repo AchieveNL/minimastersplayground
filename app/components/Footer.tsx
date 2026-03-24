@@ -288,12 +288,16 @@ export default function Footer() {
             ref={logoRef}
             className="flex flex-col items-center flex-1 min-w-0 w-full lg:w-auto"
           >
-            <Link href="/" className="-mt-32 lg:-mt-56">
+            <Link href="/" className="-mt-32 lg:-mt-56 relative">
+              <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] rounded-full pointer-events-none"
+                style={{ width: "140%", height: "140%", background: "radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%)" }}
+              />
               <img loading="lazy"
                 src="/newLogo2.svg"
                 alt=""
                 style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.2)) drop-shadow(0 4px 8px rgba(0,0,0,0.15))" }}
-                className="mx-auto w-80 md:w-[32rem] lg:w-[42rem]"
+                className="mx-auto w-80 md:w-[32rem] lg:w-[42rem] relative"
               />
             </Link>
             <div className="flex gap-6 -mt-10 lg:-mt-16">

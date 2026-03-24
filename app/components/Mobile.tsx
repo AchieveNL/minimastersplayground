@@ -8,7 +8,7 @@ export default function Mobile({ content }: { content: React.ReactNode }) {
         <img loading="lazy"
           src="/assets/mobile/mobile.svg"
           alt="Mobile frame"
-          className="block h-[90vh]"
+          className="block h-[70vh]"
         />
 
         {/* Content overlaid on the screen — no overflow, everything fits */}

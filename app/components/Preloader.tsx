@@ -109,13 +109,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       }}
     >
       {/* Decorative background illustrations */}
-      {/* Fire extinguisher — top right */}
-      <img
-        src="/assets/mobile/icon1.svg"
-        className="absolute -top-8 -right-8 md:w-[20rem] w-48 opacity-[0.22]"
-        style={{ filter: "brightness(0) invert(1)" }}
-        alt=""
-      />
       {/* Lollipop/spiral — bottom left */}
       <img
         src="/assets/mobile/icon2.svg"
@@ -141,14 +134,14 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       {/* Logo */}
       <img
         ref={logoRef}
-        src="/assets/logo.svg"
+        src="/newLogo2.svg"
         alt="Minimasters"
-        className="w-60 md:w-80"
-        style={{ transform: "scale(0)" }}
+        className="w-60 sm:w-80 md:w-[28rem]"
+        style={{ transform: "scale(0)", filter: "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))" }}
       />
 
       {/* Progress bar */}
-      <div className="mt-6 md:mt-8 flex flex-col items-center gap-2 md:gap-3">
+      <div className="-mt-2 md:-mt-4 flex flex-col items-center gap-2 md:gap-3">
         <div
           ref={barTrackRef}
           className="w-40 md:w-64 h-2.5 md:h-3 rounded-full overflow-hidden"

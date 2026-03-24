@@ -125,7 +125,6 @@ export default function AlgemeneVoorwaardenPage() {
               <NumberedList items={[
                 "Een bezoeker kan een reservering tot 24 uur voor de datum van de gereserveerde activiteit kosteloos annuleren en het betaalde bedrag volledig terugkrijgen.",
                 "Bij annulering binnen 24 uur voor de activiteit is restitutie niet mogelijk. De bezoeker kan in dat geval alleen de datum van de activiteit kosteloos verplaatsen naar een ander beschikbaar moment.",
-                "Terugbetalingen op grond van artikel 7.1 worden binnen veertien (14) dagen na de oorspronkelijke reserveringsdatum teruggestort op de rekening van de bezoeker.",
               ]} prefix="7" />
             </Section>
 

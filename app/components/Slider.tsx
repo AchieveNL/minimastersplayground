@@ -4,10 +4,10 @@ import { useEffect, useState, useCallback, useRef } from "react";
 
 export default function Slider() {
   const data = [
-    { bg: "img4.jpg", text1: "Schoolopvang", text2: "", link: "https://minimasters.booqi.me/product/297636/scholen-bso" },
-    { bg: "img1.jpg", text1: "Entreeticket", text2: "", link: "https://minimasters.booqi.me/product/296874/entreetickets" },
-    { bg: "img5.jpg", text1: "Kinderfeestje", text2: "", link: "https://minimasters.booqi.me/product/296875/kinderfeestjes" },
-    { bg: "img3.png", text1: "Abonnement", text2: "", link: "" },
+    { bg: "img4.jpg", text1: "Scholen & BSO", text2: "", link: "https://minimasters.booqi.me/product/297636/scholen-bso", btnText: "SCHOOL & BSO", btnColor: "#FFCA58" },
+    { bg: "img1.jpg", text1: "Entreeticket", text2: "", link: "https://minimasters.booqi.me/product/296874/entreetickets", btnText: "DIRECT BOEKEN", btnColor: "#67CD8A" },
+    { bg: "img5.jpg", text1: "Kinderfeestje", text2: "", link: "https://minimasters.booqi.me/product/296875/kinderfeestjes", btnText: "VERJAARDAG", btnColor: "#FFCA58" },
+    { bg: "img3.png", text1: "Abonnement", text2: "", link: "", btnText: "DIRECT BOEKEN", btnColor: "#67CD8A" },
   ];
   const SLOTS_NEEDED = 9; // = VISIBLE*2 + EXIT_TRAVEL + ENTER_TRAVEL + 3
   const repeatCount = Math.ceil(SLOTS_NEEDED / data.length);
@@ -254,7 +254,7 @@ export default function Slider() {
         />
 
         {/* Header badge */}
-        <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+        <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-28 pl-14 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
           <img loading="lazy"
             src="/elements/Ticket Icoon.svg"
             className="absolute md:hidden"
@@ -264,7 +264,7 @@ export default function Slider() {
           <img loading="lazy"
             src="/elements/Ticket Icoon.svg"
             className="absolute hidden md:block"
-            style={{ width: "130px", left: -50 }}
+            style={{ width: "130px", left: -60 }}
             alt=""
           />
           <h1 className="font-bold md:text-xl text-center text-[#FDF9EF] py-1 md:pl-0 pl-8 w-full rounded-br-4xl">
@@ -317,34 +317,24 @@ export default function Slider() {
               </>
             );
 
-            const comingSoonOverlay = !item.link && (
+            const hoverOverlay = (
               <div
-                className="absolute inset-0 rounded-tr-[60px] rounded-bl-[60px] flex flex-col items-center justify-center opacity-0 hover:opacity-100 z-30"
+                className="absolute inset-0 rounded-tr-[60px] rounded-bl-[60px] flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 z-30"
                 style={{
                   transition: "opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                  background: "radial-gradient(ellipse at center, rgba(87, 99, 255, 0.92) 0%, rgba(103, 205, 138, 0.88) 100%)",
-                  backdropFilter: "blur(2px)",
+                  background: "linear-gradient(180deg, rgba(87, 99, 255, 0) 0%, rgba(87, 99, 255, 0.5) 100%)",
                 }}
               >
-                <div
-                  className="px-5 py-2.5 rounded-full mb-2"
+                <span
+                  className="px-5 py-2 rounded-full font-bold text-white text-xs md:text-sm tracking-wider"
                   style={{
-                    background: "rgba(255, 255, 255, 0.2)",
-                    border: "2px dashed rgba(255, 255, 255, 0.6)",
+                    background: item.btnColor === "#FFCA58"
+                      ? "linear-gradient(135deg, #FFDB8D 0%, #FFCA58 100%)"
+                      : "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
                   }}
                 >
-                  <span
-                    className="text-white font-bold text-xs md:text-sm tracking-wider uppercase"
-                    style={{ fontFamily: "Quicksand, sans-serif", textShadow: "0 1px 4px rgba(0,0,0,0.2)" }}
-                  >
-                    Komt binnenkort
-                  </span>
-                </div>
-                <img loading="lazy"
-                  src="/assets/footer/stars.svg"
-                  className="w-20 mt-1 opacity-90"
-                  alt=""
-                />
+                  {item.btnText}
+                </span>
               </div>
             );
 
@@ -364,10 +354,11 @@ export default function Slider() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ ...cardStyle, textDecoration: "none", color: "white", display: "flex" }}
-                    className={cardClass}
+                    className={`${cardClass} group`}
                     onClick={(e) => { e.stopPropagation(); }}
                   >
                     {cardContent}
+                    {hoverOverlay}
                   </a>
                 ) : (
                   <div
@@ -376,7 +367,7 @@ export default function Slider() {
                     onClick={next}
                   >
                     {cardContent}
-                    {comingSoonOverlay}
+                    {hoverOverlay}
                   </div>
                 )}
               </div>

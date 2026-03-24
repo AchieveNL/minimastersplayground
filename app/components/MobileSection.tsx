@@ -15,6 +15,16 @@ export default function MobileSection() {
       style={{ fontFamily: "Quicksand" }}
       className="relative flex md:flex-row flex-col px-10 md:px-36 lg:px-48 xl:px-56 overflow-hidde pt-10 md:pb-28 pb-20 md:gap-0 gap-10"
     >
+      <style>{`
+        @keyframes phoneFloat1 {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-12px); }
+        }
+        @keyframes phoneFloat2 {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+      `}</style>
       <img loading="lazy"
         src="/assets/mobile/icon1.svg"
         className="absolute right-0 -top-20 md:w-60 w-30"
@@ -30,8 +40,25 @@ export default function MobileSection() {
         className="absolute left-0 top-20 md:w-40 w-30"
         alt=""
       />
-      <div ref={leftRef} className="relative flex md:flex-col flex-col-reverse items-center md:gap-8 gap-5">
-        <div className="w-fit">
+      <div ref={leftRef} className="relative flex flex-col items-center md:gap-8 gap-5">
+        <div className="flex w-fit md:px-10 px-5 md:py-4 py-3 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+          <img loading="lazy"
+            src="/elements/Klok Icoon.svg"
+            className="absolute md:hidden"
+            style={{ width: "100px", left: "-10%" }}
+            alt=""
+          />
+          <img loading="lazy"
+            src="/elements/Klok Icoon.svg"
+            className="absolute hidden md:block"
+            style={{ width: "120px", left: -50 }}
+            alt=""
+          />
+          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 w-full rounded-br-4xl">
+            ONZE TIJDSLOTEN{" "}
+          </h1>
+        </div>
+        <div className="w-fit" style={{ animation: "phoneFloat1 3.5s ease-in-out infinite" }}>
           <Mobile
             content={
               <>
@@ -55,23 +82,6 @@ export default function MobileSection() {
             }
           />
         </div>
-        <div className="flex w-fit md:px-10 px-5 md:py-4 py-3 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
-          <img loading="lazy"
-            src="/elements/Klok Icoon.svg"
-            className="absolute md:hidden"
-            style={{ width: "100px", left: "-10%" }}
-            alt=""
-          />
-          <img loading="lazy"
-            src="/elements/Klok Icoon.svg"
-            className="absolute hidden md:block"
-            style={{ width: "120px", left: -50 }}
-            alt=""
-          />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 w-full rounded-br-4xl">
-            ONZE TIJDSLOTEN{" "}
-          </h1>
-        </div>
       </div>
       <h1 ref={mobileTextRef} className="text-center text-xl font-semibold md:hidden block text-[#5763FF] -mt-4">
         Bij ons staat kwaliteit centraal en verdient elk kind een unieke
@@ -85,7 +95,7 @@ export default function MobileSection() {
           speelbeleving. Door te werken met speelsessies zorgen we voor minder
           drukte en meer speelplezier voor iedereen.
         </h1>
-        <div className="animate-bounce">
+        <div>
           <img loading="lazy"
             src="/MiniMasters Loyalty Arrow (1).svg"
             className="w-30"
@@ -96,7 +106,7 @@ export default function MobileSection() {
           Altijd je spaarpunten bij de hand. Zet ons QR code handig in je
           e-wallet. Spelen worden nu nog leuker met sparen.
         </h1>
-        <div className="animate-bounce">
+        <div>
           <img loading="lazy"
             src="/MiniMasters Loyalty Arrow (2).svg"
             className="w-30"
@@ -124,7 +134,7 @@ export default function MobileSection() {
             LOYALTY PROGRAMMA
           </h1>
         </div>
-        <div className="w-fit">
+        <div className="w-fit" style={{ animation: "phoneFloat2 4s ease-in-out infinite 0.5s" }}>
           <Mobile
             content={
               <>
