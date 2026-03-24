@@ -52,10 +52,17 @@ export default function Nav() {
     return () => ctx.revert();
   }, []);
 
-  // Scroll detection
+  // Scroll detection — throttled via rAF to avoid excess re-renders
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -96,7 +103,7 @@ export default function Nav() {
           <svg
             ref={waveSvgRef}
             className="absolute top-0 left-0 w-full"
-            style={{ height: "calc(100% + 50px)" }}
+            style={{ height: "calc(100% + 50px)", willChange: "transform, opacity", transform: "translateZ(0)" }}
             viewBox="0 0 1752 280"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +148,7 @@ export default function Nav() {
                 ref={logoImgRef}
                 src="/LOGO V3 NAV v2.png"
                 className="w-36 sm:w-44 md:w-72"
-                style={{ filter: "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))" }}
+                style={{ filter: "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))", willChange: "transform", transform: "translateZ(0)" }}
                 alt=""
               />
             </Link>
