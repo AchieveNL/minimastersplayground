@@ -344,7 +344,7 @@ export default function Footer() {
           {/* Column 3: Newsletter + Contact */}
           <div
             ref={newsletterRef}
-            className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-sm lg:max-w-none"
+            className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-sm"
           >
             <style>{`
               @keyframes newsletter-float {
@@ -369,7 +369,7 @@ export default function Footer() {
               />
 
               {/* Header */}
-              <div className="pt-5 lg:pt-6 px-5 lg:px-6 text-center">
+              <div className="pt-3 lg:pt-4 px-4 lg:px-5 text-center">
                 <div
                   className="inline-block mb-2"
                   style={{ animation: "newsletter-float 3s ease-in-out infinite" }}
@@ -385,12 +385,12 @@ export default function Footer() {
               </div>
 
               {/* Leat form iframe */}
-              <div className="px-3 lg:px-4 pb-3 lg:pb-4 mt-3">
+              <div className="px-3 lg:px-4 pb-3 lg:pb-4 mt-2">
                 <div className="rounded-2xl overflow-hidden bg-white/95 backdrop-blur-sm" style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.08) inset" }}>
                   <iframe
                     src="https://forms.leat.com/forms/6e833c5f-50b3-459d-b091-43969efec8fc?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
                     className="w-full border-none outline-none"
-                    style={{ height: "420px" }}
+                    style={{ height: "320px" }}
                     title="Nieuwsbrief aanmelden"
                   />
                 </div>
