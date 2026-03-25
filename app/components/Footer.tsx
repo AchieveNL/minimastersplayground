@@ -288,7 +288,7 @@ export default function Footer() {
             ref={logoRef}
             className="flex flex-col items-center flex-1 min-w-0 w-full lg:w-auto"
           >
-            <Link href="/" className="-mt-32 lg:-mt-56 relative">
+            <Link href="/" className="-mt-20 sm:-mt-28 lg:-mt-56 relative">
               <div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] rounded-full pointer-events-none"
                 style={{ width: "140%", height: "140%", background: "radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%)" }}
@@ -297,10 +297,10 @@ export default function Footer() {
                 src="/newLogo2.svg"
                 alt=""
                 style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.2)) drop-shadow(0 4px 8px rgba(0,0,0,0.15))" }}
-                className="mx-auto w-80 md:w-[32rem] lg:w-[42rem] relative"
+                className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[36rem] xl:w-[42rem] relative"
               />
             </Link>
-            <div className="flex gap-6 -mt-10 lg:-mt-16">
+            <div className="flex gap-6 -mt-6 sm:-mt-8 lg:-mt-16">
               <Link
                 href="https://www.instagram.com/minimastersplayground"
                 target="_blank"
@@ -341,35 +341,64 @@ export default function Footer() {
             <div className="hidden lg:block">{cardStack(320)}</div>
           </div>
 
-          {/* Column 3: Letter / newsletter */}
+          {/* Column 3: Newsletter + Contact */}
           <div
             ref={newsletterRef}
-            className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-none"
+            className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-sm lg:max-w-none"
           >
-            <div className="relative w-full">
-              <img loading="lazy" src="/assets/footer/letter.svg" className="w-full" alt="" />
-              <div className="absolute top-0 w-2/3 left-1/2 -translate-x-1/2 mt-8 lg:mt-10 flex flex-col gap-3 lg:gap-5 items-center">
-                <h1 className="font-bold text-[#5763FF] text-center text-xs lg:text-sm xl:text-base leading-tight">
+            <style>{`
+              @keyframes newsletter-float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-6px); }
+              }
+            `}</style>
+            <div
+              className="relative w-full rounded-3xl overflow-hidden"
+              style={{
+                background: "linear-gradient(145deg, #5BC07E 0%, #67CD8A 50%, #5BC07E 100%)",
+              }}
+            >
+              {/* Decorative circles */}
+              <div
+                className="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-20"
+                style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }}
+              />
+              <div
+                className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full opacity-15"
+                style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }}
+              />
+
+              {/* Header */}
+              <div className="pt-5 lg:pt-6 px-5 lg:px-6 text-center">
+                <div
+                  className="inline-block mb-2"
+                  style={{ animation: "newsletter-float 3s ease-in-out infinite" }}
+                >
+                  <span className="text-2xl lg:text-3xl">✉️</span>
+                </div>
+                <h2
+                  className="font-extrabold text-white text-sm lg:text-base leading-snug"
+                  style={{ fontFamily: "Quicksand", textShadow: "0 1px 3px rgba(0,0,0,0.1)" }}
+                >
                   KRIJG ALS EERSTE EEN SEINTJE WANNEER WIJ OPENEN!
-                </h1>
-                <div className="w-full flex flex-col gap-2 text-xs">
-                  <input
-                    type="text"
-                    className="bg-[#E1FBE9] p-2 lg:p-3 rounded outline-0 w-full"
-                    placeholder="Naam"
-                  />
-                  <input
-                    type="email"
-                    className="bg-[#E1FBE9] p-2 lg:p-3 rounded outline-0 w-full"
-                    placeholder="E-mail"
+                </h2>
+              </div>
+
+              {/* Leat form iframe */}
+              <div className="px-3 lg:px-4 pb-3 lg:pb-4 mt-3">
+                <div className="rounded-2xl overflow-hidden bg-white/95 backdrop-blur-sm" style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.08) inset" }}>
+                  <iframe
+                    src="https://forms.leat.com/forms/6e833c5f-50b3-459d-b091-43969efec8fc?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
+                    className="w-full border-none outline-none"
+                    style={{ height: "420px" }}
+                    title="Nieuwsbrief aanmelden"
                   />
                 </div>
-                <button className="font-bold text-white text-xs rounded bg-[#BB76FF] p-2.5 px-4 lg:p-3 lg:px-5 w-fit block">
-                  VERTEL ME ALLES!
-                </button>
               </div>
             </div>
-            <div className="flex mt-3 w-full justify-evenly">
+
+            {/* Contact icons */}
+            <div className="flex mt-5 w-full justify-evenly">
               <Link
                 href="https://share.google/ZLMrmSLkckXFQ7fsW"
                 target="_blank"

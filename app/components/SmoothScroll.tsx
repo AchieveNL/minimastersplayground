@@ -10,16 +10,20 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.0,
+      duration: 0.8,
       smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+      infinite: false,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const raf = (time: number) => {
       lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(500, 33);
+    };
+    gsap.ticker.add(raf);
+    gsap.ticker.lagSmoothing(1000, 16);
 
     // Handle anchor clicks with smooth scroll
     const handleClick = (e: MouseEvent) => {

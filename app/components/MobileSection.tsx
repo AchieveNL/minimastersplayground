@@ -13,7 +13,7 @@ export default function MobileSection() {
     <div
       id="loyalty"
       style={{ fontFamily: "Quicksand" }}
-      className="relative flex md:flex-row flex-col px-10 md:px-36 lg:px-48 xl:px-56 overflow-hidde pt-10 md:pb-28 pb-20 md:gap-0 gap-10"
+      className="relative flex lg:flex-row flex-col px-6 sm:px-10 md:px-16 lg:px-20 xl:px-36 2xl:px-48 overflow-hidden pt-10 lg:pb-28 pb-20 lg:gap-0 gap-10"
     >
       <style>{`
         @keyframes phoneFloat1 {
@@ -27,34 +27,34 @@ export default function MobileSection() {
       `}</style>
       <img loading="lazy"
         src="/assets/mobile/icon1.svg"
-        className="absolute right-0 -top-20 md:w-60 w-30"
+        className="absolute right-0 -top-20 lg:w-60 w-30"
         alt=""
       />
       <img loading="lazy"
         src="/assets/mobile/icon2.svg"
-        className="absolute md:-bottom-40 md:w-80 w-30 md:left-1/2 md:-translate-x-[80%] right-0 bottom-[60%] -z-10 translate-y-[30%] md:translate-y-0"
+        className="absolute lg:-bottom-40 lg:w-80 w-30 lg:left-1/2 lg:-translate-x-[80%] right-0 bottom-[60%] -z-10 translate-y-[30%] lg:translate-y-0"
         alt=""
       />
       <img loading="lazy"
         src="/assets/mobile/icon3.svg"
-        className="absolute left-0 top-20 md:w-40 w-30"
+        className="absolute left-0 top-20 lg:w-40 w-30"
         alt=""
       />
-      <div ref={leftRef} className="relative flex flex-col items-center md:gap-8 gap-5">
-        <div className="flex w-fit md:px-10 px-5 md:py-4 py-3 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+      <div ref={leftRef} className="relative flex flex-col items-center lg:gap-8 gap-5">
+        <div className="flex w-fit lg:px-10 px-5 lg:py-4 py-3 lg:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
           <img loading="lazy"
             src="/elements/Klok Icoon.svg"
-            className="absolute md:hidden"
+            className="absolute lg:hidden"
             style={{ width: "100px", left: "-10%" }}
             alt=""
           />
           <img loading="lazy"
             src="/elements/Klok Icoon.svg"
-            className="absolute hidden md:block"
+            className="absolute hidden lg:block"
             style={{ width: "120px", left: -50 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 w-full rounded-br-4xl">
+          <h1 className="font-bold lg:text-lg text-center text-[#FDF9EF] lg:pl-0 pl-8 w-full rounded-br-4xl">
             ONZE TIJDSLOTEN{" "}
           </h1>
         </div>
@@ -83,13 +83,13 @@ export default function MobileSection() {
           />
         </div>
       </div>
-      <h1 ref={mobileTextRef} className="text-center text-xl font-semibold md:hidden block text-[#5763FF] -mt-4">
+      <h1 ref={mobileTextRef} className="text-center text-base sm:text-lg md:text-xl font-semibold lg:hidden block text-[#5763FF] -mt-4 max-w-lg mx-auto">
         Bij ons staat kwaliteit centraal en verdient elk kind een unieke
         speelbeleving. Door te werken met speelsessies zorgen we voor minder
         drukte en meer speelplezier voor iedereen.
       </h1>
 
-      <div ref={centerRef} className="md:flex hidden flex-col gap-10 w-1/2 m-auto text-[#5763FF] px-14 items-center mt-20 relative">
+      <div ref={centerRef} className="lg:flex hidden flex-col gap-10 w-1/2 m-auto text-[#5763FF] px-6 xl:px-14 items-center mt-20 relative">
         <h1 className="text-center text-xl font-semibold">
           Bij ons staat kwaliteit centraal en verdient elk kind een unieke
           speelbeleving. Door te werken met speelsessies zorgen we voor minder
@@ -116,21 +116,21 @@ export default function MobileSection() {
       </div>
 
 
-      <div ref={rightRef} className="relative flex flex-col items-center md:gap-8 gap-5 md:mt-0 mt-4">
-        <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+      <div ref={rightRef} className="relative flex flex-col items-center lg:gap-8 gap-5 lg:mt-0 mt-4">
+        <div className="flex w-fit lg:px-10 px-5 lg:py-4 py-2 lg:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
           <img loading="lazy"
             src="/elements/Loyalty Icoon.svg"
-            className="absolute md:hidden"
+            className="absolute lg:hidden"
             style={{ width: "100px", left: "-10%" }}
             alt=""
           />
           <img loading="lazy"
             src="/elements/Loyalty Icoon.svg"
-            className="absolute hidden md:block"
+            className="absolute hidden lg:block"
             style={{ width: "130px", left: -50 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 w-full rounded-br-4xl">
+          <h1 className="font-bold lg:text-lg text-center text-[#FDF9EF] lg:pl-0 pl-8 w-full rounded-br-4xl">
             LOYALTY PROGRAMMA
           </h1>
         </div>
@@ -161,7 +161,7 @@ export default function MobileSection() {
             }
           />
         </div>
-        <h1 className="text-center text-xl font-semibold md:hidden block text-[#5763FF]">
+        <h1 className="text-center text-base sm:text-lg md:text-xl font-semibold lg:hidden block text-[#5763FF] max-w-lg mx-auto">
           Altijd je spaarpunten bij de hand. Zet ons QR code handig in je
           e-wallet. Spelen worden nu nog leuker met sparen.
         </h1>
