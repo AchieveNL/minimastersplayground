@@ -22,28 +22,15 @@ export default function Location() {
 
   useEffect(() => {
     const container = containerRef.current;
-    const content = contentRef.current;
-    if (!container || !content) return;
+    if (!container) return;
 
-    const measure = () => {
-      const w = container.offsetWidth;
-      // Measure content height + wave padding
-      const contentH = content.scrollHeight;
-      const isMob = w < 768;
-      const amp = isMob ? 20 : 40;
-      // Add wave amplitude padding top + bottom
-      const h = contentH + amp * 4;
-      setSize({ w, h });
-    };
-
-    measure();
-    const observer = new ResizeObserver(measure);
-    observer.observe(content);
-    window.addEventListener("resize", measure);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", measure);
-    };
+    const observer = new ResizeObserver((entries) => {
+      const { width, height } = entries[0].contentRect;
+      setSize({ w: width, h: height });
+    });
+    observer.observe(container);
+    setSize({ w: container.offsetWidth, h: container.offsetHeight });
+    return () => observer.disconnect();
   }, []);
 
   const W = size.w;
@@ -71,17 +58,16 @@ export default function Location() {
     `Z`,
   ].join(" ");
 
-  const ready = size.h > 0;
-
   return (
     <div
       ref={containerRef}
       id="openingstijden"
       style={{
         fontFamily: "Quicksand",
-        clipPath: ready ? "url(#wavyClipLocation)" : "none",
-        height: ready ? `${H}px` : "auto",
-        marginTop: ready ? `-${AMP * 2}px` : "0",
+        clipPath: size.h > 0 ? "url(#wavyClipLocation)" : "none",
+        marginTop: size.h > 0 ? `-${AMP * 2}px` : "0",
+        paddingTop: `${AMP * 2}px`,
+        paddingBottom: `${AMP * 2}px`,
       }}
       className="relative w-full"
     >
@@ -96,7 +82,7 @@ export default function Location() {
 
       <div
         ref={contentRef}
-        className="relative flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-4 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 lg:top-1/2 lg:-translate-y-1/2 pt-12 pb-10 sm:pt-14 sm:pb-12 md:py-16 lg:py-0"
+        className="relative flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-4 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 py-4 sm:py-6 md:py-10 lg:py-0"
       >
         <img
           loading="lazy"
