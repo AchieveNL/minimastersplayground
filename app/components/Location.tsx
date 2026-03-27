@@ -60,7 +60,6 @@ export default function Location() {
       <div
         ref={containerRef}
         id="openingstijden"
-        style={{ fontFamily: "Quicksand", clipPath: size.h > 0 ? "url(#wavyClipLocation)" : "none" }}
         style={{ fontFamily: "Quicksand", clipPath: size.h > 0 ? "url(#wavyClipLocation)" : "none", marginTop: `-${AMP * 2}px` }}
         className="relative w-full xl:h-screen lg:h-[60vh] md:h-auto h-auto 2xl:h-200"
       >
