@@ -67,7 +67,7 @@ export default function Location() {
         position: "relative",
         clipPath: `url(#${clipId})`,
       }}
-      className="w-full pt-8 h-fit md:h-[820px] md:pt-26 pb-36 md:pb-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
+      className="w-full pt-8 h-[1100px] sm:h-[1200px] md:h-[820px] md:pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
     >
       <svg
         aria-hidden="true"
