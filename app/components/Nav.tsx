@@ -1,6 +1,4 @@
-"use client";
-
-import Link from "next/link";
+"use client";import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -22,13 +20,13 @@ export default function Nav() {
       tl.fromTo(
         navRef.current,
         { y: -100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8 }
+        { y: 0, opacity: 1, duration: 0.8 },
       );
       tl.fromTo(
         logoRef.current,
         { scale: 0.8, opacity: 0 },
         { scale: 1, opacity: 1, duration: 0.7 },
-        "-=0.4"
+        "-=0.4",
       );
       // Desktop nav links
       if (linksRef.current) {
@@ -36,7 +34,7 @@ export default function Nav() {
           linksRef.current.children,
           { y: -20, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.5, stagger: 0.06 },
-          "-=0.3"
+          "-=0.3",
         );
       }
       // Mobile hamburger
@@ -45,7 +43,7 @@ export default function Nav() {
           hamburgerRef.current,
           { scale: 0, opacity: 0 },
           { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.5)" },
-          "-=0.5"
+          "-=0.5",
         );
       }
     });
@@ -70,24 +68,56 @@ export default function Nav() {
 
   // Unified GSAP transition between wave and flat states
   useEffect(() => {
-    if (!waveSvgRef.current || !flatBgRef.current || !contentRef.current || !logoImgRef.current) return;
+    if (
+      !waveSvgRef.current ||
+      !flatBgRef.current ||
+      !contentRef.current ||
+      !logoImgRef.current
+    )
+      return;
 
     const isMobile = window.innerWidth < 768;
-    const tl = gsap.timeline({ defaults: { ease: "power3.inOut", duration: 0.8 } });
+    const tl = gsap.timeline({
+      defaults: { ease: "power3.inOut", duration: 0.8 },
+    });
 
     if (scrolled) {
       tl.to(waveSvgRef.current, { opacity: 1, y: 0 }, 0)
         .to(flatBgRef.current, { opacity: 0 }, 0)
-        .to(contentRef.current, { paddingTop: "0.5rem", paddingBottom: "0.5rem" }, 0)
-        .to(logoImgRef.current, { width: isMobile ? "8rem" : "12rem", marginTop: 0, marginBottom: 0 }, 0);
+        .to(
+          contentRef.current,
+          { paddingTop: "0.5rem", paddingBottom: "0.5rem" },
+          0,
+        )
+        .to(
+          logoImgRef.current,
+          { width: isMobile ? "8rem" : "12rem", marginTop: 0, marginBottom: 0 },
+          0,
+        );
     } else {
       tl.to(waveSvgRef.current, { opacity: 1, y: 0 }, 0)
         .to(flatBgRef.current, { opacity: 0 }, 0)
-        .to(contentRef.current, { paddingTop: isMobile ? "0.5rem" : "1rem", paddingBottom: isMobile ? "0.5rem" : "1rem" }, 0)
-        .to(logoImgRef.current, { width: isMobile ? "9rem" : "18rem", clearProps: "marginTop,marginBottom" }, 0);
+        .to(
+          contentRef.current,
+          {
+            paddingTop: isMobile ? "0.5rem" : "1.5rem",
+            paddingBottom: isMobile ? "0.5rem" : "2.5rem",
+          },
+          0,
+        )
+        .to(
+          logoImgRef.current,
+          {
+            width: isMobile ? "9rem" : "18rem",
+            clearProps: "marginTop,marginBottom",
+          },
+          0,
+        );
     }
 
-    return () => { tl.kill(); };
+    return () => {
+      tl.kill();
+    };
   }, [scrolled]);
 
   return (
@@ -103,7 +133,11 @@ export default function Nav() {
           <svg
             ref={waveSvgRef}
             className="absolute top-0 left-0 w-full"
-            style={{ height: "calc(100% + 90px)", willChange: "transform, opacity", transform: "translateZ(0)" }}
+            style={{
+              height: "calc(100% + 50px)",
+              willChange: "transform, opacity",
+              transform: "translateZ(0)",
+            }}
             viewBox="0 0 1752 280"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +154,14 @@ export default function Nav() {
               fill="url(#nav_gradient)"
             />
             <defs>
-              <linearGradient id="nav_gradient" x1="-1" y1="119" x2="1377.09" y2="705.82" gradientUnits="userSpaceOnUse">
+              <linearGradient
+                id="nav_gradient"
+                x1="-1"
+                y1="119"
+                x2="1377.09"
+                y2="705.82"
+                gradientUnits="userSpaceOnUse"
+              >
                 <stop stopColor="#FFCA58" />
                 <stop offset="1" stopColor="#FFDB8D" />
               </linearGradient>
@@ -140,22 +181,37 @@ export default function Nav() {
           {/* Nav content */}
           <div
             ref={contentRef}
-            className="flex items-center px-4 sm:px-6 md:px-10 py-2 md:py-8 relative z-10"
+            className="flex items-center px-4 sm:px-6 md:px-10 py-2 md:py-2 relative z-10"
           >
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0" ref={logoRef}>
+            <Link href="/" className="flex-shrink-0 md:mt-6" ref={logoRef}>
               <img
                 ref={logoImgRef}
                 src="/LOGO V3 NAV v2.png"
                 className="w-36 sm:w-44 md:w-72"
-                style={{ filter: "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))", willChange: "transform", transform: "translateZ(0)" }}
+                style={{
+                  filter:
+                    "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))",
+                  willChange: "transform",
+                  transform: "translateZ(0)",
+                }}
                 alt=""
               />
             </Link>
 
             {/* Desktop Nav */}
-            <div ref={linksRef} className="xl:flex hidden gap-8 text-lg font-bold flex-1 justify-center text-nowrap">
-              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-[#FF5757] cursor-pointer">
+            <div
+              ref={linksRef}
+              className="xl:flex hidden gap-8 text-lg font-bold flex-1 justify-center text-nowrap"
+            >
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="text-[#FF5757] cursor-pointer"
+              >
                 HOME
               </a>
               <Link href="/#over-ons" className="text-[#5763FF] text-nowrap">
@@ -238,13 +294,21 @@ export default function Nav() {
           <span className="block h-0.5 w-7 bg-white -rotate-45 -translate-y-2 transition-all duration-300" />
         </button>
 
-        <Link href="/" onClick={() => setIsOpen(false)} className="flex justify-center w-full mt-4">
+        <Link
+          href="/"
+          onClick={() => setIsOpen(false)}
+          className="flex justify-center w-full mt-4"
+        >
           <img src="/LOGO V3 NAV v2.png" className="w-3/4 p-2" alt="" />
         </Link>
         <a
           href="#"
           className="text-[#FF5757]"
-          onClick={(e) => { e.preventDefault(); setIsOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          onClick={(e) => {
+            e.preventDefault();
+            setIsOpen(false);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
         >
           HOME
         </a>
