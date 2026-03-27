@@ -10,11 +10,12 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 0.8,
+      duration: 1.2,
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 1.2,
       infinite: false,
+      autoResize: true,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
@@ -23,7 +24,7 @@ export default function SmoothScroll() {
       lenis.raf(time * 1000);
     };
     gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(1000, 16);
+    gsap.ticker.lagSmoothing(0);
 
     // Handle anchor clicks with smooth scroll
     const handleClick = (e: MouseEvent) => {
@@ -52,7 +53,7 @@ export default function SmoothScroll() {
 
     return () => {
       document.removeEventListener("click", handleClick);
-      gsap.ticker.remove(lenis.raf);
+      gsap.ticker.remove(raf);
       lenis.destroy();
     };
   }, []);
