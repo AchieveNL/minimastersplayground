@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,44 +8,40 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll() {
+  const lenisRef = useRef<Lenis | null>(null);
+
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
-      smoothWheel: true,
-      wheelMultiplier: 0.8,
-      touchMultiplier: 1.2,
-      infinite: false,
-      autoResize: true,
+      lerp: 0.1,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      syncTouch: true,
     });
+
+    lenisRef.current = lenis;
 
     lenis.on("scroll", ScrollTrigger.update);
 
-    const raf = (time: number) => {
+    gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
-    };
-    gsap.ticker.add(raf);
+    });
     gsap.ticker.lagSmoothing(0);
 
-    // Handle anchor clicks with smooth scroll
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a[href^='#'], a[href^='/#']");
-      if (anchor) {
-        const href = anchor.getAttribute("href");
-        if (href) {
-          // Extract the hash part from both "#section" and "/#section" formats
-          const hash = href.startsWith("/#") ? href.slice(1) : href;
-          if (hash && hash !== "#") {
-            const el = document.querySelector(hash);
-            if (el) {
-              e.preventDefault();
-              lenis.scrollTo(el as HTMLElement, {
-                offset: -80,
-                duration: 1.5,
-              });
-            }
-          }
-        }
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+
+      const hash = href.startsWith("/#") ? href.slice(1) : href;
+      if (!hash || hash === "#") return;
+
+      const el = document.querySelector(hash);
+      if (el) {
+        e.preventDefault();
+        lenis.scrollTo(el as HTMLElement, { offset: -80 });
       }
     };
 
@@ -53,8 +49,8 @@ export default function SmoothScroll() {
 
     return () => {
       document.removeEventListener("click", handleClick);
-      gsap.ticker.remove(raf);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 

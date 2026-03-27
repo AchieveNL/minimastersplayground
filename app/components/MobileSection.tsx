@@ -142,7 +142,7 @@ export default function MobileSection() {
                   Verzamel punten en spaar voor leuke cadeaus!
                 </h1>
                 <a
-                  href="https://minimasters.booqi.me"
+                  href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-2 rounded-full font-bold text-white text-sm tracking-wider mt-2"
