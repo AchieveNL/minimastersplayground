@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
+"use client";import { useEffect, useRef, useState } from "react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function Location() {
@@ -69,11 +67,17 @@ export default function Location() {
         position: "relative",
         clipPath: `url(#${clipId})`,
       }}
-      className="w-full relative mt-2 h-fit pt-28 pb-20 md:pt-32 md:pb-28 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)] overflow-hidden"
+      className="w-full  pt-8 h-[740px] md:h-[820px] md:pt-26 md: bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]  "
     >
       <svg
         aria-hidden="true"
-        style={{ position: "absolute", width: 0, height: 0, overflow: "visible", pointerEvents: "none" }}
+        style={{
+          position: "absolute",
+          width: 0,
+          height: 0,
+          overflow: "visible",
+          pointerEvents: "none",
+        }}
       >
         <defs>
           <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
@@ -112,17 +116,30 @@ export default function Location() {
           ref={openingsRef}
           className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4"
         >
-          <div className="relative w-64 sm:w-80 md:w-84 lg:w-96" style={{ overflow: "visible" }}>
-            <img loading="lazy" src="/Foto.svg" className="w-full" alt="Restaurant foto" />
+          <div
+            className="relative w-64 sm:w-80 md:w-84 lg:w-96"
+            style={{ overflow: "visible" }}
+          >
+            <img
+              loading="lazy"
+              src="/Foto.svg"
+              className="w-full"
+              alt="Restaurant foto"
+            />
             <img
               loading="lazy"
               src="/Vlag.svg"
               className="absolute w-[120%] -left-[6.5%] top-[-30%]"
-              style={{ transformOrigin: "center top", animation: "flagWave 3s ease-in-out infinite" }}
+              style={{
+                transformOrigin: "center top",
+                animation: "flagWave 3s ease-in-out infinite",
+              }}
               alt="Vlag"
             />
           </div>
-          <h1 className="text-base sm:text-xl md:text-2xl md:mt-3">OPENINGSTIJDEN</h1>
+          <h1 className="text-base sm:text-xl md:text-2xl md:mt-3">
+            OPENINGSTIJDEN
+          </h1>
           <div className="flex gap-6 sm:gap-10 -mt-1 sm:-mt-4 text-xs sm:text-base md:text-lg">
             <div>
               <h1>Ma t/m Vr:</h1>
