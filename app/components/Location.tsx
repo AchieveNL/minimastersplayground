@@ -17,18 +17,33 @@ export default function Location() {
   });
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const observer = new ResizeObserver((entries) => {
-      const { width, height } = entries[0].contentRect;
-      setSize({ w: width, h: height });
-    });
-    observer.observe(el);
-    setSize({ w: el.offsetWidth, h: el.offsetHeight });
-    return () => observer.disconnect();
+    const container = containerRef.current;
+    const content = contentRef.current;
+    if (!container || !content) return;
+
+    const measure = () => {
+      const w = container.offsetWidth;
+      // Measure content height + wave padding
+      const contentH = content.scrollHeight;
+      const isMob = w < 768;
+      const amp = isMob ? 20 : 40;
+      // Add wave amplitude padding top + bottom
+      const h = contentH + amp * 4;
+      setSize({ w, h });
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(content);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   const W = size.w;
@@ -56,94 +71,104 @@ export default function Location() {
     `Z`,
   ].join(" ");
 
+  const ready = size.h > 0;
+
   return (
+    <div
+      ref={containerRef}
+      id="openingstijden"
+      style={{
+        fontFamily: "Quicksand",
+        clipPath: ready ? "url(#wavyClipLocation)" : "none",
+        height: ready ? `${H}px` : "auto",
+        marginTop: ready ? `-${AMP * 2}px` : "0",
+      }}
+      className="relative w-full"
+    >
+      <svg aria-hidden="true" style={{ position: "absolute", width: 0, height: 0, overflow: "visible", pointerEvents: "none" }}>
+        <defs>
+          <clipPath id="wavyClipLocation" clipPathUnits="userSpaceOnUse">
+            <path d={wavePath} />
+          </clipPath>
+        </defs>
+      </svg>
+      <div className="absolute inset-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]" />
+
       <div
-        ref={containerRef}
-        id="openingstijden"
-        style={{ fontFamily: "Quicksand", clipPath: size.h > 0 ? "url(#wavyClipLocation)" : "none", marginTop: `-${AMP * 2}px` }}
-        className="relative w-full xl:h-screen lg:h-[60vh] md:h-auto h-auto 2xl:h-200"
+        ref={contentRef}
+        className="relative flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-4 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 lg:top-1/2 lg:-translate-y-1/2 pt-12 pb-10 sm:pt-14 sm:pb-12 md:py-16 lg:py-0"
       >
-        <svg aria-hidden="true" style={{ position: "absolute", width: 0, height: 0, overflow: "visible", pointerEvents: "none" }}>
-          <defs>
-            <clipPath id="wavyClipLocation" clipPathUnits="userSpaceOnUse">
-              <path d={wavePath} />
-            </clipPath>
-          </defs>
-        </svg>
-        <div className="absolute inset-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]" />
+        <img
+          loading="lazy"
+          src="/assets/location/img3.svg"
+          className="absolute left-0 lg:-z-10 lg:w-30 w-14 sm:w-20 top-1/2 lg:-translate-y-[20%]"
+          alt=""
+        />
+        <img
+          loading="lazy"
+          src="/assets/location/img4.svg"
+          className="absolute right-0 lg:-z-10 lg:w-50 w-20 sm:w-30 top-1/2 lg:-translate-y-[20%] -translate-y-[40%]"
+          alt=""
+        />
 
-        <div className="relative flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-4 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 lg:top-1/2 lg:-translate-y-1/2 bottom-0 pt-10 pb-12 sm:pt-12 sm:pb-16 md:py-14 lg:py-0">
-          <img
-            loading="lazy"
-            src="/assets/location/img3.svg"
-            className="absolute left-0 lg:-z-10 lg:w-30 w-14 sm:w-20 top-1/2 lg:-translate-y-[20%]"
-            alt=""
-          />
-          <img
-            loading="lazy"
-            src="/assets/location/img4.svg"
-            className="absolute right-0 lg:-z-10 lg:w-50 w-20 sm:w-30 top-1/2 lg:-translate-y-[20%] -translate-y-[40%]"
-            alt=""
-          />
-
-          <style>{`
-            @keyframes flagWave {
-              0%, 100% { transform: rotate(-3deg) translateY(0); }
-              25% { transform: rotate(-1deg) translateY(-2px); }
-              50% { transform: rotate(-3.5deg) translateY(1px); }
-              75% { transform: rotate(-2deg) translateY(-1px); }
-            }
-          `}</style>
+        <style>{`
+          @keyframes flagWave {
+            0%, 100% { transform: rotate(-3deg) translateY(0); }
+            25% { transform: rotate(-1deg) translateY(-2px); }
+            50% { transform: rotate(-3.5deg) translateY(1px); }
+            75% { transform: rotate(-2deg) translateY(-1px); }
+          }
+        `}</style>
+        <div
+          ref={openingsRef}
+          className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4 mt-2 sm:mt-4 lg:mt-20"
+        >
           <div
-            ref={openingsRef}
-            className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4 mt-2 sm:mt-6 lg:mt-20"
+            className="relative w-64 sm:w-80 md:w-84 lg:w-96"
+            style={{ overflow: "visible" }}
           >
-            <div
-              className="relative w-64 sm:w-80 md:w-84 lg:w-96"
-              style={{ overflow: "visible" }}
-            >
-              <img
-                loading="lazy"
-                src="/Foto.svg"
-                className="w-full"
-                alt="Restaurant foto"
-              />
-              <img
-                loading="lazy"
-                src="/Vlag.svg"
-                className="absolute w-[120%] -left-[6.5%] top-[-30%]"
-                style={{
-                  transformOrigin: "center top",
-                  animation: "flagWave 3s ease-in-out infinite",
-                }}
-                alt="Vlag"
-              />
-            </div>
-            <h1 className="text-base sm:text-xl md:text-2xl md:mt-3">
-              OPENINGSTIJDEN
-            </h1>
-            <div className="flex gap-6 sm:gap-10 -mt-1 sm:-mt-4 text-xs sm:text-base md:text-lg">
-              <div>
-                <h1>Ma t/m Vr:</h1>
-                <h1>Zaterdag:</h1>
-                <h1>Zondag:</h1>
-              </div>
-              <div>
-                <h1>09:00-18:00</h1>
-                <h1>09:00-18:00</h1>
-                <h1>09:00-18:00</h1>
-              </div>
-            </div>
-          </div>
-          <div ref={mapRef} className="w-full lg:w-auto flex justify-center">
-            <object
-              data="/assets/location/img2.svg"
-              type="image/svg+xml"
-              className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120 py-0 sm:py-4 lg:py-0 mb-2 sm:mb-8 lg:mb-14"
-              aria-label="Map showing Waddinxveen location"
+            <img
+              loading="lazy"
+              src="/Foto.svg"
+              className="w-full"
+              alt="Restaurant foto"
+            />
+            <img
+              loading="lazy"
+              src="/Vlag.svg"
+              className="absolute w-[120%] -left-[6.5%] top-[-30%]"
+              style={{
+                transformOrigin: "center top",
+                animation: "flagWave 3s ease-in-out infinite",
+              }}
+              alt="Vlag"
             />
           </div>
+          <h1 className="text-base sm:text-xl md:text-2xl md:mt-3">
+            OPENINGSTIJDEN
+          </h1>
+          <div className="flex gap-6 sm:gap-10 -mt-1 sm:-mt-4 text-xs sm:text-base md:text-lg">
+            <div>
+              <h1>Ma t/m Vr:</h1>
+              <h1>Zaterdag:</h1>
+              <h1>Zondag:</h1>
+            </div>
+            <div>
+              <h1>09:00-18:00</h1>
+              <h1>09:00-18:00</h1>
+              <h1>09:00-18:00</h1>
+            </div>
+          </div>
+        </div>
+        <div ref={mapRef} className="w-full lg:w-auto flex justify-center">
+          <object
+            data="/assets/location/img2.svg"
+            type="image/svg+xml"
+            className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120 py-0 sm:py-2 lg:py-0 mb-0 sm:mb-4 lg:mb-14"
+            aria-label="Map showing Waddinxveen location"
+          />
         </div>
       </div>
+    </div>
   );
 }
