@@ -16,28 +16,28 @@ export default function Location() {
     distance: 45,
   });
 
+  /* ── Measure container (same pattern as Slider.tsx) ── */
   const containerRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [size, setSize] = useState({ w: 0, h: 0 });
+  const [containerSize, setContainerSize] = useState({ w: 1440, h: 800 });
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
+    const el = containerRef.current;
+    if (!el) return;
     const observer = new ResizeObserver((entries) => {
       const { width, height } = entries[0].contentRect;
-      setSize({ w: width, h: height });
+      setContainerSize({ w: width, h: height });
     });
-    observer.observe(container);
-    setSize({ w: container.offsetWidth, h: container.offsetHeight });
+    observer.observe(el);
+    setContainerSize({ w: el.offsetWidth, h: el.offsetHeight });
     return () => observer.disconnect();
   }, []);
 
-  const W = size.w;
-  const H = size.h;
+  const W = containerSize.w || 1440;
+  const H = containerSize.h || 800;
   const isMobile = W < 768;
   const AMP = isMobile ? 20 : 40;
 
+  /* ── Wave path (same formula as Slider.tsx) ── */
   const wavePath = [
     `M 0,${AMP * 1.0}`,
     `C ${W * 0.0335},${AMP * 1.5}  ${W * 0.106},${AMP * 1.83}  ${W * 0.106},${AMP * 1.83}`,
@@ -58,81 +58,71 @@ export default function Location() {
     `Z`,
   ].join(" ");
 
+  const clipId = "wavyClipLocation";
+
   return (
     <div
-      ref={containerRef}
       id="openingstijden"
+      ref={containerRef}
       style={{
         fontFamily: "Quicksand",
-        clipPath: size.h > 0 ? "url(#wavyClipLocation)" : "none",
-        marginTop: size.h > 0 ? `-${AMP * 2}px` : "0",
-        paddingTop: `${AMP * 2}px`,
-        paddingBottom: `${AMP * 2}px`,
+        position: "relative",
+        clipPath: `url(#${clipId})`,
       }}
-      className="relative w-full"
+      className="w-full relative mt-2 h-fit pt-28 pb-20 md:pt-32 md:pb-28 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)] overflow-hidden"
     >
-      <svg aria-hidden="true" style={{ position: "absolute", width: 0, height: 0, overflow: "visible", pointerEvents: "none" }}>
+      <svg
+        aria-hidden="true"
+        style={{ position: "absolute", width: 0, height: 0, overflow: "visible", pointerEvents: "none" }}
+      >
         <defs>
-          <clipPath id="wavyClipLocation" clipPathUnits="userSpaceOnUse">
+          <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
             <path d={wavePath} />
           </clipPath>
         </defs>
       </svg>
-      <div className="absolute inset-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]" />
 
-      <div
-        ref={contentRef}
-        className="relative flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-4 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 py-4 sm:py-6 md:py-10 lg:py-0"
-      >
-        <img
-          loading="lazy"
-          src="/assets/location/img3.svg"
-          className="absolute left-0 lg:-z-10 lg:w-30 w-14 sm:w-20 top-1/2 lg:-translate-y-[20%]"
-          alt=""
-        />
-        <img
-          loading="lazy"
-          src="/assets/location/img4.svg"
-          className="absolute right-0 lg:-z-10 lg:w-50 w-20 sm:w-30 top-1/2 lg:-translate-y-[20%] -translate-y-[40%]"
-          alt=""
-        />
+      {/* Decorative side images */}
+      <img
+        loading="lazy"
+        src="/assets/location/img3.svg"
+        className="absolute left-0 lg:-z-10 lg:w-30 w-14 sm:w-20 top-1/2 -translate-y-1/2"
+        alt=""
+      />
+      <img
+        loading="lazy"
+        src="/assets/location/img4.svg"
+        className="absolute right-0 lg:-z-10 lg:w-50 w-20 sm:w-30 top-1/2 -translate-y-1/2"
+        alt=""
+      />
 
-        <style>{`
-          @keyframes flagWave {
-            0%, 100% { transform: rotate(-3deg) translateY(0); }
-            25% { transform: rotate(-1deg) translateY(-2px); }
-            50% { transform: rotate(-3.5deg) translateY(1px); }
-            75% { transform: rotate(-2deg) translateY(-1px); }
-          }
-        `}</style>
+      <style>{`
+        @keyframes flagWave {
+          0%, 100% { transform: rotate(-3deg) translateY(0); }
+          25% { transform: rotate(-1deg) translateY(-2px); }
+          50% { transform: rotate(-3.5deg) translateY(1px); }
+          75% { transform: rotate(-2deg) translateY(-1px); }
+        }
+      `}</style>
+
+      {/* Content */}
+      <div className="relative flex lg:flex-row flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20">
+        {/* Left: Photo + Opening hours */}
         <div
           ref={openingsRef}
-          className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4 mt-2 sm:mt-4 lg:mt-20"
+          className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4"
         >
-          <div
-            className="relative w-64 sm:w-80 md:w-84 lg:w-96"
-            style={{ overflow: "visible" }}
-          >
-            <img
-              loading="lazy"
-              src="/Foto.svg"
-              className="w-full"
-              alt="Restaurant foto"
-            />
+          <div className="relative w-64 sm:w-80 md:w-84 lg:w-96" style={{ overflow: "visible" }}>
+            <img loading="lazy" src="/Foto.svg" className="w-full" alt="Restaurant foto" />
             <img
               loading="lazy"
               src="/Vlag.svg"
               className="absolute w-[120%] -left-[6.5%] top-[-30%]"
-              style={{
-                transformOrigin: "center top",
-                animation: "flagWave 3s ease-in-out infinite",
-              }}
+              style={{ transformOrigin: "center top", animation: "flagWave 3s ease-in-out infinite" }}
               alt="Vlag"
             />
           </div>
-          <h1 className="text-base sm:text-xl md:text-2xl md:mt-3">
-            OPENINGSTIJDEN
-          </h1>
+          <h1 className="text-base sm:text-xl md:text-2xl md:mt-3">OPENINGSTIJDEN</h1>
           <div className="flex gap-6 sm:gap-10 -mt-1 sm:-mt-4 text-xs sm:text-base md:text-lg">
             <div>
               <h1>Ma t/m Vr:</h1>
@@ -146,11 +136,13 @@ export default function Location() {
             </div>
           </div>
         </div>
+
+        {/* Right: Map */}
         <div ref={mapRef} className="w-full lg:w-auto flex justify-center">
           <object
             data="/assets/location/img2.svg"
             type="image/svg+xml"
-            className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120 py-0 sm:py-2 lg:py-0 mb-0 sm:mb-4 lg:mb-14"
+            className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120"
             aria-label="Map showing Waddinxveen location"
           />
         </div>
