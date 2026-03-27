@@ -1,4 +1,8 @@
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
 @font-face {
   font-family: "StudlyFree";
   src: url("/fonts/StudlyFree-Regular.woff") format("woff");

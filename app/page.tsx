@@ -9,7 +9,6 @@ import Location from "./components/Location";
 import Faq from "./components/Faq";
 import AnimatedSlider from "./components/AnimatedSilder";
 import Footer from "./components/Footer";
-import SmoothScroll from "./components/SmoothScroll";
 import Preloader from "./components/Preloader";
 
 export default function Home() {
@@ -19,7 +18,6 @@ export default function Home() {
     <>
       {!loaded && <Preloader onComplete={() => setLoaded(true)} />}
       <div style={{ visibility: loaded ? "visible" : "hidden" }}>
-        <SmoothScroll />
         <Nav />
         <Hero />
         <Slider />
