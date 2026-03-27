@@ -103,7 +103,7 @@ export default function Nav() {
           <svg
             ref={waveSvgRef}
             className="absolute top-0 left-0 w-full"
-            style={{ height: "calc(100% + 70px)", willChange: "transform, opacity", transform: "translateZ(0)" }}
+            style={{ height: "calc(100% + 90px)", willChange: "transform, opacity", transform: "translateZ(0)" }}
             viewBox="0 0 1752 280"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +140,7 @@ export default function Nav() {
           {/* Nav content */}
           <div
             ref={contentRef}
-            className="flex items-center px-4 sm:px-6 md:px-10 py-2 md:pt-5 md:pb-12 relative z-10"
+            className="flex items-center px-4 sm:px-6 md:px-10 py-2 md:py-8 relative z-10"
           >
             {/* Logo */}
             <Link href="/" className="flex-shrink-0" ref={logoRef}>

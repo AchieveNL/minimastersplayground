@@ -74,6 +74,8 @@ export default function Footer() {
     delay: 0.2,
   });
 
+  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
   const [states, setStates] = useState<CardState[]>([
     "current",
     "next",
@@ -289,7 +291,7 @@ export default function Footer() {
         {/* ✅ Content pulled up by half the wave height using negative marginTop.
             This visually centers the content at the wave/body boundary. */}
         <div
-          className="relative flex flex-col lg:flex-row items-center justify-center gap-10 sm:gap-14 lg:gap-20 px-6 sm:px-10 pb-14 md:pt-16 pt-12"
+          className="relative flex flex-col lg:flex-row items-center justify-center gap-10 sm:gap-14 lg:gap-20 px-6 sm:px-10 pb-14 md:pb-44 md:pt-40 pt-10"
           style={{
             zIndex: 1,
             marginTop: `calc(-1 * ${halfWave})`,
@@ -308,7 +310,7 @@ export default function Footer() {
               <img loading="lazy"
                 src="/newLogo2.svg"
                 alt=""
-                style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.2)) drop-shadow(0 4px 8px rgba(0,0,0,0.15))" }}
+                style={{ filter: "none" }}
                 className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[36rem] xl:w-[42rem] relative"
               />
             </Link>
@@ -358,55 +360,75 @@ export default function Footer() {
             ref={newsletterRef}
             className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-sm"
           >
-            <style>{`
-              @keyframes newsletter-float {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-6px); }
-              }
-            `}</style>
-            <div
-              className="relative w-full rounded-3xl overflow-hidden"
-              style={{
-                background: "linear-gradient(145deg, #5BC07E 0%, #67CD8A 50%, #5BC07E 100%)",
-              }}
-            >
-              {/* Decorative circles */}
-              <div
-                className="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-20"
-                style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }}
-              />
-              <div
-                className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full opacity-15"
-                style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }}
-              />
+            <div className="w-full px-2 lg:px-0">
+              <h2
+                className="font-extrabold text-white text-base lg:text-xl leading-snug mb-3 px-6 py-2 rounded-full w-fit"
+                style={{ fontFamily: "Quicksand", background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)" }}
+              >
+                JOIN THE COMMUNITY
+              </h2>
+              <p className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6" style={{ fontFamily: "Quicksand" }}>
+                Ontvang als eerste updates over onze opening, activiteiten en exclusieve acties!
+              </p>
 
-              {/* Header */}
-              <div className="pt-3 lg:pt-4 px-4 lg:px-5 text-center">
-                <div
-                  className="inline-block mb-2"
-                  style={{ animation: "newsletter-float 3s ease-in-out infinite" }}
-                >
-                  <span className="text-2xl lg:text-3xl">✉️</span>
-                </div>
-                <h2
-                  className="font-extrabold text-white text-sm lg:text-base leading-snug"
-                  style={{ fontFamily: "Quicksand", textShadow: "0 1px 3px rgba(0,0,0,0.1)" }}
-                >
-                  KRIJG ALS EERSTE EEN SEINTJE WANNEER WIJ OPENEN!
-                </h2>
-              </div>
-
-              {/* Leat form iframe */}
-              <div className="px-3 lg:px-4 pb-3 lg:pb-4 mt-2">
-                <div className="rounded-2xl overflow-hidden bg-white/95 backdrop-blur-sm" style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.08) inset" }}>
-                  <iframe
-                    src="https://forms.leat.com/forms/6e833c5f-50b3-459d-b091-43969efec8fc?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
-                    className="w-full border-none outline-none"
-                    style={{ height: "320px" }}
-                    title="Nieuwsbrief aanmelden"
-                  />
-                </div>
-              </div>
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.currentTarget;
+                  const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+                  if (!email) return;
+                  setFormStatus("loading");
+                  try {
+                    const body = new FormData();
+                    body.append("email", email);
+                    const res = await fetch(
+                      "https://api.leat.com/api/v1/forms/6e833c5f-50b3-459d-b091-43969efec8fc/public/submit",
+                      { method: "POST", body }
+                    );
+                    if (res.ok) {
+                      setFormStatus("success");
+                      form.reset();
+                    } else {
+                      setFormStatus("error");
+                    }
+                  } catch {
+                    setFormStatus("error");
+                  }
+                }}
+                className="flex flex-col gap-4"
+              >
+                {formStatus === "success" ? (
+                  <p className="text-[#67CD8A] font-bold text-sm">
+                    Bedankt voor je aanmelding!
+                  </p>
+                ) : (
+                  <>
+                    <div>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="E-mailadres*"
+                        className="w-full rounded-full bg-white/80 outline-none text-gray-700 font-medium py-3 px-5 placeholder-gray-400"
+                        style={{ fontFamily: "Quicksand" }}
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={formStatus === "loading"}
+                      className="w-fit px-8 py-3 rounded-full font-bold text-white text-sm tracking-wider cursor-pointer hover:opacity-90 transition-opacity disabled:opacity-60"
+                      style={{ background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)" }}
+                    >
+                      {formStatus === "loading" ? "EVEN GEDULD..." : "SIGN UP"}
+                    </button>
+                    {formStatus === "error" && (
+                      <p className="text-[#FF5757] font-bold text-xs">
+                        Er ging iets mis, probeer het opnieuw.
+                      </p>
+                    )}
+                  </>
+                )}
+              </form>
             </div>
 
             {/* Contact icons */}
@@ -445,7 +467,7 @@ export default function Footer() {
       </div>
       <div
         style={{ fontFamily: "Quicksand" }}
-        className="bg-[#FFCA58] md:pt-16 pt-5 pb-10 text-white font-semibold flex md:flex-row flex-col justify-between items-center md:px-10 lg:gap-24 px-6 sm:px-10"
+        className="bg-[#FFCA58] md:pt-8 pt-5 pb-10 text-white font-semibold flex md:flex-row flex-col justify-between items-center md:px-10 lg:gap-24 px-6 sm:px-10"
       >
         <div className="flex md:flex-row flex-col items-center md:gap-10 gap-1">
           <Link

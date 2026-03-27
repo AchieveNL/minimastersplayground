@@ -5,7 +5,7 @@ import LocationMobile from "./LocationMobile";
 
 export default function Location() {
   return (
-    <div id="openingstijden">
+    <div id="openingstijden" className="mt-4 md:-mt-[2.8rem]">
       {/* Desktop/Tablet: md and up */}
       <div className="hidden md:block">
         <LocationDesktop />

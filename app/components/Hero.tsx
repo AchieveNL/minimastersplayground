@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useRef } from "react";
+"use client";import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import AnimatedSilder from "./AnimatedSilder";
 import InfoCard from "./InfoCard";
@@ -11,7 +9,11 @@ export default function Hero() {
   const tinyRef = useRef<HTMLHeadingElement>(null);
   const bigRef = useRef<HTMLHeadingElement>(null);
   const gearsRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useScrollAnimation<HTMLDivElement>({ type: "staggerUp", duration: 1, stagger: 0.18 });
+  const cardsRef = useScrollAnimation<HTMLDivElement>({
+    type: "staggerUp",
+    duration: 1,
+    stagger: 0.18,
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -24,7 +26,7 @@ export default function Hero() {
       tl.fromTo(
         sliderRef.current,
         { scale: 1.05, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1 }
+        { scale: 1, opacity: 1, duration: 1 },
       );
 
       // Title text: TINY HEROES slides up
@@ -32,7 +34,7 @@ export default function Hero() {
         tinyRef.current,
         { y: 60, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.9 },
-        "-=0.4"
+        "-=0.4",
       );
 
       // BIG ADVENTURES slides up with slight delay
@@ -40,7 +42,7 @@ export default function Hero() {
         bigRef.current,
         { y: 60, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.9 },
-        "-=0.6"
+        "-=0.6",
       );
 
       // Gear icons fade in from sides
@@ -50,13 +52,13 @@ export default function Hero() {
           gears[0],
           { x: 40, opacity: 0, rotate: -20 },
           { x: 0, opacity: 1, rotate: 0, duration: 0.8 },
-          "-=0.5"
+          "-=0.5",
         );
         tl.fromTo(
           gears[1],
           { x: -40, opacity: 0, rotate: 20 },
           { x: 0, opacity: 1, rotate: 0, duration: 0.8 },
-          "-=0.6"
+          "-=0.6",
         );
       }
     });
@@ -104,11 +106,14 @@ export default function Hero() {
     },
   ];
   return (
-    <div className="-mt-4 md:-mt-21 relative" style={{ fontFamily: "Quicksand" }}>
+    <div className="-mt-4 md:-mt-14 relative" style={{ fontFamily: "Quicksand" }}>
       <div ref={sliderRef} style={{ opacity: 0 }}>
         <AnimatedSilder />
       </div>
-      <div id="over-ons" className="pt-14 md:pt-28 relative flex flex-col items-center justify-center gap-5">
+      <div
+        id="over-ons"
+        className="pt-2 md:pt-1 relative flex flex-col items-center justify-center gap-5"
+      >
         <div ref={gearsRef}>
           <img
             src="/assets/icons/gear.svg"
@@ -123,14 +128,25 @@ export default function Hero() {
             alt=""
           />
         </div>
-        <h1 ref={tinyRef} style={{ opacity: 0 }} className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg">
+        <h1
+          ref={tinyRef}
+          style={{ opacity: 0 }}
+          className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg"
+        >
           TINY HEROES
         </h1>
-        <h1 ref={bigRef} style={{ opacity: 0 }} className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFDB8D] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg">
+        <h1
+          ref={bigRef}
+          style={{ opacity: 0 }}
+          className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFDB8D] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg"
+        >
           BIG ADVENTURES
         </h1>
       </div>
-      <div ref={cardsRef} className="md:my-28 my-14 flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-10 md:mx-24 mx-4 sm:mx-5">
+      <div
+        ref={cardsRef}
+        className="md:my-28 my-14 flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-10 md:mx-24 mx-4 sm:mx-5"
+      >
         {infoCards.map((card, index) => {
           return (
             <InfoCard

@@ -307,7 +307,7 @@ export default function Faq() {
   const questionsRef = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1, delay: 0.1 });
 
   return (
-    <div id="faq" className="md:my-24 my-16 relative" style={{ fontFamily: "Quicksand" }}>
+    <div id="faq" className="mt-4 md:-mt-10 md:mb-24 mb-16 relative" style={{ fontFamily: "Quicksand" }}>
       <img loading="lazy" src="/assets/faq/icon1.svg" className="absolute md:w-60 w-30 top-1/2 md:-translate-y-1/2" alt="" />
       <img loading="lazy" src="/assets/faq/icon2.svg" className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 " alt="" />
       <img loading="lazy" src="/assets/faq/icon3.svg" className="absolute md:w-50 w-20 right-0 top-[70%]" alt="" />

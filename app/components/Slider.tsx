@@ -1,13 +1,40 @@
 "use client";
-
 import { useEffect, useState, useCallback, useRef } from "react";
 
 export default function Slider() {
   const data = [
-    { bg: "img4.jpg", text1: "Scholen & BSO", text2: "", link: "https://minimasters.booqi.me/product/297636/scholen-bso", btnText: "SCHOOL & BSO", btnColor: "#FFCA58" },
-    { bg: "img1.jpg", text1: "Entreeticket", text2: "", link: "https://minimasters.booqi.me/product/296874/entreetickets", btnText: "DIRECT BOEKEN", btnColor: "#67CD8A" },
-    { bg: "img5.jpg", text1: "Kinderfeestje", text2: "", link: "https://minimasters.booqi.me/product/296875/kinderfeestjes", btnText: "VERJAARDAG", btnColor: "#FFCA58" },
-    { bg: "img3.png", text1: "Abonnement", text2: "", link: "", btnText: "DIRECT BOEKEN", btnColor: "#67CD8A" },
+    {
+      bg: "img4.jpg",
+      text1: "Scholen & BSO",
+      text2: "",
+      link: "https://minimasters.booqi.me/product/297636/scholen-bso",
+      btnText: "SCHOOL & BSO",
+      btnColor: "#FFCA58",
+    },
+    {
+      bg: "img1.jpg",
+      text1: "Entreeticket",
+      text2: "",
+      link: "https://minimasters.booqi.me/product/296874/entreetickets",
+      btnText: "DIRECT BOEKEN",
+      btnColor: "#67CD8A",
+    },
+    {
+      bg: "img5.jpg",
+      text1: "Kinderfeestje",
+      text2: "",
+      link: "https://minimasters.booqi.me/product/296875/kinderfeestjes",
+      btnText: "VERJAARDAG",
+      btnColor: "#FFCA58",
+    },
+    {
+      bg: "img3.png",
+      text1: "Abonnement",
+      text2: "",
+      link: "",
+      btnText: "DIRECT BOEKEN",
+      btnColor: "#67CD8A",
+    },
   ];
   const SLOTS_NEEDED = 9; // = VISIBLE*2 + EXIT_TRAVEL + ENTER_TRAVEL + 3
   const repeatCount = Math.ceil(SLOTS_NEEDED / data.length);
@@ -216,14 +243,14 @@ export default function Slider() {
   return (
     <>
       <div
-      id="tickets"
+        id="tickets"
         ref={containerRef}
         style={{
           fontFamily: "Quicksand",
           position: "relative",
           clipPath: `url(#${clipId})`,
         }}
-        className="w-full relative mt-2 md:h-fit h-fit pt-28 md:pt-32 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
+        className="w-full relative -mt-14 md:h-fit h-fit pt-28 md:pt-28 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
       >
         <svg
           aria-hidden="true"
@@ -242,12 +269,14 @@ export default function Slider() {
           </defs>
         </svg>
 
-        <img loading="lazy"
+        <img
+          loading="lazy"
           src="/assets/icons/cards-icon1.svg"
           className="absolute right-0 top-10 md:w-80 w-30"
           alt=""
         />
-        <img loading="lazy"
+        <img
+          loading="lazy"
           src="/assets/icons/cards-icon2.svg"
           className="absolute left-0 md:w-40 w-20"
           alt=""
@@ -255,13 +284,15 @@ export default function Slider() {
 
         {/* Header badge */}
         <div className="flex w-fit items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl md:py-3 py-2">
-          <img loading="lazy"
+          <img
+            loading="lazy"
             src="/elements/Ticket Icoon.svg"
             className="absolute md:hidden"
             style={{ width: "80px", left: "-15%" }}
             alt=""
           />
-          <img loading="lazy"
+          <img
+            loading="lazy"
             src="/elements/Ticket Icoon.svg"
             className="absolute hidden md:block"
             style={{ width: "100px", left: -45 }}
@@ -286,21 +317,25 @@ export default function Slider() {
               height: `${CARD_HEIGHT}px`,
             };
 
-            const cardClass = "rounded-tr-[60px] rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-6 cursor-pointer transition-transform duration-400 ease-out hover:scale-110";
+            const cardClass =
+              "rounded-tr-[60px] rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-6 cursor-pointer transition-transform duration-400 ease-out hover:scale-110";
 
             const inner = (
               <>
                 {/* Background image with zoom on hover */}
                 <div
                   className="absolute inset-0 rounded-tr-[60px] rounded-bl-[60px]"
-                  style={{ background: `url('/assets/slider/${item.bg}') no-repeat center/cover` }}
+                  style={{
+                    background: `url('/assets/slider/${item.bg}') no-repeat center/cover`,
+                  }}
                 />
                 {/* Gradient overlay */}
                 <div
                   className="absolute bottom-0 left-0 right-0 rounded-bl-[60px] transition-all duration-350"
                   style={{
                     height: "80%",
-                    background: "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
+                    background:
+                      "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
                   }}
                 />
                 {/* Button: shows title, on hover changes to green "Boek nu" or purple "Coming soon" */}
@@ -308,7 +343,10 @@ export default function Slider() {
                   {/* Default: yellow with title */}
                   <span
                     className="px-5 py-2 rounded-full font-bold text-white text-xs md:text-sm tracking-wider block group-hover:hidden"
-                    style={{ background: "linear-gradient(135deg, #FFDB8D 0%, #FFCA58 100%)" }}
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #FFDB8D 0%, #FFCA58 100%)",
+                    }}
                   >
                     {item.text1}
                   </span>
@@ -334,9 +372,16 @@ export default function Slider() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ ...cardStyle, textDecoration: "none", color: "white", display: "flex" }}
+                    style={{
+                      ...cardStyle,
+                      textDecoration: "none",
+                      color: "white",
+                      display: "flex",
+                    }}
                     className={`${cardClass} group`}
-                    onClick={(e) => { e.stopPropagation(); }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                    }}
                   >
                     {inner}
                   </a>
