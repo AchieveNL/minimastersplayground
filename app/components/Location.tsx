@@ -17,22 +17,24 @@ export default function Location() {
   });
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const [containerSize, setContainerSize] = useState({ w: 1440, h: 800 });
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+    const container = containerRef.current;
+    if (!container) return;
+
     const observer = new ResizeObserver((entries) => {
       const { width, height } = entries[0].contentRect;
-      setContainerSize({ w: width, h: height });
+      setSize({ w: width, h: height });
     });
-    observer.observe(el);
-    setContainerSize({ w: el.offsetWidth, h: el.offsetHeight });
+    observer.observe(container);
+    setSize({ w: container.offsetWidth, h: container.offsetHeight });
     return () => observer.disconnect();
   }, []);
 
-  const W = containerSize.w;
-  const H = containerSize.h;
+  const W = size.w;
+  const H = size.h;
   const isMobile = W < 768;
   const AMP = isMobile ? 20 : 40;
 
@@ -56,56 +58,56 @@ export default function Location() {
     `Z`,
   ].join(" ");
 
-  const clipId = "wavyClipLocation";
-
   return (
     <div
       ref={containerRef}
       id="openingstijden"
       style={{
         fontFamily: "Quicksand",
-        position: "relative",
-        clipPath: `url(#${clipId})`,
+        clipPath: size.h > 0 ? "url(#wavyClipLocation)" : "none",
+        marginTop: size.h > 0 ? `-${AMP * 2}px` : "0",
+        paddingTop: `${AMP * 2}px`,
+        paddingBottom: `${AMP * 2}px`,
       }}
-      className="w-full relative mt-2 h-fit pt-20 pb-20 sm:pt-24 sm:pb-24 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)] overflow-hidden"
+      className="relative w-full"
     >
-      <svg
-        aria-hidden="true"
-        style={{ position: "absolute", width: 0, height: 0, overflow: "visible", pointerEvents: "none" }}
-      >
+      <svg aria-hidden="true" style={{ position: "absolute", width: 0, height: 0, overflow: "visible", pointerEvents: "none" }}>
         <defs>
-          <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
+          <clipPath id="wavyClipLocation" clipPathUnits="userSpaceOnUse">
             <path d={wavePath} />
           </clipPath>
         </defs>
       </svg>
+      <div className="absolute inset-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]" />
 
-      <img
-        loading="lazy"
-        src="/assets/location/img3.svg"
-        className="absolute left-0 lg:-z-10 lg:w-30 w-14 sm:w-20 top-1/2 lg:-translate-y-[20%]"
-        alt=""
-      />
-      <img
-        loading="lazy"
-        src="/assets/location/img4.svg"
-        className="absolute right-0 lg:-z-10 lg:w-50 w-20 sm:w-30 top-1/2 lg:-translate-y-[20%] -translate-y-[40%]"
-        alt=""
-      />
+      <div
+        ref={contentRef}
+        className="relative flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-4 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 py-4 sm:py-6 md:py-10 lg:py-0"
+      >
+        <img
+          loading="lazy"
+          src="/assets/location/img3.svg"
+          className="absolute left-0 lg:-z-10 lg:w-30 w-14 sm:w-20 top-1/2 lg:-translate-y-[20%]"
+          alt=""
+        />
+        <img
+          loading="lazy"
+          src="/assets/location/img4.svg"
+          className="absolute right-0 lg:-z-10 lg:w-50 w-20 sm:w-30 top-1/2 lg:-translate-y-[20%] -translate-y-[40%]"
+          alt=""
+        />
 
-      <style>{`
-        @keyframes flagWave {
-          0%, 100% { transform: rotate(-3deg) translateY(0); }
-          25% { transform: rotate(-1deg) translateY(-2px); }
-          50% { transform: rotate(-3.5deg) translateY(1px); }
-          75% { transform: rotate(-2deg) translateY(-1px); }
-        }
-      `}</style>
-
-      <div className="relative flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-4 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20">
+        <style>{`
+          @keyframes flagWave {
+            0%, 100% { transform: rotate(-3deg) translateY(0); }
+            25% { transform: rotate(-1deg) translateY(-2px); }
+            50% { transform: rotate(-3.5deg) translateY(1px); }
+            75% { transform: rotate(-2deg) translateY(-1px); }
+          }
+        `}</style>
         <div
           ref={openingsRef}
-          className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4"
+          className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4 mt-2 sm:mt-4 lg:mt-20"
         >
           <div
             className="relative w-64 sm:w-80 md:w-84 lg:w-96"
@@ -148,7 +150,7 @@ export default function Location() {
           <object
             data="/assets/location/img2.svg"
             type="image/svg+xml"
-            className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120"
+            className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120 py-0 sm:py-2 lg:py-0 mb-0 sm:mb-4 lg:mb-14"
             aria-label="Map showing Waddinxveen location"
           />
         </div>
