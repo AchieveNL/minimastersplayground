@@ -64,12 +64,12 @@ export default function Hero() {
   }, []);
   const infoCards = [
     {
-      posMobile: -30,
-      pos: -70,
-      iconWidth: 120,
+      posMobile: -40,
+      pos: -80,
+      iconWidth: 140,
       icon: "/elements/Groep Icoon.svg",
       title: (
-        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-6 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-6 w-full rounded-br-4xl text-nowrap">
           DE MINI MAATSCHAPPIJ
         </h1>
       ),
@@ -77,12 +77,12 @@ export default function Hero() {
         "Binnen minimasters stappen kinderen in een wereld die volledig is afgestemd op hun eigen belevingswereld. zij krijgen de ruimte om spelenderwijs te ontdekken hoe vormen van samenwerking een belangrijke rol spelen in het dagelijks leven.",
     },
     {
-      posMobile: -60,
-      pos: -90,
+      posMobile: -50,
+      pos: -80,
       iconWidth: 150,
       icon: "/elements/Educatie Icoon.svg",
       title: (
-        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-0 pl-8 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-8 pl-8 w-full rounded-br-4xl text-nowrap">
           HET EDUCATIEVE KARAKTER
         </h1>
       ),
@@ -90,12 +90,12 @@ export default function Hero() {
         "Ons doel is om kinderen te laten leren door te doen, door actief deel te nemen aan herkenbare beroepen. Zelfvertrouwen en creativiteit krijgen de ruimte omdat er geen goed of fout bestaat: elk kind mag op zijn eigen manier ontdekken.",
     },
     {
-      posMobile: -30,
-      pos: -50,
-      iconWidth: 100,
+      posMobile: -40,
+      pos: -65,
+      iconWidth: 130,
       icon: "/elements/Standaard Icoon.svg",
       title: (
-        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] py-1 md:pl-1 pl-4 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-4 w-full rounded-br-4xl text-nowrap">
           DE NIEUWE STANDAARD
         </h1>
       ),
@@ -108,7 +108,7 @@ export default function Hero() {
       <div ref={sliderRef} style={{ opacity: 0 }}>
         <AnimatedSilder />
       </div>
-      <div id="over-ons" className="pt-16 md:pt-28 relative flex flex-col items-center justify-center gap-5">
+      <div id="over-ons" className="pt-14 md:pt-28 relative flex flex-col items-center justify-center gap-5">
         <div ref={gearsRef}>
           <img
             src="/assets/icons/gear.svg"
@@ -130,7 +130,7 @@ export default function Hero() {
           BIG ADVENTURES
         </h1>
       </div>
-      <div ref={cardsRef} className="md:my-28 my-12 flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-10 md:mx-24 mx-4 sm:mx-5">
+      <div ref={cardsRef} className="md:my-28 my-14 flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-10 md:mx-24 mx-4 sm:mx-5">
         {infoCards.map((card, index) => {
           return (
             <InfoCard

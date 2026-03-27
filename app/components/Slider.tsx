@@ -254,20 +254,20 @@ export default function Slider() {
         />
 
         {/* Header badge */}
-        <div className="flex w-fit md:px-10 px-5 md:py-4 py-2 md:pl-28 pl-14 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+        <div className="flex w-fit items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl md:py-3 py-2">
           <img loading="lazy"
             src="/elements/Ticket Icoon.svg"
             className="absolute md:hidden"
-            style={{ width: "100px", left: "-10%" }}
+            style={{ width: "80px", left: "-15%" }}
             alt=""
           />
           <img loading="lazy"
             src="/elements/Ticket Icoon.svg"
             className="absolute hidden md:block"
-            style={{ width: "130px", left: -60 }}
+            style={{ width: "100px", left: -45 }}
             alt=""
           />
-          <h1 className="font-bold md:text-xl text-center text-[#FDF9EF] py-1 md:pl-0 pl-8 w-full rounded-br-4xl">
+          <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-16 pl-14 md:pr-8 pr-5 w-full rounded-br-4xl text-nowrap">
             ONZE ARRANGEMENTEN
           </h1>
         </div>
@@ -277,74 +277,55 @@ export default function Slider() {
           className="relative mt-10 w-full md:mb-44 mb-20"
           style={{ height: `${CARD_HEIGHT + 180}px`, overflow: "visible" }}
         >
-          {/* Left Arrow */}
-          <button
-            onClick={prev}
-            className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/80 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer"
-            aria-label="Previous"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="#5763FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-          {/* Right Arrow */}
-          <button
-            onClick={next}
-            className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 z-40 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/80 hover:bg-white shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 cursor-pointer"
-            aria-label="Next"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="#5763FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
           {cards.map((item, index) => {
             const slot = getSlot(index);
             const isTeleporting = teleportingCards.has(index);
 
-            const cardContent = (
-              <>
-                <div
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
-                    height: "80%",
-                  }}
-                  className="absolute bottom-0 left-0 right-0 rounded-bl-[60px]"
-                />
-                <h1 className="z-20 text-center text-base md:text-lg px-3 text-white">
-                  {item.text1}
-                </h1>
-              </>
-            );
-
-            const hoverOverlay = (
-              <div
-                className="absolute inset-0 rounded-tr-[60px] rounded-bl-[60px] flex items-end justify-center pb-8 opacity-0 group-hover:opacity-100 z-30"
-                style={{
-                  transition: "opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-                  background: "linear-gradient(180deg, rgba(87, 99, 255, 0) 0%, rgba(87, 99, 255, 0.5) 100%)",
-                }}
-              >
-                <span
-                  className="px-5 py-2 rounded-full font-bold text-white text-xs md:text-sm tracking-wider"
-                  style={{
-                    background: item.btnColor === "#FFCA58"
-                      ? "linear-gradient(135deg, #FFDB8D 0%, #FFCA58 100%)"
-                      : "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
-                  }}
-                >
-                  {item.btnText}
-                </span>
-              </div>
-            );
-
             const cardStyle = {
-              background: `url('/assets/slider/${item.bg}') no-repeat center/cover`,
               boxShadow: "4px 8px 24px 0px #00000055",
               height: `${CARD_HEIGHT}px`,
             };
 
-            const cardClass = "rounded-tr-[60px] rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-between py-5 cursor-pointer";
+            const cardClass = "rounded-tr-[60px] rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-6 cursor-pointer transition-transform duration-400 ease-out hover:scale-110";
+
+            const inner = (
+              <>
+                {/* Background image with zoom on hover */}
+                <div
+                  className="absolute inset-0 rounded-tr-[60px] rounded-bl-[60px]"
+                  style={{ background: `url('/assets/slider/${item.bg}') no-repeat center/cover` }}
+                />
+                {/* Gradient overlay */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 rounded-bl-[60px] transition-all duration-350"
+                  style={{
+                    height: "80%",
+                    background: "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
+                  }}
+                />
+                {/* Button: shows title, on hover changes to green "Boek nu" or purple "Coming soon" */}
+                <div className="relative z-10">
+                  {/* Default: yellow with title */}
+                  <span
+                    className="px-5 py-2 rounded-full font-bold text-white text-xs md:text-sm tracking-wider block group-hover:hidden"
+                    style={{ background: "linear-gradient(135deg, #FFDB8D 0%, #FFCA58 100%)" }}
+                  >
+                    {item.text1}
+                  </span>
+                  {/* Hover: green "Boek nu" or purple "Coming soon" */}
+                  <span
+                    className="px-5 py-2 rounded-full font-bold text-white text-xs md:text-sm tracking-wider hidden group-hover:block"
+                    style={{
+                      background: item.link
+                        ? "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)"
+                        : "linear-gradient(135deg, #B1B6FF 0%, #5763FF 100%)",
+                    }}
+                  >
+                    {item.link ? "Boek nu" : "Coming soon"}
+                  </span>
+                </div>
+              </>
+            );
 
             return (
               <div key={index} style={getCardStyle(slot, isTeleporting)}>
@@ -357,8 +338,7 @@ export default function Slider() {
                     className={`${cardClass} group`}
                     onClick={(e) => { e.stopPropagation(); }}
                   >
-                    {cardContent}
-                    {hoverOverlay}
+                    {inner}
                   </a>
                 ) : (
                   <div
@@ -366,8 +346,7 @@ export default function Slider() {
                     className={`${cardClass} group`}
                     onClick={next}
                   >
-                    {cardContent}
-                    {hoverOverlay}
+                    {inner}
                   </div>
                 )}
               </div>

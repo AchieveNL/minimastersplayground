@@ -96,26 +96,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           "linear-gradient(135deg, #FFCA58 0%, #FFDB8D 30%, #FFCA58 60%, #FFD074 100%)",
       }}
     >
-      {/* Decorative background illustrations */}
-      <img
-        src="/assets/mobile/icon2.svg"
-        className="absolute -bottom-16 -left-14 md:w-[22rem] w-52 opacity-[0.20] pointer-events-none"
-        style={{ filter: "brightness(0) invert(1)" }}
-        alt=""
-      />
-      <img
-        src="/assets/mobile/icon3.svg"
-        className="absolute top-[3%] left-[2%] md:w-60 w-36 opacity-[0.18] pointer-events-none"
-        style={{ filter: "brightness(0) invert(1)" }}
-        alt=""
-      />
-      <img
-        src="/assets/location/img4.svg"
-        className="absolute -bottom-10 -right-10 md:w-72 w-44 opacity-[0.16] pointer-events-none"
-        style={{ filter: "brightness(0) invert(1)" }}
-        alt=""
-      />
-
       {/* Centered content — uses inset+margin:auto so GSAP transforms don't break centering */}
       <div
         ref={centerRef}

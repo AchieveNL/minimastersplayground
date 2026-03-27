@@ -68,7 +68,7 @@ export default function AnimatedSlider({
 
       <div
         style={{ clipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})` }}
-        className={`w-full overflow-hidden bg-white relative ${variant === "hero" ? "mt-2 md:mt-8 xl:mt-0 xl:h-screen lg:h-130 md:h-100 h-62.5 2xl:h-200 mb-4 md:mb-26" : "xl:h-screen lg:h-130 md:h-100 h-62.5 2xl:h-200 mb-26"}`}
+        className={`w-full overflow-hidden bg-white relative ${variant === "hero" ? "mt-2 md:mt-8 xl:mt-0 xl:h-[70vh] lg:h-100 md:h-80 h-52 2xl:h-160 mb-4 md:mb-26" : "xl:h-[70vh] lg:h-100 md:h-80 h-52 2xl:h-160 mb-26"}`}
       >
         <Marquee
           speed={marqueeSpeed}

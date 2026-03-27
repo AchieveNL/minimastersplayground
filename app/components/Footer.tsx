@@ -30,6 +30,16 @@ const cardData = [
     role: "Toekomstige bezoeker",
     text: "Rollenspel is één van de krachtigste manieren waarop kinderen leren. Dit concept maakt leren avontuurlijk, creatief en onvergetelijk.",
   },
+  {
+    title: "Sharina",
+    role: "Bewuste ouder",
+    text: "Aahh dit is fantastisch. Wel wat verder voor ons maar als ik de renners zie, ga ik zeker langskomen als het klaar is! Tot snel!",
+  },
+  {
+    title: "Roderick",
+    role: "Lokale bewoner",
+    text: "Wat super leuk. Dit is precies wat wij nodig hebben hier in Waddinxveen. Dit gaan mijn meiden heel gaaf vinden. Succes met het realiseren van dit mooie project.",
+  },
 ];
 
 const POSITION_ROTATE: Record<CardState, string> = {
@@ -67,6 +77,8 @@ export default function Footer() {
   const [states, setStates] = useState<CardState[]>([
     "current",
     "next",
+    "idle",
+    "idle",
     "idle",
     "idle",
     "idle",
@@ -457,7 +469,7 @@ export default function Footer() {
         </div>
         <div className="md:mt-0 mt-4">
           <h1>
-            Ontwikkeld door
+            Gemaakt met liefde door
             <Link
               href="https://www.achieve.nl"
               target="_blank"

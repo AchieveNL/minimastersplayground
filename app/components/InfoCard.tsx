@@ -37,7 +37,7 @@ export default function InfoCard({
           ${shakePercent * 0.8}% { transform: rotate(5deg); }
         }
       `}</style>
-      <div className="flex items-center relative justify-center xl:w-[75%] xl:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
+      <div className="flex items-center relative justify-center xl:w-[75%] xl:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl md:py-3 py-2">
         <img loading="lazy"
           src={icon}
           className="absolute md:hidden"

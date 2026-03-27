@@ -18,20 +18,102 @@ type FaqCategory = {
 
 const data: FaqCategory[] = [
   {
-    text: "#67CD8A",
-    bg: "#FFFCF6",
-    title: "Algemene vragen",
+    text: "#BB76FF",
+    bg: "#F5EBFF",
+    title: "Nieuw bij Minimasters",
     items: [
       {
-        question: "Wat is Minimasters?",
+        question: "Hoe werken de arrangementen?",
         answer: (
           <>
-            Minimasters is een unieke belevingswereld waar kinderen spelenderwijs de grote-mensenwereld ontdekken. Van een eigen restaurant tot verschillende speelruimtes zoals een spa, café en zelfs een supermarkt – alles is ingericht om fantasie, creativiteit en rollenspel te stimuleren. Bij Minimasters kunnen kinderen koken, werken, ontspannen en winkelen in een veilige en interactieve omgeving. Een plek waar leren en spelen samenkomen en elk bezoek een nieuw avontuur is!
+            Wij werken dagelijks met drie vaste sessies van elk 2,5 uur.
+            <br /><br />
+            Tussen iedere sessie hebben wij 30 minuten opruimtijd, zodat de ruimte weer schoon en klaar is voor de volgende groep kinderen. Op deze manier zorgen wij iedere sessie opnieuw voor een fijne en veilige speelervaring.
+            <br /><br />
+            Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en het spelen is in elke sessie hetzelfde.
           </>
         ),
       },
       {
-        question: "Welke betaalmethoden worden geaccepteerd?",
+        question: "Voor welk leeftijd is Minimasters?",
+        answer: (
+          <>
+            Bij Minimasters is iedereen welkom, van jong tot oud! Onze activiteiten zijn wel in het bijzonder afgestemd op kinderen tot en met 6 jaar.
+          </>
+        ),
+      },
+      {
+        question: "Hoelaat moet ik aankomen?",
+        answer: (
+          <>
+            We adviseren om ongeveer 5 minuten van tevoren aanwezig te zijn. Zo heb je rustig de tijd om je schoenen en jas op te bergen voordat je avontuur begint. Kom je eerder aan? Dan kan het zijn dat de deuren nog niet open zijn, omdat we tussen de speelsessies de ruimte nog aan het opruimen zijn.
+          </>
+        ),
+      },
+      {
+        question: "Waarom kopen ouders en verzorgers een kaartje?",
+        answer: (
+          <>
+            Bij Minimasters werken we met een vast aantal plekken per sessie om het spelen voor iedereen veilig en prettig te houden. Omdat ouders en verzorgers ook aanwezig zijn in de speelruimte, vragen we voor hen eveneens een ticket. Zo blijft het overzichtelijk en kan iedereen volop genieten van het spelen.
+          </>
+        ),
+      },
+      {
+        question: "Mag ik schoenen aan tijdens het spelen?",
+        answer: (
+          <>
+            Om hygiënische redenen is het niet toegestaan om schoenen te dragen tijdens het spelen. Daarom spelen we op sokken. Ben je je sokken vergeten? Geen probleem, je kunt sokken kopen bij de receptie.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    text: "#67CD8A",
+    bg: "#FFFCF6",
+    title: "Tickets",
+    items: [
+      {
+        question: "Zijn er tickets aan de deur verkrijgbaar?",
+        answer: (
+          <>
+            Zolang een sessie niet is uitverkocht, kun je tickets kopen aan de deur bij Playhood. De huidige beschikbaarheid vind je op onze ticketpagina. Wil je verzekerd zijn van een tijdslot? Dan adviseren we je tickets online te bestellen.
+          </>
+        ),
+      },
+      {
+        question: "Kan ik mijn ticket nog annuleren?",
+        answer: (
+          <>
+            Vooraf gekochte tickets worden niet terugbetaald. Je kunt je reservering wel tot 24 uur van tevoren kosteloos wijzigen naar een andere datum. Neem hiervoor contact op met de locatie.
+          </>
+        ),
+      },
+      {
+        question: "Wat gebeurt er als ik later aankom?",
+        answer: (
+          <>
+            Geen probleem als je iets later aankomt. Houd er wel rekening mee dat de speelsessie een vaste eindtijd heeft. Deze eindtijd blijft hetzelfde voor alle spelers, ook als je later begint.
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    text: "#5763FF",
+    bg: "#EAECFF",
+    title: "Algemene vragen",
+    items: [
+      {
+        question: "Mogen mijn kinderen alleen blijven?",
+        answer: (
+          <>
+            Kinderen mogen niet zonder begeleiding bij Minimasters verblijven. Een ouder of verzorger dient te allen tijde aanwezig te zijn.
+          </>
+        ),
+      },
+      {
+        question: "Welke betaalmethoden worden er geaccepteerd?",
         answer: (
           <>
             Bij Minimasters is het alleen mogelijk met pin te betalen, contante betalingen worden niet geaccepteerd.
@@ -75,134 +157,6 @@ const data: FaqCategory[] = [
         answer: (
           <>
             We bewaren gevonden voorwerpen meestal 14 dagen, afhankelijk van de beschikbare ruimte. Ben je iets verloren? Mail ons dan naar hero@minimastersplayground.nl. Houd er rekening mee dat wij niet verantwoordelijk is voor verloren spullen en dat we niet kunnen garanderen dat het item wordt teruggevonden.
-          </>
-        ),
-      },
-      {
-        question: "Mogen mijn kinderen alleen blijven?",
-        answer: (
-          <>
-            Kinderen mogen niet zonder begeleiding bij Minimasters verblijven. Een ouder of verzorger dient te allen tijde aanwezig te zijn.
-          </>
-        ),
-      },
-      {
-        question: "Voor welk leeftijd is Minimasters?",
-        answer: (
-          <>
-            Bij Minimasters is iedereen welkom, van jong tot oud! Onze activiteiten zijn wel in het bijzonder afgestemd op kinderen tot en met 6 jaar.
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    text: "#BB76FF",
-    bg: "#F5EBFF",
-    title: "Tarieven",
-    items: [
-      {
-        question: "Hoe werken de arrangementen?",
-        answer: (
-          <>
-            Wij werken dagelijks met drie vaste sessies van elk 2,5 uur.
-            <br /><br />
-            Tussen iedere sessie hebben wij 30 minuten opruimtijd, zodat de ruimte weer schoon en klaar is voor de volgende groep kinderen. Op deze manier zorgen wij iedere sessie opnieuw voor een fijne en veilige speelervaring.
-            <br /><br />
-            Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en het spelen is in elke sessie hetzelfde.
-          </>
-        ),
-      },
-      {
-        question: "Hoelaat moet ik aankomen?",
-        answer: (
-          <>
-            We adviseren om ongeveer 5 minuten van tevoren aanwezig te zijn. Zo heb je rustig de tijd om je schoenen en jas op te bergen voordat je avontuur begint. Kom je eerder aan? Dan kan het zijn dat de deuren nog niet open zijn, omdat we tussen de speelsessies de ruimte nog aan het opruimen zijn.
-          </>
-        ),
-      },
-      {
-        question: "Waarom kopen ouders en verzorgers een kaartje?",
-        answer: (
-          <>
-            Bij Minimasters werken we met een vast aantal plekken per sessie om het spelen voor iedereen veilig en prettig te houden. Omdat ouders en verzorgers ook aanwezig zijn in de speelruimte, vragen we voor hen eveneens een ticket. Zo blijft het overzichtelijk en kan ieder kind volop genieten van het spelen.
-          </>
-        ),
-      },
-      {
-        question: "Mag ik schoenen aan tijdens het spelen?",
-        answer: (
-          <>
-            Om hygiënische redenen is het niet toegestaan om schoenen te dragen tijdens het spelen. Daarom spelen we op sokken. Ben je je sokken vergeten? Geen probleem, je kunt sokken kopen bij de receptie.
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    text: "#FF5757",
-    bg: "#FFEEEE",
-    title: "Tickets",
-    items: [
-      {
-        question: "Zijn er tickets aan de deur verkrijgbaar?",
-        answer: (
-          <>
-            Zolang een sessie niet is uitverkocht, kun je tickets kopen aan de deur bij Minimasters. De huidige beschikbaarheid vind je op onze ticketpagina. Wil je verzekerd zijn van een tijdslot? Dan adviseren we je tickets online te bestellen.
-          </>
-        ),
-      },
-      {
-        question: "Kan ik mijn ticket nog annuleren?",
-        answer: (
-          <>
-            Vooraf gekochte tickets worden niet terugbetaald. Je kunt je reservering wel tot 24 uur van tevoren kosteloos wijzigen naar een andere datum. Neem hiervoor contact op met de locatie.
-          </>
-        ),
-      },
-      {
-        question: "Wat gebeurt er als ik later aankom?",
-        answer: (
-          <>
-            Geen probleem als je iets later aankomt. Houd er wel rekening mee dat de speelsessie een vaste eindtijd heeft. Deze eindtijd blijft hetzelfde voor alle spelers, ook als je later begint.
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    text: "#5763FF",
-    bg: "#EAECFF",
-    title: "Activiteiten",
-    items: [
-      {
-        question: "Welke activiteiten zijn er?",
-        answer: (
-          <>
-            Onze ruimte is ingericht als een klein dorp met verschillende huisjes, waar kinderen spelenderwijs verschillende beroepen en dagelijkse situaties kunnen ontdekken.
-            <br /><br />
-            Zo kunnen kinderen onder andere:
-            <ul className="list-disc pl-5 mt-1">
-              <li>Koeien melk geven</li>
-              <li>Boodschappen doen in de supermarkt</li>
-              <li>Spelen in het politiebureau</li>
-              <li>Sleutelen in de autogarage</li>
-            </ul>
-            En nog veel meer! Alles staat in het teken van fantasie, ontdekken en samen spelen.
-          </>
-        ),
-      },
-      {
-        question: "Is Minimasters geschikt voor kinderfeestjes?",
-        answer: (
-          <>
-            Ja! Bij het reserveren van een sessie kun je ook kiezen voor een verjaardagsarrangement.
-            <br /><br />
-            Wij bieden twee soorten kinderfeestjes aan:
-            <ul className="list-disc pl-5 mt-1">
-              <li>Verjaardag type 1 (uitleg volgt)</li>
-              <li>Verjaardag type 2 (uitleg volgt)</li>
-            </ul>
           </>
         ),
       },

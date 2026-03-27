@@ -139,24 +139,17 @@ export default function MobileSection() {
             content={
               <>
                 <h1>
-                  Scan bij elk bezoek onze QR-code! Verzamel punten en spaar
-                  voor leuke cadeaus!
+                  Verzamel punten en spaar voor leuke cadeaus!
                 </h1>
-                <div>
-                  <img loading="lazy"
-                    src="/assets/mobile/scan.svg"
-                    className="w-[80%] block m-auto"
-                    alt=""
-                  />
-                </div>
-
-                <div>
-                  <img loading="lazy"
-                    src="/assets/mobile/qrcode.svg"
-                    className="w-[80%] block m-auto"
-                    alt=""
-                  />
-                </div>
+                <a
+                  href="https://minimasters.booqi.me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-2 rounded-full font-bold text-white text-sm tracking-wider mt-2"
+                  style={{ background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)" }}
+                >
+                  Meld je nu aan
+                </a>
               </>
             }
           />

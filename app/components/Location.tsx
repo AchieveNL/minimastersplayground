@@ -17,7 +17,7 @@ export default function Location() {
   });
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const [size, setSize] = useState({ w: 1440, h: 800 });
+  const [size, setSize] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
     const el = containerRef.current;
@@ -33,7 +33,8 @@ export default function Location() {
 
   const W = size.w;
   const H = size.h;
-  const AMP = W < 768 ? 20 : 40;
+  const isMobile = W < 768;
+  const AMP = isMobile ? 20 : 40;
 
   const wavePath = [
     `M 0,${AMP * 1.0}`,
@@ -59,8 +60,9 @@ export default function Location() {
       <div
         ref={containerRef}
         id="openingstijden"
-        style={{ fontFamily: "Quicksand", clipPath: "url(#wavyClipLocation)" }}
-        className="relative w-full md:mt-8 xl:mt-0 xl:h-screen lg:h-[60vh] md:h-auto h-fit 2xl:h-200"
+        style={{ fontFamily: "Quicksand", clipPath: size.h > 0 ? "url(#wavyClipLocation)" : "none" }}
+        style={{ fontFamily: "Quicksand", clipPath: size.h > 0 ? "url(#wavyClipLocation)" : "none", marginTop: `-${AMP * 2}px` }}
+        className="relative w-full xl:h-screen lg:h-[60vh] md:h-auto h-auto 2xl:h-200"
       >
         <svg aria-hidden="true" style={{ position: "absolute", width: 0, height: 0, overflow: "visible", pointerEvents: "none" }}>
           <defs>
@@ -71,7 +73,7 @@ export default function Location() {
         </svg>
         <div className="absolute inset-0 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]" />
 
-        <div className="relative flex lg:flex-row flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 lg:top-1/2 lg:-translate-y-1/2 bottom-0 py-8 md:py-12 lg:py-0">
+        <div className="relative flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-4 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 lg:top-1/2 lg:-translate-y-1/2 bottom-0 pt-10 pb-12 sm:pt-12 sm:pb-16 md:py-14 lg:py-0">
           <img
             loading="lazy"
             src="/assets/location/img3.svg"
@@ -95,10 +97,10 @@ export default function Location() {
           `}</style>
           <div
             ref={openingsRef}
-            className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-5 mt-4 sm:mt-10 lg:mt-20"
+            className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4 mt-2 sm:mt-6 lg:mt-20"
           >
             <div
-              className="relative w-44 sm:w-64 md:w-72 lg:w-80"
+              className="relative w-64 sm:w-80 md:w-84 lg:w-96"
               style={{ overflow: "visible" }}
             >
               <img
@@ -138,7 +140,7 @@ export default function Location() {
             <object
               data="/assets/location/img2.svg"
               type="image/svg+xml"
-              className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120 py-2 sm:py-6 lg:py-0 mb-4 sm:mb-16 lg:mb-14"
+              className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120 py-0 sm:py-4 lg:py-0 mb-2 sm:mb-8 lg:mb-14"
               aria-label="Map showing Waddinxveen location"
             />
           </div>

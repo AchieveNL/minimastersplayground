@@ -39,7 +39,7 @@ export default function RootLayout({
           rel="stylesheet"
         ></link>
       </head>
-      <body className="bg-[#F8F5E3]">{children}</body>
+      <body className="bg-[#F8F5E3] overflow-x-hidden">{children}</body>
     </html>
   );
 }

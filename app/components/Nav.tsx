@@ -76,8 +76,8 @@ export default function Nav() {
     const tl = gsap.timeline({ defaults: { ease: "power3.inOut", duration: 0.8 } });
 
     if (scrolled) {
-      tl.to(waveSvgRef.current, { opacity: 0, y: -15 }, 0)
-        .to(flatBgRef.current, { opacity: 1 }, 0)
+      tl.to(waveSvgRef.current, { opacity: 1, y: 0 }, 0)
+        .to(flatBgRef.current, { opacity: 0 }, 0)
         .to(contentRef.current, { paddingTop: "0.5rem", paddingBottom: "0.5rem" }, 0)
         .to(logoImgRef.current, { width: isMobile ? "8rem" : "12rem", marginTop: 0, marginBottom: 0 }, 0);
     } else {
