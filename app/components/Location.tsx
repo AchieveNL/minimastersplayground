@@ -14,77 +14,76 @@ export default function Location() {
     distance: 45,
   });
 
+  /* ── Measure container (same pattern as Slider.tsx) ── */
   const containerRef = useRef<HTMLDivElement>(null);
-  const [W, setW] = useState(1440);
+  const [containerSize, setContainerSize] = useState({ w: 1440, h: 800 });
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const observer = new ResizeObserver((entries) => {
-      setW(entries[0].contentRect.width || 1440);
+      const { width, height } = entries[0].contentRect;
+      setContainerSize({ w: width, h: height });
     });
     observer.observe(el);
-    setW(el.offsetWidth);
+    setContainerSize({ w: el.offsetWidth, h: el.offsetHeight });
     return () => observer.disconnect();
   }, []);
 
+  const W = containerSize.w || 1440;
+  const H = containerSize.h || 800;
   const isMobile = W < 768;
   const AMP = isMobile ? 20 : 40;
-  const WAVE_H = AMP * 2.5;
 
-  /* Top wave: page-colored shape that covers the top edge */
-  const topWave = [
-    `M 0,0 L ${W},0 L ${W},${AMP * 1.67}`,
-    `C ${W * 0.8484},${AMP * 0.5}  ${W * 0.7487},${AMP * 0.17} ${W * 0.7487},${AMP * 0.17}`,
-    `C ${W * 0.6994},${0} ${W * 0.6715},${-AMP * 0.08} ${W * 0.6221},${0}`,
-    `C ${W * 0.5738},${AMP * 0.08} ${W * 0.5471},${AMP * 0.25} ${W * 0.4994},${AMP * 0.5}`,
-    `C ${W * 0.4492},${AMP * 0.67} ${W * 0.4216},${AMP * 1.0}  ${W * 0.3715},${AMP * 1.25}`,
-    `C ${W * 0.3202},${AMP * 1.5}  ${W * 0.2916},${AMP * 1.75} ${W * 0.2397},${AMP * 1.83}`,
-    `C ${W * 0.1877},${AMP * 1.92} ${W * 0.1576},${AMP * 2.0}  ${W * 0.106},${AMP * 1.83}`,
-    `C ${W * 0.106},${AMP * 1.83}  ${W * 0.0335},${AMP * 1.5}  0,${AMP * 1.0}`,
+  /* ── Wave path (same formula as Slider.tsx) ── */
+  const wavePath = [
+    `M 0,${AMP * 1.0}`,
+    `C ${W * 0.0335},${AMP * 1.5}  ${W * 0.106},${AMP * 1.83}  ${W * 0.106},${AMP * 1.83}`,
+    `C ${W * 0.1576},${AMP * 2.0}  ${W * 0.1877},${AMP * 1.92} ${W * 0.2397},${AMP * 1.83}`,
+    `C ${W * 0.2916},${AMP * 1.75} ${W * 0.3202},${AMP * 1.5}  ${W * 0.3715},${AMP * 1.25}`,
+    `C ${W * 0.4216},${AMP * 1.0}  ${W * 0.4492},${AMP * 0.67} ${W * 0.4994},${AMP * 0.5}`,
+    `C ${W * 0.5471},${AMP * 0.25} ${W * 0.5738},${AMP * 0.08} ${W * 0.6221},${0}`,
+    `C ${W * 0.6715},${-AMP * 0.08} ${W * 0.6994},${0} ${W * 0.7487},${AMP * 0.17}`,
+    `C ${W * 0.8484},${AMP * 0.5}  ${W},${AMP * 1.67} ${W},${AMP * 1.67}`,
+    `L ${W},${H - AMP * 1.0}`,
+    `C ${W * (1 - 0.0335)},${H - AMP * 1.5}  ${W * (1 - 0.106)},${H - AMP * 1.83}  ${W * (1 - 0.106)},${H - AMP * 1.83}`,
+    `C ${W * (1 - 0.1576)},${H - AMP * 2.0}  ${W * (1 - 0.1877)},${H - AMP * 1.92} ${W * (1 - 0.2397)},${H - AMP * 1.83}`,
+    `C ${W * (1 - 0.2916)},${H - AMP * 1.75} ${W * (1 - 0.3202)},${H - AMP * 1.5}  ${W * (1 - 0.3715)},${H - AMP * 1.25}`,
+    `C ${W * (1 - 0.4216)},${H - AMP * 1.0}  ${W * (1 - 0.4492)},${H - AMP * 0.67} ${W * (1 - 0.4994)},${H - AMP * 0.5}`,
+    `C ${W * (1 - 0.5471)},${H - AMP * 0.25} ${W * (1 - 0.5738)},${H - AMP * 0.08} ${W * (1 - 0.6221)},${H}`,
+    `C ${W * (1 - 0.6715)},${H + AMP * 0.08} ${W * (1 - 0.6994)},${H} ${W * (1 - 0.7487)},${H - AMP * 0.17}`,
+    `C ${W * (1 - 0.8484)},${H - AMP * 0.5}  ${0},${H - AMP * 1.67} ${0},${H - AMP * 1.67}`,
     `Z`,
   ].join(" ");
 
-  /* Bottom wave: page-colored shape that covers the bottom edge */
-  const bottomWave = [
-    `M 0,${WAVE_H} L ${W},${WAVE_H} L ${W},${WAVE_H - AMP * 1.67}`,
-    `C ${W * (1 - 0.8484)},${WAVE_H - AMP * 0.5}  ${W * (1 - 0.7487)},${WAVE_H - AMP * 0.17} ${W * (1 - 0.7487)},${WAVE_H - AMP * 0.17}`,
-    `C ${W * (1 - 0.6994)},${WAVE_H} ${W * (1 - 0.6715)},${WAVE_H + AMP * 0.08} ${W * (1 - 0.6221)},${WAVE_H}`,
-    `C ${W * (1 - 0.5738)},${WAVE_H - AMP * 0.08} ${W * (1 - 0.5471)},${WAVE_H - AMP * 0.25} ${W * (1 - 0.4994)},${WAVE_H - AMP * 0.5}`,
-    `C ${W * (1 - 0.4492)},${WAVE_H - AMP * 0.67} ${W * (1 - 0.4216)},${WAVE_H - AMP * 1.0}  ${W * (1 - 0.3715)},${WAVE_H - AMP * 1.25}`,
-    `C ${W * (1 - 0.3202)},${WAVE_H - AMP * 1.5}  ${W * (1 - 0.2916)},${WAVE_H - AMP * 1.75} ${W * (1 - 0.2397)},${WAVE_H - AMP * 1.83}`,
-    `C ${W * (1 - 0.1877)},${WAVE_H - AMP * 1.92} ${W * (1 - 0.1576)},${WAVE_H - AMP * 2.0}  ${W * (1 - 0.106)},${WAVE_H - AMP * 1.83}`,
-    `C ${W * (1 - 0.106)},${WAVE_H - AMP * 1.83}  ${W * (1 - 0.0335)},${WAVE_H - AMP * 1.5}  ${W},${WAVE_H - AMP * 1.0}`,
-    `L ${W},${WAVE_H} Z`,
-  ].join(" ");
+  const clipId = "wavyClipLocation";
 
   return (
     <div
       id="openingstijden"
       ref={containerRef}
-      style={{ fontFamily: "Quicksand" }}
-      className="w-full relative overflow-hidden bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
+      style={{
+        fontFamily: "Quicksand",
+        position: "relative",
+        clipPath: `url(#${clipId})`,
+      }}
+      className="w-full pt-8 h-[780px] md:pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
     >
-      {/* Top wave overlay */}
       <svg
         aria-hidden="true"
-        className="absolute top-0 left-0 w-full z-10 pointer-events-none"
-        style={{ height: WAVE_H }}
-        viewBox={`0 0 ${W} ${WAVE_H}`}
-        preserveAspectRatio="none"
+        style={{
+          position: "absolute",
+          width: 0,
+          height: 0,
+          overflow: "visible",
+          pointerEvents: "none",
+        }}
       >
-        <path d={topWave} fill="#FFF7ED" />
-      </svg>
-
-      {/* Bottom wave overlay */}
-      <svg
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 w-full z-10 pointer-events-none"
-        style={{ height: WAVE_H }}
-        viewBox={`0 0 ${W} ${WAVE_H}`}
-        preserveAspectRatio="none"
-      >
-        <path d={bottomWave} fill="#FFF7ED" />
+        <defs>
+          <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
+            <path d={wavePath} />
+          </clipPath>
+        </defs>
       </svg>
 
       {/* Decorative side images */}
@@ -111,14 +110,14 @@ export default function Location() {
       `}</style>
 
       {/* Content */}
-      <div className="relative z-20 flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 pt-16 pb-20 md:pt-28 md:pb-28">
+      <div className="relative flex lg:flex-row flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20">
         {/* Left: Photo + Opening hours */}
         <div
           ref={openingsRef}
-          className="flex flex-col items-center text-[#5763FF] font-bold gap-1 sm:gap-4"
+          className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4"
         >
           <div
-            className="relative w-48 sm:w-80 md:w-84 lg:w-96"
+            className="relative w-64 sm:w-80 md:w-84 lg:w-96"
             style={{ overflow: "visible" }}
           >
             <img
@@ -160,7 +159,7 @@ export default function Location() {
           <object
             data="/assets/location/img2.svg"
             type="image/svg+xml"
-            className="w-3/4 max-w-56 sm:max-w-72 sm:w-90 md:max-w-none md:w-96 lg:w-110 xl:w-120"
+            className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120"
             aria-label="Map showing Waddinxveen location"
           />
         </div>
