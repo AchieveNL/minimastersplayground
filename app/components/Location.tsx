@@ -67,7 +67,7 @@ export default function Location() {
         position: "relative",
         clipPath: `url(#${clipId})`,
       }}
-      className="w-full pt-8 h-[780px] md:pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
+      className="w-full pt-8 min-h-[780px] h-fit md:pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
     >
       <svg
         aria-hidden="true"
@@ -110,7 +110,7 @@ export default function Location() {
       `}</style>
 
       {/* Content */}
-      <div className="relative h-full flex lg:flex-row flex-col justify-start lg:justify-center items-center gap-0 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20">
+      <div className="relative flex lg:flex-row flex-col justify-start lg:justify-center items-center gap-0 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20 pb-16 md:pb-24">
         {/* Left: Photo + Opening hours */}
         <div
           ref={openingsRef}
