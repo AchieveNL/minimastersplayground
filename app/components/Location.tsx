@@ -110,7 +110,7 @@ export default function Location() {
       `}</style>
 
       {/* Content */}
-      <div className="relative flex lg:flex-row flex-col justify-start lg:justify-center items-center gap-0 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20">
+      <div className="relative h-full flex lg:flex-row flex-col justify-start lg:justify-center items-center gap-0 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20">
         {/* Left: Photo + Opening hours */}
         <div
           ref={openingsRef}
