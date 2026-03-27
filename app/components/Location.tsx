@@ -110,14 +110,14 @@ export default function Location() {
       `}</style>
 
       {/* Content */}
-      <div className="relative flex lg:flex-row flex-col justify-center items-center gap-4 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20">
+      <div className="relative flex lg:flex-row flex-col justify-center items-center gap-2 sm:gap-6 lg:gap-32 xl:gap-48 px-6 sm:px-10 lg:px-10 xl:px-20">
         {/* Left: Photo + Opening hours */}
         <div
           ref={openingsRef}
-          className="flex flex-col items-center text-[#5763FF] font-bold gap-2 sm:gap-4"
+          className="flex flex-col items-center text-[#5763FF] font-bold gap-1 sm:gap-4"
         >
           <div
-            className="relative w-64 sm:w-80 md:w-84 lg:w-96"
+            className="relative w-48 sm:w-80 md:w-84 lg:w-96"
             style={{ overflow: "visible" }}
           >
             <img
@@ -159,7 +159,7 @@ export default function Location() {
           <object
             data="/assets/location/img2.svg"
             type="image/svg+xml"
-            className="w-3/4 max-w-72 sm:w-90 sm:max-w-none md:w-96 lg:w-110 xl:w-120"
+            className="w-3/4 max-w-56 sm:max-w-72 sm:w-90 md:max-w-none md:w-96 lg:w-110 xl:w-120"
             aria-label="Map showing Waddinxveen location"
           />
         </div>
