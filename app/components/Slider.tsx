@@ -1,5 +1,4 @@
-"use client";
-import { useEffect, useState, useCallback, useRef } from "react";
+"use client";import { useEffect, useState, useRef } from "react";
 
 export default function Slider() {
   const data = [
@@ -27,20 +26,7 @@ export default function Slider() {
       btnText: "VERJAARDAG",
       btnColor: "#FFCA58",
     },
-    {
-      bg: "img3.png",
-      text1: "Abonnement",
-      text2: "",
-      link: "",
-      btnText: "DIRECT BOEKEN",
-      btnColor: "#67CD8A",
-    },
   ];
-  const SLOTS_NEEDED = 9; // = VISIBLE*2 + EXIT_TRAVEL + ENTER_TRAVEL + 3
-  const repeatCount = Math.ceil(SLOTS_NEEDED / data.length);
-  const cards = Array.from({ length: repeatCount }, () => data).flat();
-  const total = cards.length;
-
   const [screenW, setScreenW] = useState(1440);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = useState({ w: 1440, h: 800 });
@@ -65,154 +51,8 @@ export default function Slider() {
   }, []);
 
   const isMobile = screenW < 768;
-  const CARD_WIDTH = isMobile ? Math.round((220 * 2) / 3) : 220;
-  const CARD_HEIGHT = isMobile ? Math.round((330 * 2) / 3) : 330;
-
-  const VISIBLE = 2; // visible slots each side of center
-  const EXIT_TRAVEL = 1; // extra slots a card travels past the edge before recycling
-  const ENTER_TRAVEL = 1; // extra slots the card enters from beyond the edge
-
-  const RECYCLE_AT = -(VISIBLE + EXIT_TRAVEL + 1); // = -4
-  const ENTER_FROM = VISIBLE + ENTER_TRAVEL + 1; // = +4
-
-  const ANGLE_STEP = 22;
-  const GAP = isMobile ? 14 : 24;
-  const angleRad1 = (ANGLE_STEP * Math.PI) / 180;
-  const RADIUS = (CARD_WIDTH + GAP) / Math.sin(angleRad1);
-
-  const isAnimating = useRef(false);
-
-  const [virtualIndex, setVirtualIndex] = useState(0);
-
-  const half = Math.floor(total / 2);
-  const cardVirtual = useRef<number[]>(cards.map((_, i) => i - half));
-
-  const [teleportingCards, setTeleportingCards] = useState<Set<number>>(
-    new Set(),
-  );
-
-  const getSlot = (index: number) => cardVirtual.current[index] - virtualIndex;
-
-  const getCardStyle = (
-    slot: number,
-    teleporting = false,
-  ): React.CSSProperties => {
-    const angleDeg = slot * ANGLE_STEP;
-    const angleRad = (angleDeg * Math.PI) / 180;
-    const x = RADIUS * Math.sin(angleRad);
-    const y = RADIUS * (1 - Math.cos(angleRad)) * 0.45;
-
-    const absSlot = Math.abs(slot);
-
-    const scale = Math.max(0.55, 1 - absSlot * 0.12);
-
-    const zIndex = Math.max(0, 6 - absSlot);
-
-    const opacity =
-      absSlot <= VISIBLE
-        ? 1
-        : absSlot === VISIBLE + 1
-          ? 0 // just crossed the edge – already hidden but still moving
-          : 0; // deep off-screen
-
-    const transition = teleporting
-      ? "none"
-      : [
-          "left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          "top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          "opacity 0.3s ease",
-        ].join(", ");
-
-    return {
-      position: "absolute",
-      width: `${CARD_WIDTH}px`,
-      left: `calc(50% + ${x}px - ${CARD_WIDTH / 2}px)`,
-      top: `${y}px`,
-      transform: `rotate(${angleDeg * 0.6}deg) scale(${scale})`,
-      transformOrigin: "bottom center",
-      zIndex,
-      opacity,
-      transition,
-      pointerEvents: absSlot > VISIBLE ? "none" : "auto",
-    };
-  };
-
-  // ── next() ─────────────────────────────────────────────────────────────────
-  const next = useCallback(() => {
-    if (isAnimating.current) return;
-    isAnimating.current = true;
-
-    setVirtualIndex((prev) => {
-      const nextV = prev + 1;
-
-      const targetSlotNow = RECYCLE_AT + 1;
-      const exitingDataIndex = cardVirtual.current.findIndex(
-        (v) => v - prev === targetSlotNow,
-      );
-
-      if (exitingDataIndex !== -1) {
-        const targetVirtual = nextV + ENTER_FROM;
-
-        setTeleportingCards((s) => new Set(s).add(exitingDataIndex));
-        cardVirtual.current[exitingDataIndex] = targetVirtual;
-
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setTeleportingCards((s) => {
-              const n = new Set(s);
-              n.delete(exitingDataIndex);
-              return n;
-            });
-          });
-        });
-      }
-
-      return nextV;
-    });
-
-    setTimeout(() => {
-      isAnimating.current = false;
-    }, 520);
-  }, [RECYCLE_AT, ENTER_FROM]);
-
-  // ── prev() ─────────────────────────────────────────────────────────────────
-  const prev = useCallback(() => {
-    if (isAnimating.current) return;
-    isAnimating.current = true;
-
-    setVirtualIndex((prevV) => {
-      const nextV = prevV - 1;
-
-      const targetSlotNow = -(RECYCLE_AT + 1);
-      const enteringDataIndex = cardVirtual.current.findIndex(
-        (v) => v - prevV === targetSlotNow,
-      );
-
-      if (enteringDataIndex !== -1) {
-        const targetVirtual = nextV - ENTER_FROM;
-
-        setTeleportingCards((s) => new Set(s).add(enteringDataIndex));
-        cardVirtual.current[enteringDataIndex] = targetVirtual;
-
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setTeleportingCards((s) => {
-              const n = new Set(s);
-              n.delete(enteringDataIndex);
-              return n;
-            });
-          });
-        });
-      }
-
-      return nextV;
-    });
-
-    setTimeout(() => {
-      isAnimating.current = false;
-    }, 520);
-  }, [RECYCLE_AT, ENTER_FROM]);
+  const CARD_WIDTH = isMobile ? 160 : 220;
+  const CARD_HEIGHT = isMobile ? 240 : 330;
 
   const W = containerSize.w || 1440;
   const H = containerSize.h || 800;
@@ -250,7 +90,7 @@ export default function Slider() {
           position: "relative",
           clipPath: `url(#${clipId})`,
         }}
-        className="w-full relative -mt-14 md:h-fit h-fit pt-28 md:pt-28 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
+        className="w-full relative -mt-14 md:h-[780px] h-[580px] pt-20 md:pt-28 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
       >
         <svg
           aria-hidden="true"
@@ -303,46 +143,37 @@ export default function Slider() {
           </h1>
         </div>
 
-        {/* Arc Carousel */}
-        <div
-          className="relative mt-10 w-full md:mb-44 mb-20"
-          style={{ height: `${CARD_HEIGHT + 180}px`, overflow: "visible" }}
-        >
-          {cards.map((item, index) => {
-            const slot = getSlot(index);
-            const isTeleporting = teleportingCards.has(index);
-
-            const cardStyle = {
-              boxShadow: "4px 8px 24px 0px #00000055",
+        {/* Cards Row */}
+        <div className="flex md:justify-center items-center gap-6 md:gap-10 mt-10 md:mt-10 md:mb-44 mb-12 px-4 md:px-10 flex-nowrap overflow-x-auto md:overflow-visible">
+          {data.map((item, index) => {
+            const cardStyle: React.CSSProperties = {
+              boxShadow: isMobile ? "none" : "4px 8px 24px 0px #00000055",
               height: `${CARD_HEIGHT}px`,
+              width: `${CARD_WIDTH}px`,
             };
 
             const cardClass =
-              "rounded-tr-[60px] rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-6 cursor-pointer transition-transform duration-400 ease-out hover:scale-110";
+              "rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-4 md:pb-6 cursor-pointer transition-transform duration-400 ease-out hover:scale-105 flex-shrink-0";
 
             const inner = (
               <>
-                {/* Background image with zoom on hover */}
                 <div
-                  className="absolute inset-0 rounded-tr-[60px] rounded-bl-[60px]"
+                  className="absolute inset-0 rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px]"
                   style={{
                     background: `url('/assets/slider/${item.bg}') no-repeat center/cover`,
                   }}
                 />
-                {/* Gradient overlay */}
                 <div
-                  className="absolute bottom-0 left-0 right-0 rounded-bl-[60px] transition-all duration-350"
+                  className="absolute bottom-0 left-0 right-0 rounded-bl-[36px] md:rounded-bl-[60px] transition-all duration-350"
                   style={{
                     height: "80%",
                     background:
                       "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
                   }}
                 />
-                {/* Button: shows title, on hover changes to green "Boek nu" or purple "Coming soon" */}
                 <div className="relative z-10">
-                  {/* Default: yellow with title */}
                   <span
-                    className="px-5 py-2 rounded-full font-bold text-white text-xs md:text-sm tracking-wider block group-hover:hidden"
+                    className="px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider block group-hover:hidden"
                     style={{
                       background:
                         "linear-gradient(135deg, #FFDB8D 0%, #FFCA58 100%)",
@@ -350,9 +181,8 @@ export default function Slider() {
                   >
                     {item.text1}
                   </span>
-                  {/* Hover: green "Boek nu" or purple "Coming soon" */}
                   <span
-                    className="px-5 py-2 rounded-full font-bold text-white text-xs md:text-sm tracking-wider hidden group-hover:block"
+                    className="px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider hidden group-hover:block"
                     style={{
                       background: item.link
                         ? "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)"
@@ -365,35 +195,24 @@ export default function Slider() {
               </>
             );
 
-            return (
-              <div key={index} style={getCardStyle(slot, isTeleporting)}>
-                {item.link ? (
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      ...cardStyle,
-                      textDecoration: "none",
-                      color: "white",
-                      display: "flex",
-                    }}
-                    className={`${cardClass} group`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                    }}
-                  >
-                    {inner}
-                  </a>
-                ) : (
-                  <div
-                    style={cardStyle}
-                    className={`${cardClass} group`}
-                    onClick={next}
-                  >
-                    {inner}
-                  </div>
-                )}
+            return item.link ? (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={cardStyle}
+                className={`${cardClass} group`}
+              >
+                {inner}
+              </a>
+            ) : (
+              <div
+                key={index}
+                style={cardStyle}
+                className={`${cardClass} group`}
+              >
+                {inner}
               </div>
             );
           })}

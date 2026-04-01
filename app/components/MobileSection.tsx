@@ -4,16 +4,33 @@ import Mobile from "./Mobile";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function MobileSection() {
-  const leftRef = useScrollAnimation<HTMLDivElement>({ type: "fadeLeft", duration: 1.1, distance: 45 });
-  const centerRef = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1.1, delay: 0.15 });
-  const rightRef = useScrollAnimation<HTMLDivElement>({ type: "fadeRight", duration: 1.1, delay: 0.1, distance: 45 });
-  const mobileTextRef = useScrollAnimation<HTMLHeadingElement>({ type: "fadeUp", duration: 0.9, delay: 0.2 });
+  const leftRef = useScrollAnimation<HTMLDivElement>({
+    type: "fadeLeft",
+    duration: 1.1,
+    distance: 45,
+  });
+  const centerRef = useScrollAnimation<HTMLDivElement>({
+    type: "fadeUp",
+    duration: 1.1,
+    delay: 0.15,
+  });
+  const rightRef = useScrollAnimation<HTMLDivElement>({
+    type: "fadeRight",
+    duration: 1.1,
+    delay: 0.1,
+    distance: 45,
+  });
+  const mobileTextRef = useScrollAnimation<HTMLHeadingElement>({
+    type: "fadeUp",
+    duration: 0.9,
+    delay: 0.2,
+  });
 
   return (
     <div
       id="loyalty"
       style={{ fontFamily: "Quicksand" }}
-      className="relative -mt-14 flex lg:flex-row flex-col px-6 sm:px-10 md:px-16 lg:px-20 xl:px-36 2xl:px-48 overflow-hidden pt-2 lg:pb-10 pb-20 lg:gap-0 gap-10"
+      className="relative -mt-14 flex lg:flex-row flex-col px-6 sm:px-10 md:px-16 lg:px-20 xl:px-36 2xl:px-48 overflow-visible pt-2 lg:pb-10 pb-20 lg:gap-0 gap-10"
     >
       <style>{`
         @keyframes phoneFloat1 {
@@ -25,31 +42,39 @@ export default function MobileSection() {
           50% { transform: translateY(-10px); }
         }
       `}</style>
-      <img loading="lazy"
+      <img
+        loading="lazy"
         src="/assets/mobile/icon1.svg"
         className="absolute right-0 -top-20 lg:w-60 w-30"
         alt=""
       />
-      <img loading="lazy"
+      <img
+        loading="lazy"
         src="/assets/mobile/icon2.svg"
         className="absolute lg:-bottom-40 lg:w-80 w-30 lg:left-1/2 lg:-translate-x-[80%] right-0 bottom-[60%] -z-10 translate-y-[30%] lg:translate-y-0"
         alt=""
       />
-      <img loading="lazy"
+      <img
+        loading="lazy"
         src="/assets/mobile/icon3.svg"
         className="absolute left-0 top-20 lg:w-40 w-30"
         alt=""
       />
-      <div ref={leftRef} className="relative flex flex-col items-center lg:gap-8 gap-5">
-        <div className="flex w-fit lg:px-10 px-5 lg:py-4 py-3 lg:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
-          <img loading="lazy"
+      <div
+        ref={leftRef}
+        className="relative flex flex-col items-center lg:gap-8 gap-5"
+      >
+        <div className="flex w-fit lg:px-10 px-5 lg:py-4 py-3 lg:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
+          <img
+            loading="lazy"
             src="/elements/Klok Icoon.svg"
             className="absolute lg:hidden"
             style={{ width: "100px", left: "-10%" }}
             alt=""
           />
-          <img loading="lazy"
-            src="/elements/Klok Icoon.svg"
+          <img
+            loading="lazy"
+            src="/newclockIcon.svg"
             className="absolute hidden lg:block"
             style={{ width: "120px", left: -50 }}
             alt=""
@@ -58,7 +83,10 @@ export default function MobileSection() {
             ONZE TIJDSLOTEN{" "}
           </h1>
         </div>
-        <div className="w-fit" style={{ animation: "phoneFloat1 3.5s ease-in-out infinite" }}>
+        <div
+          className="w-fit"
+          style={{ animation: "phoneFloat1 3.5s ease-in-out infinite" }}
+        >
           <Mobile
             content={
               <>
@@ -83,20 +111,27 @@ export default function MobileSection() {
           />
         </div>
       </div>
-      <h1 ref={mobileTextRef} className="text-center text-base sm:text-lg md:text-xl font-semibold lg:hidden block text-[#5763FF] -mt-4 max-w-lg mx-auto">
+      <h1
+        ref={mobileTextRef}
+        className="text-center text-base sm:text-lg md:text-xl font-semibold lg:hidden block text-[#5763FF] -mt-4 max-w-lg mx-auto"
+      >
         Bij ons staat kwaliteit centraal en verdient elk kind een unieke
         speelbeleving. Door te werken met speelsessies zorgen we voor minder
         drukte en meer speelplezier voor iedereen.
       </h1>
 
-      <div ref={centerRef} className="lg:flex hidden flex-col gap-10 w-1/2 m-auto text-[#5763FF] px-6 xl:px-14 items-center mt-20 relative">
+      <div
+        ref={centerRef}
+        className="lg:flex hidden flex-col gap-10 w-1/2 m-auto text-[#5763FF] px-6 xl:px-14 items-center mt-20 relative"
+      >
         <h1 className="text-center text-xl font-semibold">
           Bij ons staat kwaliteit centraal en verdient elk kind een unieke
           speelbeleving. Door te werken met speelsessies zorgen we voor minder
           drukte en meer speelplezier voor iedereen.
         </h1>
         <div>
-          <img loading="lazy"
+          <img
+            loading="lazy"
             src="/MiniMasters Loyalty Arrow (1).svg"
             className="w-30"
             alt=""
@@ -107,7 +142,8 @@ export default function MobileSection() {
           e-wallet. Spelen worden nu nog leuker met sparen.
         </h1>
         <div>
-          <img loading="lazy"
+          <img
+            loading="lazy"
             src="/MiniMasters Loyalty Arrow (2).svg"
             className="w-30"
             alt=""
@@ -115,16 +151,20 @@ export default function MobileSection() {
         </div>
       </div>
 
-
-      <div ref={rightRef} className="relative flex flex-col items-center lg:gap-8 gap-5 lg:mt-0 mt-4">
-        <div className="flex w-fit lg:px-10 px-5 lg:py-4 py-2 lg:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
-          <img loading="lazy"
+      <div
+        ref={rightRef}
+        className="relative flex flex-col items-center lg:gap-8 gap-5 lg:mt-0 mt-4"
+      >
+        <div className="flex w-fit lg:px-10 px-5 lg:py-4 py-2 lg:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
+          <img
+            loading="lazy"
             src="/elements/Loyalty Icoon.svg"
             className="absolute lg:hidden"
             style={{ width: "100px", left: "-10%" }}
             alt=""
           />
-          <img loading="lazy"
+          <img
+            loading="lazy"
             src="/elements/Loyalty Icoon.svg"
             className="absolute hidden lg:block"
             style={{ width: "130px", left: -50 }}
@@ -134,19 +174,23 @@ export default function MobileSection() {
             LOYALTY PROGRAMMA
           </h1>
         </div>
-        <div className="w-fit" style={{ animation: "phoneFloat2 4s ease-in-out infinite 0.5s" }}>
+        <div
+          className="w-fit"
+          style={{ animation: "phoneFloat2 4s ease-in-out infinite 0.5s" }}
+        >
           <Mobile
             content={
               <>
-                <h1>
-                  Verzamel punten en spaar voor leuke cadeaus!
-                </h1>
+                <h1>Verzamel punten en spaar voor leuke cadeaus!</h1>
                 <a
                   href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-2 rounded-full font-bold text-white text-sm tracking-wider mt-2"
-                  style={{ background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)" }}
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
+                  }}
                 >
                   Meld je nu aan
                 </a>

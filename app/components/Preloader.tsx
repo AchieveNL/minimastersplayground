@@ -39,7 +39,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
               duration: 0.4,
               ease: "power2.in",
             },
-            "-=0.2"
+            "-=0.2",
           );
 
           exitTl.to(overlayRef.current, {
@@ -59,7 +59,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           rotate: 0,
           duration: 0.8,
           ease: "back.out(1.7)",
-        }
+        },
       );
 
       // Progress bar appears
@@ -67,7 +67,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         barTrackRef.current,
         { scaleX: 0, opacity: 0 },
         { scaleX: 1, opacity: 1, duration: 0.4, ease: "power2.out" },
-        "-=0.1"
+        "-=0.1",
       );
 
       // Progress bar fills
@@ -104,7 +104,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       >
         <img
           ref={logoRef}
-          src="/LOGO V3 NAV v2.png"
+          src="/header navbar logo.svg"
           alt="Minimasters"
           className="w-52 sm:w-72 md:w-[24rem] pointer-events-auto"
           style={{

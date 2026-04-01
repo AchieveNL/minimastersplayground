@@ -1,4 +1,5 @@
-"use client";import Link from "next/link";
+"use client";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -134,7 +135,7 @@ export default function Nav() {
             ref={waveSvgRef}
             className="absolute top-0 left-0 w-full"
             style={{
-              height: "calc(100% + 50px)",
+              height: "calc(100% + 60px)",
               willChange: "transform, opacity",
               transform: "translateZ(0)",
             }}
@@ -187,7 +188,7 @@ export default function Nav() {
             <Link href="/" className="flex-shrink-0 md:mt-6" ref={logoRef}>
               <img
                 ref={logoImgRef}
-                src="/LOGO V3 NAV v2.png"
+                src="/header navbar logo.svg"
                 className="w-36 sm:w-44 md:w-72"
                 style={{
                   filter:

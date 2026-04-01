@@ -27,10 +27,16 @@ const data: FaqCategory[] = [
         answer: (
           <>
             Wij werken dagelijks met drie vaste sessies van elk 2,5 uur.
-            <br /><br />
-            Tussen iedere sessie hebben wij 30 minuten opruimtijd, zodat de ruimte weer schoon en klaar is voor de volgende groep kinderen. Op deze manier zorgen wij iedere sessie opnieuw voor een fijne en veilige speelervaring.
-            <br /><br />
-            Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en het spelen is in elke sessie hetzelfde.
+            <br />
+            <br />
+            Tussen iedere sessie hebben wij 30 minuten opruimtijd, zodat de
+            ruimte weer schoon en klaar is voor de volgende groep kinderen. Op
+            deze manier zorgen wij iedere sessie opnieuw voor een fijne en
+            veilige speelervaring.
+            <br />
+            <br />
+            Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten
+            en het spelen is in elke sessie hetzelfde.
           </>
         ),
       },
@@ -38,7 +44,9 @@ const data: FaqCategory[] = [
         question: "Voor welk leeftijd is Minimasters?",
         answer: (
           <>
-            Bij Minimasters is iedereen welkom, van jong tot oud! Onze activiteiten zijn wel in het bijzonder afgestemd op kinderen tot en met 6 jaar.
+            Bij Minimasters is iedereen welkom, van jong tot oud! Onze
+            activiteiten zijn wel in het bijzonder afgestemd op kinderen tot en
+            met 6 jaar.
           </>
         ),
       },
@@ -46,7 +54,11 @@ const data: FaqCategory[] = [
         question: "Hoelaat moet ik aankomen?",
         answer: (
           <>
-            We adviseren om ongeveer 5 minuten van tevoren aanwezig te zijn. Zo heb je rustig de tijd om je schoenen en jas op te bergen voordat je avontuur begint. Kom je eerder aan? Dan kan het zijn dat de deuren nog niet open zijn, omdat we tussen de speelsessies de ruimte nog aan het opruimen zijn.
+            We adviseren om ongeveer 5 minuten van tevoren aanwezig te zijn. Zo
+            heb je rustig de tijd om je schoenen en jas op te bergen voordat je
+            avontuur begint. Kom je eerder aan? Dan kan het zijn dat de deuren
+            nog niet open zijn, omdat we tussen de speelsessies de ruimte nog
+            aan het opruimen zijn.
           </>
         ),
       },
@@ -54,7 +66,11 @@ const data: FaqCategory[] = [
         question: "Waarom kopen ouders en verzorgers een kaartje?",
         answer: (
           <>
-            Bij Minimasters werken we met een vast aantal plekken per sessie om het spelen voor iedereen veilig en prettig te houden. Omdat ouders en verzorgers ook aanwezig zijn in de speelruimte, vragen we voor hen eveneens een ticket. Zo blijft het overzichtelijk en kan iedereen volop genieten van het spelen.
+            Bij Minimasters werken we met een vast aantal plekken per sessie om
+            het spelen voor iedereen veilig en prettig te houden. Omdat ouders
+            en verzorgers ook aanwezig zijn in de speelruimte, vragen we voor
+            hen eveneens een ticket. Zo blijft het overzichtelijk en kan
+            iedereen volop genieten van het spelen.
           </>
         ),
       },
@@ -62,7 +78,9 @@ const data: FaqCategory[] = [
         question: "Mag ik schoenen aan tijdens het spelen?",
         answer: (
           <>
-            Om hygiënische redenen is het niet toegestaan om schoenen te dragen tijdens het spelen. Daarom spelen we op sokken. Ben je je sokken vergeten? Geen probleem, je kunt sokken kopen bij de receptie.
+            Om hygiënische redenen is het niet toegestaan om schoenen te dragen
+            tijdens het spelen. Daarom spelen we op sokken. Ben je je sokken
+            vergeten? Geen probleem, je kunt sokken kopen bij de receptie.
           </>
         ),
       },
@@ -77,7 +95,10 @@ const data: FaqCategory[] = [
         question: "Zijn er tickets aan de deur verkrijgbaar?",
         answer: (
           <>
-            Zolang een sessie niet is uitverkocht, kun je tickets kopen aan de deur bij Playhood. De huidige beschikbaarheid vind je op onze ticketpagina. Wil je verzekerd zijn van een tijdslot? Dan adviseren we je tickets online te bestellen.
+            Zolang een sessie niet is uitverkocht, kun je tickets kopen aan de
+            deur bij Playhood. De huidige beschikbaarheid vind je op onze
+            ticketpagina. Wil je verzekerd zijn van een tijdslot? Dan adviseren
+            we je tickets online te bestellen.
           </>
         ),
       },
@@ -85,7 +106,9 @@ const data: FaqCategory[] = [
         question: "Kan ik mijn ticket nog annuleren?",
         answer: (
           <>
-            Vooraf gekochte tickets worden niet terugbetaald. Je kunt je reservering wel tot 24 uur van tevoren kosteloos wijzigen naar een andere datum. Neem hiervoor contact op met de locatie.
+            Vooraf gekochte tickets worden niet terugbetaald. Je kunt je
+            reservering wel tot 24 uur van tevoren kosteloos wijzigen naar een
+            andere datum. Neem hiervoor contact op met de locatie.
           </>
         ),
       },
@@ -93,7 +116,9 @@ const data: FaqCategory[] = [
         question: "Wat gebeurt er als ik later aankom?",
         answer: (
           <>
-            Geen probleem als je iets later aankomt. Houd er wel rekening mee dat de speelsessie een vaste eindtijd heeft. Deze eindtijd blijft hetzelfde voor alle spelers, ook als je later begint.
+            Geen probleem als je iets later aankomt. Houd er wel rekening mee
+            dat de speelsessie een vaste eindtijd heeft. Deze eindtijd blijft
+            hetzelfde voor alle spelers, ook als je later begint.
           </>
         ),
       },
@@ -108,7 +133,8 @@ const data: FaqCategory[] = [
         question: "Mogen mijn kinderen alleen blijven?",
         answer: (
           <>
-            Kinderen mogen niet zonder begeleiding bij Minimasters verblijven. Een ouder of verzorger dient te allen tijde aanwezig te zijn.
+            Kinderen mogen niet zonder begeleiding bij Minimasters verblijven.
+            Een ouder of verzorger dient te allen tijde aanwezig te zijn.
           </>
         ),
       },
@@ -116,7 +142,8 @@ const data: FaqCategory[] = [
         question: "Welke betaalmethoden worden er geaccepteerd?",
         answer: (
           <>
-            Bij Minimasters is het alleen mogelijk met pin te betalen, contante betalingen worden niet geaccepteerd.
+            Bij Minimasters is het alleen mogelijk met pin te betalen, contante
+            betalingen worden niet geaccepteerd.
           </>
         ),
       },
@@ -124,7 +151,10 @@ const data: FaqCategory[] = [
         question: "Kan ik mijn kinderwagen meenemen?",
         answer: (
           <>
-            Bij binnenkomst in de lobby vragen we je om de kinderwagen daar achter te laten. Vanwege hygiëne en de beperkte ruimte is het niet toegestaan om kinderwagens mee te nemen in de speelruimte en zitgedeelte.
+            Bij binnenkomst in de lobby vragen we je om de kinderwagen daar
+            achter te laten. Vanwege hygiëne en de beperkte ruimte is het niet
+            toegestaan om kinderwagens mee te nemen in de speelruimte en
+            zitgedeelte.
           </>
         ),
       },
@@ -132,23 +162,24 @@ const data: FaqCategory[] = [
         question: "Kunnen mijn kinderen alleen blijven in Minimasters?",
         answer: (
           <>
-            Nee, kinderen dienen altijd onder toezicht van hun ouders of verzorgers te blijven.
+            Nee, kinderen dienen altijd onder toezicht van hun ouders of
+            verzorgers te blijven.
           </>
         ),
       },
       {
         question: "Is er een borstvoeding ruimte?",
         answer: (
-          <>
-            Ja, wij hebben een privé ruimte waar je borstvoeding kunt geven.
-          </>
+          <>Ja, wij hebben een privé ruimte waar je borstvoeding kunt geven.</>
         ),
       },
       {
         question: "Mag ik eigen eten en drinken meenemen?",
         answer: (
           <>
-            In ons café kun je terecht voor eten en drinken. Daarom vragen we je vriendelijk geen eigen consumpties mee te nemen. Babyvoeding en babyflessen zijn wel toegestaan.
+            In ons café kun je terecht voor eten en drinken. Daarom vragen we je
+            vriendelijk geen eigen consumpties mee te nemen. Babyvoeding en
+            babyflessen zijn wel toegestaan.
           </>
         ),
       },
@@ -156,7 +187,11 @@ const data: FaqCategory[] = [
         question: "Verloren items?",
         answer: (
           <>
-            We bewaren gevonden voorwerpen meestal 14 dagen, afhankelijk van de beschikbare ruimte. Ben je iets verloren? Mail ons dan naar hero@minimastersplayground.nl. Houd er rekening mee dat wij niet verantwoordelijk is voor verloren spullen en dat we niet kunnen garanderen dat het item wordt teruggevonden.
+            We bewaren gevonden voorwerpen meestal 14 dagen, afhankelijk van de
+            beschikbare ruimte. Ben je iets verloren? Mail ons dan naar
+            hero@minimastersplayground.nl. Houd er rekening mee dat wij niet
+            verantwoordelijk is voor verloren spullen en dat we niet kunnen
+            garanderen dat het item wordt teruggevonden.
           </>
         ),
       },
@@ -216,7 +251,6 @@ const AccordionItem = ({
       viewport={{ once: true, margin: "-40px" }}
       className="w-full relative"
     >
-
       <div
         onClick={() => setOpen((prev) => !prev)}
         className="w-full cursor-pointer p-4 px-6 rounded-xl mb-3"
@@ -303,24 +337,55 @@ const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
 };
 
 export default function Faq() {
-  const badgeRef = useScrollAnimation<HTMLDivElement>({ type: "scaleIn", duration: 1 });
-  const questionsRef = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1, delay: 0.1 });
+  const badgeRef = useScrollAnimation<HTMLDivElement>({
+    type: "scaleIn",
+    duration: 1,
+  });
+  const questionsRef = useScrollAnimation<HTMLDivElement>({
+    type: "fadeUp",
+    duration: 1,
+    delay: 0.1,
+  });
 
   return (
-    <div id="faq" className="mt-4 md:-mt-10 md:mb-24 mb-16 relative" style={{ fontFamily: "Quicksand" }}>
-      <img loading="lazy" src="/assets/faq/icon1.svg" className="absolute md:w-60 w-30 top-1/2 md:-translate-y-1/2" alt="" />
-      <img loading="lazy" src="/assets/faq/icon2.svg" className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 " alt="" />
-      <img loading="lazy" src="/assets/faq/icon3.svg" className="absolute md:w-50 w-20 right-0 top-[70%]" alt="" />
+    <div
+      id="faq"
+      className="mt-4 md:-mt-10 md:mb-24 mb-16 relative"
+      style={{ fontFamily: "Quicksand" }}
+    >
+      <img
+        loading="lazy"
+        src="/assets/faq/icon1.svg"
+        className="absolute md:w-60 w-30 top-1/2 md:-translate-y-1/2"
+        alt=""
+      />
+      <img
+        loading="lazy"
+        src="/assets/faq/icon2.svg"
+        className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 "
+        alt=""
+      />
+      <img
+        loading="lazy"
+        src="/assets/faq/icon3.svg"
+        className="absolute md:w-50 w-20 right-0 top-[70%]"
+        alt=""
+      />
 
-      <div ref={badgeRef} className="flex w-fit md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
-        <img loading="lazy"
-          src="/elements/Vragen Icoon.svg"
+      <div
+        ref={badgeRef}
+        className="flex w-fit md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl"
+      >
+        <img
+          loading="lazy"
+          src="/NewVragenIcoon.svg"
           className="absolute md:hidden"
           style={{ width: "120px", left: "-20%" }}
           alt=""
         />
-        <img loading="lazy"
-          src="/elements/Vragen Icoon.svg"
+        <img
+          loading="lazy"
+          src="/NewVragenIcoon.svg"
           className="absolute hidden md:block"
           style={{ width: "130px", left: -50 }}
           alt=""
@@ -330,7 +395,10 @@ export default function Faq() {
           Veelgestelde vragen
         </h1>
       </div>
-      <div ref={questionsRef} className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-4 sm:px-5 flex flex-col items-center m-auto mt-8 md:mt-10">
+      <div
+        ref={questionsRef}
+        className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-4 sm:px-5 flex flex-col items-center m-auto mt-8 md:mt-10"
+      >
         {data.map((category, index) => (
           <CategoryCard
             bg={category.bg}
@@ -341,7 +409,6 @@ export default function Faq() {
           />
         ))}
       </div>
-
     </div>
   );
 }

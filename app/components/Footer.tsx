@@ -7,27 +7,27 @@ type CardState = "current" | "next" | "out" | "idle";
 const cardData = [
   {
     title: "Emily J.",
-    role: "Directrice",
+    role: "Moeder van twee",
     text: "Alles ziet er veilig, creatief en super speels uit. Mijn zoontje vraagt nu al wanneer het open gaat!",
   },
   {
     title: "Mark R.",
-    role: "Toekomstige bezoeker",
+    role: "Enthousiaste papa",
     text: "Dit is precies wat Waddinxveen nodig heeft. Een plek waar kinderen spelenderwijs leren, ontdekken en hun fantasie kunnen gebruiken.",
   },
   {
     title: "Sophie M.",
-    role: "Toekomstige bezoeker",
+    role: "Enthousiaste papa",
     text: "Dit is precies wat kinderen nodig hebben: spelend leren! Ik kan niet wachten tot mijn dochter hier dokter, piloot of chef kan spelen en ondertussen zoveel leert.",
   },
   {
     title: "David K.",
-    role: "Toekomstige bezoeker",
+    role: "Enthousiaste papa",
     text: "Eindelijk een plek waar fantasie en educatie samenkomen. Kinderen leren hier samenwerken, ontdekken beroepen en bouwen zelfvertrouwen op.",
   },
   {
     title: "Laura V.",
-    role: "Toekomstige bezoeker",
+    role: "Enthousiaste papa",
     text: "Rollenspel is één van de krachtigste manieren waarop kinderen leren. Dit concept maakt leren avontuurlijk, creatief en onvergetelijk.",
   },
   {
@@ -218,7 +218,6 @@ export default function Footer() {
             <img loading="lazy"
               src="/assets/footer/stars.svg"
               style={{
-                transform: "rotate(12.5deg)",
                 marginTop: "0.75rem",
                 display: "block",
               }}
@@ -291,7 +290,7 @@ export default function Footer() {
         {/* ✅ Content pulled up by half the wave height using negative marginTop.
             This visually centers the content at the wave/body boundary. */}
         <div
-          className="relative flex flex-col lg:flex-row items-center justify-center gap-10 sm:gap-14 lg:gap-20 px-6 sm:px-10 pb-14 md:pb-44 md:pt-40 pt-10"
+          className="relative flex flex-col lg:flex-row items-center justify-evenly gap-10 sm:gap-14 lg:gap-0 px-6 sm:px-10 pb-14 md:pb-44 md:pt-40 pt-10"
           style={{
             zIndex: 1,
             marginTop: `calc(-1 * ${halfWave})`,
@@ -300,7 +299,7 @@ export default function Footer() {
           {/* Column 1: Logo + Socials */}
           <div
             ref={logoRef}
-            className="flex flex-col items-center flex-1 min-w-0 w-full lg:w-auto"
+            className="flex flex-col items-center flex-1 min-w-0 w-full lg:w-1/3 lg:max-w-[33%]"
           >
             <Link href="/" className="-mt-20 sm:-mt-28 lg:-mt-56 relative">
               <div
@@ -349,7 +348,7 @@ export default function Footer() {
           {/* Column 2: Card Stack */}
           <div
             ref={cardsRef}
-            className="flex-1 min-w-0 flex items-center justify-center w-full lg:w-auto"
+            className="flex-1 min-w-0 flex items-center justify-center w-full lg:w-1/3 lg:max-w-[33%]"
           >
             <div className="block lg:hidden">{cardStack(260)}</div>
             <div className="hidden lg:block">{cardStack(320)}</div>
@@ -358,7 +357,7 @@ export default function Footer() {
           {/* Column 3: Newsletter + Contact */}
           <div
             ref={newsletterRef}
-            className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-sm"
+            className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-sm lg:w-1/3"
           >
             <div className="w-full px-2 lg:px-0">
               <h2
