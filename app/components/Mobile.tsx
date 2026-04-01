@@ -15,7 +15,7 @@ export default function Mobile({ content }: { content: React.ReactNode }) {
         <div className="absolute text-center text-xs lg:text-lg text-white font-bold inset-x-4 lg:inset-x-6 top-[12%] bottom-[12%] p-2 lg:p-4 gap-2 lg:gap-5 flex flex-col items-center justify-center overflow-hidden bg-[linear-gradient(200.1deg,#B1B6FF_2.75%,#D3D6FF_14.08%,#B1B6FF_33.74%,#B1B6FF_80.21%)] rounded-xl lg:rounded-2xl">
           {/* Logo */}
           <img loading="lazy"
-            src="/newLogo2.svg"
+            src="/Footeer Logo.svg"
             className="object-contain shrink-0 w-20 lg:w-[140px]"
             alt="Logo"
           />

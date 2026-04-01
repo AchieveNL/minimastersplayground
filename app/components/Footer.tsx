@@ -301,19 +301,15 @@ export default function Footer() {
             ref={logoRef}
             className="flex flex-col items-center flex-1 min-w-0 w-full lg:w-1/3 lg:max-w-[33%]"
           >
-            <Link href="/" className="-mt-20 sm:-mt-28 lg:-mt-56 relative">
-              <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[40%] rounded-full pointer-events-none"
-                style={{ width: "140%", height: "140%", background: "radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 60%)" }}
-              />
+            <Link href="/" className="-mt-10 sm:-mt-16 lg:-mt-40 relative">
               <img loading="lazy"
-                src="/newLogo2.svg"
+                src="/Footeer Logo.svg"
                 alt=""
-                style={{ filter: "none" }}
+                style={{ filter: "drop-shadow(0 0 30px rgba(255,255,255,0.5)) drop-shadow(0 0 60px rgba(255,255,255,0.25))" }}
                 className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[36rem] xl:w-[42rem] relative"
               />
             </Link>
-            <div className="flex gap-6 -mt-6 sm:-mt-8 lg:-mt-16">
+            <div className="flex gap-6 mt-20 lg:mt-16">
               <Link
                 href="https://www.instagram.com/minimastersplayground"
                 target="_blank"

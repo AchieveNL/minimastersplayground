@@ -135,7 +135,7 @@ export default function Nav() {
             ref={waveSvgRef}
             className="absolute top-0 left-0 w-full"
             style={{
-              height: "calc(100% + 60px)",
+              height: "calc(100% + 90px)",
               willChange: "transform, opacity",
               transform: "translateZ(0)",
             }}
