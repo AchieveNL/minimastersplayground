@@ -64,8 +64,10 @@ export default function LocationDesktop() {
         fontFamily: "Quicksand",
         position: "relative",
         clipPath: `url(#${clipId})`,
+        WebkitClipPath: `url(#${clipId})`,
+        WebkitTransform: "translateZ(0)",
       }}
-      className="w-full h-[840px] pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
+      className="w-full h-[740px] xl:h-[840px] pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
     >
       <svg
         aria-hidden="true"
@@ -100,12 +102,12 @@ export default function LocationDesktop() {
         }
       `}</style>
 
-      <div className="relative flex flex-row justify-center items-center gap-32 xl:gap-48 px-10 xl:px-20">
+      <div className="relative flex flex-row justify-center items-center gap-16 lg:gap-24 xl:gap-48 px-10 xl:px-20">
         <div
           ref={openingsRef}
           className="flex flex-col items-center text-[#5763FF] font-bold gap-4"
         >
-          <div className="relative w-96" style={{ overflow: "visible" }}>
+          <div className="relative w-72 lg:w-80 xl:w-96" style={{ overflow: "visible" }}>
             <img loading="lazy" src="/Foto.svg" className="w-full" alt="Restaurant foto" />
             <img
               loading="lazy"
@@ -134,7 +136,7 @@ export default function LocationDesktop() {
           <object
             data="/assets/location/img2.svg"
             type="image/svg+xml"
-            className="w-110 xl:w-120"
+            className="w-80 lg:w-100 xl:w-120"
             aria-label="Map showing Waddinxveen location"
           />
         </div>

@@ -106,7 +106,13 @@ export default function Footer() {
     setStates((prev) => {
       const currentIdx = prev.indexOf("current");
       const nextIdx = prev.indexOf("next");
-      const idleIdx = prev.findIndex((s) => s === "idle");
+      // Find the next idle card after the current "next" index (wrapping around)
+      let idleIdx = -1;
+      for (let offset = 1; offset < prev.length; offset++) {
+        const i = (nextIdx + offset) % prev.length;
+        if (prev[i] === "idle") { idleIdx = i; break; }
+      }
+      if (idleIdx === -1) return prev;
       const next = [...prev] as CardState[];
       next[currentIdx] = "out";
       next[nextIdx] = "current";
@@ -259,6 +265,7 @@ export default function Footer() {
         style={{
           aspectRatio: "1752 / 291",
           zIndex: 0,
+          paddingBottom: "16.61%", /* fallback for browsers without aspect-ratio */
         }}
       >
         <svg
@@ -315,7 +322,7 @@ export default function Footer() {
                   filter:
                     "drop-shadow(0 0 30px rgba(255,255,255,0.5)) drop-shadow(0 0 60px rgba(255,255,255,0.25))",
                 }}
-                className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[36rem] xl:w-[42rem] relative"
+                className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[28rem] xl:w-[36rem] 2xl:w-[42rem] relative"
               />
             </Link>
             <div className="flex gap-6 mt-10 lg:mt-16">
@@ -513,7 +520,7 @@ export default function Footer() {
         </div>
         <div className="md:mt-0 mt-4">
           <h1>
-            Gemaakt met liefde door
+            Met liefde gemaakt door
             <Link
               href="https://www.achieve.nl"
               target="_blank"

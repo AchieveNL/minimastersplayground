@@ -30,7 +30,7 @@ export default function MobileSection() {
     <div
       id="loyalty"
       style={{ fontFamily: "Quicksand" }}
-      className="relative -mt-14 flex lg:flex-row flex-col px-6 sm:px-10 md:px-16 lg:px-20 xl:px-36 2xl:px-48 overflow-visible pt-2 lg:pb-10 pb-20 lg:gap-0 gap-10"
+      className="relative -mt-14 flex lg:flex-row flex-col px-6 sm:px-10 md:px-16 lg:px-12 xl:px-24 2xl:px-48 overflow-visible pt-2 lg:pb-10 pb-20 lg:gap-0 gap-10"
     >
       <style>{`
         @keyframes phoneFloat1 {

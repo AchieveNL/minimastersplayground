@@ -51,8 +51,9 @@ export default function Slider() {
   }, []);
 
   const isMobile = screenW < 768;
-  const CARD_WIDTH = isMobile ? 160 : 220;
-  const CARD_HEIGHT = isMobile ? 240 : 330;
+  const isSmallDesktop = screenW >= 768 && screenW < 1280;
+  const CARD_WIDTH = isMobile ? 160 : isSmallDesktop ? 190 : 220;
+  const CARD_HEIGHT = isMobile ? 240 : isSmallDesktop ? 285 : 330;
 
   const W = containerSize.w || 1440;
   const H = containerSize.h || 800;
@@ -89,8 +90,10 @@ export default function Slider() {
           fontFamily: "Quicksand",
           position: "relative",
           clipPath: `url(#${clipId})`,
+          WebkitClipPath: `url(#${clipId})`,
+          WebkitTransform: "translateZ(0)",
         }}
-        className="w-full relative -mt-14 md:h-[780px] h-[580px] pt-20 md:pt-28 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
+        className="w-full relative -mt-14 md:h-[680px] xl:h-[780px] h-[580px] pt-20 md:pt-28 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
       >
         <svg
           aria-hidden="true"

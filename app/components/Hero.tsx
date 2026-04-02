@@ -130,14 +130,14 @@ export default function Hero() {
         </div>
         <h1
           ref={tinyRef}
-          style={{ opacity: 0 }}
+          style={{ opacity: 0, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
           className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg"
         >
           TINY HEROES
         </h1>
         <h1
           ref={bigRef}
-          style={{ opacity: 0 }}
+          style={{ opacity: 0, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
           className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFDB8D] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg"
         >
           BIG ADVENTURES
@@ -145,7 +145,7 @@ export default function Hero() {
       </div>
       <div
         ref={cardsRef}
-        className="md:my-28 my-14 flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-10 md:mx-24 mx-4 sm:mx-5"
+        className="md:my-28 my-14 flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-10 md:mx-24 lg:mx-10 xl:mx-24 mx-4 sm:mx-5"
       >
         {infoCards.map((card, index) => {
           return (

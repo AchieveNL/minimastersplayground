@@ -64,6 +64,8 @@ export default function LocationMobile() {
         fontFamily: "Quicksand",
         position: "relative",
         clipPath: `url(#${clipId})`,
+        WebkitClipPath: `url(#${clipId})`,
+        WebkitTransform: "translateZ(0)",
       }}
       className="w-full relative h-[760px] pt-8 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)] overflow-hidden"
     >

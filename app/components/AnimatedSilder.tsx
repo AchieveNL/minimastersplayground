@@ -67,8 +67,8 @@ export default function AnimatedSlider({
       </svg>
 
       <div
-        style={{ clipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})` }}
-        className={`w-full overflow-hidden bg-white relative ${variant === "hero" ? "mt-2 md:mt-8 xl:mt-0 xl:h-[70vh] lg:h-100 md:h-80 h-52 2xl:h-160 mb-4 md:mb-26" : "xl:h-[70vh] lg:h-100 md:h-80 h-52 2xl:h-160 mb-26"}`}
+        style={{ clipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})`, WebkitClipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})`, WebkitTransform: "translateZ(0)" }}
+        className={`w-full overflow-hidden bg-white relative ${variant === "hero" ? "mt-2 md:mt-8 xl:mt-0 xl:h-[55vh] lg:h-[45vh] md:h-80 h-52 2xl:h-[65vh] mb-4 md:mb-26" : "xl:h-[55vh] lg:h-[45vh] md:h-80 h-52 2xl:h-[65vh] mb-26"}`}
       >
         <Marquee
           speed={marqueeSpeed}

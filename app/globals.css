@@ -29,3 +29,23 @@ html {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+
+/* Safari compatibility fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Fix SVG clipPath rendering on Safari */
+  [style*="clipPath"] {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* Ensure gradient text works across all browsers */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Fix smooth scrolling on iOS Safari */
+html {
+  -webkit-overflow-scrolling: touch;
+}

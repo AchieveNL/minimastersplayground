@@ -397,7 +397,7 @@ export default function Faq() {
       </div>
       <div
         ref={questionsRef}
-        className="w-full md:w-3/4 lg:w-2/3 md:px-0 px-4 sm:px-5 flex flex-col items-center m-auto mt-8 md:mt-10"
+        className="w-full md:w-3/4 lg:w-3/4 xl:w-2/3 md:px-0 px-4 sm:px-5 flex flex-col items-center m-auto mt-8 md:mt-10"
       >
         {data.map((category, index) => (
           <CategoryCard
