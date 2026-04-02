@@ -66,12 +66,12 @@ export default function Hero() {
   }, []);
   const infoCards = [
     {
-      posMobile: -40,
+      posMobile: -45,
       pos: -80,
       iconWidth: 140,
       icon: "/elements/Groep Icoon.svg",
       title: (
-        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-6 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
           DE MINI MAATSCHAPPIJ
         </h1>
       ),
@@ -79,12 +79,12 @@ export default function Hero() {
         "Binnen minimasters stappen kinderen in een wereld die volledig is afgestemd op hun eigen belevingswereld. zij krijgen de ruimte om spelenderwijs te ontdekken hoe vormen van samenwerking een belangrijke rol spelen in het dagelijks leven.",
     },
     {
-      posMobile: -50,
+      posMobile: -45,
       pos: -80,
-      iconWidth: 150,
+      iconWidth: 140,
       icon: "/elements/Educatie Icoon.svg",
       title: (
-        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-8 pl-8 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-8 pl-14 w-full rounded-br-4xl text-nowrap">
           HET EDUCATIEVE KARAKTER
         </h1>
       ),
@@ -92,12 +92,12 @@ export default function Hero() {
         "Ons doel is om kinderen te laten leren door te doen, door actief deel te nemen aan herkenbare beroepen. Zelfvertrouwen en creativiteit krijgen de ruimte omdat er geen goed of fout bestaat: elk kind mag op zijn eigen manier ontdekken.",
     },
     {
-      posMobile: -40,
+      posMobile: -45,
       pos: -65,
-      iconWidth: 130,
+      iconWidth: 140,
       icon: "/elements/Standaard Icoon.svg",
       title: (
-        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-4 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
           DE NIEUWE STANDAARD
         </h1>
       ),
@@ -145,7 +145,7 @@ export default function Hero() {
       </div>
       <div
         ref={cardsRef}
-        className="md:my-28 my-14 flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-10 md:mx-24 mx-4 sm:mx-5"
+        className="md:my-28 my-14 flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-10 md:mx-24 mx-4 sm:mx-5"
       >
         {infoCards.map((card, index) => {
           return (

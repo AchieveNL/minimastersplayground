@@ -79,7 +79,7 @@ export default function MobileSection() {
             style={{ width: "120px", left: -50 }}
             alt=""
           />
-          <h1 className="font-bold lg:text-lg text-center text-[#FDF9EF] lg:pl-0 pl-8 w-full rounded-br-4xl">
+          <h1 className="font-bold lg:text-lg text-center text-[#FDF9EF] lg:pl-0 pl-14 w-full rounded-br-4xl">
             ONZE TIJDSLOTEN{" "}
           </h1>
         </div>
@@ -170,7 +170,7 @@ export default function MobileSection() {
             style={{ width: "130px", left: -50 }}
             alt=""
           />
-          <h1 className="font-bold lg:text-lg text-center text-[#FDF9EF] lg:pl-0 pl-8 w-full rounded-br-4xl">
+          <h1 className="font-bold lg:text-lg text-center text-[#FDF9EF] lg:pl-0 pl-14 w-full rounded-br-4xl">
             LOYALTY PROGRAMMA
           </h1>
         </div>

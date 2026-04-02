@@ -1,4 +1,5 @@
-"use client";import Link from "next/link";
+"use client";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
@@ -74,7 +75,9 @@ export default function Footer() {
     delay: 0.2,
   });
 
-  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [formStatus, setFormStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const [states, setStates] = useState<CardState[]>([
     "current",
@@ -215,7 +218,8 @@ export default function Footer() {
               {card.title}
             </h1>
             <span style={{ fontSize: "1.1rem" }}>{card.role}</span>
-            <img loading="lazy"
+            <img
+              loading="lazy"
               src="/assets/footer/stars.svg"
               style={{
                 marginTop: "0.75rem",
@@ -289,8 +293,9 @@ export default function Footer() {
       <div className="w-full" style={{ background: "#FFCA58" }}>
         {/* ✅ Content pulled up by half the wave height using negative marginTop.
             This visually centers the content at the wave/body boundary. */}
-        <div
-          className="relative flex flex-col lg:flex-row items-center justify-evenly gap-16 sm:gap-20 lg:gap-0 px-6 sm:px-10 pb-14 md:pb-44 md:pt-40 pt-10"
+        <div  
+          className="relative 
+          flex flex-col lg:flex-row items-center justify-evenly gap-28 sm:gap-32 lg:gap-0 px-6 sm:px-10 pb-28 md:pb-44 md:pt-40 pt-20 min-h-0"
           style={{
             zIndex: 1,
             marginTop: `calc(-1 * ${halfWave})`,
@@ -302,10 +307,14 @@ export default function Footer() {
             className="flex flex-col items-center flex-1 min-w-0 w-full lg:w-1/3 lg:max-w-[33%]"
           >
             <Link href="/" className="-mt-10 sm:-mt-16 lg:-mt-40 relative">
-              <img loading="lazy"
+              <img
+                loading="lazy"
                 src="/Footeer Logo.svg"
                 alt=""
-                style={{ filter: "drop-shadow(0 0 30px rgba(255,255,255,0.5)) drop-shadow(0 0 60px rgba(255,255,255,0.25))" }}
+                style={{
+                  filter:
+                    "drop-shadow(0 0 30px rgba(255,255,255,0.5)) drop-shadow(0 0 60px rgba(255,255,255,0.25))",
+                }}
                 className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[36rem] xl:w-[42rem] relative"
               />
             </Link>
@@ -317,7 +326,8 @@ export default function Footer() {
               >
                 <div className="relative rounded-full w-12 lg:w-14 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:-rotate-6">
                   <div className="absolute inset-0 rounded-full bg-[#FF5757]/0 group-hover:bg-[#FF5757]/15 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,87,87,0.35)] group-hover:scale-125" />
-                  <img loading="lazy"
+                  <img
+                    loading="lazy"
                     src="/assets/footer/insta.svg"
                     className="rounded-full w-full relative z-10"
                     alt=""
@@ -331,7 +341,8 @@ export default function Footer() {
               >
                 <div className="relative rounded-full w-12 lg:w-14 transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-6">
                   <div className="absolute inset-0 rounded-full bg-[#5763FF]/0 group-hover:bg-[#5763FF]/15 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(87,99,255,0.35)] group-hover:scale-125" />
-                  <img loading="lazy"
+                  <img
+                    loading="lazy"
                     src="/assets/footer/tiktok.svg"
                     className="rounded-full w-full relative z-10"
                     alt=""
@@ -358,19 +369,29 @@ export default function Footer() {
             <div className="w-full px-2 lg:px-0 flex flex-col items-center lg:items-start">
               <h2
                 className="font-extrabold text-white text-base lg:text-xl leading-snug mb-3 px-6 py-2 rounded-full w-fit"
-                style={{ fontFamily: "Quicksand", background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)" }}
+                style={{
+                  fontFamily: "Quicksand",
+                  background:
+                    "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+                }}
               >
                 JOIN THE COMMUNITY
               </h2>
-              <p className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6 text-center lg:text-left" style={{ fontFamily: "Quicksand" }}>
-                Ontvang als eerste updates over onze opening, activiteiten en exclusieve acties!
+              <p
+                className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6 text-center lg:text-left"
+                style={{ fontFamily: "Quicksand" }}
+              >
+                Ontvang als eerste updates over onze opening, activiteiten en
+                exclusieve acties!
               </p>
 
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
                   const form = e.currentTarget;
-                  const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+                  const email = (
+                    form.elements.namedItem("email") as HTMLInputElement
+                  ).value;
                   if (!email) return;
                   setFormStatus("loading");
                   try {
@@ -378,7 +399,7 @@ export default function Footer() {
                     body.append("email", email);
                     const res = await fetch(
                       "https://api.leat.com/api/v1/forms/6e833c5f-50b3-459d-b091-43969efec8fc/public/submit",
-                      { method: "POST", body }
+                      { method: "POST", body },
                     );
                     if (res.ok) {
                       setFormStatus("success");
@@ -412,7 +433,10 @@ export default function Footer() {
                       type="submit"
                       disabled={formStatus === "loading"}
                       className="w-fit px-8 py-3 rounded-full font-bold text-white text-sm tracking-wider cursor-pointer hover:opacity-90 transition-opacity disabled:opacity-60"
-                      style={{ background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)" }}
+                      style={{
+                        background:
+                          "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+                      }}
                     >
                       {formStatus === "loading" ? "EVEN GEDULD..." : "SIGN UP"}
                     </button>
@@ -433,14 +457,16 @@ export default function Footer() {
                 target="_blank"
                 className="group"
               >
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   src="/assets/footer/map.svg"
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""
                 />
               </Link>
               <Link href="tel:+31182231203" className="group">
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   src="/assets/footer/phone.svg"
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""
@@ -450,7 +476,8 @@ export default function Footer() {
                 href="mailto:hero@minimastersplayground.nl"
                 className="group"
               >
-                <img loading="lazy"
+                <img
+                  loading="lazy"
                   src="/assets/footer/mail.svg"
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""
