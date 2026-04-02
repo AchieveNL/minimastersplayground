@@ -265,7 +265,6 @@ export default function Footer() {
         style={{
           aspectRatio: "1752 / 291",
           zIndex: 0,
-          paddingBottom: "16.61%", /* fallback for browsers without aspect-ratio */
         }}
       >
         <svg
