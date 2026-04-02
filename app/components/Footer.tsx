@@ -290,7 +290,7 @@ export default function Footer() {
         {/* ✅ Content pulled up by half the wave height using negative marginTop.
             This visually centers the content at the wave/body boundary. */}
         <div
-          className="relative flex flex-col lg:flex-row items-center justify-evenly gap-10 sm:gap-14 lg:gap-0 px-6 sm:px-10 pb-14 md:pb-44 md:pt-40 pt-10"
+          className="relative flex flex-col lg:flex-row items-center justify-evenly gap-16 sm:gap-20 lg:gap-0 px-6 sm:px-10 pb-14 md:pb-44 md:pt-40 pt-10"
           style={{
             zIndex: 1,
             marginTop: `calc(-1 * ${halfWave})`,
@@ -309,7 +309,7 @@ export default function Footer() {
                 className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[36rem] xl:w-[42rem] relative"
               />
             </Link>
-            <div className="flex gap-6 mt-20 lg:mt-16">
+            <div className="flex gap-6 mt-10 lg:mt-16">
               <Link
                 href="https://www.instagram.com/minimastersplayground"
                 target="_blank"
@@ -355,14 +355,14 @@ export default function Footer() {
             ref={newsletterRef}
             className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-sm lg:w-1/3"
           >
-            <div className="w-full px-2 lg:px-0">
+            <div className="w-full px-2 lg:px-0 flex flex-col items-center lg:items-start">
               <h2
                 className="font-extrabold text-white text-base lg:text-xl leading-snug mb-3 px-6 py-2 rounded-full w-fit"
                 style={{ fontFamily: "Quicksand", background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)" }}
               >
                 JOIN THE COMMUNITY
               </h2>
-              <p className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6" style={{ fontFamily: "Quicksand" }}>
+              <p className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6 text-center lg:text-left" style={{ fontFamily: "Quicksand" }}>
                 Ontvang als eerste updates over onze opening, activiteiten en exclusieve acties!
               </p>
 

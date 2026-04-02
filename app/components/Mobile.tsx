@@ -16,7 +16,7 @@ export default function Mobile({ content }: { content: React.ReactNode }) {
           {/* Logo */}
           <img loading="lazy"
             src="/Footeer Logo.svg"
-            className="object-contain shrink-0 w-20 lg:w-[140px]"
+            className="object-contain shrink-0 w-14 lg:w-[140px] mt-4 lg:mt-0"
             alt="Logo"
           />
           {content}

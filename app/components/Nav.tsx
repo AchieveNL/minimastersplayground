@@ -185,7 +185,7 @@ export default function Nav() {
             className="flex items-center px-4 sm:px-6 md:px-10 py-2 md:py-2 relative z-10"
           >
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 md:mt-6" ref={logoRef}>
+            <Link href="/" className="flex-shrink-0 my-auto md:mt-6" ref={logoRef}>
               <img
                 ref={logoImgRef}
                 src="/header navbar logo.svg"
@@ -300,7 +300,7 @@ export default function Nav() {
           onClick={() => setIsOpen(false)}
           className="flex justify-center w-full mt-4"
         >
-          <img src="/LOGO V3 NAV v2.png" className="w-3/4 p-2" alt="" />
+          <img src="/header navbar logo.svg" className="w-3/4 p-2" alt="" />
         </Link>
         <a
           href="#"
