@@ -79,7 +79,8 @@ export default function Slider() {
     `Z`,
   ].join(" ");
 
-  const clipId = "wavyClipFixed";
+  // Use CSS clip-path: path() directly — much better Safari support than SVG url(#id)
+  const clipPathValue = `path('${wavePath}')`;
 
   return (
     <>
@@ -89,28 +90,11 @@ export default function Slider() {
         style={{
           fontFamily: "Quicksand",
           position: "relative",
-          clipPath: `url(#${clipId})`,
-          WebkitClipPath: `url(#${clipId})`,
-          WebkitTransform: "translateZ(0)",
+          clipPath: clipPathValue,
+          WebkitClipPath: clipPathValue,
         }}
         className="w-full relative -mt-14 md:h-[680px] xl:h-[780px] h-[580px] pt-20 md:pt-28 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
       >
-        <svg
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            width: 0,
-            height: 0,
-            overflow: "visible",
-            pointerEvents: "none",
-          }}
-        >
-          <defs>
-            <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-              <path d={wavePath} />
-            </clipPath>
-          </defs>
-        </svg>
 
         <img
           loading="lazy"

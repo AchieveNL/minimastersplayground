@@ -55,7 +55,8 @@ export default function LocationMobile() {
     `Z`,
   ].join(" ");
 
-  const clipId = "wavyClipLocationMobile";
+  // Use CSS clip-path: path() directly — much better Safari support than SVG url(#id)
+  const clipPathValue = `path('${wavePath}')`;
 
   return (
     <div
@@ -63,29 +64,11 @@ export default function LocationMobile() {
       style={{
         fontFamily: "Quicksand",
         position: "relative",
-        clipPath: `url(#${clipId})`,
-        WebkitClipPath: `url(#${clipId})`,
-        WebkitTransform: "translateZ(0)",
+        clipPath: clipPathValue,
+        WebkitClipPath: clipPathValue,
       }}
       className="w-full relative h-[760px] pt-8 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)] overflow-hidden"
     >
-      <svg
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          width: 0,
-          height: 0,
-          overflow: "visible",
-          pointerEvents: "none",
-        }}
-      >
-        <defs>
-          <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-            <path d={wavePath} />
-          </clipPath>
-        </defs>
-      </svg>
-
       <img
         loading="lazy"
         src="/assets/location/img3.svg"

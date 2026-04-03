@@ -55,7 +55,8 @@ export default function LocationDesktop() {
     `Z`,
   ].join(" ");
 
-  const clipId = "wavyClipLocationDesktop";
+  // Use CSS clip-path: path() directly — much better Safari support than SVG url(#id)
+  const clipPathValue = `path('${wavePath}')`;
 
   return (
     <div
@@ -63,23 +64,11 @@ export default function LocationDesktop() {
       style={{
         fontFamily: "Quicksand",
         position: "relative",
-        clipPath: `url(#${clipId})`,
-        WebkitClipPath: `url(#${clipId})`,
-        WebkitTransform: "translateZ(0)",
+        clipPath: clipPathValue,
+        WebkitClipPath: clipPathValue,
       }}
       className="w-full h-[740px] xl:h-[840px] pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
     >
-      <svg
-        aria-hidden="true"
-        style={{ position: "absolute", width: 0, height: 0, overflow: "visible", pointerEvents: "none" }}
-      >
-        <defs>
-          <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-            <path d={wavePath} />
-          </clipPath>
-        </defs>
-      </svg>
-
       <img
         loading="lazy"
         src="/assets/location/img3.svg"
