@@ -248,9 +248,7 @@ export default function Footer() {
     </div>
   );
 
-  // Wave height as a fraction of viewport width: 291/1752
-  // Half of that wave height = (100vw * 291 / 1752) / 2 = 100vw * 291 / 3504
-  const waveHeight = "calc(100vw * 291 / 1752)";
+  // Half of wave height = (100vw * 291 / 1752) / 2 = 100vw * 291 / 3504
   const halfWave = "calc(100vw * 291 / 3504)";
 
   return (
@@ -259,11 +257,10 @@ export default function Footer() {
       style={{ fontFamily: "Nunito Variable" }}
       className="relative w-full -mt-28 md:-mt-52"
     >
-      {/* Layer 1: wave curve — sits at the top, drives its own height via aspect-ratio */}
+      {/* Layer 1: wave curve — SVG drives its own height via viewBox */}
       <div
         className="relative w-full pointer-events-none"
         style={{
-          aspectRatio: "1752 / 291",
           zIndex: 0,
         }}
       >
@@ -271,8 +268,9 @@ export default function Footer() {
           viewBox="0 0 1752 291"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full block"
-          preserveAspectRatio="none"
+          className="w-full block"
+          style={{ display: "block", width: "100%", height: "auto" }}
+          preserveAspectRatio="xMidYMid meet"
           aria-hidden="true"
         >
           <path
