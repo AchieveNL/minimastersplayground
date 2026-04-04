@@ -123,9 +123,9 @@ export default function LocationDesktop() {
 
         <div ref={mapRef} className="flex justify-center">
           <object
-            data="/assets/location/img2.svg"
+            data="/Newmaps.svg"
             type="image/svg+xml"
-            className="w-80 lg:w-100 xl:w-120"
+            className="w-75 lg:w-90 xl:w-110"
             aria-label="Map showing Waddinxveen location"
           />
         </div>

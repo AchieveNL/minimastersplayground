@@ -133,9 +133,8 @@ export default function Nav() {
           {/* Background wave shape — desktop only */}
           <svg
             ref={waveSvgRef}
-            className="absolute top-0 left-0 w-full"
+            className="absolute top-0 left-0 w-full h-[calc(100%+40px)] md:h-[calc(100%+90px)]!"
             style={{
-              height: "calc(100% + 90px)",
               willChange: "transform, opacity",
               transform: "translateZ(0)",
             }}

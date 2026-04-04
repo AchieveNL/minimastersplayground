@@ -130,6 +130,16 @@ const data: FaqCategory[] = [
     title: "Algemene vragen",
     items: [
       {
+        question: "Mag ik eigen eten en drinken meenemen?",
+        answer: (
+          <>
+            In ons café kun je terecht voor eten en drinken. Daarom vragen we je
+            vriendelijk geen eigen consumpties mee te nemen. Babyvoeding en
+            babyflessen zijn wel toegestaan.
+          </>
+        ),
+      },
+      {
         question: "Mogen mijn kinderen alleen blijven?",
         answer: (
           <>
@@ -171,16 +181,6 @@ const data: FaqCategory[] = [
         question: "Is er een borstvoeding ruimte?",
         answer: (
           <>Ja, wij hebben een privé ruimte waar je borstvoeding kunt geven.</>
-        ),
-      },
-      {
-        question: "Mag ik eigen eten en drinken meenemen?",
-        answer: (
-          <>
-            In ons café kun je terecht voor eten en drinken. Daarom vragen we je
-            vriendelijk geen eigen consumpties mee te nemen. Babyvoeding en
-            babyflessen zijn wel toegestaan.
-          </>
         ),
       },
       {

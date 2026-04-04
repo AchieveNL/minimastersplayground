@@ -64,22 +64,22 @@ export default function MobileSection() {
         ref={leftRef}
         className="relative flex flex-col items-center lg:gap-8 gap-5"
       >
-        <div className="flex w-fit lg:px-10 px-5 lg:py-4 py-3 lg:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
+        <div className="flex w-fit items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl md:py-3 py-2 overflow-visible">
           <img
             loading="lazy"
             src="/elements/Klok Icoon.svg"
             className="absolute lg:hidden"
-            style={{ width: "100px", left: "-10%" }}
+            style={{ width: "80px", left: "-15%" }}
             alt=""
           />
           <img
             loading="lazy"
             src="/newclockIcon.svg"
             className="absolute hidden lg:block"
-            style={{ width: "120px", left: -50 }}
+            style={{ width: "100px", left: -45 }}
             alt=""
           />
-          <h1 className="font-bold lg:text-lg text-center text-[#FDF9EF] lg:pl-0 pl-14 w-full rounded-br-4xl">
+          <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-16 pl-14 md:pr-8 pr-5 w-full rounded-br-4xl text-nowrap">
             ONZE TIJDSLOTEN{" "}
           </h1>
         </div>
@@ -155,22 +155,22 @@ export default function MobileSection() {
         ref={rightRef}
         className="relative flex flex-col items-center lg:gap-8 gap-5 lg:mt-0 mt-4"
       >
-        <div className="flex w-fit lg:px-10 px-5 lg:py-4 py-2 lg:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
+        <div className="flex w-fit items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl md:py-3 py-2 overflow-visible">
           <img
             loading="lazy"
             src="/elements/Loyalty Icoon.svg"
             className="absolute lg:hidden"
-            style={{ width: "100px", left: "-10%" }}
+            style={{ width: "80px", left: "-15%" }}
             alt=""
           />
           <img
             loading="lazy"
             src="/elements/Loyalty Icoon.svg"
             className="absolute hidden lg:block"
-            style={{ width: "130px", left: -50 }}
+            style={{ width: "100px", left: -45 }}
             alt=""
           />
-          <h1 className="font-bold lg:text-lg text-center text-[#FDF9EF] lg:pl-0 pl-14 w-full rounded-br-4xl">
+          <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-16 pl-14 md:pr-8 pr-5 w-full rounded-br-4xl text-nowrap">
             LOYALTY PROGRAMMA
           </h1>
         </div>

@@ -1,4 +1,5 @@
-"use client";import { useEffect, useRef } from "react";
+"use client";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import AnimatedSilder from "./AnimatedSilder";
 import InfoCard from "./InfoCard";
@@ -66,9 +67,9 @@ export default function Hero() {
   }, []);
   const infoCards = [
     {
-      posMobile: -45,
-      pos: -80,
-      iconWidth: 140,
+      posMobile: -15,
+      pos: -40,
+      iconWidth: 120,
       icon: "/elements/Groep Icoon.svg",
       title: (
         <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
@@ -79,9 +80,9 @@ export default function Hero() {
         "Binnen minimasters stappen kinderen in een wereld die volledig is afgestemd op hun eigen belevingswereld. zij krijgen de ruimte om spelenderwijs te ontdekken hoe vormen van samenwerking een belangrijke rol spelen in het dagelijks leven.",
     },
     {
-      posMobile: -45,
+      posMobile: -55,
       pos: -80,
-      iconWidth: 140,
+      iconWidth: 150,
       icon: "/elements/Educatie Icoon.svg",
       title: (
         <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-8 pl-14 w-full rounded-br-4xl text-nowrap">
@@ -92,9 +93,9 @@ export default function Hero() {
         "Ons doel is om kinderen te laten leren door te doen, door actief deel te nemen aan herkenbare beroepen. Zelfvertrouwen en creativiteit krijgen de ruimte omdat er geen goed of fout bestaat: elk kind mag op zijn eigen manier ontdekken.",
     },
     {
-      posMobile: -45,
-      pos: -65,
-      iconWidth: 140,
+      posMobile: -17,
+      pos: -55,
+      iconWidth: 120,
       icon: "/elements/Standaard Icoon.svg",
       title: (
         <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
@@ -106,7 +107,10 @@ export default function Hero() {
     },
   ];
   return (
-    <div className="-mt-4 md:-mt-14 relative" style={{ fontFamily: "Quicksand" }}>
+    <div
+      className="-mt-4 md:-mt-14 relative"
+      style={{ fontFamily: "Quicksand" }}
+    >
       <div ref={sliderRef} style={{ opacity: 0 }}>
         <AnimatedSilder />
       </div>
@@ -130,14 +134,22 @@ export default function Hero() {
         </div>
         <h1
           ref={tinyRef}
-          style={{ opacity: 0, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+          style={{
+            opacity: 0,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
           className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg"
         >
           TINY HEROES
         </h1>
         <h1
           ref={bigRef}
-          style={{ opacity: 0, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+          style={{
+            opacity: 0,
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}
           className="md:text-8xl text-4xl sm:text-5xl font-extrabold text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFDB8D] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg"
         >
           BIG ADVENTURES
