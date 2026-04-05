@@ -130,11 +130,10 @@ export default function LocationMobile() {
         </div>
 
         <div ref={mapRef} className="w-full flex justify-center">
-          <object
-            data="/Newmaps.svg"
-            type="image/svg+xml"
-            className="w-[320px]"
-            aria-label="Map showing Waddinxveen location"
+          <img
+            src="/Newmaps.svg"
+            className="w-[400px]"
+            alt="Map showing Waddinxveen location"
           />
         </div>
       </div>
