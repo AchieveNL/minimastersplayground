@@ -67,7 +67,7 @@ export default function LocationMobile() {
         clipPath: clipPathValue,
         WebkitClipPath: clipPathValue,
       }}
-      className="w-full relative h-[680px] pt-8 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)] overflow-hidden"
+      className="w-full relative h-[760px] pt-8 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)] overflow-hidden"
     >
       <img
         loading="lazy"
@@ -133,7 +133,7 @@ export default function LocationMobile() {
           <object
             data="/Newmaps.svg"
             type="image/svg+xml"
-            className="w-full"
+            className="w-[320px]"
             aria-label="Map showing Waddinxveen location"
           />
         </div>
