@@ -133,7 +133,7 @@ export default function LocationMobile() {
           <object
             data="/Newmaps.svg"
             type="image/svg+xml"
-            className="w-3/4 max-w-66"
+            className="w-3/4 max-w-96"
             aria-label="Map showing Waddinxveen location"
           />
         </div>
