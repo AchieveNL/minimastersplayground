@@ -132,7 +132,7 @@ export default function LocationMobile() {
         <div ref={mapRef} className="w-full flex justify-center">
           <img
             src="/Newmaps.svg"
-            className="w-[400px]"
+            className="w-[340px]"
             alt="Map showing Waddinxveen location"
           />
         </div>
