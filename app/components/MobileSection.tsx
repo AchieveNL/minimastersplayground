@@ -1,5 +1,4 @@
 "use client";
-
 import Mobile from "./Mobile";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
@@ -28,7 +27,6 @@ export default function MobileSection() {
 
   return (
     <div
-      id="loyalty"
       style={{ fontFamily: "Quicksand" }}
       className="relative -mt-14 flex lg:flex-row flex-col px-6 sm:px-10 md:px-16 lg:px-12 xl:px-24 2xl:px-48 overflow-visible pt-2 lg:pb-10 pb-20 lg:gap-0 gap-10"
     >
@@ -69,14 +67,14 @@ export default function MobileSection() {
             loading="lazy"
             src="/elements/Klok Icoon.svg"
             className="absolute lg:hidden"
-            style={{ width: "80px", left: "-15%" }}
+            style={{ width: "80px", left: "-25%" }}
             alt=""
           />
           <img
             loading="lazy"
             src="/newclockIcon.svg"
             className="absolute hidden lg:block"
-            style={{ width: "100px", left: -45 }}
+            style={{ width: "100px", left: -55 }}
             alt=""
           />
           <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-16 pl-14 md:pr-8 pr-5 w-full rounded-br-4xl text-nowrap">
@@ -152,6 +150,7 @@ export default function MobileSection() {
       </div>
 
       <div
+        id="loyalty"
         ref={rightRef}
         className="relative flex flex-col items-center lg:gap-8 gap-5 lg:mt-0 mt-4"
       >

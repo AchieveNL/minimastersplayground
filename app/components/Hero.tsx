@@ -67,8 +67,8 @@ export default function Hero() {
   }, []);
   const infoCards = [
     {
-      posMobile: -15,
-      pos: -40,
+      posMobile: -25,
+      pos: -60,
       iconWidth: 120,
       icon: "/elements/Groep Icoon.svg",
       title: (
@@ -80,8 +80,8 @@ export default function Hero() {
         "Binnen minimasters stappen kinderen in een wereld die volledig is afgestemd op hun eigen belevingswereld. Zij krijgen de ruimte om spelenderwijs te ontdekken hoe vormen van samenwerking een belangrijke rol spelen in het dagelijks leven.",
     },
     {
-      posMobile: -55,
-      pos: -80,
+      posMobile: -65,
+      pos: -90,
       iconWidth: 150,
       icon: "/elements/Educatie Icoon.svg",
       title: (
@@ -93,8 +93,8 @@ export default function Hero() {
         "Ons doel is om kinderen te laten leren door te doen, door actief deel te nemen aan herkenbare beroepen. Zelfvertrouwen en creativiteit krijgen de ruimte omdat er geen goed of fout bestaat: elk kind mag op zijn eigen manier ontdekken.",
     },
     {
-      posMobile: -17,
-      pos: -55,
+      posMobile: -27,
+      pos: -85,
       iconWidth: 120,
       icon: "/elements/Standaard Icoon.svg",
       title: (
@@ -157,7 +157,7 @@ export default function Hero() {
       </div>
       <div
         ref={cardsRef}
-        className="md:my-28 my-14 flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-10 md:mx-24 lg:mx-10 xl:mx-24 mx-4 sm:mx-5"
+        className="md:my-28 my-20 flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-10 md:mx-24 lg:mx-10 xl:mx-24 mx-4 sm:mx-5"
       >
         {infoCards.map((card, index) => {
           return (

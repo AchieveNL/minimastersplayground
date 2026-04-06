@@ -253,7 +253,6 @@ export default function Footer() {
 
   return (
     <div
-      id="contact"
       style={{ fontFamily: "Nunito Variable" }}
       className="relative w-full -mt-28 md:-mt-52"
     >
@@ -367,10 +366,11 @@ export default function Footer() {
 
           {/* Column 3: Newsletter + Contact */}
           <div
+            id="contact"
             ref={newsletterRef}
-            className="flex-1 min-w-0 relative z-20 flex flex-col items-center w-full max-w-xs lg:max-w-sm lg:w-1/3"
+            className="flex-1 min-w-0 relative z-20 flex flex-col items-start lg:items-center w-full max-w-xs lg:max-w-sm lg:w-1/3"
           >
-            <div className="w-full px-2 lg:px-0 flex flex-col items-center lg:items-start">
+            <div className="w-full px-2 lg:px-0 flex flex-col items-start">
               <h2
                 className="font-extrabold text-white text-base lg:text-xl leading-snug mb-3 px-6 py-2 rounded-full w-fit"
                 style={{
@@ -382,7 +382,7 @@ export default function Footer() {
                 JOIN THE COMMUNITY
               </h2>
               <p
-                className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6 text-center lg:text-left"
+                className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6 text-left"
                 style={{ fontFamily: "Quicksand" }}
               >
                 Ontvang als eerste updates over onze opening, activiteiten en
@@ -455,7 +455,7 @@ export default function Footer() {
             </div>
 
             {/* Contact icons */}
-            <div className="flex mt-5 w-full justify-evenly">
+            <div className="flex mt-5 w-full justify-start gap-6 lg:justify-evenly px-2 lg:px-0">
               <Link
                 href="https://share.google/ZLMrmSLkckXFQ7fsW"
                 target="_blank"

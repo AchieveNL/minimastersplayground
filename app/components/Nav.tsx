@@ -181,7 +181,7 @@ export default function Nav() {
           {/* Nav content */}
           <div
             ref={contentRef}
-            className="flex items-center px-4 sm:px-6 md:px-10 py-2 md:py-2 relative z-10"
+            className="flex items-center px-4 sm:px-6 md:px-10 py-4 md:py-2 relative z-10"
           >
             {/* Logo */}
             <Link href="/" className="flex-shrink-0 my-auto md:mt-6" ref={logoRef}>
