@@ -109,7 +109,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           className="w-52 sm:w-72 md:w-[24rem] pointer-events-auto"
           style={{
             transform: "scale(0)",
-            filter: "none",
+            filter: "drop-shadow(0 0 30px rgba(255,255,255,0.5)) drop-shadow(0 0 60px rgba(255,255,255,0.25))",
           }}
         />
 

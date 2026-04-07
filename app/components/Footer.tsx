@@ -254,7 +254,7 @@ export default function Footer() {
   return (
     <div
       style={{ fontFamily: "Nunito Variable" }}
-      className="relative w-full -mt-28 md:-mt-52"
+      className="relative w-full -mt-20 sm:-mt-24 md:-mt-32 lg:-mt-40 xl:-mt-48 2xl:-mt-52"
     >
       {/* Layer 1: wave curve — SVG drives its own height via viewBox */}
       <div
