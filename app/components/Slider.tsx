@@ -1,4 +1,5 @@
-"use client";import { useEffect, useState, useRef } from "react";
+"use client";
+import { useEffect, useState, useRef } from "react";
 
 export default function Slider() {
   const data = [
@@ -95,7 +96,6 @@ export default function Slider() {
         }}
         className="w-full relative -mt-14 md:h-[680px] xl:h-[780px] h-[580px] pt-20 md:pt-28 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
       >
-
         <img
           loading="lazy"
           src="/assets/icons/cards-icon1.svg"
@@ -122,7 +122,7 @@ export default function Slider() {
             loading="lazy"
             src="/elements/Ticket Icoon.svg"
             className="absolute hidden md:block"
-            style={{ width: "100px", left: -45 }}
+            style={{ width: "100px", left: -65 }}
             alt=""
           />
           <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-16 pl-14 md:pr-8 pr-5 w-full rounded-br-4xl text-nowrap">

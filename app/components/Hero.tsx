@@ -69,7 +69,7 @@ export default function Hero() {
     {
       posMobile: -25,
       pos: -60,
-      iconWidth: 120,
+      iconWidth: 100,
       icon: "/elements/Groep Icoon.svg",
       title: (
         <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
@@ -82,7 +82,7 @@ export default function Hero() {
     {
       posMobile: -65,
       pos: -90,
-      iconWidth: 150,
+      iconWidth: 120,
       icon: "/elements/Educatie Icoon.svg",
       title: (
         <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-8 pl-14 w-full rounded-br-4xl text-nowrap">
@@ -95,7 +95,7 @@ export default function Hero() {
     {
       posMobile: -27,
       pos: -85,
-      iconWidth: 120,
+      iconWidth: 100,
       icon: "/elements/Standaard Icoon.svg",
       title: (
         <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
