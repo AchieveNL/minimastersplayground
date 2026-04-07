@@ -65,7 +65,7 @@ export default function MobileSection() {
         <div className="flex w-fit items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl md:py-3 py-2 overflow-visible">
           <img
             loading="lazy"
-            src="//newclockIcon.svg"
+            src="/newclockIcon.svg"
             className="absolute lg:hidden"
             style={{ width: "80px", left: "-25%" }}
             alt=""
