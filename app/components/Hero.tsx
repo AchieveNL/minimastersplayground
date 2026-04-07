@@ -1,5 +1,4 @@
-"use client";
-import { useEffect, useRef } from "react";
+"use client";import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import AnimatedSilder from "./AnimatedSilder";
 import InfoCard from "./InfoCard";
@@ -95,7 +94,7 @@ export default function Hero() {
     {
       posMobile: -27,
       pos: -85,
-      iconWidth: 100,
+      iconWidth: 90,
       icon: "/elements/Standaard Icoon.svg",
       title: (
         <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
