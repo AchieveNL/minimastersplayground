@@ -217,7 +217,13 @@ export default function Nav() {
               <Link href="/#over-ons" className="text-[#5763FF] text-nowrap">
                 OVER ONS
               </Link>
-              <Link href="/#tickets" className="text-[#FF5757]">
+              <Link
+                href="/#tickets"
+                className="text-white px-6 py-1.5 rounded-full"
+                style={{
+                  background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+                }}
+              >
                 TICKETS
               </Link>
               <Link href="/#loyalty" className="text-[#67CD8A]">
@@ -321,7 +327,10 @@ export default function Nav() {
         </Link>
         <Link
           href="/#tickets"
-          className="text-[#FF5757]"
+          className="text-white px-6 py-1.5 rounded-full"
+          style={{
+            background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+          }}
           onClick={() => setIsOpen(false)}
         >
           TICKETS

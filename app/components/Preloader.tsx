@@ -102,16 +102,23 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
         style={{ margin: 0 }}
       >
-        <img
-          ref={logoRef}
-          src="/header navbar logo.svg"
-          alt="Minimasters"
-          className="w-52 sm:w-72 md:w-[24rem] pointer-events-auto"
-          style={{
-            transform: "scale(0)",
-            filter: "drop-shadow(0 0 30px rgba(255,255,255,0.5)) drop-shadow(0 0 60px rgba(255,255,255,0.25))",
-          }}
-        />
+        <div className="relative flex items-center justify-center">
+          <div
+            className="absolute w-72 h-72 sm:w-96 sm:h-96 md:w-[30rem] md:h-[30rem] rounded-full pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 45%, transparent 70%)",
+            }}
+          />
+          <img
+            ref={logoRef}
+            src="/header navbar logo.svg"
+            alt="Minimasters"
+            className="w-52 sm:w-72 md:w-[24rem] pointer-events-auto relative"
+            style={{
+              transform: "scale(0)",
+            }}
+          />
+        </div>
 
         <div
           ref={barTrackRef}

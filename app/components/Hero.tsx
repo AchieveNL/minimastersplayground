@@ -68,7 +68,7 @@ export default function Hero() {
     {
       posMobile: -25,
       pos: -60,
-      iconWidth: 100,
+      iconWidth: 92,
       icon: "/elements/Groep Icoon.svg",
       title: (
         <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
