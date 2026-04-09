@@ -126,9 +126,25 @@ export default function MobileSection() {
           />
         </div>
         <h1 className="text-center text-base lg:text-lg xl:text-xl font-semibold">
-          Altijd je spaarpunten bij de hand. Zet ons QR code handig in je
-          e-wallet. Spelen worden nu nog leuker met sparen.
+          Spelen wordt nu nog leuker met sparen!{" "}
+          <span className="text-[#FFCA58]">
+            Meld je aan, ontvang 50 punten cadeau en pak direct bij je eerste
+            bezoek al kassakorting.
+          </span>{" "}
+          Spaar mee voor leuke beloningen en bewaar je QR-code handig in je
+          e-wallet zodat je je punten altijd bij de hand hebt!
         </h1>
+        <a
+          href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-10 py-3 rounded-full font-bold text-white text-base lg:text-lg tracking-wider hover:opacity-90 transition-opacity"
+          style={{
+            background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
+          }}
+        >
+          MELD JE NU AAN!
+        </a>
         <div>
           <img
             loading="lazy"
@@ -175,10 +191,28 @@ export default function MobileSection() {
             className="block h-[40vh] min-h-[250px] sm:h-[45vh] md:h-[50vh] lg:h-[55vh] xl:h-[60vh] 2xl:h-[65vh] max-h-[600px] w-auto"
           />
         </div>
-        <h1 className="text-center text-sm xs:text-base sm:text-lg md:text-xl font-semibold lg:hidden block text-[#5763FF] max-w-md sm:max-w-lg mx-auto px-2">
-          Altijd je spaarpunten bij de hand. Zet ons QR code handig in je
-          e-wallet. Spelen worden nu nog leuker met sparen.
-        </h1>
+        <div className="lg:hidden flex flex-col items-center gap-4 max-w-md sm:max-w-lg mx-auto px-2">
+          <h1 className="text-center text-sm xs:text-base sm:text-lg md:text-xl font-semibold text-[#5763FF]">
+            Spelen wordt nu nog leuker met sparen!{" "}
+            <span className="text-[#FFCA58]">
+              Meld je aan, ontvang 50 punten cadeau en pak direct bij je eerste
+              bezoek al kassakorting.
+            </span>{" "}
+            Spaar mee voor leuke beloningen en bewaar je QR-code handig in je
+            e-wallet zodat je je punten altijd bij de hand hebt!
+          </h1>
+          <a
+            href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-2.5 rounded-full font-bold text-white text-sm sm:text-base tracking-wider hover:opacity-90 transition-opacity"
+            style={{
+              background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
+            }}
+          >
+            MELD JE NU AAN!
+          </a>
+        </div>
       </div>
     </div>
   );
