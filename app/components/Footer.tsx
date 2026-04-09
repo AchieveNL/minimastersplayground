@@ -309,7 +309,7 @@ export default function Footer() {
             ref={logoRef}
             className="flex flex-col items-center flex-1 min-w-0 w-full lg:w-1/3 lg:max-w-[33%]"
           >
-            <Link href="/" className="-mt-10 sm:-mt-16 lg:-mt-40 relative">
+            <Link href="/" className="-mt-10 sm:-mt-16 lg:-mt-24 relative">
               <img
                 loading="lazy"
                 src="/Footeer Logo.svg"
