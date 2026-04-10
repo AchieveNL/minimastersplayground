@@ -1,5 +1,4 @@
-"use client";
-import { useScrollAnimation } from "../hooks/useScrollAnimation";
+"use client";import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function MobileSection() {
   const leftRef = useScrollAnimation<HTMLDivElement>({
@@ -186,7 +185,7 @@ export default function MobileSection() {
         >
           <img
             loading="lazy"
-            src="/iPhone 2 (Mini Masters).svg"
+            src="/Iphone 2.svg"
             alt="iPhone loyalty programma"
             className="block h-[40vh] min-h-[250px] sm:h-[45vh] md:h-[50vh] lg:h-[55vh] xl:h-[60vh] 2xl:h-[65vh] max-h-[600px] w-auto"
           />
