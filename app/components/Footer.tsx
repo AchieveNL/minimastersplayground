@@ -312,7 +312,7 @@ export default function Footer() {
             <Link href="/" className="-mt-10 sm:-mt-16 lg:-mt-24 relative">
               <img
                 loading="lazy"
-                src="/FooterLogoV2.svg"
+                src="/FooterLogoV2.png"
                 alt=""
                 className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[28rem] xl:w-[36rem] 2xl:w-[42rem] relative"
               />
