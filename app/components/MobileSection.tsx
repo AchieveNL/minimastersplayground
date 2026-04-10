@@ -185,7 +185,7 @@ export default function MobileSection() {
         >
           <img
             loading="lazy"
-            src="/Iphone 2.svg"
+            src="/Iphone 2.png"
             alt="iPhone loyalty programma"
             className="block h-[40vh] min-h-[250px] sm:h-[45vh] md:h-[50vh] lg:h-[55vh] xl:h-[60vh] 2xl:h-[65vh] max-h-[600px] w-auto"
           />
