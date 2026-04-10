@@ -314,9 +314,7 @@ export default function Footer() {
                 loading="lazy"
                 src="/FooterLogoV2.svg"
                 alt=""
-                width={970}
-                height={464}
-                className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[28rem] xl:w-[36rem] 2xl:w-[42rem] h-auto relative"
+                className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[28rem] xl:w-[36rem] 2xl:w-[42rem] relative"
               />
             </Link>
             <div className="flex gap-6 mt-10 lg:mt-16">
