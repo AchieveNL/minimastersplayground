@@ -1,5 +1,4 @@
-"use client";
-import Link from "next/link";
+"use client";import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -92,7 +91,11 @@ export default function Nav() {
         )
         .to(
           logoImgRef.current,
-          { width: isMobile ? "8rem" : "12rem", marginTop: 0, marginBottom: 0 },
+          {
+            width: isMobile ? "8rem" : "12rem",
+            marginTop: isMobile ? "auto" : 0,
+            marginBottom: isMobile ? "auto" : 0,
+          },
           0,
         );
     } else {
@@ -109,7 +112,7 @@ export default function Nav() {
         .to(
           logoImgRef.current,
           {
-            width: isMobile ? "9rem" : "18rem",
+            width: isMobile ? "9rem" : "10rem",
             clearProps: "marginTop,marginBottom",
           },
           0,
@@ -184,7 +187,11 @@ export default function Nav() {
             className="flex items-center px-4 sm:px-6 md:px-10 py-4 md:py-2 relative z-10"
           >
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 my-auto md:mt-6" ref={logoRef}>
+            <Link
+              href="/"
+              className="flex-shrink-0 my-3  md:my-0 md:mt-6"
+              ref={logoRef}
+            >
               <img
                 ref={logoImgRef}
                 src="/header navbar logo.svg"
@@ -217,15 +224,6 @@ export default function Nav() {
               <Link href="/#over-ons" className="text-[#5763FF] text-nowrap">
                 OVER ONS
               </Link>
-              <Link
-                href="/#tickets"
-                className="text-white px-6 py-1.5 rounded-full"
-                style={{
-                  background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
-                }}
-              >
-                TICKETS
-              </Link>
               <Link href="/#loyalty" className="text-[#67CD8A]">
                 LOYALTY
               </Link>
@@ -237,6 +235,16 @@ export default function Nav() {
               </Link>
               <Link href="/#contact" className="text-[#5763FF]">
                 CONTACT
+              </Link>
+              <Link
+                href="/#tickets"
+                className="text-white px-6 py-1.5 rounded-full"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+                }}
+              >
+                TICKETS
               </Link>
             </div>
 
@@ -326,16 +334,6 @@ export default function Nav() {
           OVER ONS
         </Link>
         <Link
-          href="/#tickets"
-          className="text-white px-6 py-1.5 rounded-full"
-          style={{
-            background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
-          }}
-          onClick={() => setIsOpen(false)}
-        >
-          TICKETS
-        </Link>
-        <Link
           href="/#loyalty"
           className="text-[#67CD8A]"
           onClick={() => setIsOpen(false)}
@@ -362,6 +360,16 @@ export default function Nav() {
           onClick={() => setIsOpen(false)}
         >
           CONTACT
+        </Link>
+        <Link
+          href="/#tickets"
+          className="text-white px-6 py-1.5 rounded-full"
+          style={{
+            background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+          }}
+          onClick={() => setIsOpen(false)}
+        >
+          TICKETS
         </Link>
       </div>
     </>

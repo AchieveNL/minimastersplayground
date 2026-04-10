@@ -312,7 +312,7 @@ export default function Footer() {
             <Link href="/" className="-mt-10 sm:-mt-16 lg:-mt-24 relative">
               <img
                 loading="lazy"
-                src="/Footeer Logo.svg"
+                src="/FooterLogoV2.svg"
                 alt=""
                 width={970}
                 height={464}
@@ -366,7 +366,7 @@ export default function Footer() {
           <div
             id="contact"
             ref={newsletterRef}
-            className="flex-1 min-w-0 relative z-20 flex flex-col items-start lg:items-center w-full max-w-xs lg:max-w-sm lg:w-1/3"
+            className="flex-1 min-w-0 relative z-20 flex flex-col items-start w-full lg:max-w-sm lg:w-1/3"
           >
             <div className="w-full px-2 lg:px-0 flex flex-col items-start">
               <h2
@@ -453,7 +453,7 @@ export default function Footer() {
             </div>
 
             {/* Contact icons */}
-            <div className="flex mt-5 w-full justify-start gap-6 lg:justify-evenly px-2 lg:px-0">
+            <div className="flex mt-5 justify-start gap-6 px-2 lg:px-0">
               <Link
                 href="https://share.google/ZLMrmSLkckXFQ7fsW"
                 target="_blank"

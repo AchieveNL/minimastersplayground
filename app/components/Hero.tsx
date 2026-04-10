@@ -94,7 +94,7 @@ export default function Hero() {
     {
       posMobile: -27,
       pos: -85,
-      iconWidth: 90,
+      iconWidth: 96,
       icon: "/elements/Standaard Icoon.svg",
       title: (
         <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">

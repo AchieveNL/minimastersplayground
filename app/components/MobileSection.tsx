@@ -110,24 +110,24 @@ export default function MobileSection() {
       {/* CENTER — Text + arrows (desktop only) */}
       <div
         ref={centerRef}
-        className="hidden lg:flex flex-col gap-6 xl:gap-10 lg:w-[35%] xl:w-[30%] m-auto text-[#5763FF] px-4 xl:px-10 items-center mt-20 relative"
+        className="hidden lg:flex flex-col gap-3 lg:gap-3 xl:gap-5 2xl:gap-6 lg:w-[42%] xl:w-[38%] 2xl:w-[35%] m-auto text-[#5763FF] px-1 lg:px-2 xl:px-4 2xl:px-6 items-center mt-2 lg:mt-4 relative"
       >
-        <h1 className="text-center text-base lg:text-lg xl:text-xl font-semibold">
+        <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
           Bij ons staat kwaliteit centraal en verdient elk kind een unieke
           speelbeleving. Door te werken met speelsessies zorgen we voor minder
           drukte en meer speelplezier voor iedereen.
         </h1>
-        <div>
+        <div className="flex-shrink-0">
           <img
             loading="lazy"
             src="/MiniMasters Loyalty Arrow (1).svg"
-            className="w-20 lg:w-24 xl:w-30"
+            className="w-16 lg:w-20 xl:w-24 2xl:w-30"
             alt=""
           />
         </div>
-        <h1 className="text-center text-base lg:text-lg xl:text-xl font-semibold">
+        <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
           Spelen wordt nu nog leuker met sparen!{" "}
-          <span className="text-[#FFCA58]">
+          <span className="text-[#BB76FF]">
             Meld je aan, ontvang 50 punten cadeau en pak direct bij je eerste
             bezoek al kassakorting.
           </span>{" "}
@@ -138,18 +138,18 @@ export default function MobileSection() {
           href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-10 py-3 rounded-full font-bold text-white text-base lg:text-lg tracking-wider hover:opacity-90 transition-opacity"
+          className="px-6 lg:px-8 xl:px-10 py-2 lg:py-2.5 xl:py-3 rounded-full font-bold text-white text-sm lg:text-base xl:text-lg tracking-wider hover:opacity-90 transition-opacity flex-shrink-0"
           style={{
             background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
           }}
         >
           MELD JE NU AAN!
         </a>
-        <div>
+        <div className="flex-shrink-0">
           <img
             loading="lazy"
             src="/MiniMasters Loyalty Arrow (2).svg"
-            className="w-20 lg:w-24 xl:w-30"
+            className="w-16 lg:w-20 xl:w-24 2xl:w-30"
             alt=""
           />
         </div>
@@ -194,7 +194,7 @@ export default function MobileSection() {
         <div className="lg:hidden flex flex-col items-center gap-4 max-w-md sm:max-w-lg mx-auto px-2">
           <h1 className="text-center text-sm xs:text-base sm:text-lg md:text-xl font-semibold text-[#5763FF]">
             Spelen wordt nu nog leuker met sparen!{" "}
-            <span className="text-[#FFCA58]">
+            <span className="text-[#BB76FF]">
               Meld je aan, ontvang 50 punten cadeau en pak direct bij je eerste
               bezoek al kassakorting.
             </span>{" "}
