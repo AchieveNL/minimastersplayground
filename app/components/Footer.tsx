@@ -315,6 +315,10 @@ export default function Footer() {
                 src="/FooterLogoV2.png"
                 alt=""
                 className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[28rem] xl:w-[36rem] 2xl:w-[42rem] relative"
+                style={{
+                  filter:
+                    "drop-shadow(0 0 20px rgba(255,255,255,0.12)) drop-shadow(0 0 40px rgba(255,255,255,0.06))",
+                }}
               />
             </Link>
             <div className="flex gap-6 mt-10 lg:mt-16">

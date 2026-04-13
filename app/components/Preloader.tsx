@@ -104,9 +104,11 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       >
         <div className="relative flex items-center justify-center">
           <div
-            className="absolute w-72 h-72 sm:w-96 sm:h-96 md:w-[30rem] md:h-[30rem] rounded-full pointer-events-none"
+            className="absolute top-1/2 left-1/2 w-72 h-72 sm:w-96 sm:h-96 md:w-[30rem] md:h-[30rem] rounded-full pointer-events-none"
             style={{
-              background: "radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 45%, transparent 70%)",
+              transform: "translate(-50%, -50%)",
+              WebkitTransform: "translate(-50%, -50%)",
+              background: "radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0) 70%)",
             }}
           />
           <img

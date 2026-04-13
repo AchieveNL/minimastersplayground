@@ -35,7 +35,7 @@ export default function AlgemeneVoorwaardenPage() {
             <div className="bg-[#5763FF]/10 rounded-2xl p-5 mb-8">
               <h3 className="font-bold text-[#5763FF] text-lg mb-2">Algemene gegevens</h3>
               <p className="text-gray-700 leading-relaxed">
-                Eigenarese: Sofia Hu<br />
+                Minimasters playground B.V.<br />
                 Adres: Marktstraat 38 t/m 42, 2741 NK te Waddinxveen<br />
                 E-mailadres: hero@minimastersplayground.nl<br />
                 KvK: 98235176

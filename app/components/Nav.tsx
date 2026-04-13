@@ -1,4 +1,5 @@
-"use client";import Link from "next/link";
+"use client";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -112,7 +113,7 @@ export default function Nav() {
         .to(
           logoImgRef.current,
           {
-            width: isMobile ? "9rem" : "10rem",
+            width: isMobile ? "10rem" : "14rem",
             clearProps: "marginTop,marginBottom",
           },
           0,
@@ -195,7 +196,7 @@ export default function Nav() {
               <img
                 ref={logoImgRef}
                 src="/header navbar logo.svg"
-                className="w-36 sm:w-44 md:w-72"
+                className="w-36 sm:w-44 md:w-56 xl:w-56 2xl:w-72"
                 style={{
                   filter:
                     "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))",
@@ -209,7 +210,7 @@ export default function Nav() {
             {/* Desktop Nav */}
             <div
               ref={linksRef}
-              className="xl:flex hidden gap-8 text-lg font-bold flex-1 justify-center text-nowrap"
+              className="xl:flex hidden gap-5 2xl:gap-8 text-base 2xl:text-lg font-bold flex-1 justify-center items-center text-nowrap flex-nowrap"
             >
               <a
                 href="#"
