@@ -27,7 +27,7 @@ export default function InfoCard({
   const animationName = `shake-${index}`;
 
   return (
-    <div className="">
+    <div className="lg:flex-1 lg:w-0">
       <style>{`
         @keyframes ${animationName} {
           0%, ${shakePercent}%, 100% { transform: rotate(0deg); }
