@@ -107,7 +107,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             src="/Yellow Glow.png"
             alt=""
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[370%] max-w-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[320%] sm:w-[280%] md:w-[240%] lg:w-[220%] xl:w-[200%] 2xl:w-[180%] max-w-none"
           />
           <img
             ref={logoRef}

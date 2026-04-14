@@ -26,7 +26,7 @@ export default function MobileSection() {
   return (
     <div
       style={{ fontFamily: "Quicksand" }}
-      className="relative -mt-14 flex flex-col lg:flex-row items-center lg:items-start justify-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-8 xl:px-20 2xl:px-40 overflow-visible pt-2 pb-24 sm:pb-32 lg:pb-32 xl:pb-40 gap-8 sm:gap-10 lg:gap-0"
+      className="relative -mt-14 flex flex-col lg:flex-row items-center lg:items-stretch justify-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-8 xl:px-20 2xl:px-40 overflow-visible pt-2 pb-24 sm:pb-32 lg:pb-32 xl:pb-40 gap-8 sm:gap-10 lg:gap-0"
     >
       <style>{`
         @keyframes phoneFloat1 {
@@ -62,7 +62,7 @@ export default function MobileSection() {
       {/* LEFT — iPhone 1 (Tijdsloten) */}
       <div
         ref={leftRef}
-        className="relative flex flex-col items-center gap-4 sm:gap-5 lg:gap-8 w-full sm:w-auto lg:flex-1"
+        className="relative flex flex-col items-center gap-4 sm:gap-5 lg:gap-8 w-full sm:w-auto lg:flex-1 lg:justify-between"
       >
         <div className="flex w-fit items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl py-2 md:py-3 overflow-visible">
           <img
@@ -109,7 +109,7 @@ export default function MobileSection() {
       {/* CENTER — Text + arrows (desktop only) */}
       <div
         ref={centerRef}
-        className="hidden lg:flex flex-col gap-3 lg:gap-3 xl:gap-5 2xl:gap-6 lg:w-[42%] xl:w-[38%] 2xl:w-[35%] m-auto text-[#5763FF] px-1 lg:px-2 xl:px-4 2xl:px-6 items-center mt-2 lg:mt-4 relative"
+        className="hidden lg:flex flex-col lg:w-[42%] xl:w-[38%] 2xl:w-[35%] m-auto text-[#5763FF] px-1 lg:px-2 xl:px-4 2xl:px-6 items-center mt-2 lg:mt-4 relative lg:justify-evenly"
       >
         <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
           Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en
@@ -158,7 +158,7 @@ export default function MobileSection() {
       <div
         id="loyalty"
         ref={rightRef}
-        className="relative flex flex-col items-center gap-4 sm:gap-5 lg:gap-8 w-full sm:w-auto lg:flex-1 lg:mt-0 mt-2"
+        className="relative flex flex-col items-center gap-4 sm:gap-5 lg:gap-8 w-full sm:w-auto lg:flex-1 lg:mt-0 mt-2 lg:justify-between"
       >
         <div className="flex w-fit items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl py-2 md:py-3 overflow-visible">
           <img
