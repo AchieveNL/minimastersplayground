@@ -110,7 +110,10 @@ export default function Footer() {
       let idleIdx = -1;
       for (let offset = 1; offset < prev.length; offset++) {
         const i = (nextIdx + offset) % prev.length;
-        if (prev[i] === "idle") { idleIdx = i; break; }
+        if (prev[i] === "idle") {
+          idleIdx = i;
+          break;
+        }
       }
       if (idleIdx === -1) return prev;
       const next = [...prev] as CardState[];
@@ -296,7 +299,7 @@ export default function Footer() {
       <div className="w-full" style={{ background: "#FFCA58" }}>
         {/* ✅ Content pulled up by half the wave height using negative marginTop.
             This visually centers the content at the wave/body boundary. */}
-        <div  
+        <div
           className="relative 
           flex flex-col lg:flex-row items-center justify-evenly gap-28 sm:gap-32 lg:gap-0 px-6 sm:px-10 pb-28 md:pb-44 md:pt-40 pt-20 min-h-0"
           style={{
@@ -315,7 +318,7 @@ export default function Footer() {
                 src="/Yellow Glow.png"
                 alt=""
                 aria-hidden="true"
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[140%] max-w-none"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[370%] max-w-none"
               />
               <img
                 loading="lazy"

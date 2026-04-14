@@ -101,9 +101,9 @@ export default function MobileSection() {
         ref={mobileTextRef}
         className="text-center text-sm xs:text-base sm:text-lg md:text-xl font-semibold lg:hidden block text-[#5763FF] -mt-2 max-w-md sm:max-w-lg mx-auto px-2"
       >
-        Bij ons staat kwaliteit centraal en verdient elk kind een unieke
-        speelbeleving. Door te werken met speelsessies zorgen we voor minder
-        drukte en meer speelplezier voor iedereen.
+        Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en
+        het spelen blijft hetzelfde. Door te werken met sessies zorgen we voor
+        minder drukte en meer speelplezier voor iedereen.
       </h1>
 
       {/* CENTER — Text + arrows (desktop only) */}
@@ -112,9 +112,9 @@ export default function MobileSection() {
         className="hidden lg:flex flex-col gap-3 lg:gap-3 xl:gap-5 2xl:gap-6 lg:w-[42%] xl:w-[38%] 2xl:w-[35%] m-auto text-[#5763FF] px-1 lg:px-2 xl:px-4 2xl:px-6 items-center mt-2 lg:mt-4 relative"
       >
         <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
-          Bij ons staat kwaliteit centraal en verdient elk kind een unieke
-          speelbeleving. Door te werken met speelsessies zorgen we voor minder
-          drukte en meer speelplezier voor iedereen.
+          Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en
+          het spelen blijft hetzelfde. Door te werken met sessies zorgen we
+          voor minder drukte en meer speelplezier voor iedereen.
         </h1>
         <div className="flex-shrink-0">
           <img
