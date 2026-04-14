@@ -126,7 +126,7 @@ export default function MobileSection() {
         </div>
         <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
           Spelen wordt nu nog leuker met sparen!{" "}
-          <span className="text-[#BB76FF]">
+          <span className="text-[#67CD8A]">
             Meld je aan, ontvang 50 punten cadeau en pak direct bij je eerste
             bezoek al kassakorting.
           </span>{" "}
