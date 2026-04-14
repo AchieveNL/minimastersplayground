@@ -312,13 +312,16 @@ export default function Footer() {
             <Link href="/" className="-mt-10 sm:-mt-16 lg:-mt-24 relative">
               <img
                 loading="lazy"
+                src="/Yellow Glow.png"
+                alt=""
+                aria-hidden="true"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[140%] max-w-none"
+              />
+              <img
+                loading="lazy"
                 src="/FooterLogoV2.png"
                 alt=""
                 className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[28rem] xl:w-[36rem] 2xl:w-[42rem] relative"
-                style={{
-                  filter:
-                    "drop-shadow(0 0 20px rgba(255,255,255,0.12)) drop-shadow(0 0 40px rgba(255,255,255,0.06))",
-                }}
               />
             </Link>
             <div className="flex gap-6 mt-10 lg:mt-16">

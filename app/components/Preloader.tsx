@@ -103,13 +103,11 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         style={{ margin: 0 }}
       >
         <div className="relative flex items-center justify-center">
-          <div
-            className="absolute top-1/2 left-1/2 w-72 h-72 sm:w-96 sm:h-96 md:w-[30rem] md:h-[30rem] rounded-full pointer-events-none"
-            style={{
-              transform: "translate(-50%, -50%)",
-              WebkitTransform: "translate(-50%, -50%)",
-              background: "radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0) 70%)",
-            }}
+          <img
+            src="/Yellow Glow.png"
+            alt=""
+            aria-hidden="true"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[140%] max-w-none"
           />
           <img
             ref={logoRef}
