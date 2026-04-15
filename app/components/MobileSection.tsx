@@ -109,7 +109,7 @@ export default function MobileSection() {
       {/* CENTER — Text + arrows (desktop only) */}
       <div
         ref={centerRef}
-        className="hidden lg:flex flex-col lg:w-[42%] xl:w-[38%] 2xl:w-[35%] m-auto text-[#5763FF] px-1 lg:px-2 xl:px-4 2xl:px-6 items-center mt-2 lg:mt-4 relative lg:justify-evenly"
+        className="hidden lg:flex flex-col gap-5 lg:w-[42%] xl:w-[38%] 2xl:w-[35%] m-auto text-[#5763FF] px-1 lg:px-2 xl:px-4 2xl:px-6 items-center mt-2 lg:mt-4 relative"
       >
         <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
           Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en
@@ -125,13 +125,17 @@ export default function MobileSection() {
           />
         </div>
         <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
-          Spelen wordt nu nog leuker met sparen!{" "}
+          Spelen wordt nog leuker met sparen!
+          <br />
           <span className="text-[#67CD8A]">
-            Meld je aan, ontvang 50 punten cadeau en pak direct bij je eerste
-            bezoek al kassakorting.
-          </span>{" "}
-          Spaar mee voor leuke beloningen en bewaar je QR-code handig in je
-          e-wallet zodat je je punten altijd bij de hand hebt!
+            Meld je aan en ontvang 10 punten cadeau.
+          </span>
+          <br />
+          Voor elke €1 die je besteedt, ontvang je 1 punt.
+        </h1>
+        <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
+          Spaar voor leuke beloningen en bewaar je QR-code eenvoudig in je
+          e-wallet, zodat je je punten altijd bij de hand hebt.
         </h1>
         <a
           href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
@@ -192,13 +196,17 @@ export default function MobileSection() {
         </div>
         <div className="lg:hidden flex flex-col items-center gap-4 max-w-md sm:max-w-lg mx-auto px-2">
           <h1 className="text-center text-sm xs:text-base sm:text-lg md:text-xl font-semibold text-[#5763FF]">
-            Spelen wordt nu nog leuker met sparen!{" "}
-            <span className="text-[#BB76FF]">
-              Meld je aan, ontvang 50 punten cadeau en pak direct bij je eerste
-              bezoek al kassakorting.
-            </span>{" "}
-            Spaar mee voor leuke beloningen en bewaar je QR-code handig in je
-            e-wallet zodat je je punten altijd bij de hand hebt!
+            Spelen wordt nog leuker met sparen!
+            <br />
+            <span className="text-[#67CD8A]">
+              Meld je aan en ontvang 10 punten cadeau.
+            </span>
+            <br />
+            Voor elke €1 die je besteedt, ontvang je 1 punt.
+          </h1>
+          <h1 className="text-center text-sm xs:text-base sm:text-lg md:text-xl font-semibold text-[#5763FF]">
+            Spaar voor leuke beloningen en bewaar je QR-code eenvoudig in je
+            e-wallet, zodat je je punten altijd bij de hand hebt.
           </h1>
           <a
             href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
