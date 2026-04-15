@@ -408,16 +408,18 @@ export default function Footer() {
                     const body = new FormData();
                     body.append("email", email);
                     const res = await fetch(
-                      "https://api.leat.com/api/v1/forms/6e833c5f-50b3-459d-b091-43969efec8fc/public/submit",
+                      "https://api.leat.com/api/v1/forms/13816a98-5cca-4d59-ac85-e42ba8cccc62/public/submit",
                       { method: "POST", body },
                     );
                     if (res.ok) {
                       setFormStatus("success");
                       form.reset();
                     } else {
+                      console.error("Leat form error:", res.status, await res.text());
                       setFormStatus("error");
                     }
-                  } catch {
+                  } catch (err) {
+                    console.error("Leat form submit failed:", err);
                     setFormStatus("error");
                   }
                 }}
