@@ -318,7 +318,7 @@ export default function Footer() {
                 src="/Yellow Glow.png"
                 alt=""
                 aria-hidden="true"
-                className="absolute top-[62%] xs:top-[64%] sm:top-[66%] md:top-[68%] lg:top-[70%] xl:top-[72%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[180%] xs:w-[200%] sm:w-[220%] md:w-[290%] lg:w-[280%] xl:w-[270%] 2xl:w-[260%] max-w-none opacity-55 md:opacity-100"
+                className="absolute top-[62%] xs:top-[64%] sm:top-[66%] md:top-[68%] lg:top-[78%] xl:top-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[180%] xs:w-[200%] sm:w-[220%] md:w-[290%] lg:w-[200%] xl:w-[190%] 2xl:w-[180%] max-w-none opacity-55 md:opacity-70 lg:opacity-50"
               />
               <img
                 loading="lazy"

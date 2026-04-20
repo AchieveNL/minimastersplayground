@@ -264,7 +264,7 @@ export default function Nav() {
             </div>
 
             {/* Mobile: Hamburger + Tickets button */}
-            <div className="xl:hidden flex items-center gap-1.5 ml-auto self-start -mt-1 -mr-1 sm:-mr-2 md:self-auto md:mt-6 md:mr-0">
+            <div className="xl:hidden flex items-center gap-1.5 ml-auto -mr-1 sm:-mr-2 md:mr-0">
               <button
                 ref={hamburgerRef}
                 onClick={() => setIsOpen(!isOpen)}
