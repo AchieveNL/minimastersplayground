@@ -374,9 +374,16 @@ export default function Footer() {
           <div
             id="contact"
             ref={newsletterRef}
-            className="flex-1 min-w-0 relative z-20 flex flex-col items-start w-full lg:max-w-sm lg:w-1/3"
+            className="flex-1 min-w-0 relative z-20 flex flex-col items-center lg:items-start w-full lg:max-w-sm lg:w-1/3"
           >
-            <div className="w-full px-2 lg:px-0 flex flex-col items-start">
+            <img
+              loading="lazy"
+              src="/Yellow Glow.png"
+              alt=""
+              aria-hidden="true"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[280%] max-w-none opacity-55 -z-10 lg:hidden"
+            />
+            <div className="w-full px-2 lg:px-0 flex flex-col items-center lg:items-start">
               <h2
                 className="font-extrabold text-white text-base lg:text-xl leading-snug mb-3 px-6 py-2 rounded-full w-fit"
                 style={{
@@ -388,7 +395,7 @@ export default function Footer() {
                 JOIN THE COMMUNITY
               </h2>
               <p
-                className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6 text-left"
+                className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6 text-center lg:text-left"
                 style={{ fontFamily: "Quicksand" }}
               >
                 Ontvang als eerste updates over onze opening, activiteiten en
@@ -423,7 +430,7 @@ export default function Footer() {
                     setFormStatus("error");
                   }
                 }}
-                className="flex flex-col gap-4"
+                className="flex flex-col gap-4 w-full items-center lg:items-start"
               >
                 {formStatus === "success" ? (
                   <p className="text-[#67CD8A] font-bold text-sm">
@@ -431,13 +438,13 @@ export default function Footer() {
                   </p>
                 ) : (
                   <>
-                    <div>
+                    <div className="w-full">
                       <input
                         type="email"
                         name="email"
                         required
                         placeholder="E-mailadres*"
-                        className="w-full rounded-full bg-white/80 outline-none text-gray-700 font-medium py-3 px-5 placeholder-gray-400"
+                        className="w-full rounded-full bg-white/80 outline-none text-gray-700 font-medium py-3 px-5 placeholder-gray-400 text-center lg:text-left"
                         style={{ fontFamily: "Quicksand" }}
                       />
                     </div>
@@ -463,7 +470,7 @@ export default function Footer() {
             </div>
 
             {/* Contact icons */}
-            <div className="flex mt-5 justify-start gap-6 px-2 lg:px-0">
+            <div className="flex mt-5 justify-center lg:justify-start gap-6 px-2 lg:px-0">
               <Link
                 href="https://share.google/ZLMrmSLkckXFQ7fsW"
                 target="_blank"
@@ -499,7 +506,7 @@ export default function Footer() {
 
             {/* Address + Contact details */}
             <div
-              className="mt-5 px-2 lg:px-0 text-[#5763FF] font-semibold text-sm lg:text-base leading-relaxed"
+              className="mt-5 px-2 lg:px-0 text-[#5763FF] font-semibold text-sm lg:text-base leading-relaxed text-center lg:text-left"
               style={{ fontFamily: "Quicksand" }}
             >
               <Link

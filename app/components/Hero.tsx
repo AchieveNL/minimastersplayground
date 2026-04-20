@@ -66,12 +66,13 @@ export default function Hero() {
   }, []);
   const infoCards = [
     {
-      posMobile: -25,
+      iconWidthMobile: 95,
+      posMobileLeft: "-15%",
       pos: -60,
       iconWidth: 92,
       icon: "/elements/Groep Icoon.svg",
       title: (
-        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-6 pl-8 w-full rounded-br-4xl">
           DE MINI MAATSCHAPPIJ
         </h1>
       ),
@@ -79,12 +80,13 @@ export default function Hero() {
         "Binnen minimasters stappen kinderen in een wereld die volledig is afgestemd op hun eigen belevingswereld. Zij krijgen de ruimte om spelenderwijs te ontdekken hoe vormen van samenwerking een belangrijke rol spelen in het dagelijks leven.",
     },
     {
-      posMobile: -65,
+      iconWidthMobile: 120,
+      posMobileLeft: "-20%",
       pos: -90,
       iconWidth: 120,
       icon: "/elements/Educatie Icoon.svg",
       title: (
-        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-8 pl-14 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-8 pl-8 w-full rounded-br-4xl">
           HET EDUCATIEVE KARAKTER
         </h1>
       ),
@@ -92,12 +94,13 @@ export default function Hero() {
         "Ons doel is om kinderen te laten leren door te doen, door actief deel te nemen aan herkenbare beroepen. Zelfvertrouwen en creativiteit krijgen de ruimte omdat er geen goed of fout bestaat: elk kind mag op zijn eigen manier ontdekken.",
     },
     {
-      posMobile: -27,
+      iconWidthMobile: 95,
+      posMobileLeft: "-15%",
       pos: -85,
       iconWidth: 96,
       icon: "/elements/Standaard Icoon.svg",
       title: (
-        <h1 className="font-bold md:text-lg text-base text-center text-[#FDF9EF] md:pl-6 pl-14 w-full rounded-br-4xl text-nowrap">
+        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-6 pl-8 w-full rounded-br-4xl">
           DE NIEUWE STANDAARD
         </h1>
       ),
@@ -162,8 +165,9 @@ export default function Hero() {
           return (
             <InfoCard
               posDesktop={card.pos}
-              posMobile={card.posMobile}
               iconWidth={card.iconWidth}
+              iconWidthMobile={card.iconWidthMobile}
+              posMobileLeft={card.posMobileLeft}
               key={index}
               index={index}
               title={card.title}

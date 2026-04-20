@@ -1,5 +1,4 @@
-"use client";
-import Link from "next/link";
+"use client";import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -249,30 +248,47 @@ export default function Nav() {
               </Link>
             </div>
 
-            {/* Hamburger Button (mobile only) */}
-            <button
-              ref={hamburgerRef}
-              onClick={() => setIsOpen(!isOpen)}
-              className="xl:hidden flex flex-col justify-center items-center gap-1.5 ml-auto z-50 w-10 h-10"
-              style={{ opacity: 0 }}
-              aria-label="Toggle menu"
-            >
-              <span
-                className={`block h-[3px] w-7 rounded-full bg-white transition-all duration-300 ${
-                  isOpen ? "rotate-45 translate-y-2" : ""
-                }`}
-              />
-              <span
-                className={`block h-[3px] w-7 rounded-full bg-white transition-all duration-300 ${
-                  isOpen ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`block h-[3px] w-7 rounded-full bg-white transition-all duration-300 ${
-                  isOpen ? "-rotate-45 -translate-y-2" : ""
-                }`}
-              />
-            </button>
+            {/* Mobile: Hamburger + Tickets button */}
+            <div className="xl:hidden flex items-center gap-1.5 ml-auto self-start -mt-1 -mr-1 sm:-mr-2 md:self-auto md:mt-6 md:mr-0">
+              <button
+                ref={hamburgerRef}
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex flex-col justify-center items-center gap-[5px] rounded-full w-10 h-10 z-50"
+                style={{
+                  opacity: 0,
+                  background:
+                    "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+                }}
+                aria-label="Toggle menu"
+              >
+                <span
+                  className={`block h-[2.5px] w-[18px] rounded-full bg-white transition-all duration-300 ${
+                    isOpen ? "rotate-45 translate-y-[7.5px]" : ""
+                  }`}
+                />
+                <span
+                  className={`block h-[2.5px] w-[18px] rounded-full bg-white transition-all duration-300 ${
+                    isOpen ? "opacity-0" : ""
+                  }`}
+                />
+                <span
+                  className={`block h-[2.5px] w-[18px] rounded-full bg-white transition-all duration-300 ${
+                    isOpen ? "-rotate-45 -translate-y-[7.5px]" : ""
+                  }`}
+                />
+              </button>
+              <Link
+                href="/#tickets"
+                className="text-white text-sm font-bold px-4 h-10 inline-flex items-center rounded-full leading-none"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+                  fontFamily: "Quicksand, sans-serif",
+                }}
+              >
+                Tickets
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -320,7 +336,11 @@ export default function Nav() {
             aria-hidden="true"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[170%] max-w-none opacity-50"
           />
-          <img src="/header navbar logo.svg" className="w-3/4 p-2 relative" alt="" />
+          <img
+            src="/header navbar logo.svg"
+            className="w-3/4 p-2 relative"
+            alt=""
+          />
         </Link>
         <a
           href="#"

@@ -1,4 +1,5 @@
-"use client";import { useScrollAnimation } from "../hooks/useScrollAnimation";
+"use client";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function MobileSection() {
   const leftRef = useScrollAnimation<HTMLDivElement>({
@@ -64,12 +65,12 @@ export default function MobileSection() {
         ref={leftRef}
         className="relative flex flex-col items-center gap-4 sm:gap-5 lg:gap-8 w-full sm:w-auto lg:flex-1"
       >
-        <div className="flex w-fit items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl py-2 md:py-3 overflow-visible">
+        <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
           <img
             loading="lazy"
             src="/newclockIcon.svg"
             className="absolute lg:hidden"
-            style={{ width: "70px", left: "-22%" }}
+            style={{ width: "100px", left: "-20%" }}
             alt=""
           />
           <img
@@ -79,7 +80,7 @@ export default function MobileSection() {
             style={{ width: "100px", left: -55 }}
             alt=""
           />
-          <h1 className="font-bold text-sm sm:text-base md:text-lg text-center text-[#FDF9EF] pl-12 sm:pl-14 md:pl-16 pr-4 sm:pr-5 md:pr-8 w-full rounded-br-4xl text-nowrap">
+          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 w-full rounded-br-4xl">
             ONZE TIJDSLOTEN
           </h1>
         </div>
@@ -113,8 +114,8 @@ export default function MobileSection() {
       >
         <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
           Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en
-          het spelen blijft hetzelfde. Door te werken met sessies zorgen we
-          voor minder drukte en meer speelplezier voor iedereen.
+          het spelen blijft hetzelfde. Door te werken met sessies zorgen we voor
+          minder drukte en meer speelplezier voor iedereen.
         </h1>
         <div className="flex-shrink-0">
           <img
@@ -164,12 +165,12 @@ export default function MobileSection() {
         ref={rightRef}
         className="relative flex flex-col items-center gap-4 sm:gap-5 lg:gap-8 w-full sm:w-auto lg:flex-1 lg:mt-0 mt-2"
       >
-        <div className="flex w-fit items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl py-2 md:py-3 overflow-visible">
+        <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
           <img
             loading="lazy"
             src="/elements/Loyalty Icoon.svg"
             className="absolute lg:hidden"
-            style={{ width: "70px", left: "-13%" }}
+            style={{ width: "100px", left: "-20%" }}
             alt=""
           />
           <img
@@ -179,7 +180,7 @@ export default function MobileSection() {
             style={{ width: "100px", left: -45 }}
             alt=""
           />
-          <h1 className="font-bold text-sm sm:text-base md:text-lg text-center text-[#FDF9EF] pl-12 sm:pl-14 md:pl-16 pr-4 sm:pr-5 md:pr-8 w-full rounded-br-4xl text-nowrap">
+          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 w-full rounded-br-4xl">
             LOYALTY PROGRAMMA
           </h1>
         </div>

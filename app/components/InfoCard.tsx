@@ -6,7 +6,8 @@ export default function InfoCard({
   description,
   iconWidth,
   posDesktop,
-  posMobile,
+  iconWidthMobile = 120,
+  posMobileLeft = "-20%",
   index = 0,
 }: {
   icon?: string;
@@ -14,7 +15,8 @@ export default function InfoCard({
   description?: string;
   iconWidth?: number;
   posDesktop?: number;
-  posMobile?: number;
+  iconWidthMobile?: number;
+  posMobileLeft?: string;
   index?: number;
 }) {
   const totalIcons = 3;
@@ -37,13 +39,13 @@ export default function InfoCard({
           ${shakePercent * 0.8}% { transform: rotate(5deg); }
         }
       `}</style>
-      <div className="flex items-center relative justify-center xl:w-[75%] xl:mx-auto mx-5 m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl md:py-3 py-2">
+      <div className="flex w-fit md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl">
         <img loading="lazy"
           src={icon}
           className="absolute md:hidden"
           style={{
-            width: (iconWidth ?? 100) * 0.65,
-            left: (posMobile ?? 0) * 0.55,
+            width: `${iconWidthMobile}px`,
+            left: posMobileLeft,
             animation: `${animationName} ${cycleLength}s ease-in-out ${delay}s infinite`,
           }}
           alt=""
