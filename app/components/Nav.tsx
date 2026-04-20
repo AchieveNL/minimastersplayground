@@ -1,4 +1,5 @@
-"use client";import Link from "next/link";
+"use client";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -93,7 +94,10 @@ export default function Nav() {
         .to(flatBgRef.current, { opacity: 0 }, 0)
         .to(
           contentRef.current,
-          { paddingTop: "0.5rem", paddingBottom: "0.5rem" },
+          {
+            paddingTop: isMobile ? "1rem" : "0.5rem",
+            paddingBottom: isMobile ? "1rem" : "0.5rem",
+          },
           0,
         )
         .to(
@@ -111,8 +115,8 @@ export default function Nav() {
         .to(
           contentRef.current,
           {
-            paddingTop: isMobile ? "0.5rem" : "1.5rem",
-            paddingBottom: isMobile ? "0.5rem" : "2.5rem",
+            paddingTop: isMobile ? "1rem" : "1.5rem",
+            paddingBottom: isMobile ? "1rem" : "2.5rem",
           },
           0,
         )
@@ -157,7 +161,7 @@ export default function Nav() {
             <path
               d={
                 isMobile
-                  ? "M-1 0L1753 0L1753 205C1753 205 1594.78 198 1327.5 194C1138.62 190 1003.14 193 819.492 198C599.677 204 340.285 212 264 212C43 212 -1 208 -1 208L-1 0Z"
+                  ? "M-1 0L1753 0L1753 205C1753 205 1594.78 184 1327.5 171C1138.62 161 1003.14 170 819.492 183C599.677 202 340.285 226 264 226C43 226 -1 214 -1 214L-1 0Z"
                   : "M-1 0L1753 0L1753 205C1753 205 1594.78 170 1327.5 148C1138.62 130 1003.14 145 819.492 168C599.677 200 340.285 240 264 240C43 240 -1 220 -1 220L-1 0Z"
               }
               fill="#FDF9EF"
@@ -166,7 +170,7 @@ export default function Nav() {
             <path
               d={
                 isMobile
-                  ? "M-1 0L1753 0L1753 174C1753 174 1594.78 168 1327.5 163C1138.62 160 1003.14 164 819.492 170C599.677 178 340.285 187 264 187C43 187 -1 183 -1 183L-1 0Z"
+                  ? "M-1 0L1753 0L1753 174C1753 174 1594.78 156 1327.5 142C1138.62 133 1003.14 145 819.492 163C599.677 186 340.285 212 264 212C43 212 -1 199 -1 199L-1 0Z"
                   : "M-1 0L1753 0L1753 174.108C1753 174.108 1594.78 143 1327.5 120.229C1138.62 104.138 1003.14 124.719 819.492 154.652C599.677 194.063 340.285 238.5 264 238.5C43 238.5 -1 216.5 -1 216.5L-1 0Z"
               }
               fill="url(#nav_gradient)"
@@ -264,7 +268,7 @@ export default function Nav() {
             </div>
 
             {/* Mobile: Hamburger + Tickets button */}
-            <div className="xl:hidden flex items-center gap-1.5 ml-auto -mr-1 sm:-mr-2 md:mr-0">
+            <div className="xl:hidden flex items-center pb-2.5 gap-1.5 ml-auto -mr-1 sm:-mr-2 md:mr-0">
               <button
                 ref={hamburgerRef}
                 onClick={() => setIsOpen(!isOpen)}
