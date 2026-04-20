@@ -504,26 +504,6 @@ export default function Footer() {
               </Link>
             </div>
 
-            {/* Address + Contact details */}
-            <div
-              className="mt-5 px-2 lg:px-0 text-[#5763FF] font-semibold text-sm lg:text-base leading-relaxed text-center lg:text-left"
-              style={{ fontFamily: "Quicksand" }}
-            >
-              <Link
-                href="https://share.google/ZLMrmSLkckXFQ7fsW"
-                target="_blank"
-                className="block hover:underline"
-              >
-                Marktstraat 38, 2741 NK Waddinxveen
-              </Link>
-              <p>Tel:</p>
-              <Link
-                href="mailto:hero@minimastersplayground.nl"
-                className="block hover:underline"
-              >
-                E-mail: hero@minimastersplayground.nl
-              </Link>
-            </div>
           </div>
         </div>
       </div>

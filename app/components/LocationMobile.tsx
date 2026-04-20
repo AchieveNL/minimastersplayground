@@ -33,7 +33,7 @@ export default function LocationMobile() {
 
   const W = containerSize.w || 375;
   const H = containerSize.h || 700;
-  const AMP = 20;
+  const AMP = 15;
 
   const wavePath = [
     `M 0,${AMP * 1.0}`,

@@ -58,7 +58,7 @@ export default function Slider() {
 
   const W = containerSize.w || 1440;
   const H = containerSize.h || 800;
-  const AMP = isMobile ? 20 : 40;
+  const AMP = isMobile ? 15 : 40;
 
   const wavePath = [
     `M 0,${AMP * 1.0}`,
