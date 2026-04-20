@@ -7,7 +7,7 @@ export default function Slider() {
       bg: "img4.jpg",
       text1: "Scholen & BSO",
       text2: "",
-      link: "https://minimasters.booqi.me/product/297636/scholen-bso",
+      link: "#contact",
       btnText: "SCHOOL & BSO",
       btnColor: "#FFCA58",
     },
@@ -15,7 +15,7 @@ export default function Slider() {
       bg: "img1.jpg",
       text1: "Entreeticket",
       text2: "",
-      link: "https://minimasters.booqi.me/product/296874/entreetickets",
+      link: "#contact",
       btnText: "DIRECT BOEKEN",
       btnColor: "#67CD8A",
     },
@@ -23,7 +23,7 @@ export default function Slider() {
       bg: "img5.jpg",
       text1: "Kinderfeestje",
       text2: "",
-      link: "https://minimasters.booqi.me/product/296875/kinderfeestjes",
+      link: "#contact",
       btnText: "VERJAARDAG",
       btnColor: "#FFCA58",
     },
@@ -186,8 +186,9 @@ export default function Slider() {
               <a
                 key={index}
                 href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(item.link.startsWith("#")
+                  ? {}
+                  : { target: "_blank", rel: "noopener noreferrer" })}
                 style={cardStyle}
                 className={`${cardClass} group`}
               >

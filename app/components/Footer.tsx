@@ -318,7 +318,7 @@ export default function Footer() {
                 src="/Yellow Glow.png"
                 alt=""
                 aria-hidden="true"
-                className="absolute top-[62%] xs:top-[64%] sm:top-[66%] md:top-[68%] lg:top-[70%] xl:top-[72%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[320%] xs:w-[310%] sm:w-[300%] md:w-[290%] lg:w-[280%] xl:w-[270%] 2xl:w-[260%] max-w-none"
+                className="absolute top-[62%] xs:top-[64%] sm:top-[66%] md:top-[68%] lg:top-[70%] xl:top-[72%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[180%] xs:w-[200%] sm:w-[220%] md:w-[290%] lg:w-[280%] xl:w-[270%] 2xl:w-[260%] max-w-none opacity-55 md:opacity-100"
               />
               <img
                 loading="lazy"
@@ -494,6 +494,27 @@ export default function Footer() {
                   className="w-9 lg:w-10 xl:w-13 drop-shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-1 group-hover:drop-shadow-lg group-hover:opacity-80"
                   alt=""
                 />
+              </Link>
+            </div>
+
+            {/* Address + Contact details */}
+            <div
+              className="mt-5 px-2 lg:px-0 text-[#5763FF] font-semibold text-sm lg:text-base leading-relaxed"
+              style={{ fontFamily: "Quicksand" }}
+            >
+              <Link
+                href="https://share.google/ZLMrmSLkckXFQ7fsW"
+                target="_blank"
+                className="block hover:underline"
+              >
+                Marktstraat 38, 2741 NK Waddinxveen
+              </Link>
+              <p>Tel:</p>
+              <Link
+                href="mailto:hero@minimastersplayground.nl"
+                className="block hover:underline"
+              >
+                E-mail: hero@minimastersplayground.nl
               </Link>
             </div>
           </div>

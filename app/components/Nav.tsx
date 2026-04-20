@@ -312,9 +312,15 @@ export default function Nav() {
         <Link
           href="/"
           onClick={() => setIsOpen(false)}
-          className="flex justify-center w-full mt-4"
+          className="flex justify-center w-full mt-4 relative"
         >
-          <img src="/header navbar logo.svg" className="w-3/4 p-2" alt="" />
+          <img
+            src="/Yellow Glow.png"
+            alt=""
+            aria-hidden="true"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[170%] max-w-none opacity-50"
+          />
+          <img src="/header navbar logo.svg" className="w-3/4 p-2 relative" alt="" />
         </Link>
         <a
           href="#"

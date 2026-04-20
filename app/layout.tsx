@@ -18,6 +18,25 @@ export const metadata: Metadata = {
   icons: {
     icon: "/MiniMastersFavicon.png",
   },
+  openGraph: {
+    title: "Minimasters Playground - Tiny Heroes Big Adventures",
+    description: "Minimasters is een unieke belevingswereld waar kinderen spelenderwijs de grote-mensenwereld ontdekken.",
+    images: [
+      {
+        url: "/linkpreview.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Minimasters Playground",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Minimasters Playground - Tiny Heroes Big Adventures",
+    description: "Minimasters is een unieke belevingswereld waar kinderen spelenderwijs de grote-mensenwereld ontdekken.",
+    images: ["/linkpreview.jpeg"],
+  },
 };
 
 export default function RootLayout({
