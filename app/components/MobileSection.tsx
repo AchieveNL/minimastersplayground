@@ -27,7 +27,7 @@ export default function MobileSection() {
   return (
     <div
       style={{ fontFamily: "Quicksand" }}
-      className="relative -mt-14 flex flex-col lg:flex-row items-center lg:items-start justify-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-8 xl:px-20 2xl:px-40 overflow-visible pt-2 pb-24 sm:pb-32 lg:pb-32 xl:pb-40 gap-8 sm:gap-10 lg:gap-0"
+      className="relative -mt-14 flex flex-col lg:flex-row items-center lg:items-start justify-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-8 xl:px-20 2xl:px-40 overflow-visible pt-2 pb-8 sm:pb-20 lg:pb-32 xl:pb-40 gap-8 sm:gap-10 lg:gap-0"
     >
       <style>{`
         @keyframes phoneFloat1 {
@@ -63,7 +63,7 @@ export default function MobileSection() {
       {/* LEFT — iPhone 1 (Tijdsloten) */}
       <div
         ref={leftRef}
-        className="relative flex flex-col items-center gap-4 sm:gap-5 lg:gap-8 w-full sm:w-auto lg:flex-1"
+        className="relative flex flex-col items-center gap-10 sm:gap-10 lg:gap-8 w-full sm:w-auto lg:flex-1"
       >
         <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
           <img
@@ -138,17 +138,30 @@ export default function MobileSection() {
           Spaar voor leuke beloningen en bewaar je QR-code eenvoudig in je
           e-wallet, zodat je je punten altijd bij de hand hebt.
         </h1>
-        <a
-          href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-6 lg:px-8 xl:px-10 py-2 lg:py-2.5 xl:py-3 rounded-full font-bold text-white text-sm lg:text-base xl:text-lg tracking-wider hover:opacity-90 transition-opacity flex-shrink-0"
-          style={{
-            background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
-          }}
-        >
-          MELD JE NU AAN!
-        </a>
+        <div className="flex flex-wrap justify-center gap-3 flex-shrink-0">
+          <a
+            href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 lg:px-8 xl:px-10 py-2 lg:py-2.5 xl:py-3 rounded-full font-bold text-white text-sm lg:text-base xl:text-lg tracking-wider hover:opacity-90 transition-opacity"
+            style={{
+              background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
+            }}
+          >
+            MELD JE NU AAN!
+          </a>
+          <a
+            href="https://minimasters-playground.app.leat.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 lg:px-8 xl:px-10 py-2 lg:py-2.5 xl:py-3 rounded-full font-bold text-white text-sm lg:text-base xl:text-lg tracking-wider hover:opacity-90 transition-opacity"
+            style={{
+              background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+            }}
+          >
+            INLOGGEN
+          </a>
+        </div>
         <div className="flex-shrink-0">
           <img
             loading="lazy"
@@ -163,7 +176,7 @@ export default function MobileSection() {
       <div
         id="loyalty"
         ref={rightRef}
-        className="relative flex flex-col items-center gap-4 sm:gap-5 lg:gap-8 w-full sm:w-auto lg:flex-1 lg:mt-0 mt-2"
+        className="relative flex flex-col items-center gap-10 sm:gap-10 lg:gap-8 w-full sm:w-auto lg:flex-1 lg:mt-0 mt-2"
       >
         <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
           <img
@@ -209,17 +222,30 @@ export default function MobileSection() {
             Spaar voor leuke beloningen en bewaar je QR-code eenvoudig in je
             e-wallet, zodat je je punten altijd bij de hand hebt.
           </h1>
-          <a
-            href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-2.5 rounded-full font-bold text-white text-sm sm:text-base tracking-wider hover:opacity-90 transition-opacity"
-            style={{
-              background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
-            }}
-          >
-            MELD JE NU AAN!
-          </a>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-2.5 rounded-full font-bold text-white text-sm sm:text-base tracking-wider hover:opacity-90 transition-opacity"
+              style={{
+                background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
+              }}
+            >
+              MELD JE NU AAN!
+            </a>
+            <a
+              href="https://minimasters-playground.app.leat.com/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-2.5 rounded-full font-bold text-white text-sm sm:text-base tracking-wider hover:opacity-90 transition-opacity"
+              style={{
+                background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+              }}
+            >
+              INLOGGEN
+            </a>
+          </div>
         </div>
       </div>
     </div>
