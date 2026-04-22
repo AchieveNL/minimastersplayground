@@ -54,7 +54,7 @@ export default function RootLayout({
         {/* <link rel="preconnect" href="https://fonts.googleapis.com"> */}
         {/* <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Quicksand:wght@300..700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Quicksand:wght@300..700&family=Titan+One&display=swap"
           rel="stylesheet"
         ></link>
       </head>

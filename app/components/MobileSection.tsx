@@ -148,7 +148,7 @@ export default function MobileSection() {
               background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
             }}
           >
-            MELD JE NU AAN!
+            MELD JE AAN!
           </a>
           <a
             href="https://minimasters-playground.app.leat.com/login"
@@ -232,7 +232,7 @@ export default function MobileSection() {
                 background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
               }}
             >
-              MELD JE NU AAN!
+              MELD JE AAN!
             </a>
             <a
               href="https://minimasters-playground.app.leat.com/login"

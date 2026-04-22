@@ -329,7 +329,8 @@ export default function Nav() {
         style={{
           fontFamily: "Quicksand, sans-serif",
           fontWeight: "bold",
-          backgroundColor: "#FFCA58",
+          background:
+            "linear-gradient(180deg, #FFCA58 0%, #FFDB8D 50%, #FFE9B5 100%)",
           boxShadow: isOpen ? "-4px 0 20px rgba(0,0,0,0.15)" : "none",
         }}
       >
