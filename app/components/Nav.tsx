@@ -148,10 +148,6 @@ export default function Nav() {
           <svg
             ref={waveSvgRef}
             className="absolute top-0 left-0 w-full h-[calc(100%+40px)] md:h-[calc(100%+90px)]!"
-            style={{
-              willChange: "transform, opacity",
-              transform: "translateZ(0)",
-            }}
             viewBox="0 0 1752 280"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -216,10 +212,7 @@ export default function Nav() {
                 src="/header navbar logo.svg"
                 className="w-36 sm:w-44 md:w-56 xl:w-56 2xl:w-72"
                 style={{
-                  filter:
-                    "drop-shadow(0 0 25px rgba(255,255,255,0.7)) drop-shadow(0 0 50px rgba(255,255,255,0.4)) drop-shadow(0 0 80px rgba(255,255,255,0.2))",
-                  willChange: "transform",
-                  transform: "translateZ(0)",
+                  filter: "drop-shadow(0 0 30px rgba(255,255,255,0.55))",
                 }}
                 alt=""
               />
@@ -297,7 +290,7 @@ export default function Nav() {
                 />
               </button>
               <Link
-                href="/#tickets"
+                href="/#contact"
                 className="text-white text-sm font-bold px-4 h-10 inline-flex items-center rounded-full leading-none"
                 style={{
                   background:

@@ -69,15 +69,22 @@ export default function AnimatedSlider({
         aria-hidden="true"
       >
         <defs>
-          <clipPath id={variant === "hero" ? "wavyClipHero" : "wavyClipFooter"} clipPathUnits="objectBoundingBox">
+          <clipPath
+            id={variant === "hero" ? "wavyClipHero" : "wavyClipFooter"}
+            clipPathUnits="objectBoundingBox"
+          >
             <path d={desktopPath} />
           </clipPath>
         </defs>
       </svg>
 
       <div
-        style={{ clipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})`, WebkitClipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})`, WebkitTransform: "translateZ(0)" }}
-        className={`w-full overflow-hidden bg-[#FDF9EF] relative ${variant === "hero" ? "mt-2 md:mt-8 xl:mt-0 xl:h-[70vh] lg:h-[60vh] md:h-[420px] h-72 2xl:h-[80vh] mb-4 md:mb-26" : "xl:h-[70vh] lg:h-[60vh] md:h-[420px] h-72 2xl:h-[80vh] mb-26"}`}
+        style={{
+          clipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})`,
+          WebkitClipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})`,
+          WebkitTransform: "translateZ(0)",
+        }}
+        className={`w-full overflow-hidden bg-[#FDF9EF] relative ${variant === "hero" ? "mt-2 md:mt-8 xl:mt-0 xl:h-[70vh] lg:h-[60vh] md:h-[420px] h-72 2xl:h-[80vh] mb-4 md:mb-26" : "xl:h-[70vh] lg:h-[60vh] md:h-[420px] h-72 2xl:h-[80vh] mb-18 md:mb-26"}`}
       >
         <Marquee
           speed={marqueeSpeed}
@@ -157,12 +164,36 @@ export default function AnimatedSlider({
               alt=""
               className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
             />
-            <img src="/assets/hero-imgs/img1.png" alt="" className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3" />
-            <img src="/assets/hero-imgs/img2.jpg" alt="" className="w-full h-full object-cover rounded-sm md:-mt-10" />
-            <img src="/assets/hero-imgs/img3.jpg" alt="" className="w-full h-full object-cover rounded-sm md:mt-0 mt-5" />
-            <img src="/assets/hero-imgs/img4.jpg" alt="" className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3" />
-            <img src="/assets/hero-imgs/img5.png" alt="" className="w-full h-full object-cover rounded-sm md:-mt-10" />
-            <img src="/assets/hero-imgs/img6.jpg" alt="" className="w-full h-full object-cover rounded-sm md:mt-0 mt-5" />
+            <img
+              src="/assets/hero-imgs/img1.png"
+              alt=""
+              className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
+            />
+            <img
+              src="/assets/hero-imgs/img2.jpg"
+              alt=""
+              className="w-full h-full object-cover rounded-sm md:-mt-10"
+            />
+            <img
+              src="/assets/hero-imgs/img3.jpg"
+              alt=""
+              className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
+            />
+            <img
+              src="/assets/hero-imgs/img4.jpg"
+              alt=""
+              className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
+            />
+            <img
+              src="/assets/hero-imgs/img5.png"
+              alt=""
+              className="w-full h-full object-cover rounded-sm md:-mt-10"
+            />
+            <img
+              src="/assets/hero-imgs/img6.jpg"
+              alt=""
+              className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
+            />
           </div>
         </Marquee>
       </div>

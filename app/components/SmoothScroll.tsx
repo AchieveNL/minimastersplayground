@@ -11,21 +11,30 @@ export default function SmoothScroll() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.1,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-      syncTouch: true,
-    });
+    const isTouch =
+      typeof window !== "undefined" &&
+      (window.matchMedia("(hover: none) and (pointer: coarse)").matches ||
+        "ontouchstart" in window);
 
-    lenisRef.current = lenis;
+    let lenis: Lenis | null = null;
+    let rafId = 0;
 
-    lenis.on("scroll", ScrollTrigger.update);
+    if (!isTouch) {
+      lenis = new Lenis({
+        lerp: 0.12,
+        wheelMultiplier: 1,
+        smoothWheel: true,
+      });
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(0);
+      lenisRef.current = lenis;
+      lenis.on("scroll", ScrollTrigger.update);
+
+      const raf = (time: number) => {
+        lenis?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      };
+      rafId = requestAnimationFrame(raf);
+    }
 
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -39,9 +48,15 @@ export default function SmoothScroll() {
       if (!hash || hash === "#") return;
 
       const el = document.querySelector(hash);
-      if (el) {
-        e.preventDefault();
+      if (!el) return;
+      e.preventDefault();
+
+      if (lenis) {
         lenis.scrollTo(el as HTMLElement, { offset: -80 });
+      } else {
+        const top =
+          (el as HTMLElement).getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: "smooth" });
       }
     };
 
@@ -49,7 +64,8 @@ export default function SmoothScroll() {
 
     return () => {
       document.removeEventListener("click", handleClick);
-      lenis.destroy();
+      if (rafId) cancelAnimationFrame(rafId);
+      lenis?.destroy();
       lenisRef.current = null;
     };
   }, []);

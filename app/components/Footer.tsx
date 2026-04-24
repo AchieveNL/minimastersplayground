@@ -395,6 +395,12 @@ export default function Footer() {
                 JOIN THE COMMUNITY
               </h2>
               <p
+                className="text-[#5763FF] font-bold text-base lg:text-lg mb-1 text-center lg:text-left"
+                style={{ fontFamily: "Quicksand" }}
+              >
+                Nog eventjes geduld!
+              </p>
+              <p
                 className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6 text-center lg:text-left"
                 style={{ fontFamily: "Quicksand" }}
               >

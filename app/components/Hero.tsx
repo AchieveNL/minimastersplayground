@@ -1,4 +1,4 @@
-"use client";import { useEffect, useRef, useState } from "react";
+"use client";import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import AnimatedSilder from "./AnimatedSilder";
 import InfoCard from "./InfoCard";
@@ -9,19 +9,11 @@ export default function Hero() {
   const tinyRef = useRef<HTMLHeadingElement>(null);
   const bigRef = useRef<HTMLHeadingElement>(null);
   const gearsRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
   const cardsRef = useScrollAnimation<HTMLDivElement>({
     type: "staggerUp",
     duration: 1,
     stagger: 0.18,
   });
-
-  useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth < 768);
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -148,11 +140,11 @@ export default function Hero() {
             opacity: 0,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            fontFamily: isMobile ? "'Titan One', cursive" : undefined,
-            fontWeight: isMobile ? 400 : undefined,
-            letterSpacing: isMobile ? "0.01em" : undefined,
+            fontFamily: "'Titan One', cursive",
+            fontWeight: 400,
+            letterSpacing: "0.01em",
           }}
-          className={`md:text-8xl ${isMobile ? "text-4xl whitespace-nowrap" : "text-4xl sm:text-5xl font-extrabold"} text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 drop-shadow-lg`}
+          className="md:text-8xl text-4xl sm:text-5xl whitespace-nowrap text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
         >
           TINY HEROES
         </h1>
@@ -162,11 +154,11 @@ export default function Hero() {
             opacity: 0,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            fontFamily: isMobile ? "'Titan One', cursive" : undefined,
-            fontWeight: isMobile ? 400 : undefined,
-            letterSpacing: isMobile ? "0.01em" : undefined,
+            fontFamily: "'Titan One', cursive",
+            fontWeight: 400,
+            letterSpacing: "0.01em",
           }}
-          className={`md:text-8xl ${isMobile ? "text-4xl whitespace-nowrap" : "text-4xl sm:text-5xl font-extrabold"} text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg`}
+          className="md:text-8xl text-4xl sm:text-5xl whitespace-nowrap text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
         >
           BIG ADVENTURES
         </h1>
