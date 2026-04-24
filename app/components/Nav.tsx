@@ -140,7 +140,13 @@ export default function Nav() {
       {/* Sticky Nav Bar */}
       <div
         ref={navRef}
-        style={{ fontFamily: "Quicksand, sans-serif", opacity: 0 }}
+        style={{
+          fontFamily: "Quicksand, sans-serif",
+          opacity: 0,
+          paddingTop: "env(safe-area-inset-top)",
+          marginTop: "calc(-1 * env(safe-area-inset-top))",
+          background: "#FFCA58",
+        }}
         className="sticky top-0 z-50"
       >
         <div className="relative overflow-visible">
