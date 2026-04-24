@@ -210,10 +210,7 @@ export default function Nav() {
               <img
                 ref={logoImgRef}
                 src="/header navbar logo.svg"
-                className="w-36 sm:w-44 md:w-56 xl:w-56 2xl:w-72"
-                style={{
-                  filter: "drop-shadow(0 0 30px rgba(255,255,255,0.55))",
-                }}
+                className="w-36 sm:w-44 md:w-56 xl:w-56 2xl:w-72 md:[filter:drop-shadow(0_0_30px_rgba(255,255,255,0.55))]"
                 alt=""
               />
             </Link>

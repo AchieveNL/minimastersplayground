@@ -2,7 +2,6 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
 }
 
 body {
@@ -50,7 +49,3 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* Fix smooth scrolling on iOS Safari */
-html {
-  -webkit-overflow-scrolling: touch;
-}
