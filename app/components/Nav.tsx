@@ -95,8 +95,8 @@ export default function Nav() {
         .to(
           contentRef.current,
           {
-            paddingTop: isMobile ? "1rem" : "0.5rem",
-            paddingBottom: isMobile ? "1rem" : "0.5rem",
+            paddingTop: isMobile ? "0.625rem" : "0.5rem",
+            paddingBottom: isMobile ? "0.625rem" : "0.5rem",
           },
           0,
         )
@@ -115,8 +115,8 @@ export default function Nav() {
         .to(
           contentRef.current,
           {
-            paddingTop: isMobile ? "1rem" : "1.5rem",
-            paddingBottom: isMobile ? "1rem" : "2.5rem",
+            paddingTop: isMobile ? "0.625rem" : "1.5rem",
+            paddingBottom: isMobile ? "0.625rem" : "2.5rem",
           },
           0,
         )
@@ -145,7 +145,7 @@ export default function Nav() {
           opacity: 0,
           paddingTop: "env(safe-area-inset-top)",
           marginTop: "calc(-1 * env(safe-area-inset-top))",
-          background: "#FFCA58",
+          background: "linear-gradient(90deg, #FFCA58 0%, #FFDB8D 100%)",
         }}
         className="sticky top-0 z-50"
       >
