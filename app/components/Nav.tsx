@@ -145,10 +145,22 @@ export default function Nav() {
           opacity: 0,
           paddingTop: "env(safe-area-inset-top)",
           marginTop: "calc(-1 * env(safe-area-inset-top))",
-          background: "linear-gradient(90deg, #FFCA58 0%, #FFDB8D 100%)",
         }}
         className="sticky top-0 z-50"
       >
+        {/* Yellow band behind iOS status bar */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "env(safe-area-inset-top)",
+            background: "linear-gradient(90deg, #FFCA58 0%, #FFDB8D 100%)",
+            pointerEvents: "none",
+          }}
+        />
         <div className="relative overflow-visible">
           {/* Background wave shape — desktop only */}
           <svg
