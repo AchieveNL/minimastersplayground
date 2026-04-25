@@ -83,6 +83,7 @@ export default function AnimatedSlider({
           clipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})`,
           WebkitClipPath: `url(#${variant === "hero" ? "wavyClipHero" : "wavyClipFooter"})`,
           WebkitTransform: "translateZ(0)",
+          zIndex: 0,
         }}
         className={`w-full overflow-hidden bg-[#FDF9EF] relative ${variant === "hero" ? "mt-2 md:mt-8 xl:mt-0 xl:h-[70vh] lg:h-[60vh] md:h-[420px] h-72 2xl:h-[80vh] mb-4 md:mb-26" : "xl:h-[70vh] lg:h-[60vh] md:h-[420px] h-72 2xl:h-[80vh] mb-18 md:mb-26"}`}
       >
