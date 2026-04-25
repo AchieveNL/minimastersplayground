@@ -143,10 +143,13 @@ export default function Nav() {
         style={{ fontFamily: "Quicksand, sans-serif", opacity: 0 }}
         className="sticky top-0 z-50"
       >
-        <div
-          className="relative overflow-visible"
-          style={{ backgroundColor: "#FDF9EF" }}
-        >
+        <div className="relative overflow-visible">
+          {/* Cream solid background — independent height layer, only this controls the cream */}
+          <div
+            aria-hidden
+            className="absolute top-0 left-0 right-0 h-[65px] pointer-events-none"
+            style={{ backgroundColor: "#FDF9EF" }}
+          />
           {/* Background wave shape — desktop only */}
           <svg
             ref={waveSvgRef}
