@@ -1,5 +1,4 @@
-"use client";
-import Link from "next/link";
+"use client";import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -96,7 +95,7 @@ export default function Nav() {
           contentRef.current,
           {
             paddingTop: "0.5rem",
-            paddingBottom:"0.5rem",
+            paddingBottom: "0.5rem",
           },
           0,
         )
@@ -194,7 +193,7 @@ export default function Nav() {
             ref={flatBgRef}
             className="absolute inset-0 opacity-0"
             style={{
-              background: "linear-gradient(90deg, #FFCA58 0%, #ffdb8dff 100%)",
+              background: "linear-gradient(90deg, #FFCA58 0%, #ffdb8dff 80%)",
               boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
             }}
           />
@@ -316,106 +315,104 @@ export default function Nav() {
 
       {/* Mobile Drawer — wrapped in fixed/inset-0/overflow-hidden so the closed-state
           translateX(100%) can't extend past the viewport (iOS horizontal-scroll bug). */}
-      <div
-        className="xl:hidden fixed inset-0 overflow-hidden pointer-events-none z-[999]"
-      >
-      <div
-        className={`flex flex-col items-center gap-5 sm:gap-6 text-base sm:text-lg absolute top-0 right-0 h-full w-2/3 sm:w-1/2 px-6 py-8 transition-transform duration-300 pointer-events-auto ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-        style={{
-          fontFamily: "Quicksand, sans-serif",
-          fontWeight: "bold",
-          background:
-            "linear-gradient(180deg, #FFCA58 0%, #FFDB8D 50%, #FFE9B5 100%)",
-          boxShadow: isOpen ? "-4px 0 20px rgba(0,0,0,0.15)" : "none",
-        }}
-      >
-        {/* Close button inside drawer */}
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-3 right-3 flex flex-col justify-center items-center gap-1.5 w-10 h-10"
-          aria-label="Close menu"
-        >
-          <span className="block h-0.5 w-7 bg-white rotate-45 translate-y-2 transition-all duration-300" />
-          <span className="block h-0.5 w-7 bg-white opacity-0 transition-all duration-300" />
-          <span className="block h-0.5 w-7 bg-white -rotate-45 -translate-y-2 transition-all duration-300" />
-        </button>
-
-        <Link
-          href="/"
-          onClick={() => setIsOpen(false)}
-          className="flex justify-center w-full mt-4 relative"
-        >
-          <img
-            src="/Yellow Glow.png"
-            alt=""
-            aria-hidden="true"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[170%] max-w-none opacity-50"
-          />
-          <img
-            src="/header navbar logo.svg"
-            className="w-3/4 p-2 relative"
-            alt=""
-          />
-        </Link>
-        <a
-          href="#"
-          className="text-[#FF5757]"
-          onClick={(e) => {
-            e.preventDefault();
-            setIsOpen(false);
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-        >
-          HOME
-        </a>
-        <Link
-          href="/#over-ons"
-          className="text-[#5763FF]"
-          onClick={() => setIsOpen(false)}
-        >
-          OVER ONS
-        </Link>
-        <Link
-          href="/#loyalty"
-          className="text-[#67CD8A]"
-          onClick={() => setIsOpen(false)}
-        >
-          LOYALTY
-        </Link>
-        <Link
-          href="/#openingstijden"
-          className="text-[#BB76FF]"
-          onClick={() => setIsOpen(false)}
-        >
-          OPENINGSTIJDEN
-        </Link>
-        <Link
-          href="/#faq"
-          className="text-[#67CD8A]"
-          onClick={() => setIsOpen(false)}
-        >
-          FAQ
-        </Link>
-        <Link
-          href="/#contact"
-          className="text-[#5763FF]"
-          onClick={() => setIsOpen(false)}
-        >
-          CONTACT
-        </Link>
-        <Link
-          href="/#tickets"
-          className="text-white px-6 py-1.5 rounded-full"
+      <div className="xl:hidden fixed inset-0 overflow-hidden pointer-events-none z-[999]">
+        <div
+          className={`flex flex-col items-center gap-5 sm:gap-6 text-base sm:text-lg absolute top-0 right-0 h-full w-2/3 sm:w-1/2 px-6 py-8 transition-transform duration-300 pointer-events-auto ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
           style={{
-            background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+            fontFamily: "Quicksand, sans-serif",
+            fontWeight: "bold",
+            background:
+              "linear-gradient(180deg, #FFCA58 0%, #FFDB8D 50%, #FFE9B5 100%)",
+            boxShadow: isOpen ? "-4px 0 20px rgba(0,0,0,0.15)" : "none",
           }}
-          onClick={() => setIsOpen(false)}
         >
-          TICKETS
-        </Link>
-      </div>
+          {/* Close button inside drawer */}
+          <button
+            onClick={() => setIsOpen(false)}
+            className="absolute top-3 right-3 flex flex-col justify-center items-center gap-1.5 w-10 h-10"
+            aria-label="Close menu"
+          >
+            <span className="block h-0.5 w-7 bg-white rotate-45 translate-y-2 transition-all duration-300" />
+            <span className="block h-0.5 w-7 bg-white opacity-0 transition-all duration-300" />
+            <span className="block h-0.5 w-7 bg-white -rotate-45 -translate-y-2 transition-all duration-300" />
+          </button>
+
+          <Link
+            href="/"
+            onClick={() => setIsOpen(false)}
+            className="flex justify-center w-full mt-4 relative"
+          >
+            <img
+              src="/Yellow Glow.png"
+              alt=""
+              aria-hidden="true"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[170%] max-w-none opacity-50"
+            />
+            <img
+              src="/header navbar logo.svg"
+              className="w-3/4 p-2 relative"
+              alt=""
+            />
+          </Link>
+          <a
+            href="#"
+            className="text-[#FF5757]"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsOpen(false);
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            HOME
+          </a>
+          <Link
+            href="/#over-ons"
+            className="text-[#5763FF]"
+            onClick={() => setIsOpen(false)}
+          >
+            OVER ONS
+          </Link>
+          <Link
+            href="/#loyalty"
+            className="text-[#67CD8A]"
+            onClick={() => setIsOpen(false)}
+          >
+            LOYALTY
+          </Link>
+          <Link
+            href="/#openingstijden"
+            className="text-[#BB76FF]"
+            onClick={() => setIsOpen(false)}
+          >
+            OPENINGSTIJDEN
+          </Link>
+          <Link
+            href="/#faq"
+            className="text-[#67CD8A]"
+            onClick={() => setIsOpen(false)}
+          >
+            FAQ
+          </Link>
+          <Link
+            href="/#contact"
+            className="text-[#5763FF]"
+            onClick={() => setIsOpen(false)}
+          >
+            CONTACT
+          </Link>
+          <Link
+            href="/#tickets"
+            className="text-white px-6 py-1.5 rounded-full"
+            style={{
+              background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+            }}
+            onClick={() => setIsOpen(false)}
+          >
+            TICKETS
+          </Link>
+        </div>
       </div>
     </>
   );
