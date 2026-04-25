@@ -95,8 +95,8 @@ export default function Nav() {
         .to(
           contentRef.current,
           {
-            paddingTop: isMobile ? "0.625rem" : "0.5rem",
-            paddingBottom: isMobile ? "0.625rem" : "0.5rem",
+            paddingTop: isMobile ? "1rem" : "0.5rem",
+            paddingBottom: isMobile ? "1rem" : "0.5rem",
           },
           0,
         )
@@ -115,8 +115,8 @@ export default function Nav() {
         .to(
           contentRef.current,
           {
-            paddingTop: isMobile ? "0.625rem" : "1.5rem",
-            paddingBottom: isMobile ? "0.625rem" : "2.5rem",
+            paddingTop: isMobile ? "1rem" : "1.5rem",
+            paddingBottom: isMobile ? "1rem" : "2.5rem",
           },
           0,
         )
@@ -140,27 +140,9 @@ export default function Nav() {
       {/* Sticky Nav Bar */}
       <div
         ref={navRef}
-        style={{
-          fontFamily: "Quicksand, sans-serif",
-          opacity: 0,
-          paddingTop: "env(safe-area-inset-top)",
-          marginTop: "calc(-1 * env(safe-area-inset-top))",
-        }}
+        style={{ fontFamily: "Quicksand, sans-serif", opacity: 0 }}
         className="sticky top-0 z-50"
       >
-        {/* Yellow band behind iOS status bar */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "env(safe-area-inset-top)",
-            background: "linear-gradient(90deg, #FFCA58 0%, #FFDB8D 100%)",
-            pointerEvents: "none",
-          }}
-        />
         <div className="relative overflow-visible">
           {/* Background wave shape — desktop only */}
           <svg
