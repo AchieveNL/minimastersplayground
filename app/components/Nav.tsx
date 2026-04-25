@@ -143,7 +143,10 @@ export default function Nav() {
         style={{ fontFamily: "Quicksand, sans-serif", opacity: 0 }}
         className="sticky top-0 z-50"
       >
-        <div className="relative overflow-visible">
+        <div
+          className="relative overflow-visible"
+          style={{ backgroundColor: "#FDF9EF" }}
+        >
           {/* Background wave shape — desktop only */}
           <svg
             ref={waveSvgRef}
@@ -311,9 +314,13 @@ export default function Nav() {
         />
       )}
 
-      {/* Mobile Drawer — rendered outside sticky nav to escape stacking context */}
+      {/* Mobile Drawer — wrapped in fixed/inset-0/overflow-hidden so the closed-state
+          translateX(100%) can't extend past the viewport (iOS horizontal-scroll bug). */}
       <div
-        className={`xl:hidden flex flex-col items-center gap-5 sm:gap-6 text-base sm:text-lg fixed top-0 right-0 h-full w-2/3 sm:w-1/2 px-6 py-8 z-[999] transition-transform duration-300 ${
+        className="xl:hidden fixed inset-0 overflow-hidden pointer-events-none z-[999]"
+      >
+      <div
+        className={`flex flex-col items-center gap-5 sm:gap-6 text-base sm:text-lg absolute top-0 right-0 h-full w-2/3 sm:w-1/2 px-6 py-8 transition-transform duration-300 pointer-events-auto ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
@@ -408,6 +415,7 @@ export default function Nav() {
         >
           TICKETS
         </Link>
+      </div>
       </div>
     </>
   );
