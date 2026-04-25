@@ -123,7 +123,7 @@ export default function Nav() {
         .to(
           logoImgRef.current,
           {
-            width: isMobile ? "0rem" : "14rem",
+            width: isMobile ? "10rem" : "14rem",
             clearProps: "marginTop,marginBottom",
           },
           0,
