@@ -46,7 +46,7 @@ const data: FaqCategory[] = [
           <>
             Bij Minimasters is iedereen welkom, van jong tot oud! Onze
             activiteiten zijn wel in het bijzonder afgestemd op kinderen tot en
-            met 6 jaar.
+            met 8 jaar.
           </>
         ),
       },
