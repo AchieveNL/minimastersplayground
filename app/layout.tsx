@@ -14,7 +14,6 @@ const geistMono = Geist_Mono({
 
 export const viewport: Viewport = {
   themeColor: "#FFCA58",
-  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -63,26 +62,7 @@ export default function RootLayout({
           rel="stylesheet"
         ></link>
       </head>
-      <body className="bg-[#F8F5E3] overflow-x-clip">
-        {/* Yellow safe-area band — fixed to viewport top, fills the iOS notch
-            zone so it always reads as the same yellow as the nav. Cannot cause
-            horizontal overflow because left:0 + right:0 anchors it to the
-            viewport edges, and pointer-events:none keeps it non-interactive. */}
-        <div
-          aria-hidden
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "env(safe-area-inset-top, 0px)",
-            background: "#FFCA58",
-            zIndex: 49,
-            pointerEvents: "none",
-          }}
-        />
-        {children}
-      </body>
+      <body className="bg-[#F8F5E3] overflow-x-clip">{children}</body>
     </html>
   );
 }
