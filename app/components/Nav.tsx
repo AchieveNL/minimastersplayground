@@ -1,4 +1,5 @@
-"use client";import Link from "next/link";
+"use client";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
@@ -95,7 +96,7 @@ export default function Nav() {
           contentRef.current,
           {
             paddingTop: "10px",
-            paddingBottom: "10px"
+            paddingBottom: "10px",
           },
           0,
         )
@@ -122,7 +123,7 @@ export default function Nav() {
         .to(
           logoImgRef.current,
           {
-            width: isMobile ? "10rem" : "14rem",
+            width: isMobile ? "0rem" : "14rem",
             clearProps: "marginTop,marginBottom",
           },
           0,
