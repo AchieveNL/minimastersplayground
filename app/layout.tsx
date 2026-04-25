@@ -14,7 +14,6 @@ const geistMono = Geist_Mono({
 
 export const viewport: Viewport = {
   themeColor: "#FFCA58",
-  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {
@@ -63,22 +62,7 @@ export default function RootLayout({
           rel="stylesheet"
         ></link>
       </head>
-      <body className="bg-[#F8F5E3] overflow-x-clip">
-        <div
-          aria-hidden
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: "env(safe-area-inset-top, 0px)",
-            background: "#FFCA58",
-            zIndex: 49,
-            pointerEvents: "none",
-          }}
-        />
-        {children}
-      </body>
+      <body className="bg-[#F8F5E3] overflow-x-clip">{children}</body>
     </html>
   );
 }
