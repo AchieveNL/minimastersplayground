@@ -95,8 +95,8 @@ export default function Nav() {
         .to(
           contentRef.current,
           {
-            paddingTop: isMobile ? "1rem" : "0.5rem",
-            paddingBottom: isMobile ? "1rem" : "0.5rem",
+            paddingTop: "0.5rem",
+            paddingBottom:"0.5rem",
           },
           0,
         )
