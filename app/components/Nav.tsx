@@ -94,8 +94,8 @@ export default function Nav() {
         .to(
           contentRef.current,
           {
-            paddingTop: "0.5rem",
-            paddingBottom: "0.5rem",
+            paddingTop: "10px",
+            paddingBottom: "10px"
           },
           0,
         )
@@ -114,8 +114,8 @@ export default function Nav() {
         .to(
           contentRef.current,
           {
-            paddingTop: isMobile ? "1rem" : "1.5rem",
-            paddingBottom: isMobile ? "1rem" : "2.5rem",
+            paddingTop: "10px",
+            paddingBottom: "10px",
           },
           0,
         )
