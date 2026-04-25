@@ -18,7 +18,7 @@ const cardData = [
   },
   {
     title: "Sophie M.",
-    role: "Enthousiaste papa",
+    role: "Toekomstige bezoeker",
     text: "Dit is precies wat kinderen nodig hebben: spelend leren! Ik kan niet wachten tot mijn dochter hier dokter, piloot of chef kan spelen en ondertussen zoveel leert.",
   },
   {
@@ -428,7 +428,11 @@ export default function Footer() {
                       setFormStatus("success");
                       form.reset();
                     } else {
-                      console.error("Leat form error:", res.status, await res.text());
+                      console.error(
+                        "Leat form error:",
+                        res.status,
+                        await res.text(),
+                      );
                       setFormStatus("error");
                     }
                   } catch (err) {
@@ -509,7 +513,6 @@ export default function Footer() {
                 />
               </Link>
             </div>
-
           </div>
         </div>
       </div>
