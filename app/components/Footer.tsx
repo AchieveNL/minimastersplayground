@@ -28,7 +28,7 @@ const cardData = [
   },
   {
     title: "Laura V.",
-    role: "Enthousiaste papa",
+    role: "Lokale bewoner",
     text: "Rollenspel is één van de krachtigste manieren waarop kinderen leren. Dit concept maakt leren avontuurlijk, creatief en onvergetelijk.",
   },
   {
