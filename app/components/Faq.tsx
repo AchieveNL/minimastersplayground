@@ -350,7 +350,7 @@ export default function Faq() {
   return (
     <div
       id="faq"
-      className="mt-4 md:-mt-10 md:mb-24 mb-16 relative"
+      className="mt-4 md:-mt-10 md:mb-24 mb-16 relative overflow-x-clip"
       style={{ fontFamily: "Quicksand" }}
     >
       <img

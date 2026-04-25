@@ -27,7 +27,7 @@ export default function MobileSection() {
   return (
     <div
       style={{ fontFamily: "Quicksand" }}
-      className="relative -mt-14 flex flex-col lg:flex-row items-center lg:items-start justify-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-8 xl:px-20 2xl:px-40 overflow-visible pt-2 pb-8 sm:pb-20 lg:pb-32 xl:pb-40 gap-8 sm:gap-10 lg:gap-0"
+      className="relative -mt-14 flex flex-col lg:flex-row items-center lg:items-start justify-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-8 xl:px-20 2xl:px-40 overflow-x-clip pt-2 pb-8 sm:pb-20 lg:pb-32 xl:pb-40 gap-8 sm:gap-10 lg:gap-0"
     >
       <style>{`
         @keyframes phoneFloat1 {

@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
-html {
-  scroll-behavior: smooth;
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
-body {
-  overflow-x: clip;
+html {
+  scroll-behavior: smooth;
 }
 @font-face {
   font-family: "StudlyFree";

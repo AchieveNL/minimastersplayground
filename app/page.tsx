@@ -16,7 +16,10 @@ export default function Home() {
   return (
     <>
       {!loaded && <Preloader onComplete={() => setLoaded(true)} />}
-      <div style={{ visibility: loaded ? "visible" : "hidden" }}>
+      <div
+        className="overflow-x-clip"
+        style={{ visibility: loaded ? "visible" : "hidden" }}
+      >
         <Nav />
         <Hero />
         <Slider />

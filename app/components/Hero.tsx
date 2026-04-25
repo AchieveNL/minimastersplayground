@@ -110,7 +110,7 @@ export default function Hero() {
   ];
   return (
     <div
-      className="-mt-4 md:-mt-14 relative"
+      className="-mt-4 md:-mt-14 relative overflow-x-clip"
       style={{ fontFamily: "Quicksand" }}
     >
       <div ref={sliderRef} style={{ opacity: 0 }}>
