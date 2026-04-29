@@ -96,9 +96,9 @@ const data: FaqCategory[] = [
         answer: (
           <>
             Zolang een sessie niet is uitverkocht, kun je tickets kopen aan de
-            deur bij Playhood. De huidige beschikbaarheid vind je op onze
-            ticketpagina. Wil je verzekerd zijn van een tijdslot? Dan adviseren
-            we je tickets online te bestellen.
+            deur. De huidige beschikbaarheid vind je op onze ticketpagina. Wil
+            je verzekerd zijn van een tijdslot? Dan adviseren we je tickets
+            online te bestellen.
           </>
         ),
       },
@@ -190,7 +190,7 @@ const data: FaqCategory[] = [
             We bewaren gevonden voorwerpen meestal 14 dagen, afhankelijk van de
             beschikbare ruimte. Ben je iets verloren? Mail ons dan naar
             hero@minimastersplayground.nl. Houd er rekening mee dat wij niet
-            verantwoordelijk is voor verloren spullen en dat we niet kunnen
+            verantwoordelijk zijn voor verloren spullen en dat we niet kunnen
             garanderen dat het item wordt teruggevonden.
           </>
         ),
