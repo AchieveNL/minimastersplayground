@@ -7,7 +7,8 @@ export default function Slider() {
       bg: "img5.jpg",
       text1: "Kinderfeestje",
       text2: "",
-      link: "#contact",
+      link: "/assets/pdf/Verjaardagen%20.pdf",
+      hoverText: "Bekijk ons aanbod",
       btnText: "VERJAARDAG",
       btnColor: "#FFCA58",
     },
@@ -16,6 +17,7 @@ export default function Slider() {
       text1: "Entreeticket",
       text2: "",
       link: "#contact",
+      hoverText: "Boek nu",
       btnText: "DIRECT BOEKEN",
       btnColor: "#67CD8A",
     },
@@ -23,7 +25,8 @@ export default function Slider() {
       bg: "img4.jpg",
       text1: "Scholen & BSO",
       text2: "",
-      link: "#contact",
+      link: "/assets/pdf/Schooluitjes.pdf",
+      hoverText: "Bekijk ons aanbod",
       btnText: "SCHOOL & BSO",
       btnColor: "#FFCA58",
     },
@@ -152,7 +155,7 @@ export default function Slider() {
             };
 
             const cardClass =
-              "rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-4 md:pb-6 cursor-pointer transition-transform duration-400 ease-out hover:scale-105 flex-shrink-0";
+              "rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-4 md:pb-6 gap-2 md:gap-2.5 cursor-pointer transition-transform duration-400 ease-out hover:scale-105 flex-shrink-0";
 
             const inner = (
               <>
@@ -170,27 +173,27 @@ export default function Slider() {
                       "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
                   }}
                 />
-                <div className="relative z-10">
-                  <span
-                    className="px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider block group-hover:hidden"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #FFDB8D 0%, #FFCA58 100%)",
-                    }}
-                  >
-                    {item.text1}
-                  </span>
-                  <span
-                    className="px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider hidden group-hover:block"
-                    style={{
-                      background: item.link
-                        ? "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)"
-                        : "linear-gradient(135deg, #B1B6FF 0%, #5763FF 100%)",
-                    }}
-                  >
-                    {item.link ? "Boek nu" : "Coming soon"}
-                  </span>
-                </div>
+                {/* Upper pill — CTA (sits just above the title) */}
+                <span
+                  className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"
+                  style={{
+                    background: item.link
+                      ? "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)"
+                      : "linear-gradient(135deg, #B1B6FF 0%, #5763FF 100%)",
+                  }}
+                >
+                  {item.link ? item.hoverText : "Coming soon"}
+                </span>
+                {/* Bottom pill — category title */}
+                <span
+                  className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #FFDB8D 0%, #FFCA58 100%)",
+                  }}
+                >
+                  {item.text1}
+                </span>
               </>
             );
 
