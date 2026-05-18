@@ -9,6 +9,7 @@ import Faq from "./components/Faq";
 import AnimatedSlider from "./components/AnimatedSilder";
 import Footer from "./components/Footer";
 import Preloader from "./components/Preloader";
+import NewsletterPopup from "./components/NewsletterPopup";
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
@@ -29,6 +30,7 @@ export default function Home() {
         <AnimatedSlider direction="right" variant="footer" />
         <Footer />
       </div>
+      {loaded && <NewsletterPopup />}
     </>
   );
 }
