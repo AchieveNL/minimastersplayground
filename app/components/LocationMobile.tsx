@@ -123,8 +123,8 @@ export default function LocationMobile() {
               alt="Vlag"
             />
           </div>
-          <h1 className="text-base mt-2">OPENINGSTIJDEN</h1>
-          <div className="flex gap-6 -mt-1 text-xs">
+          <h1 className="text-lg mt-2">OPENINGSTIJDEN</h1>
+          <div className="flex gap-6 -mt-1 text-sm">
             <div>
               <h1>Ma t/m Vr:</h1>
               <h1>Zaterdag:</h1>

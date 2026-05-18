@@ -262,7 +262,7 @@ const AccordionItem = ({
       >
         <div className="flex items-center justify-between w-full">
           <h2
-            className="font-bold text-lg"
+            className="font-bold text-lg md:text-xl"
             style={{
               color: open ? "#ffffff" : text,
               transition: "color 0.3s ease",
@@ -290,7 +290,7 @@ const AccordionItem = ({
         >
           <div style={{ overflow: "hidden" }}>
             <div
-              className="text-white font-medium text-base mt-3"
+              className="text-white font-medium text-base md:text-lg mt-3"
               style={{
                 opacity: open ? 1 : 0,
                 transform: open ? "translateY(0)" : "translateY(8px)",

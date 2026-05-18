@@ -62,7 +62,7 @@ export default function InfoCard({
         />
         {title}
       </div>
-      <p className="text-[#67CD8A] font-medium text-center m-auto xl:w-[75%] mt-8 md:text-base text-sm">
+      <p className="text-[#67CD8A] font-medium text-center m-auto xl:w-[75%] mt-8 text-base md:text-lg">
         {description}
       </p>
     </div>

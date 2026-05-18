@@ -100,7 +100,7 @@ export default function MobileSection() {
       {/* Mobile-only text (between phones on small screens) */}
       <h1
         ref={mobileTextRef}
-        className="text-center text-sm xs:text-base sm:text-lg md:text-xl font-semibold lg:hidden block text-[#5763FF] -mt-2 max-w-md sm:max-w-lg mx-auto px-2"
+        className="text-center text-base xs:text-lg sm:text-xl md:text-2xl font-semibold lg:hidden block text-[#5763FF] -mt-2 max-w-md sm:max-w-lg mx-auto px-2"
       >
         Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en
         het spelen blijft hetzelfde. Door te werken met sessies zorgen we voor
@@ -112,7 +112,7 @@ export default function MobileSection() {
         ref={centerRef}
         className="hidden lg:flex flex-col gap-5 lg:w-[42%] xl:w-[38%] 2xl:w-[35%] mx-auto text-[#5763FF] px-1 lg:px-2 xl:px-4 2xl:px-6 items-center mt-[88px] xl:mt-[96px] 2xl:mt-[104px] relative"
       >
-        <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
+        <h1 className="text-center text-base lg:text-lg xl:text-xl 2xl:text-2xl font-semibold leading-snug">
           Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten en
           het spelen blijft hetzelfde. Door te werken met sessies zorgen we voor
           minder drukte en meer speelplezier voor iedereen.
@@ -125,7 +125,7 @@ export default function MobileSection() {
             alt=""
           />
         </div>
-        <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
+        <h1 className="text-center text-base lg:text-lg xl:text-xl 2xl:text-2xl font-semibold leading-snug">
           Spelen wordt nog leuker met sparen!
           <br />
           <span className="text-[#67CD8A]">
@@ -134,7 +134,7 @@ export default function MobileSection() {
           <br />
           Voor elke €1 die je besteedt, ontvang je 1 punt.
         </h1>
-        <h1 className="text-center text-sm lg:text-base xl:text-lg 2xl:text-xl font-semibold leading-snug">
+        <h1 className="text-center text-base lg:text-lg xl:text-xl 2xl:text-2xl font-semibold leading-snug">
           Spaar voor leuke beloningen en bewaar je QR-code eenvoudig in je
           e-wallet, zodat je je punten altijd bij de hand hebt.
         </h1>
@@ -209,7 +209,7 @@ export default function MobileSection() {
           />
         </div>
         <div className="lg:hidden flex flex-col items-center gap-4 max-w-md sm:max-w-lg mx-auto px-2">
-          <h1 className="text-center text-sm xs:text-base sm:text-lg md:text-xl font-semibold text-[#5763FF]">
+          <h1 className="text-center text-base xs:text-lg sm:text-xl md:text-2xl font-semibold text-[#5763FF]">
             Spelen wordt nog leuker met sparen!
             <br />
             <span className="text-[#67CD8A]">
@@ -218,7 +218,7 @@ export default function MobileSection() {
             <br />
             Voor elke €1 die je besteedt, ontvang je 1 punt.
           </h1>
-          <h1 className="text-center text-sm xs:text-base sm:text-lg md:text-xl font-semibold text-[#5763FF]">
+          <h1 className="text-center text-base xs:text-lg sm:text-xl md:text-2xl font-semibold text-[#5763FF]">
             Spaar voor leuke beloningen en bewaar je QR-code eenvoudig in je
             e-wallet, zodat je je punten altijd bij de hand hebt.
           </h1>

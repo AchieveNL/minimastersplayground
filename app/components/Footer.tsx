@@ -401,7 +401,7 @@ export default function Footer() {
                 Nog eventjes geduld!
               </p>
               <p
-                className="text-[#5763FF] font-semibold text-sm lg:text-base mb-6 text-center lg:text-left"
+                className="text-[#5763FF] font-semibold text-base lg:text-lg mb-6 text-center lg:text-left"
                 style={{ fontFamily: "Quicksand" }}
               >
                 Ontvang als eerste updates over onze opening, activiteiten en
@@ -443,7 +443,7 @@ export default function Footer() {
                 className="flex flex-col gap-4 w-full items-center lg:items-start"
               >
                 {formStatus === "success" ? (
-                  <p className="text-[#67CD8A] font-bold text-sm">
+                  <p className="text-[#67CD8A] font-bold text-base">
                     Bedankt voor je aanmelding!
                   </p>
                 ) : (
@@ -470,7 +470,7 @@ export default function Footer() {
                       {formStatus === "loading" ? "EVEN GEDULD..." : "SIGN UP"}
                     </button>
                     {formStatus === "error" && (
-                      <p className="text-[#FF5757] font-bold text-xs">
+                      <p className="text-[#FF5757] font-bold text-sm">
                         Er ging iets mis, probeer het opnieuw.
                       </p>
                     )}
