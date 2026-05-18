@@ -144,7 +144,7 @@ export default function Hero() {
             fontWeight: 400,
             letterSpacing: "0.01em",
           }}
-          className="md:text-8xl text-4xl sm:text-5xl whitespace-nowrap text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl whitespace-nowrap text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
         >
           TINY HEROES
         </h1>
@@ -158,7 +158,7 @@ export default function Hero() {
             fontWeight: 400,
             letterSpacing: "0.01em",
           }}
-          className="md:text-8xl text-4xl sm:text-5xl whitespace-nowrap text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl whitespace-nowrap text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
         >
           BIG ADVENTURES
         </h1>
