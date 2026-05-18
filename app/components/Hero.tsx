@@ -144,7 +144,7 @@ export default function Hero() {
             fontWeight: 400,
             letterSpacing: "0.01em",
           }}
-          className="md:text-8xl text-4xl sm:text-5xl whitespace-nowrap text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl whitespace-nowrap text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
         >
           TINY HEROES
         </h1>
@@ -158,14 +158,14 @@ export default function Hero() {
             fontWeight: 400,
             letterSpacing: "0.01em",
           }}
-          className="md:text-8xl text-4xl sm:text-5xl whitespace-nowrap text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl whitespace-nowrap text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
         >
           BIG ADVENTURES
         </h1>
       </div>
       <div
         ref={cardsRef}
-        className="md:my-28 my-20 flex flex-col lg:flex-row items-center lg:items-start justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-10 md:mx-24 lg:mx-10 xl:mx-24 mx-4 sm:mx-5"
+        className="md:my-28 my-20 flex flex-col lg:flex-row items-center lg:items-start justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-10 mx-4 sm:mx-5 md:mx-10 lg:mx-auto lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl"
       >
         {infoCards.map((card, index) => {
           return (
