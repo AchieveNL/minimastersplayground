@@ -11,6 +11,7 @@ export default function Slider() {
       hoverText: "Bekijk ons aanbod",
       btnText: "VERJAARDAG",
       btnColor: "#FFCA58",
+      disabled: true,
     },
     {
       bg: "img1.jpg",
@@ -20,6 +21,7 @@ export default function Slider() {
       hoverText: "Boek nu",
       btnText: "DIRECT BOEKEN",
       btnColor: "#67CD8A",
+      disabled: false,
     },
     {
       bg: "img4.jpg",
@@ -29,6 +31,7 @@ export default function Slider() {
       hoverText: "Bekijk ons aanbod",
       btnText: "SCHOOL & BSO",
       btnColor: "#FFCA58",
+      disabled: true,
     },
   ];
   const [screenW, setScreenW] = useState(1440);
@@ -197,7 +200,7 @@ export default function Slider() {
               </>
             );
 
-            return item.link ? (
+            return item.link && !item.disabled ? (
               <a
                 key={index}
                 href={item.link}
