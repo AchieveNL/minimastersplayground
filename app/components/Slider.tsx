@@ -238,7 +238,7 @@ export default function Slider() {
               </>
             );
 
-            return item.link && !item.disabled ? (
+            return item.link ? (
               <a
                 key={index}
                 href={item.link}
