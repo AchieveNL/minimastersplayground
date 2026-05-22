@@ -7,7 +7,7 @@ export default function Slider() {
       bg: "img5.jpg",
       text1: "Kinderfeestje",
       text2: "",
-      link: "/assets/pdf/Verjaardagen%20.pdf",
+      link: "/assets/pdf/verjaardagen.pdf",
       hoverText: "Bekijk ons aanbod",
       btnText: "VERJAARDAG",
       btnColor: "#FFCA58",
@@ -31,7 +31,7 @@ export default function Slider() {
       hoverText: "Bekijk ons aanbod",
       btnText: "SCHOOL & BSO",
       btnColor: "#FFCA58",
-      disabled: true,
+      disabled: false,
     },
   ];
   const [screenW, setScreenW] = useState(1440);
@@ -54,7 +54,9 @@ export default function Slider() {
       frame = requestAnimationFrame(() => {
         const { width, height } = entries[0].contentRect;
         setContainerSize((prev) =>
-          prev.w === width && prev.h === height ? prev : { w: width, h: height },
+          prev.w === width && prev.h === height
+            ? prev
+            : { w: width, h: height },
         );
       });
     });
@@ -176,6 +178,42 @@ export default function Slider() {
                       "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
                   }}
                 />
+                {item.disabled && (
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 z-20 pointer-events-none overflow-hidden rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px]"
+                  >
+                    <div
+                      className="absolute left-[-45%] right-[-35%] top-[11%]"
+                      style={{
+                        transform: "rotate(-20deg)",
+                        filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.42))",
+                      }}
+                    >
+                      <div
+                        className="relative flex items-center justify-center py-1.5 md:py-2"
+                        style={{
+                          background:
+                            "linear-gradient(180deg, #FF6B6B 0%, #E63946 45%, #C41E1E 100%)",
+                          boxShadow:
+                            "inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.28)",
+                          borderTop: "1px solid rgba(255,255,255,0.22)",
+                          borderBottom: "1px solid rgba(0,0,0,0.18)",
+                        }}
+                      >
+                        <span
+                          className="font-extrabold text-white text-[10px] md:text-xs tracking-[0.18em] uppercase whitespace-nowrap select-none"
+                          style={{
+                            textShadow: "0 1px 2px rgba(0,0,0,0.45)",
+                            fontFamily: "Quicksand, sans-serif",
+                          }}
+                        >
+                          Nog niet boekbaar
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 {/* Upper pill — CTA (sits just above the title) */}
                 <span
                   className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"

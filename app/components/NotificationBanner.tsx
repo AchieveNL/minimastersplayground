@@ -14,7 +14,8 @@ export default function NotificationBanner() {
       aria-live="polite"
     >
       <span className="inline-block">
-        Momenteel zijn wij nog gesloten, we zijn vanaf medio juni open!
+        I.v.m. de SOFT OPENING hebben wij beperkte sessies beschikbaar. Boek
+        jullie tickets van tevoren om teleurstelling te voorkomen.
       </span>
     </div>
   );
