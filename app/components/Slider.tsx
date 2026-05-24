@@ -17,7 +17,7 @@ export default function Slider() {
       bg: "img1.jpg",
       text1: "Entreeticket",
       text2: "",
-      link: "#contact",
+      link: "https://tickets.minimastersplayground.nl/",
       hoverText: "Boek nu",
       btnText: "DIRECT BOEKEN",
       btnColor: "#67CD8A",
@@ -153,14 +153,23 @@ export default function Slider() {
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {data.map((item, index) => {
-            const cardStyle: React.CSSProperties = {
+            const wrapperStyle: React.CSSProperties = {
               boxShadow: isMobile ? "none" : "4px 8px 24px 0px #00000055",
               height: `${CARD_HEIGHT}px`,
               width: `${CARD_WIDTH}px`,
+              borderRadius: isMobile ? "0 36px 0 36px" : "0 60px 0 60px",
             };
 
+            const wrapperClass =
+              "relative flex-shrink-0 cursor-pointer transition-transform duration-400 ease-out hover:scale-105";
+
             const cardClass =
-              "rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px] relative overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-4 md:pb-6 gap-2 md:gap-2.5 cursor-pointer transition-transform duration-400 ease-out hover:scale-105 flex-shrink-0";
+              "rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px] absolute inset-0 z-10 overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-4 md:pb-6 gap-2 md:gap-2.5";
+
+            // Corner ribbon (Temani Afif clip-path technique, pivoted on bottom-right)
+            const foldSize = isMobile ? 7 : 12;
+            const ribbonFontSize = isMobile ? 11 : 11;
+            const ribbonPadding = isMobile ? "0.40em 2em" : "0.45em 1.7em";
 
             const inner = (
               <>
@@ -178,42 +187,6 @@ export default function Slider() {
                       "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
                   }}
                 />
-                {item.disabled && (
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 z-20 pointer-events-none overflow-hidden rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px]"
-                  >
-                    <div
-                      className="absolute left-[-45%] right-[-35%] top-[11%]"
-                      style={{
-                        transform: "rotate(-20deg)",
-                        filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.42))",
-                      }}
-                    >
-                      <div
-                        className="relative flex items-center justify-center py-1.5 md:py-2"
-                        style={{
-                          background:
-                            "linear-gradient(180deg, #FF6B6B 0%, #E63946 45%, #C41E1E 100%)",
-                          boxShadow:
-                            "inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -1px 0 rgba(0,0,0,0.28)",
-                          borderTop: "1px solid rgba(255,255,255,0.22)",
-                          borderBottom: "1px solid rgba(0,0,0,0.18)",
-                        }}
-                      >
-                        <span
-                          className="font-extrabold text-white text-[10px] md:text-xs tracking-[0.18em] uppercase whitespace-nowrap select-none"
-                          style={{
-                            textShadow: "0 1px 2px rgba(0,0,0,0.45)",
-                            fontFamily: "Quicksand, sans-serif",
-                          }}
-                        >
-                          Nog niet boekbaar
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
                 {/* Upper pill — CTA (sits just above the title) */}
                 <span
                   className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"
@@ -238,25 +211,53 @@ export default function Slider() {
               </>
             );
 
-            return item.link ? (
-              <a
-                key={index}
-                href={item.link}
-                {...(item.link.startsWith("#")
-                  ? {}
-                  : { target: "_blank", rel: "noopener noreferrer" })}
-                style={cardStyle}
-                className={`${cardClass} group`}
-              >
-                {inner}
-              </a>
-            ) : (
+            const ribbon = item.disabled && (
               <div
-                key={index}
-                style={cardStyle}
-                className={`${cardClass} group`}
+                aria-hidden
+                className="absolute pointer-events-none z-30"
+                style={{
+                  top: 0,
+                  left: 0,
+                  color: "#fff",
+                  padding: ribbonPadding,
+                  background:
+                    "linear-gradient(180deg, #FF7575 0%, #E63946 50%, #B91C1C 100%)",
+                  borderBottom: `${foldSize}px solid rgba(0,0,0,0.45)`,
+                  clipPath: `polygon(100% calc(100% - ${foldSize}px), 100% 100%, calc(100% - ${foldSize}px) calc(100% - ${foldSize}px), ${foldSize}px calc(100% - ${foldSize}px), 0 100%, 0 calc(100% - ${foldSize}px), 999px calc(100% - ${foldSize}px - 999px), calc(100% - 999px) calc(100% - ${foldSize}px - 999px))`,
+                  transform:
+                    "translate(calc((cos(45deg) - 1)*100%), -100%) rotate(-45deg)",
+                  transformOrigin: "100% 100%",
+                  fontFamily: "Quicksand, sans-serif",
+                  fontWeight: 800,
+                  fontSize: `${ribbonFontSize}px`,
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  textShadow: "0 1px 2px rgba(0,0,0,0.4)",
+                  whiteSpace: "nowrap",
+                  filter:
+                    "drop-shadow(0 9px 16px rgba(0,0,0,0.42)) drop-shadow(0 3px 5px rgba(0,0,0,0.32)) drop-shadow(0 1px 1px rgba(0,0,0,0.25))",
+                }}
               >
-                {inner}
+                Nog niet boekbaar
+              </div>
+            );
+
+            return (
+              <div key={index} className={wrapperClass} style={wrapperStyle}>
+                {ribbon}
+                {item.link ? (
+                  <a
+                    href={item.link}
+                    {...(item.link.startsWith("#")
+                      ? {}
+                      : { target: "_blank", rel: "noopener noreferrer" })}
+                    className={`${cardClass} group`}
+                  >
+                    {inner}
+                  </a>
+                ) : (
+                  <div className={`${cardClass} group`}>{inner}</div>
+                )}
               </div>
             );
           })}

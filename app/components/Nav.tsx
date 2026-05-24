@@ -255,7 +255,9 @@ export default function Nav() {
                 CONTACT
               </Link>
               <Link
-                href="/#tickets"
+                href="https://tickets.minimastersplayground.nl/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white px-6 py-1.5 rounded-full"
                 style={{
                   background:
@@ -296,7 +298,9 @@ export default function Nav() {
                 />
               </button>
               <Link
-                href="/#contact"
+                href="https://tickets.minimastersplayground.nl/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white text-sm font-bold px-4 h-10 inline-flex items-center rounded-full leading-none"
                 style={{
                   background:
@@ -410,7 +414,9 @@ export default function Nav() {
             CONTACT
           </Link>
           <Link
-            href="/#tickets"
+            href="https://tickets.minimastersplayground.nl/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-white px-6 py-1.5 rounded-full"
             style={{
               background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
