@@ -169,7 +169,7 @@ export default function Slider() {
             // Corner ribbon (Temani Afif clip-path technique, pivoted on bottom-right)
             const foldSize = isMobile ? 7 : 12;
             const ribbonFontSize = isMobile ? 11 : 11;
-            const ribbonPadding = isMobile ? "0.40em 2em" : "0.45em 1.7em";
+            const ribbonPadding = isMobile ? "0.40em 2.8em" : "0.45em 2.5em";
 
             const inner = (
               <>
@@ -234,8 +234,7 @@ export default function Slider() {
                   textTransform: "uppercase",
                   textShadow: "0 1px 2px rgba(0,0,0,0.4)",
                   whiteSpace: "nowrap",
-                  filter:
-                    "drop-shadow(0 9px 16px rgba(0,0,0,0.42)) drop-shadow(0 3px 5px rgba(0,0,0,0.32)) drop-shadow(0 1px 1px rgba(0,0,0,0.25))",
+                  filter: "none",
                 }}
               >
                 Nog niet boekbaar
