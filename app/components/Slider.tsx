@@ -1,5 +1,4 @@
-"use client";
-import { useEffect, useMemo, useState, useRef } from "react";
+"use client";import { useEffect, useMemo, useState, useRef } from "react";
 
 export default function Slider() {
   const data = [
@@ -149,7 +148,7 @@ export default function Slider() {
 
         {/* Cards Row */}
         <div
-          className="flex md:justify-center items-center gap-8 md:gap-16 mt-10 md:mt-10 md:mb-44 mb-12 px-4 md:px-10 flex-nowrap overflow-x-auto md:overflow-visible [&::-webkit-scrollbar]:hidden"
+          className="flex md:justify-center items-center gap-8 md:gap-16 mt-0 pt-10 md:mt-10 md:pt-0 md:mb-44 mb-12 pl-8 md:pl-10 pr-4 md:pr-10 flex-nowrap overflow-x-auto md:overflow-visible [&::-webkit-scrollbar]:hidden"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {data.map((item, index) => {
@@ -167,9 +166,9 @@ export default function Slider() {
               "rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px] absolute inset-0 z-10 overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-4 md:pb-6 gap-2 md:gap-2.5";
 
             // Corner ribbon (Temani Afif clip-path technique, pivoted on bottom-right)
-            const foldSize = isMobile ? 7 : 12;
-            const ribbonFontSize = isMobile ? 11 : 11;
-            const ribbonPadding = isMobile ? "0.40em 2.8em" : "0.45em 2.5em";
+            const foldSize = isMobile ? 9 : 12;
+            const ribbonFontSize = isMobile ? 10 : 11;
+            const ribbonPadding = isMobile ? "0.45em 2.3em" : "0.45em 2.5em";
 
             const inner = (
               <>
