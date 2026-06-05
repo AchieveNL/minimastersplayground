@@ -28,11 +28,24 @@ export default function Slider() {
       text2: "",
       link: "/assets/pdf/Schooluitjes.pdf",
       hoverText: "Bekijk ons aanbod",
+      secondaryLink: "https://tickets.minimastersplayground.nl",
+      secondaryHoverText: "Boek nu",
       btnText: "SCHOOL & BSO",
       btnColor: "#FFCA58",
       disabled: false,
     },
-  ];
+  ] as Array<{
+    bg: string;
+    text1: string;
+    text2: string;
+    link: string;
+    hoverText: string;
+    secondaryLink?: string;
+    secondaryHoverText?: string;
+    btnText: string;
+    btnColor: string;
+    disabled: boolean;
+  }>;
   const [screenW, setScreenW] = useState(1440);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = useState({ w: 1440, h: 800 });
@@ -186,17 +199,47 @@ export default function Slider() {
                       "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
                   }}
                 />
-                {/* Upper pill — CTA (sits just above the title) */}
-                <span
-                  className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"
-                  style={{
-                    background: item.link
-                      ? "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)"
-                      : "linear-gradient(135deg, #B1B6FF 0%, #5763FF 100%)",
-                  }}
-                >
-                  {item.link ? item.hoverText : "Coming soon"}
-                </span>
+                {/* "Bekijk ons aanbod" — pinned to top when secondaryLink exists, otherwise sits with the title at bottom */}
+                {item.secondaryLink ? (
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-4 md:top-5 left-1/2 -translate-x-1/2 z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap hover:scale-105 transition-transform"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+                    }}
+                  >
+                    {item.hoverText}
+                  </a>
+                ) : (
+                  <span
+                    className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"
+                    style={{
+                      background: item.link
+                        ? "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)"
+                        : "linear-gradient(135deg, #B1B6FF 0%, #5763FF 100%)",
+                    }}
+                  >
+                    {item.link ? item.hoverText : "Coming soon"}
+                  </span>
+                )}
+                {/* Secondary CTA pill (Boek nu) — sits above the title at the bottom of the card */}
+                {item.secondaryLink && (
+                  <a
+                    href={item.secondaryLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap hover:scale-105 transition-transform"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
+                    }}
+                  >
+                    {item.secondaryHoverText}
+                  </a>
+                )}
                 {/* Bottom pill — category title */}
                 <span
                   className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"
@@ -243,7 +286,7 @@ export default function Slider() {
             return (
               <div key={index} className={wrapperClass} style={wrapperStyle}>
                 {ribbon}
-                {item.link ? (
+                {item.link && !item.secondaryLink ? (
                   <a
                     href={item.link}
                     {...(item.link.startsWith("#")

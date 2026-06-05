@@ -143,7 +143,7 @@ export default function NewsletterPopup() {
             className="text-[#5763FF] font-extrabold text-xl sm:text-2xl mb-2 leading-tight"
             style={{ letterSpacing: "0.005em" }}
           >
-            Nog eventjes geduld!
+            Meld je aan voor onze nieuwsbrief
           </p>
           <p className="text-[#5763FF] font-semibold text-sm sm:text-base mb-6 max-w-xs">
             Ontvang als eerste updates over onze opening, activiteiten en
