@@ -513,6 +513,16 @@ export default function Footer() {
                 />
               </Link>
             </div>
+
+            {/* Address */}
+            <Link
+              href="https://share.google/ZLMrmSLkckXFQ7fsW"
+              target="_blank"
+              className="text-[#5763FF] font-semibold text-sm lg:text-base mt-4 text-center lg:text-left hover:opacity-80 transition-opacity"
+              style={{ fontFamily: "Quicksand" }}
+            >
+              Marktstraat 38, 2741 NK Waddinxveen
+            </Link>
           </div>
         </div>
       </div>

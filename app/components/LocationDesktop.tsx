@@ -76,7 +76,7 @@ export default function LocationDesktop() {
         clipPath: clipPathValue,
         WebkitClipPath: clipPathValue,
       }}
-      className="w-full h-[740px] xl:h-[840px] pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
+      className="w-full h-[900px] xl:h-[1000px] pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
     >
       <img
         loading="lazy"
@@ -123,19 +123,30 @@ export default function LocationDesktop() {
               <h1>Zondag:</h1>
             </div>
             <div>
-              <h1>09:00-18:00</h1>
-              <h1>09:00-18:00</h1>
-              <h1>09:00-18:00</h1>
+              <h1>12:00–17:00</h1>
+              <h1>12:00–17:00</h1>
+              <h1>12:00–17:00</h1>
             </div>
           </div>
         </div>
 
-        <div ref={mapRef} className="flex justify-center">
+        <div
+          ref={mapRef}
+          className="flex flex-col items-center gap-4 text-[#5763FF]"
+        >
           <img
             src="/Newmaps.svg"
             className="w-75 lg:w-90 xl:w-110"
             alt="Map showing Waddinxveen location"
           />
+          <div className="flex flex-col gap-3 text-base lg:text-lg leading-tight w-fit">
+            <h2 className="text-2xl font-bold">Parkeren kan bij:</h2>
+            <div>
+              <h3 className="font-bold">Parkeergarage Gouweplein</h3>
+              <p>Oude dreef, 2741 NJ Waddinxveen, 2 min lopen</p>
+            </div>
+            <p>In de woonwijk is het gratis parkeren — 5 min lopen</p>
+          </div>
         </div>
       </div>
     </div>
