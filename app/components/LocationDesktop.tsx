@@ -123,9 +123,9 @@ export default function LocationDesktop() {
               <h1>Zondag:</h1>
             </div>
             <div>
-              <h1>12:00–17:00</h1>
-              <h1>12:00–17:00</h1>
-              <h1>12:00–17:00</h1>
+              <h1>09:00–17:30</h1>
+              <h1>09:00–17:30</h1>
+              <h1>12:00–17:30</h1>
             </div>
           </div>
         </div>
