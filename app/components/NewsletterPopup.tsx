@@ -51,6 +51,7 @@ export default function NewsletterPopup() {
     try {
       const body = new FormData();
       body.append("email", email);
+      body.append("marketingemails", "1");
       const res = await fetch(
         "https://api.leat.com/api/v1/forms/13816a98-5cca-4d59-ac85-e42ba8cccc62/public/submit",
         { method: "POST", body },
@@ -60,9 +61,15 @@ export default function NewsletterPopup() {
         form.reset();
         setTimeout(() => close(), 2500);
       } else {
+        console.error(
+          "Leat popup form error:",
+          res.status,
+          await res.text(),
+        );
         setStatus("error");
       }
-    } catch {
+    } catch (err) {
+      console.error("Leat popup submit failed:", err);
       setStatus("error");
     }
   };

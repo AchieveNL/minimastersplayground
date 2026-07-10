@@ -420,6 +420,7 @@ export default function Footer() {
                   try {
                     const body = new FormData();
                     body.append("email", email);
+                    body.append("marketingemails", "1");
                     const res = await fetch(
                       "https://api.leat.com/api/v1/forms/13816a98-5cca-4d59-ac85-e42ba8cccc62/public/submit",
                       { method: "POST", body },
