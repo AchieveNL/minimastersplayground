@@ -123,8 +123,8 @@ export default function AlgemeneVoorwaardenPage() {
             {/* Article 7 */}
             <Section color="#BB76FF" title="Artikel 7. Annulering">
               <NumberedList items={[
-                "Een bezoeker kan een reservering tot 24 uur voor de datum van de gereserveerde activiteit kosteloos annuleren en het betaalde bedrag volledig terugkrijgen.",
-                "Bij annulering binnen 24 uur voor de activiteit is restitutie niet mogelijk. De bezoeker kan in dat geval alleen de datum van de activiteit kosteloos verplaatsen naar een ander beschikbaar moment.",
+                "Een bezoeker kan zijn of haar reservering tot 12 uur vóór de gereserveerde activiteit kosteloos wijzigen naar een andere beschikbare datum en/of tijd. Het wijzigen van een reservering kan eenvoudig via de link in de reserveringsbevestiging. Na aankoop van tickets is restitutie van het betaalde bedrag niet mogelijk.",
+                "Vanaf 12 uur vóór aanvang van de gereserveerde activiteit kunnen reserveringen niet meer worden gewijzigd of geannuleerd. Er wordt geen restitutie, tegoed of verplaatsing verleend, ook niet bij ziekte, een ongeval, overmacht of andere persoonlijke omstandigheden.",
               ]} prefix="7" />
             </Section>
 
