@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import SmoothScroll from "../components/SmoothScroll";
 import AnimatedSlider from "../components/AnimatedSilder";
+import Preloader from "../components/Preloader";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const TICKETS_URL = "https://tickets.minimastersplayground.nl/";
@@ -18,6 +20,7 @@ function CardWrap({ children }: { children: React.ReactNode }) {
 }
 
 export default function OnsAanbodPage() {
+  const [loaded, setLoaded] = useState(false);
   const badgeRef = useScrollAnimation<HTMLDivElement>({
     type: "scaleIn",
     duration: 1,
@@ -25,12 +28,14 @@ export default function OnsAanbodPage() {
 
   return (
     <>
+      {!loaded && <Preloader onComplete={() => setLoaded(true)} />}
       <SmoothScroll />
-      <Nav />
-      <main
-        className="overflow-x-clip"
-        style={{ fontFamily: "Quicksand, sans-serif" }}
-      >
+      <div style={{ visibility: loaded ? "visible" : "hidden" }}>
+        <Nav />
+        <main
+          className="overflow-x-clip"
+          style={{ fontFamily: "Quicksand, sans-serif" }}
+        >
         {/* Section badge — same style as homepage */}
         <div
           ref={badgeRef}
@@ -177,9 +182,10 @@ export default function OnsAanbodPage() {
         </div>
 
         {/* Photo strip before footer */}
-        <AnimatedSlider direction="right" variant="footer" />
-      </main>
-      <Footer />
+          <AnimatedSlider direction="right" variant="footer" />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
