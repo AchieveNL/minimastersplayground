@@ -14,9 +14,8 @@ export default function NotificationBanner() {
       aria-live="polite"
     >
       <span className="inline-block">
-        Let op! Wij werken met vaste speelsessies van 2,5 uur. Eindtijd is voor
-        iedereen gelijk. Boek vooraf jullie tickets online om teleurstelling te
-        voorkomen.
+        Wij werken met vaste speelsessies van 2,5 uur, waardoor de eindtijd
+        voor iedereen gelijk is. Tickets reserveren = verplicht!
       </span>
     </div>
   );

@@ -67,14 +67,14 @@ export default function MobileSection() {
         <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
           <img
             loading="lazy"
-            src="/newclockIcon.svg"
+            src="/assets/badges/klok.svg"
             className="absolute lg:hidden"
             style={{ width: "100px", left: "-20%" }}
             alt=""
           />
           <img
             loading="lazy"
-            src="/newclockIcon.svg"
+            src="/assets/badges/klok.svg"
             className="absolute hidden lg:block"
             style={{ width: "100px", left: -55 }}
             alt=""
@@ -89,7 +89,7 @@ export default function MobileSection() {
         >
           <img
             loading="lazy"
-            src="/iPhone 1 (Mini Masters).png"
+            src="/assets/mobile/iphone-tijdsloten.png"
             alt="iPhone tijdsloten"
             className="block h-[40vh] min-h-[250px] sm:h-[45vh] md:h-[50vh] lg:h-[55vh] xl:h-[60vh] 2xl:h-[65vh] max-h-[600px] w-auto"
           />
@@ -119,7 +119,7 @@ export default function MobileSection() {
         <div className="flex-shrink-0">
           <img
             loading="lazy"
-            src="/MiniMasters Loyalty Arrow (1).svg"
+            src="/assets/mobile/loyalty-arrow-1.svg"
             className="w-16 lg:w-20 xl:w-24 2xl:w-30"
             alt=""
           />
@@ -164,7 +164,7 @@ export default function MobileSection() {
         <div className="flex-shrink-0">
           <img
             loading="lazy"
-            src="/MiniMasters Loyalty Arrow (2).svg"
+            src="/assets/mobile/loyalty-arrow-2.svg"
             className="w-16 lg:w-20 xl:w-24 2xl:w-30"
             alt=""
           />
@@ -180,14 +180,14 @@ export default function MobileSection() {
         <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
           <img
             loading="lazy"
-            src="/elements/Loyalty Icoon.svg"
+            src="/assets/badges/loyalty.svg"
             className="absolute lg:hidden"
             style={{ width: "100px", left: "-20%" }}
             alt=""
           />
           <img
             loading="lazy"
-            src="/elements/Loyalty Icoon.svg"
+            src="/assets/badges/loyalty.svg"
             className="absolute hidden lg:block"
             style={{ width: "100px", left: -45 }}
             alt=""
@@ -202,7 +202,7 @@ export default function MobileSection() {
         >
           <img
             loading="lazy"
-            src="/Iphone 2.png"
+            src="/assets/mobile/iphone-loyalty.png"
             alt="iPhone loyalty programma"
             className="block h-[40vh] min-h-[250px] sm:h-[45vh] md:h-[50vh] lg:h-[55vh] xl:h-[60vh] 2xl:h-[65vh] max-h-[600px] w-auto"
           />

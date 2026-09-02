@@ -78,20 +78,30 @@ export default function LocationMobile() {
       }}
       className="w-full relative h-[920px] pt-8 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)] overflow-hidden"
     >
-      <img
-        loading="lazy"
-        src="/assets/location/img3.svg"
-        className="absolute left-0 w-14 top-1/2 -translate-y-1/2"
-        alt=""
-      />
-      <img
-        loading="lazy"
-        src="/assets/location/img4.svg"
-        className="absolute right-0 w-20 top-1/2 -translate-y-1/2"
-        alt=""
-      />
+      <div className="absolute left-0 w-14 top-1/2 -translate-y-1/2">
+        <img
+          loading="lazy"
+          src="/assets/location/brandblusser.svg"
+          className="w-full"
+          style={{ animation: "locFloat 4s ease-in-out infinite" }}
+          alt=""
+        />
+      </div>
+      <div className="absolute right-0 w-20 top-1/2 -translate-y-1/2">
+        <img
+          loading="lazy"
+          src="/assets/location/brandweerwagen.svg"
+          className="w-full"
+          style={{ animation: "locFloat 3.5s ease-in-out infinite 0.6s" }}
+          alt=""
+        />
+      </div>
 
       <style>{`
+        @keyframes locFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-12px); }
+        }
         @keyframes flagWave {
           0%, 100% { transform: rotate(-3deg) translateY(0); }
           25% { transform: rotate(-1deg) translateY(-2px); }
@@ -108,13 +118,13 @@ export default function LocationMobile() {
           <div className="relative w-64" style={{ overflow: "visible" }}>
             <img
               loading="lazy"
-              src="/Foto.svg"
+              src="/assets/location/foto.svg"
               className="w-full"
               alt="Restaurant foto"
             />
             <img
               loading="lazy"
-              src="/Vlag.svg"
+              src="/assets/location/vlag.svg"
               className="absolute w-[120%] -left-[6.5%] top-[-30%]"
               style={{
                 transformOrigin: "center top",
@@ -143,17 +153,18 @@ export default function LocationMobile() {
           className="w-full flex flex-col items-center gap-3 text-[#5763FF]"
         >
           <img
-            src="/Newmaps.svg"
+            src="/assets/location/kaart.svg"
             className="w-[240px]"
             alt="Map showing Waddinxveen location"
           />
           <div className="flex flex-col gap-2 text-sm leading-tight w-fit text-center">
-            <h2 className="text-base font-bold">Parkeren kan bij:</h2>
+            <h2 className="text-base font-bold">Parkeer Tip:</h2>
             <div>
               <h3 className="font-bold">Parkeergarage Gouweplein</h3>
               <p>Oude dreef, 2741 NJ Waddinxveen, 2 min lopen</p>
+              <p className="font-bold">Eerste 2 uur gratis</p>
             </div>
-            <p>In de woonwijk is het gratis parkeren — 5 min lopen</p>
+            <p>Parkeergelegenheid in de omliggende wijk — ca. 5 min lopen</p>
           </div>
         </div>
       </div>

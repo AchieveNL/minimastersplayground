@@ -218,7 +218,7 @@ export default function Nav() {
             >
               <img
                 ref={logoImgRef}
-                src="/header navbar logo.svg"
+                src="/assets/branding/logo-navbar.svg"
                 className="w-36 sm:w-44 md:w-56 xl:w-56 2xl:w-72 md:[filter:drop-shadow(0_0_30px_rgba(255,255,255,0.55))]"
                 alt=""
               />
@@ -242,6 +242,9 @@ export default function Nav() {
               <Link href="/#over-ons" className="text-[#5763FF] text-nowrap">
                 OVER ONS
               </Link>
+              <Link href="/ons-aanbod" className="text-[#BB76FF] text-nowrap">
+                ONS AANBOD
+              </Link>
               <Link href="/#loyalty" className="text-[#67CD8A]">
                 LOYALTY
               </Link>
@@ -253,6 +256,14 @@ export default function Nav() {
               </Link>
               <Link href="/#contact" className="text-[#5763FF]">
                 CONTACT
+              </Link>
+              <Link
+                href="https://online.byonesix.com/minimasters-playground-waddinxveen"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#FF5757]"
+              >
+                MENU
               </Link>
               <Link
                 href="https://tickets.minimastersplayground.nl/"
@@ -356,13 +367,13 @@ export default function Nav() {
             className="flex justify-center w-full mt-4 relative"
           >
             <img
-              src="/Yellow Glow.png"
+              src="/assets/branding/yellow-glow.png"
               alt=""
               aria-hidden="true"
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[170%] max-w-none opacity-50"
             />
             <img
-              src="/header navbar logo.svg"
+              src="/assets/branding/logo-navbar.svg"
               className="w-3/4 p-2 relative"
               alt=""
             />
@@ -384,6 +395,13 @@ export default function Nav() {
             onClick={() => setIsOpen(false)}
           >
             OVER ONS
+          </Link>
+          <Link
+            href="/ons-aanbod"
+            className="text-[#BB76FF]"
+            onClick={() => setIsOpen(false)}
+          >
+            ONS AANBOD
           </Link>
           <Link
             href="/#loyalty"
@@ -412,6 +430,15 @@ export default function Nav() {
             onClick={() => setIsOpen(false)}
           >
             CONTACT
+          </Link>
+          <Link
+            href="https://online.byonesix.com/minimasters-playground-waddinxveen"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#FF5757]"
+            onClick={() => setIsOpen(false)}
+          >
+            MENU
           </Link>
           <Link
             href="https://tickets.minimastersplayground.nl/"

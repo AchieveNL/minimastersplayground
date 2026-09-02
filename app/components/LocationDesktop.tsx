@@ -78,20 +78,30 @@ export default function LocationDesktop() {
       }}
       className="w-full h-[900px] xl:h-[1000px] pt-26 bg-[linear-gradient(93.35deg,#FFCA58_8.86%,#FFDB8D_90.44%)]"
     >
-      <img
-        loading="lazy"
-        src="/assets/location/img3.svg"
-        className="absolute left-0 -z-10 w-30 top-1/2 -translate-y-1/2"
-        alt=""
-      />
-      <img
-        loading="lazy"
-        src="/assets/location/img4.svg"
-        className="absolute right-0 -z-10 w-50 top-1/2 -translate-y-1/2"
-        alt=""
-      />
+      <div className="absolute left-0 -z-10 w-30 top-1/2 -translate-y-1/2">
+        <img
+          loading="lazy"
+          src="/assets/location/brandblusser.svg"
+          className="w-full"
+          style={{ animation: "locFloat 4s ease-in-out infinite" }}
+          alt=""
+        />
+      </div>
+      <div className="absolute right-0 -z-10 w-50 top-1/2 -translate-y-1/2">
+        <img
+          loading="lazy"
+          src="/assets/location/brandweerwagen.svg"
+          className="w-full"
+          style={{ animation: "locFloat 3.5s ease-in-out infinite 0.6s" }}
+          alt=""
+        />
+      </div>
 
       <style>{`
+        @keyframes locFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-12px); }
+        }
         @keyframes flagWave {
           0%, 100% { transform: rotate(-3deg) translateY(0); }
           25% { transform: rotate(-1deg) translateY(-2px); }
@@ -106,10 +116,10 @@ export default function LocationDesktop() {
           className="flex flex-col items-center text-[#5763FF] font-bold gap-4"
         >
           <div className="relative w-72 lg:w-80 xl:w-96" style={{ overflow: "visible" }}>
-            <img loading="lazy" src="/Foto.svg" className="w-full" alt="Restaurant foto" />
+            <img loading="lazy" src="/assets/location/foto.svg" className="w-full" alt="Restaurant foto" />
             <img
               loading="lazy"
-              src="/Vlag.svg"
+              src="/assets/location/vlag.svg"
               className="absolute w-[120%] -left-[6.5%] top-[-30%]"
               style={{ transformOrigin: "center top", animation: "flagWave 3s ease-in-out infinite" }}
               alt="Vlag"
@@ -135,17 +145,18 @@ export default function LocationDesktop() {
           className="flex flex-col items-center gap-4 text-[#5763FF]"
         >
           <img
-            src="/Newmaps.svg"
+            src="/assets/location/kaart.svg"
             className="w-75 lg:w-90 xl:w-110"
             alt="Map showing Waddinxveen location"
           />
           <div className="flex flex-col gap-3 text-base lg:text-lg leading-tight w-fit">
-            <h2 className="text-2xl font-bold">Parkeren kan bij:</h2>
+            <h2 className="text-2xl font-bold">Parkeer Tip:</h2>
             <div>
               <h3 className="font-bold">Parkeergarage Gouweplein</h3>
               <p>Oude dreef, 2741 NJ Waddinxveen, 2 min lopen</p>
+              <p className="font-bold">Eerste 2 uur gratis</p>
             </div>
-            <p>In de woonwijk is het gratis parkeren — 5 min lopen</p>
+            <p>Parkeergelegenheid in de omliggende wijk — ca. 5 min lopen</p>
           </div>
         </div>
       </div>

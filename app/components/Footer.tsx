@@ -315,14 +315,14 @@ export default function Footer() {
             <Link href="/" className="-mt-10 sm:-mt-16 lg:-mt-24 relative">
               <img
                 loading="lazy"
-                src="/Yellow Glow.png"
+                src="/assets/branding/yellow-glow.png"
                 alt=""
                 aria-hidden="true"
                 className="absolute top-[62%] xs:top-[64%] sm:top-[66%] md:top-[68%] lg:top-[78%] xl:top-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[180%] xs:w-[200%] sm:w-[220%] md:w-[290%] lg:w-[200%] xl:w-[190%] 2xl:w-[180%] max-w-none opacity-55 md:opacity-70 lg:opacity-50"
               />
               <img
                 loading="lazy"
-                src="/FooterLogoV2.png"
+                src="/assets/branding/logo-footer.png"
                 alt=""
                 className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[28rem] xl:w-[36rem] 2xl:w-[42rem] relative"
               />
@@ -378,7 +378,7 @@ export default function Footer() {
           >
             <img
               loading="lazy"
-              src="/Yellow Glow.png"
+              src="/assets/branding/yellow-glow.png"
               alt=""
               aria-hidden="true"
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[280%] max-w-none opacity-55 -z-10 lg:hidden"

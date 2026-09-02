@@ -378,14 +378,14 @@ export default function Faq() {
       >
         <img
           loading="lazy"
-          src="/NewVragenIcoon.svg"
+          src="/assets/badges/vragen.svg"
           className="absolute md:hidden"
           style={{ width: "120px", left: "-20%" }}
           alt=""
         />
         <img
           loading="lazy"
-          src="/NewVragenIcoon.svg"
+          src="/assets/badges/vragen.svg"
           className="absolute hidden md:block"
           style={{ width: "130px", left: -50 }}
           alt=""

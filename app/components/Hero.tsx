@@ -70,7 +70,7 @@ export default function Hero() {
       posMobileLeft: "-15%",
       pos: -60,
       iconWidth: 92,
-      icon: "/elements/Groep Icoon.svg",
+      icon: "/assets/badges/groep.svg",
       title: (
         <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-6 pl-8 w-full rounded-br-4xl">
           DE MINI MAATSCHAPPIJ
@@ -84,7 +84,7 @@ export default function Hero() {
       posMobileLeft: "-20%",
       pos: -90,
       iconWidth: 120,
-      icon: "/elements/Educatie Icoon.svg",
+      icon: "/assets/badges/educatie.svg",
       title: (
         <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-8 pl-8 w-full rounded-br-4xl">
           HET EDUCATIEVE KARAKTER
@@ -98,7 +98,7 @@ export default function Hero() {
       posMobileLeft: "-15%",
       pos: -85,
       iconWidth: 96,
-      icon: "/elements/Standaard Icoon.svg",
+      icon: "/assets/badges/standaard.svg",
       title: (
         <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-6 pl-8 w-full rounded-br-4xl">
           DE NIEUWE STANDAARD
@@ -140,10 +140,10 @@ export default function Hero() {
             opacity: 0,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            fontFamily: "'Titan One', cursive",
+            fontFamily: "'Lovelo', sans-serif",
             fontWeight: 400,
             letterSpacing: "0.01em",
-            fontSize: "clamp(2.25rem, 4.5vw, 6rem)",
+            fontSize: "clamp(2.25rem, 7vw, 8.5rem)",
           }}
           className="whitespace-nowrap text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
         >
@@ -155,10 +155,10 @@ export default function Hero() {
             opacity: 0,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            fontFamily: "'Titan One', cursive",
+            fontFamily: "'Lovelo', sans-serif",
             fontWeight: 400,
             letterSpacing: "0.01em",
-            fontSize: "clamp(2.25rem, 4.5vw, 6rem)",
+            fontSize: "clamp(2.25rem, 7vw, 8.5rem)",
           }}
           className="whitespace-nowrap text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
         >

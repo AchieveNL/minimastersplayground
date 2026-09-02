@@ -4,11 +4,11 @@ import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 
 const images = [
-  "/assets/hero-imgs/img1.png",
+  "/assets/hero-imgs/img1.webp",
   "/assets/hero-imgs/img2.jpg",
   "/assets/hero-imgs/img3.jpg",
   "/assets/hero-imgs/img4.jpg",
-  "/assets/hero-imgs/img5.png",
+  "/assets/hero-imgs/img5.webp",
   "/assets/hero-imgs/img6.jpg",
 ];
 
@@ -96,7 +96,7 @@ export default function AnimatedSlider({
           <div className="grid grid-cols-3 grid-rows-3 md:gap-3 gap-1 h-full md:p-1.5 p-0.75 md:w-[120vw] w-[160vw]">
             <img
               // key={i}
-              src="/assets/hero-imgs/img1.png"
+              src="/assets/hero-imgs/img1.webp"
               alt=""
               className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
             />
@@ -120,7 +120,7 @@ export default function AnimatedSlider({
             />
             <img
               // key={i}
-              src="/assets/hero-imgs/img5.png"
+              src="/assets/hero-imgs/img5.webp"
               alt=""
               className="w-full h-full object-cover rounded-sm md:-mt-10"
             />
@@ -132,7 +132,7 @@ export default function AnimatedSlider({
             />
             <img
               // key={i}
-              src="/assets/hero-imgs/img1.png"
+              src="/assets/hero-imgs/img1.webp"
               alt=""
               className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
             />
@@ -156,7 +156,7 @@ export default function AnimatedSlider({
             />
             <img
               // key={i}
-              src="/assets/hero-imgs/img5.png"
+              src="/assets/hero-imgs/img5.webp"
               alt=""
               className="w-full h-full object-cover rounded-sm md:-mt-10"
             />
@@ -167,7 +167,7 @@ export default function AnimatedSlider({
               className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
             />
             <img
-              src="/assets/hero-imgs/img1.png"
+              src="/assets/hero-imgs/img1.webp"
               alt=""
               className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
             />
@@ -187,7 +187,7 @@ export default function AnimatedSlider({
               className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
             />
             <img
-              src="/assets/hero-imgs/img5.png"
+              src="/assets/hero-imgs/img5.webp"
               alt=""
               className="w-full h-full object-cover rounded-sm md:-mt-10"
             />

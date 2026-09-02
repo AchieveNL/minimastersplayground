@@ -3,47 +3,33 @@
 export default function Slider() {
   const data = [
     {
-      bg: "img5.jpg",
+      bg: "kinderfeestje.jpg",
       text1: "Kinderfeestje",
-      text2: "",
-      link: "/assets/pdf/verjaardagen.pdf",
-      hoverText: "Bekijk ons aanbod",
-      btnText: "VERJAARDAG",
-      btnColor: "#FFCA58",
-      disabled: true,
-    },
-    {
-      bg: "img1.jpg",
-      text1: "Entreeticket",
-      text2: "",
       link: "https://tickets.minimastersplayground.nl/",
-      hoverText: "Boek nu",
-      btnText: "DIRECT BOEKEN",
-      btnColor: "#67CD8A",
       disabled: false,
     },
     {
-      bg: "img4.jpg",
+      bg: "entreeticket.webp",
+      text1: "Entreeticket",
+      link: "https://tickets.minimastersplayground.nl/",
+      disabled: false,
+    },
+    {
+      bg: "zaalhuur.jpg",
+      text1: "Zaalhuur",
+      link: "https://tickets.minimastersplayground.nl/",
+      disabled: false,
+    },
+    {
+      bg: "scholen-bso.jpg",
       text1: "Scholen & BSO",
-      text2: "",
-      link: "/assets/pdf/Schooluitjes.pdf",
-      hoverText: "Bekijk ons aanbod",
-      secondaryLink: "https://tickets.minimastersplayground.nl",
-      secondaryHoverText: "Boek nu",
-      btnText: "SCHOOL & BSO",
-      btnColor: "#FFCA58",
+      link: "https://tickets.minimastersplayground.nl/",
       disabled: false,
     },
   ] as Array<{
     bg: string;
     text1: string;
-    text2: string;
     link: string;
-    hoverText: string;
-    secondaryLink?: string;
-    secondaryHoverText?: string;
-    btnText: string;
-    btnColor: string;
     disabled: boolean;
   }>;
   const [screenW, setScreenW] = useState(1440);
@@ -125,16 +111,24 @@ export default function Slider() {
         }}
         className="w-full relative -mt-14 md:h-[680px] xl:h-[780px] h-[580px] pt-20 md:pt-28 bg-linear-to-r from-[#FFCA58] to-[#FFDB8D] overflow-hidden"
       >
+        <style>{`
+          @keyframes sliderFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+          }
+        `}</style>
         <img
           loading="lazy"
-          src="/assets/icons/cards-icon1.svg"
+          src="/assets/icons/winkelwagen.svg"
           className="absolute right-0 top-10 md:w-80 w-30"
+          style={{ animation: "sliderFloat 4s ease-in-out infinite" }}
           alt=""
         />
         <img
           loading="lazy"
-          src="/assets/icons/cards-icon2.svg"
+          src="/assets/icons/aardbei.svg"
           className="absolute left-0 md:w-40 w-20"
+          style={{ animation: "sliderFloat 3.5s ease-in-out infinite 0.6s" }}
           alt=""
         />
 
@@ -142,26 +136,26 @@ export default function Slider() {
         <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
           <img
             loading="lazy"
-            src="/elements/Ticket Icoon.svg"
+            src="/assets/badges/ticket.svg"
             className="absolute md:hidden"
             style={{ width: "100px", left: "-20%" }}
             alt=""
           />
           <img
             loading="lazy"
-            src="/elements/Ticket Icoon.svg"
+            src="/assets/badges/ticket.svg"
             className="absolute hidden md:block"
             style={{ width: "100px", left: -65 }}
             alt=""
           />
           <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 w-full rounded-br-4xl">
-            ONZE ARRANGEMENTEN
+            ONS AANBOD
           </h1>
         </div>
 
         {/* Cards Row */}
         <div
-          className="flex md:justify-center items-center gap-8 md:gap-16 mt-0 pt-10 md:mt-10 md:pt-0 md:mb-44 mb-12 pl-8 md:pl-10 pr-4 md:pr-10 flex-nowrap overflow-x-auto md:overflow-visible [&::-webkit-scrollbar]:hidden"
+          className="flex lg:justify-center items-center gap-8 lg:gap-10 xl:gap-16 mt-0 pt-10 md:mt-10 md:pt-0 md:mb-44 mb-12 pl-8 md:pl-10 pr-4 md:pr-10 flex-nowrap overflow-x-auto lg:overflow-visible [&::-webkit-scrollbar]:hidden"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {data.map((item, index) => {
@@ -199,47 +193,6 @@ export default function Slider() {
                       "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
                   }}
                 />
-                {/* "Bekijk ons aanbod" — pinned to top when secondaryLink exists, otherwise sits with the title at bottom */}
-                {item.secondaryLink ? (
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute top-4 md:top-5 left-1/2 -translate-x-1/2 z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap hover:scale-105 transition-transform"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
-                    }}
-                  >
-                    {item.hoverText}
-                  </a>
-                ) : (
-                  <span
-                    className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"
-                    style={{
-                      background: item.link
-                        ? "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)"
-                        : "linear-gradient(135deg, #B1B6FF 0%, #5763FF 100%)",
-                    }}
-                  >
-                    {item.link ? item.hoverText : "Coming soon"}
-                  </span>
-                )}
-                {/* Secondary CTA pill (Boek nu) — sits above the title at the bottom of the card */}
-                {item.secondaryLink && (
-                  <a
-                    href={item.secondaryLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap hover:scale-105 transition-transform"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
-                    }}
-                  >
-                    {item.secondaryHoverText}
-                  </a>
-                )}
                 {/* Bottom pill — category title */}
                 <span
                   className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"
@@ -286,7 +239,7 @@ export default function Slider() {
             return (
               <div key={index} className={wrapperClass} style={wrapperStyle}>
                 {ribbon}
-                {item.link && !item.secondaryLink ? (
+                {item.link ? (
                   <a
                     href={item.link}
                     {...(item.link.startsWith("#")

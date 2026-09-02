@@ -100,14 +100,14 @@ export default function NewsletterPopup() {
       >
         {/* Top-right decorative icon */}
         <img
-          src="/assets/icons/cards-icon1.svg"
+          src="/assets/icons/winkelwagen.svg"
           alt=""
           aria-hidden
           className="absolute -top-2 -right-4 w-24 sm:w-28 opacity-90 pointer-events-none select-none"
         />
         {/* Bottom-left decorative icon */}
         <img
-          src="/assets/icons/cards-icon2.svg"
+          src="/assets/icons/aardbei.svg"
           alt=""
           aria-hidden
           className="absolute -bottom-2 -left-4 w-20 sm:w-24 opacity-90 pointer-events-none select-none"
