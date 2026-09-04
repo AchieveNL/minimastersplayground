@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { useContent } from "../content-context";
 
 export default function LocationMobile() {
+  const { openingstijden, parkeren } = useContent();
   const openingsRef = useScrollAnimation<HTMLDivElement>({
     type: "fadeLeft",
     duration: 1.1,
@@ -133,17 +135,17 @@ export default function LocationMobile() {
               alt="Vlag"
             />
           </div>
-          <h1 className="text-lg mt-2">OPENINGSTIJDEN</h1>
+          <h1 className="text-lg mt-2">{openingstijden.titel}</h1>
           <div className="flex gap-6 -mt-1 text-sm">
             <div>
-              <h1>Ma t/m Vr:</h1>
-              <h1>Zaterdag:</h1>
-              <h1>Zondag:</h1>
+              {openingstijden.rijen.map((r, i) => (
+                <h1 key={i}>{r.label}</h1>
+              ))}
             </div>
             <div>
-              <h1>09:00–17:30</h1>
-              <h1>09:00–17:30</h1>
-              <h1>12:00–17:30</h1>
+              {openingstijden.rijen.map((r, i) => (
+                <h1 key={i}>{r.tijd}</h1>
+              ))}
             </div>
           </div>
         </div>
@@ -158,13 +160,15 @@ export default function LocationMobile() {
             alt="Map showing Waddinxveen location"
           />
           <div className="flex flex-col gap-2 text-sm leading-tight w-fit text-center">
-            <h2 className="text-base font-bold">Parkeer Tip:</h2>
+            <h2 className="text-base font-bold">{parkeren.titel}</h2>
             <div>
-              <h3 className="font-bold">Parkeergarage Gouweplein</h3>
-              <p>Oude dreef, 2741 NJ Waddinxveen, 2 min lopen</p>
-              <p className="font-bold">Eerste 2 uur gratis</p>
+              <h3 className="font-bold">{parkeren.garageNaam}</h3>
+              <p>{parkeren.garageAdres}</p>
+              {parkeren.garageGratis && (
+                <p className="font-bold">{parkeren.garageGratis}</p>
+              )}
             </div>
-            <p>Parkeergelegenheid in de omliggende wijk — ca. 5 min lopen</p>
+            <p>{parkeren.wijk}</p>
           </div>
         </div>
       </div>

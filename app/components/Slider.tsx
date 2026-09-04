@@ -1,28 +1,30 @@
 "use client";import { useEffect, useMemo, useState, useRef } from "react";
+import { useContent } from "../content-context";
 
 export default function Slider() {
+  const { slider } = useContent();
   const data = [
     {
       bg: "kinderfeestje.jpg",
-      text1: "Kinderfeestje",
+      text1: slider.cards[0]?.title ?? "Kinderfeestje",
       link: "https://tickets.minimastersplayground.nl/",
       disabled: false,
     },
     {
       bg: "entreeticket.webp",
-      text1: "Entreeticket",
+      text1: slider.cards[1]?.title ?? "Entreeticket",
       link: "https://tickets.minimastersplayground.nl/",
       disabled: false,
     },
     {
       bg: "zaalhuur.jpg",
-      text1: "Zaalhuur",
+      text1: slider.cards[2]?.title ?? "Zaalhuur",
       link: "https://tickets.minimastersplayground.nl/",
       disabled: false,
     },
     {
       bg: "scholen-bso.jpg",
-      text1: "Scholen & BSO",
+      text1: slider.cards[3]?.title ?? "Scholen & BSO",
       link: "https://tickets.minimastersplayground.nl/",
       disabled: false,
     },
@@ -149,7 +151,7 @@ export default function Slider() {
             alt=""
           />
           <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 w-full rounded-br-4xl">
-            ONS AANBOD
+            {slider.badge}
           </h1>
         </div>
 

@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { useContent } from "../content-context";
 
 type FaqItem = {
   question: string;
@@ -16,187 +17,10 @@ type FaqCategory = {
   text: string;
 };
 
-const data: FaqCategory[] = [
-  {
-    text: "#BB76FF",
-    bg: "#F5EBFF",
-    title: "Nieuw bij Minimasters",
-    items: [
-      {
-        question: "Hoe werken de arrangementen?",
-        answer: (
-          <>
-            Wij werken dagelijks met drie vaste sessies van elk 2,5 uur.
-            <br />
-            <br />
-            Tussen iedere sessie hebben wij 30 minuten opruimtijd, zodat de
-            ruimte weer schoon en klaar is voor de volgende groep kinderen. Op
-            deze manier zorgen wij iedere sessie opnieuw voor een fijne en
-            veilige speelervaring.
-            <br />
-            <br />
-            Elke sessie heeft een eigen naam, maar het aanbod aan activiteiten
-            en het spelen is in elke sessie hetzelfde.
-          </>
-        ),
-      },
-      {
-        question: "Voor welk leeftijd is Minimasters?",
-        answer: (
-          <>
-            Bij Minimasters is iedereen welkom, van jong tot oud! Onze
-            activiteiten zijn wel in het bijzonder afgestemd op kinderen tot en
-            met 8 jaar.
-          </>
-        ),
-      },
-      {
-        question: "Hoelaat moet ik aankomen?",
-        answer: (
-          <>
-            We adviseren om ongeveer 5 minuten van tevoren aanwezig te zijn. Zo
-            heb je rustig de tijd om je schoenen en jas op te bergen voordat je
-            avontuur begint. Kom je eerder aan? Dan kan het zijn dat de deuren
-            nog niet open zijn, omdat we tussen de speelsessies de ruimte nog
-            aan het opruimen zijn.
-          </>
-        ),
-      },
-      {
-        question: "Waarom kopen ouders en verzorgers een kaartje?",
-        answer: (
-          <>
-            Bij Minimasters werken we met een vast aantal plekken per sessie om
-            het spelen voor iedereen veilig en prettig te houden. Omdat ouders
-            en verzorgers ook aanwezig zijn in de speelruimte, vragen we voor
-            hen eveneens een ticket. Zo blijft het overzichtelijk en kan
-            iedereen volop genieten van het spelen.
-          </>
-        ),
-      },
-      {
-        question: "Mag ik schoenen aan tijdens het spelen?",
-        answer: (
-          <>
-            Om hygiënische redenen is het niet toegestaan om schoenen te dragen
-            tijdens het spelen. Daarom spelen we op sokken. Ben je je sokken
-            vergeten? Geen probleem, je kunt sokken kopen bij de receptie.
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    text: "#67CD8A",
-    bg: "#FFFCF6",
-    title: "Tickets",
-    items: [
-      {
-        question: "Zijn er tickets aan de deur verkrijgbaar?",
-        answer: (
-          <>
-            Zolang een sessie niet is uitverkocht, kun je tickets kopen aan de
-            deur. De huidige beschikbaarheid vind je op onze ticketpagina. Wil
-            je verzekerd zijn van een tijdslot? Dan adviseren we je tickets
-            online te bestellen.
-          </>
-        ),
-      },
-      {
-        question: "Kan ik mijn ticket nog annuleren?",
-        answer: (
-          <>
-            Vooraf gekochte tickets worden niet terugbetaald. Je kunt je
-            reservering wel tot 24 uur van tevoren kosteloos wijzigen naar een
-            andere datum. Neem hiervoor contact op met de locatie.
-          </>
-        ),
-      },
-      {
-        question: "Wat gebeurt er als ik later aankom?",
-        answer: (
-          <>
-            Geen probleem als je iets later aankomt. Houd er wel rekening mee
-            dat de speelsessie een vaste eindtijd heeft. Deze eindtijd blijft
-            hetzelfde voor alle spelers, ook als je later begint.
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    text: "#5763FF",
-    bg: "#EAECFF",
-    title: "Algemene vragen",
-    items: [
-      {
-        question: "Mag ik eigen eten en drinken meenemen?",
-        answer: (
-          <>
-            In ons café kun je terecht voor eten en drinken. Daarom vragen we je
-            vriendelijk geen eigen consumpties mee te nemen. Babyvoeding en
-            babyflessen zijn wel toegestaan.
-          </>
-        ),
-      },
-      {
-        question: "Mogen mijn kinderen alleen blijven?",
-        answer: (
-          <>
-            Kinderen mogen niet zonder begeleiding bij Minimasters verblijven.
-            Een ouder of verzorger dient te allen tijde aanwezig te zijn.
-          </>
-        ),
-      },
-      {
-        question: "Welke betaalmethoden worden er geaccepteerd?",
-        answer: (
-          <>
-            Bij Minimasters is het alleen mogelijk met pin te betalen, contante
-            betalingen worden niet geaccepteerd.
-          </>
-        ),
-      },
-      {
-        question: "Kan ik mijn kinderwagen meenemen?",
-        answer: (
-          <>
-            Bij binnenkomst in de lobby vragen we je om de kinderwagen daar
-            achter te laten. Vanwege hygiëne en de beperkte ruimte is het niet
-            toegestaan om kinderwagens mee te nemen in de speelruimte en
-            zitgedeelte.
-          </>
-        ),
-      },
-      {
-        question: "Kunnen mijn kinderen alleen blijven in Minimasters?",
-        answer: (
-          <>
-            Nee, kinderen dienen altijd onder toezicht van hun ouders of
-            verzorgers te blijven.
-          </>
-        ),
-      },
-      {
-        question: "Is er een borstvoeding ruimte?",
-        answer: (
-          <>Ja, wij hebben een privé ruimte waar je borstvoeding kunt geven.</>
-        ),
-      },
-      {
-        question: "Verloren items?",
-        answer: (
-          <>
-            We bewaren gevonden voorwerpen meestal 14 dagen, afhankelijk van de
-            beschikbare ruimte. Ben je iets verloren? Mail ons dan naar
-            hero@minimastersplayground.nl. Houd er rekening mee dat wij niet
-            verantwoordelijk zijn voor verloren spullen en dat we niet kunnen
-            garanderen dat het item wordt teruggevonden.
-          </>
-        ),
-      },
-    ],
-  },
+const categoryPalette = [
+  { text: "#BB76FF", bg: "#F5EBFF" },
+  { text: "#67CD8A", bg: "#FFFCF6" },
+  { text: "#5763FF", bg: "#EAECFF" },
 ];
 
 // Framer Motion variants
@@ -337,6 +161,15 @@ const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
 };
 
 export default function Faq() {
+  const { faq } = useContent();
+  const data: FaqCategory[] = faq.categorieen.map((cat, i) => ({
+    ...categoryPalette[i % categoryPalette.length],
+    title: cat.titel,
+    items: cat.items.map((item) => ({
+      question: item.vraag,
+      answer: <span className="whitespace-pre-line">{item.antwoord}</span>,
+    })),
+  }));
   const badgeRef = useScrollAnimation<HTMLDivElement>({
     type: "scaleIn",
     duration: 1,
@@ -392,7 +225,7 @@ export default function Faq() {
         />
 
         <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 w-full rounded-br-4xl">
-          Veelgestelde vragen
+          {faq.badge}
         </h1>
       </div>
       <div

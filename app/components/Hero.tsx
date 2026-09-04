@@ -3,6 +3,7 @@ import gsap from "gsap";
 import AnimatedSilder from "./AnimatedSilder";
 import InfoCard from "./InfoCard";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { useContent } from "../content-context";
 
 export default function Hero() {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -64,20 +65,15 @@ export default function Hero() {
     });
     return () => ctx.revert();
   }, []);
-  const infoCards = [
+  const { hero } = useContent();
+  const cardMeta = [
     {
       iconWidthMobile: 95,
       posMobileLeft: "-15%",
       pos: -60,
       iconWidth: 92,
       icon: "/assets/badges/groep.svg",
-      title: (
-        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-6 pl-8 w-full rounded-br-4xl">
-          DE MINI MAATSCHAPPIJ
-        </h1>
-      ),
-      description:
-        "Binnen minimasters stappen kinderen in een wereld die volledig is afgestemd op hun eigen belevingswereld. Zij krijgen de ruimte om spelenderwijs te ontdekken hoe vormen van samenwerking een belangrijke rol spelen in het dagelijks leven.",
+      titlePad: "md:pl-6",
     },
     {
       iconWidthMobile: 120,
@@ -85,13 +81,7 @@ export default function Hero() {
       pos: -90,
       iconWidth: 120,
       icon: "/assets/badges/educatie.svg",
-      title: (
-        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-8 pl-8 w-full rounded-br-4xl">
-          HET EDUCATIEVE KARAKTER
-        </h1>
-      ),
-      description:
-        "Ons doel is om kinderen te laten leren door te doen, door actief deel te nemen aan herkenbare beroepen. Zelfvertrouwen en creativiteit krijgen de ruimte omdat er geen goed of fout bestaat: elk kind mag op zijn eigen manier ontdekken.",
+      titlePad: "md:pl-8",
     },
     {
       iconWidthMobile: 95,
@@ -99,15 +89,20 @@ export default function Hero() {
       pos: -85,
       iconWidth: 96,
       icon: "/assets/badges/standaard.svg",
-      title: (
-        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-6 pl-8 w-full rounded-br-4xl">
-          DE NIEUWE STANDAARD
-        </h1>
-      ),
-      description:
-        "MiniMasters biedt een hoogwaardige, schone en begeleide speelomgeving waarin kinderen worden uitgedaagd om te ontdekken en te creeëren. Geen drukke of chaotische speelplekken, maar rust, overzicht en aandacht.",
+      titlePad: "md:pl-6",
     },
   ];
+  const infoCards = cardMeta.map((meta, i) => ({
+    ...meta,
+    title: (
+      <h1
+        className={`font-bold md:text-lg text-center text-[#FDF9EF] ${meta.titlePad} pl-8 w-full rounded-br-4xl`}
+      >
+        {hero.infocards[i]?.title}
+      </h1>
+    ),
+    description: hero.infocards[i]?.description,
+  }));
   return (
     <div
       className="-mt-4 md:-mt-14 relative overflow-x-clip"

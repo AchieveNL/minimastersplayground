@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { getSiteContent } from "../lib/content";
+import { ContentProvider } from "./content-context";
+
+export const revalidate = 300;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,11 +47,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const content = await getSiteContent();
   return (
     <html lang="en">
       <head>
@@ -62,7 +67,9 @@ export default function RootLayout({
           rel="stylesheet"
         ></link>
       </head>
-      <body className="bg-[#F8F5E3] overflow-x-clip">{children}</body>
+      <body className="bg-[#F8F5E3] overflow-x-clip">
+        <ContentProvider content={content}>{children}</ContentProvider>
+      </body>
     </html>
   );
 }

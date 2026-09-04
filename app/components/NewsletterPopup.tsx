@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useContent } from "../content-context";
 
 const STORAGE_KEY = "minimasters_newsletter_dismissed_at";
 const SHOW_AFTER_MS = 5000;
@@ -9,6 +10,7 @@ const COOLDOWN_DAYS = 7;
 type FormStatus = "idle" | "loading" | "success" | "error";
 
 export default function NewsletterPopup() {
+  const { popup } = useContent();
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<FormStatus>("idle");
 
@@ -143,18 +145,17 @@ export default function NewsletterPopup() {
               background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
             }}
           >
-            JOIN THE COMMUNITY
+            {popup.pill}
           </h2>
 
           <p
             className="text-[#5763FF] font-extrabold text-xl sm:text-2xl mb-2 leading-tight"
             style={{ letterSpacing: "0.005em" }}
           >
-            Meld je aan voor onze nieuwsbrief
+            {popup.titel}
           </p>
           <p className="text-[#5763FF] font-semibold text-sm sm:text-base mb-6 max-w-xs">
-            Ontvang als eerste updates over onze opening, activiteiten en
-            exclusieve acties!
+            {popup.subtitel}
           </p>
 
           {status === "success" ? (
@@ -180,7 +181,7 @@ export default function NewsletterPopup() {
                 </svg>
               </div>
               <p className="text-[#FDF9EF] font-extrabold text-base sm:text-lg">
-                Bedankt voor je aanmelding!
+                {popup.succes}
               </p>
             </div>
           ) : (
@@ -192,7 +193,7 @@ export default function NewsletterPopup() {
                 type="email"
                 name="email"
                 required
-                placeholder="E-mailadres*"
+                placeholder={popup.placeholder}
                 className="w-full rounded-full bg-white/95 outline-none text-gray-700 font-medium py-3 px-5 placeholder-gray-400 text-center focus:ring-2 focus:ring-[#67CD8A] transition-all"
               />
               <button
@@ -204,11 +205,11 @@ export default function NewsletterPopup() {
                     "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
                 }}
               >
-                {status === "loading" ? "EVEN GEDULD..." : "MELD JE AAN!"}
+                {status === "loading" ? popup.knopBezig : popup.knop}
               </button>
               {status === "error" && (
                 <p className="text-[#FF5757] font-bold text-sm bg-white/80 rounded-full px-3 py-1">
-                  Er ging iets mis, probeer het opnieuw.
+                  {popup.fout}
                 </p>
               )}
             </form>

@@ -2,46 +2,11 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import { useContent } from "../content-context";
 
 type CardState = "current" | "next" | "out" | "idle";
 
-const cardData = [
-  {
-    title: "Emily J.",
-    role: "Moeder van twee",
-    text: "Alles ziet er veilig, creatief en super speels uit. Mijn zoontje vraagt nu al wanneer het open gaat!",
-  },
-  {
-    title: "Mark R.",
-    role: "Enthousiaste papa",
-    text: "Dit is precies wat Waddinxveen nodig heeft. Een plek waar kinderen spelenderwijs leren, ontdekken en hun fantasie kunnen gebruiken.",
-  },
-  {
-    title: "Sophie M.",
-    role: "Toekomstige bezoeker",
-    text: "Dit is precies wat kinderen nodig hebben: spelend leren! Ik kan niet wachten tot mijn dochter hier dokter, piloot of chef kan spelen en ondertussen zoveel leert.",
-  },
-  {
-    title: "David K.",
-    role: "Enthousiaste papa",
-    text: "Eindelijk een plek waar fantasie en educatie samenkomen. Kinderen leren hier samenwerken, ontdekken beroepen en bouwen zelfvertrouwen op.",
-  },
-  {
-    title: "Laura V.",
-    role: "Lokale bewoner",
-    text: "Rollenspel is één van de krachtigste manieren waarop kinderen leren. Dit concept maakt leren avontuurlijk, creatief en onvergetelijk.",
-  },
-  {
-    title: "Sharina",
-    role: "Bewuste ouder",
-    text: "Aahh dit is fantastisch. Wel wat verder voor ons maar als ik de renners zie, ga ik zeker langskomen als het klaar is! Tot snel!",
-  },
-  {
-    title: "Roderick",
-    role: "Lokale bewoner",
-    text: "Wat super leuk. Dit is precies wat wij nodig hebben hier in Waddinxveen. Dit gaan mijn meiden heel gaaf vinden. Succes met het realiseren van dit mooie project.",
-  },
-];
+
 
 const POSITION_ROTATE: Record<CardState, string> = {
   current: "-12.49deg",
@@ -60,6 +25,12 @@ const ANIM_CSS = `
 `;
 
 export default function Footer() {
+  const { footer } = useContent();
+  const cardData = footer.reviews.map((r) => ({
+    title: r.naam,
+    role: r.rol,
+    text: r.tekst,
+  }));
   const logoRef = useScrollAnimation<HTMLDivElement>({
     type: "fadeUp",
     duration: 1,
@@ -79,15 +50,11 @@ export default function Footer() {
     "idle" | "loading" | "success" | "error"
   >("idle");
 
-  const [states, setStates] = useState<CardState[]>([
-    "current",
-    "next",
-    "idle",
-    "idle",
-    "idle",
-    "idle",
-    "idle",
-  ]);
+  const [states, setStates] = useState<CardState[]>(() =>
+    cardData.map((_, i) =>
+      i === 0 ? "current" : i === 1 ? "next" : "idle",
+    ),
+  );
   const animating = useRef(false);
   const styleInjected = useRef(false);
 
@@ -392,20 +359,19 @@ export default function Footer() {
                     "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
                 }}
               >
-                JOIN THE COMMUNITY
+                {footer.nieuwsbriefPill}
               </h2>
               <p
                 className="text-[#5763FF] font-bold text-base lg:text-lg mb-1 text-center lg:text-left"
                 style={{ fontFamily: "Quicksand" }}
               >
-                Schrijf je in voor ons nieuwsbrief
+                {footer.nieuwsbriefTitel}
               </p>
               <p
                 className="text-[#5763FF] font-semibold text-base lg:text-lg mb-6 text-center lg:text-left"
                 style={{ fontFamily: "Quicksand" }}
               >
-                Ontvang als eerste updates over onze opening, activiteiten en
-                exclusieve acties!
+                {footer.nieuwsbriefSubtitel}
               </p>
 
               <form
@@ -445,7 +411,7 @@ export default function Footer() {
               >
                 {formStatus === "success" ? (
                   <p className="text-[#67CD8A] font-bold text-base">
-                    Bedankt voor je aanmelding!
+                    {footer.succesBericht}
                   </p>
                 ) : (
                   <>
@@ -468,11 +434,11 @@ export default function Footer() {
                           "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
                       }}
                     >
-                      {formStatus === "loading" ? "EVEN GEDULD..." : "SIGN UP"}
+                      {formStatus === "loading" ? "EVEN GEDULD..." : footer.knopAanmelden}
                     </button>
                     {formStatus === "error" && (
                       <p className="text-[#FF5757] font-bold text-sm">
-                        Er ging iets mis, probeer het opnieuw.
+                        {footer.foutBericht}
                       </p>
                     )}
                   </>
@@ -522,7 +488,7 @@ export default function Footer() {
               className="text-[#5763FF] font-semibold text-sm lg:text-base mt-4 text-center lg:text-left hover:opacity-80 transition-opacity"
               style={{ fontFamily: "Quicksand" }}
             >
-              Marktstraat 38, 2741 NK Waddinxveen
+              {footer.adres}
             </Link>
           </div>
         </div>

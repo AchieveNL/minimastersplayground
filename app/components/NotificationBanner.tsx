@@ -1,6 +1,9 @@
 "use client";
 
+import { useContent } from "../content-context";
+
 export default function NotificationBanner() {
+  const { banner } = useContent();
   return (
     <div
       className="w-full text-center text-white font-bold py-1.5 sm:py-2 px-3 text-[11px] xs:text-xs sm:text-sm md:text-[15px] leading-tight"
@@ -13,10 +16,7 @@ export default function NotificationBanner() {
       role="status"
       aria-live="polite"
     >
-      <span className="inline-block">
-        Wij werken met vaste speelsessies van 2,5 uur, waardoor de eindtijd
-        voor iedereen gelijk is. Tickets reserveren = verplicht!
-      </span>
+      <span className="inline-block">{banner.text}</span>
     </div>
   );
 }
