@@ -5,14 +5,14 @@ export default function Slider() {
   const { slider } = useContent();
   const data = [
     {
-      bg: "kinderfeestje.jpg",
-      text1: slider.cards[0]?.title ?? "Kinderfeestje",
+      bg: "entreeticket.webp",
+      text1: slider.cards[1]?.title ?? "Entreeticket",
       link: "https://tickets.minimastersplayground.nl/",
       disabled: false,
     },
     {
-      bg: "entreeticket.webp",
-      text1: slider.cards[1]?.title ?? "Entreeticket",
+      bg: "kinderfeestje.jpg",
+      text1: slider.cards[0]?.title ?? "Kinderfeestje",
       link: "https://tickets.minimastersplayground.nl/",
       disabled: false,
     },
