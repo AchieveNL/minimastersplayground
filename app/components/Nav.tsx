@@ -243,7 +243,7 @@ export default function Nav() {
                 OVER ONS
               </Link>
               <Link href="/ons-aanbod" className="text-[#BB76FF] text-nowrap">
-                ONS AANBOD
+                AANBOD
               </Link>
               <Link href="/#loyalty" className="text-[#67CD8A]">
                 LOYALTY
@@ -263,7 +263,7 @@ export default function Nav() {
                 rel="noopener noreferrer"
                 className="text-[#FF5757]"
               >
-                MENU
+                CAFÉ
               </Link>
               <Link
                 href="https://tickets.minimastersplayground.nl/"
@@ -401,7 +401,7 @@ export default function Nav() {
             className="text-[#BB76FF]"
             onClick={() => setIsOpen(false)}
           >
-            ONS AANBOD
+            AANBOD
           </Link>
           <Link
             href="/#loyalty"
@@ -438,7 +438,7 @@ export default function Nav() {
             className="text-[#FF5757]"
             onClick={() => setIsOpen(false)}
           >
-            MENU
+            CAFÉ
           </Link>
           <Link
             href="https://tickets.minimastersplayground.nl/"
