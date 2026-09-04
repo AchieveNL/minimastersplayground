@@ -165,14 +165,14 @@ export default function Slider() {
               boxShadow: isMobile ? "none" : "4px 8px 24px 0px #00000055",
               height: `${CARD_HEIGHT}px`,
               width: `${CARD_WIDTH}px`,
-              borderRadius: isMobile ? "0 36px 0 36px" : "0 60px 0 60px",
+              borderRadius: isMobile ? "10px 42px 10px 42px" : "15px 70px 15px 70px",
             };
 
             const wrapperClass =
               "relative flex-shrink-0 cursor-pointer transition-transform duration-400 ease-out hover:scale-105";
 
             const cardClass =
-              "rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px] absolute inset-0 z-10 overflow-hidden text-white font-semibold flex flex-col items-center justify-end pb-4 md:pb-6 gap-2 md:gap-2.5";
+              "rounded-[10px_42px_10px_42px] md:rounded-[15px_70px_15px_70px] absolute inset-0 z-10 overflow-hidden text-white font-semibold flex flex-col items-center justify-start pt-5 md:pt-7 gap-2 md:gap-2.5";
 
             // Corner ribbon (Temani Afif clip-path technique, pivoted on bottom-right)
             const foldSize = isMobile ? 9 : 12;
@@ -182,17 +182,9 @@ export default function Slider() {
             const inner = (
               <>
                 <div
-                  className="absolute inset-0 rounded-tr-[36px] rounded-bl-[36px] md:rounded-tr-[60px] md:rounded-bl-[60px]"
+                  className="absolute inset-0 rounded-[10px_42px_10px_42px] md:rounded-[15px_70px_15px_70px]"
                   style={{
                     background: `url('/assets/slider/${item.bg}') no-repeat center/cover`,
-                  }}
-                />
-                <div
-                  className="absolute bottom-0 left-0 right-0 rounded-bl-[36px] md:rounded-bl-[60px] transition-all duration-350"
-                  style={{
-                    height: "80%",
-                    background:
-                      "linear-gradient(180deg, rgba(144, 119, 70, 0) 0%, rgba(56, 64, 163, 0.75) 100%)",
                   }}
                 />
                 {/* Bottom pill — category title */}
