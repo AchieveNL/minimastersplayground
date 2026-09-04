@@ -207,19 +207,19 @@ export default function Faq() {
 
       <div
         ref={badgeRef}
-        className="flex w-fit md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl"
+        className="flex w-fit md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative z-10 justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl"
       >
         <img
           loading="lazy"
           src="/assets/badges/vragen.svg"
-          className="absolute md:hidden"
+          className="absolute z-20 md:hidden"
           style={{ width: "120px", left: "-20%" }}
           alt=""
         />
         <img
           loading="lazy"
           src="/assets/badges/vragen.svg"
-          className="absolute hidden md:block"
+          className="absolute z-20 hidden md:block"
           style={{ width: "130px", left: -50 }}
           alt=""
         />
