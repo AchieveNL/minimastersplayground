@@ -37,7 +37,7 @@ const SECTIONS: {
 }[] = [
   { key: "banner", label: "Notificatiebalk", hint: "Groene balk bovenaan", icon: Megaphone },
   { key: "hero", label: "Infokaarten", hint: "Homepage introductie", icon: LayoutGrid },
-  { key: "slider", label: "Ons aanbod", hint: "Kaarten op homepage", icon: Ticket },
+  { key: "slider", label: "Aanbod", hint: "Kaarten op homepage", icon: Ticket },
   { key: "tijdsloten", label: "Tijdsloten & Loyalty", hint: "Telefoons sectie", icon: Clock },
   { key: "openingstijden", label: "Openingstijden", hint: "Tijden per dag", icon: Star },
   { key: "parkeren", label: "Parkeren", hint: "Parkeer tip blok", icon: Car },
