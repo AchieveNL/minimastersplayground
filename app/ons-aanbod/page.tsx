@@ -79,29 +79,6 @@ export default function OnsAanbodPage() {
           <CardWrap>
             <div className="relative">
               <img
-                src="/assets/aanbod/schoolreisje.webp"
-                alt="Schoolreisje — €14,95 per kind en per volwassene: 2,5 uur lang spelen, onbeperkt limonade, begeleiders 1 koffie of thee en 1 gebak naar keuze. Vanaf 10 personen."
-                className="w-full h-auto rounded-[40px]"
-              />
-              {/* Real button covering the baked-in one */}
-              <a
-                href={TICKETS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center min-w-[34%] px-[4vw] sm:px-8 py-[1.5vw] sm:py-3 rounded-xl sm:rounded-2xl font-bold text-white text-[3.5vw] sm:text-xl md:text-2xl tracking-widest hover:scale-105 transition-transform"
-                style={{
-                  top: "79.3%",
-                  background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
-                }}
-              >
-                BOEK NU
-              </a>
-            </div>
-          </CardWrap>
-
-          <CardWrap>
-            <div className="relative">
-              <img
                 src="/assets/aanbod/verjaardag.webp"
                 alt="Verjaardag — €19,95 per kind, €15,95 per volwassene: 2,5 uur lang spelen, opgedekte tafel, onbeperkt limonade, zakje chips, zakje snoep bij vertrek, cadeautje voor de jarige, ouders 1 frisdrank en 1 gebak naar keuze. Vanaf 10 personen."
                 className="w-full h-auto rounded-[40px]"
@@ -122,7 +99,6 @@ export default function OnsAanbodPage() {
             </div>
           </CardWrap>
 
-          {/* Privé feestje — export misses the note + button, overlaid in HTML */}
           <CardWrap>
             <div className="relative">
               <img
@@ -172,6 +148,29 @@ export default function OnsAanbodPage() {
                 rel="noopener noreferrer"
                 className="inline-block px-10 py-2.5 rounded-xl font-bold text-white text-base tracking-widest hover:scale-105 transition-transform shadow-md"
                 style={{
+                  background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
+                }}
+              >
+                BOEK NU
+              </a>
+            </div>
+          </CardWrap>
+
+          <CardWrap>
+            <div className="relative">
+              <img
+                src="/assets/aanbod/schoolreisje.webp"
+                alt="Schoolreisje — €14,95 per kind en per volwassene: 2,5 uur lang spelen, onbeperkt limonade, begeleiders 1 koffie of thee en 1 gebak naar keuze. Vanaf 10 personen."
+                className="w-full h-auto rounded-[40px]"
+              />
+              {/* Real button covering the baked-in one */}
+              <a
+                href={TICKETS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center min-w-[34%] px-[4vw] sm:px-8 py-[1.5vw] sm:py-3 rounded-xl sm:rounded-2xl font-bold text-white text-[3.5vw] sm:text-xl md:text-2xl tracking-widest hover:scale-105 transition-transform"
+                style={{
+                  top: "79.3%",
                   background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
                 }}
               >
