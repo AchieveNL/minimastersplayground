@@ -224,7 +224,7 @@ export default function Faq() {
           alt=""
         />
 
-        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 w-full rounded-br-4xl">
+        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 whitespace-nowrap rounded-br-4xl">
           {faq.badge}
         </h1>
       </div>

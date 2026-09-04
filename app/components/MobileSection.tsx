@@ -81,7 +81,7 @@ export default function MobileSection() {
             style={{ width: "100px", left: -55 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 w-full rounded-br-4xl">
+          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap rounded-br-4xl">
             {tijdsloten.badgeLeft}
           </h1>
         </div>
@@ -187,7 +187,7 @@ export default function MobileSection() {
             style={{ width: "100px", left: -45 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 w-full rounded-br-4xl">
+          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap rounded-br-4xl">
             {tijdsloten.badgeRight}
           </h1>
         </div>

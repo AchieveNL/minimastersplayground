@@ -96,7 +96,7 @@ export default function Hero() {
     ...meta,
     title: (
       <h1
-        className={`font-bold md:text-lg text-center text-[#FDF9EF] ${meta.titlePad} pl-8 w-full rounded-br-4xl`}
+        className={`font-bold md:text-lg text-center text-[#FDF9EF] ${meta.titlePad} pl-8 whitespace-nowrap rounded-br-4xl`}
       >
         {hero.infocards[i]?.title}
       </h1>
