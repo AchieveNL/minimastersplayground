@@ -1,4 +1,4 @@
-"use client";import { useEffect, useRef } from "react";
+"use client";import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import AnimatedSilder from "./AnimatedSilder";
 import InfoCard from "./InfoCard";
@@ -49,6 +49,8 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
   const { hero } = useContent();
+  const [titlePhase, setTitlePhase] = useState<0 | 1>(0);
+  const [titleCycle, setTitleCycle] = useState(0);
   const cardMeta = [
     {
       iconWidthMobile: 95,
@@ -119,25 +121,31 @@ export default function Hero() {
           </div>
         </div>
         <BlurText
+          key={`tiny-${titleCycle}`}
           text="TINY HEROES"
           delay={200}
           animateBy="letters"
           direction="top"
           threshold={0.6}
           rootMargin="0px 0px -80px 0px"
-          loop
-          loopDelay={1500}
+          active={titlePhase === 0}
+          onAnimationComplete={() => setTitlePhase(1)}
           className="justify-center whitespace-nowrap text-[#67CD8A] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
         <BlurText
+          key={`big-${titleCycle}`}
           text="BIG ADVENTURES"
           delay={200}
           animateBy="letters"
           direction="top"
-          threshold={0.6}
-          rootMargin="0px 0px -80px 0px"
-          loop
-          loopDelay={1500}
+          threshold={0.1}
+          active={titlePhase === 1}
+          onAnimationComplete={() => {
+            setTimeout(() => {
+              setTitlePhase(0);
+              setTitleCycle((c) => c + 1);
+            }, 1800);
+          }}
           className="justify-center whitespace-nowrap text-[#FFCA58] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
       </div>

@@ -16,6 +16,7 @@ type BlurTextProps = {
   stepDuration?: number;
   loop?: boolean;
   loopDelay?: number;
+  active?: boolean;
 };
 
 const buildKeyframes = (
@@ -45,27 +46,46 @@ const BlurText: React.FC<BlurTextProps> = ({
   onAnimationComplete,
   stepDuration = 0.35,
   loop = false,
-  loopDelay = 1000
+  loopDelay = 1000,
+  active = true
 }) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
   const [inView, setInView] = useState(false);
   const [cycle, setCycle] = useState(0);
+  const [intersected, setIntersected] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     if (!ref.current) return;
+    let raf = 0;
+    const markWhenVisible = () => {
+      const el = ref.current;
+      if (!el) return;
+      if (getComputedStyle(el).visibility !== 'hidden') {
+        setIntersected(true);
+      } else {
+        raf = requestAnimationFrame(markWhenVisible);
+      }
+    };
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true);
+          markWhenVisible();
           observer.unobserve(ref.current as Element);
         }
       },
       { threshold, rootMargin }
     );
     observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [threshold, rootMargin]);
+
+  useEffect(() => {
+    if (intersected && active) setInView(true);
+  }, [intersected, active]);
 
   const defaultFrom = useMemo(
     () =>
