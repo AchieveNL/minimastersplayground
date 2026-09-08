@@ -127,7 +127,7 @@ export default function Hero() {
           rootMargin="0px 0px -80px 0px"
           loop
           loopDelay={1500}
-          className="justify-center whitespace-nowrap bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)] [-webkit-text-fill-color:transparent]"
+          className="justify-center whitespace-nowrap text-[#67CD8A] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
         <BlurText
           text="BIG ADVENTURES"
@@ -138,7 +138,7 @@ export default function Hero() {
           rootMargin="0px 0px -80px 0px"
           loop
           loopDelay={1500}
-          className="justify-center whitespace-nowrap bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)] [-webkit-text-fill-color:transparent]"
+          className="justify-center whitespace-nowrap text-[#FFCA58] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
       </div>
       <div
