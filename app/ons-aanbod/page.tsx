@@ -39,29 +39,29 @@ export default function OnsAanbodPage() {
         {/* Section badge — same style as homepage */}
         <div
           ref={badgeRef}
-          className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto mt-10 md:mt-16 bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible"
+          className="flex w-fit px-5 md:px-14 py-3 sm:py-4 md:py-4 pl-10 md:pl-24 items-center relative justify-center mx-auto mt-12 md:mt-28 bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible"
         >
           <img
             loading="lazy"
             src="/assets/badges/ticket.svg"
             className="absolute md:hidden"
-            style={{ width: "100px", left: "-20%" }}
+            style={{ width: "108px", left: "-30%" }}
             alt=""
           />
           <img
             loading="lazy"
             src="/assets/badges/ticket.svg"
             className="absolute hidden md:block"
-            style={{ width: "100px", left: -65 }}
+            style={{ width: "145px", left: -95 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap rounded-br-4xl">
+          <h1 className="font-bold md:text-2xl text-center text-[#FDF9EF] md:pl-2 pl-6 whitespace-nowrap rounded-br-4xl">
             ONS AANBOD
           </h1>
         </div>
 
         {/* Cards — exported from Figma, whole card clicks through to tickets */}
-        <div className="relative flex flex-col gap-14 md:gap-20 px-4 sm:px-8 mt-12 md:mt-16 mb-16 md:mb-24">
+        <div className="relative flex flex-col gap-14 md:gap-20 px-4 sm:px-8 mt-12 md:mt-24 mb-16 md:mb-24">
           {/* Faded background watermarks in the side gutters */}
           <div
             aria-hidden
