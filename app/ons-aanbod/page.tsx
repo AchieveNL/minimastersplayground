@@ -112,12 +112,11 @@ export default function OnsAanbodPage() {
                 alt="Privé feestje — exclusieve belevenis met de volledige locatie voor jullie alleen. 2,5 uur €1.000 of 3 uur €1.200, min. café afname €500, maximaal 70 gasten."
                 className="w-full h-auto rounded-[40px]"
               />
-              {/* sm and up: overlaid inside the card's empty zone */}
+              {/* overlaid inside the card's empty zone, scaled with the card */}
               <div
-                className="absolute left-[10%] right-[10%] hidden sm:flex flex-col items-center gap-4 text-center"
-                style={{ bottom: "12.5%" }}
+                className="absolute left-[8%] right-[8%] flex flex-col items-center gap-[1vw] sm:gap-4 text-center bottom-[10%] sm:bottom-[12.5%]"
               >
-                <p className="text-[#5FB8AE] font-medium leading-snug sm:text-sm md:text-base">
+                <p className="text-[#5FB8AE] font-medium leading-snug text-[2.1vw] sm:text-sm md:text-base">
                   Geef het feest <b>een persoonlijke touch!</b>
                   <br />
                   Jullie zijn van harte welkom om <b>het zitgedeelte</b> te
@@ -130,7 +129,7 @@ export default function OnsAanbodPage() {
                   href={TICKETS_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-12 md:px-14 py-3 rounded-2xl font-bold text-white text-xl md:text-2xl tracking-widest hover:scale-105 transition-transform shadow-md"
+                  className="inline-block px-[6vw] sm:px-12 md:px-14 py-[1.2vw] sm:py-3 rounded-xl sm:rounded-2xl font-bold text-white text-[2.7vw] sm:text-xl md:text-2xl tracking-widest hover:scale-105 transition-transform shadow-md"
                   style={{
                     background:
                       "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
@@ -139,26 +138,6 @@ export default function OnsAanbodPage() {
                   BOEK NU
                 </a>
               </div>
-            </div>
-            {/* below sm: rendered under the card so text stays readable */}
-            <div className="sm:hidden flex flex-col items-center gap-3 text-center mt-4 px-2">
-              <p className="text-[#5FB8AE] font-medium leading-relaxed text-sm">
-                Geef het feest <b>een persoonlijke touch!</b> Jullie zijn van
-                harte welkom om <b>het zitgedeelte</b> te versieren.{" "}
-                <b>Let op!</b> vuurwerk, confetti en gezichtsschmink is{" "}
-                <b>niet toegestaan.</b> ⭐
-              </p>
-              <a
-                href={TICKETS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-10 py-2.5 rounded-xl font-bold text-white text-base tracking-widest hover:scale-105 transition-transform shadow-md"
-                style={{
-                  background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
-                }}
-              >
-                BOEK NU
-              </a>
             </div>
           </CardWrap>
 
