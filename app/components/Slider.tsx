@@ -135,7 +135,7 @@ export default function Slider() {
         />
 
         {/* Header badge */}
-        <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
+        <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-tr-[10px] rounded-br-[60px] overflow-visible">
           <img
             loading="lazy"
             src="/assets/badges/ticket.svg"
@@ -150,7 +150,7 @@ export default function Slider() {
             style={{ width: "100px", left: -65 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap rounded-br-4xl">
+          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap">
             {slider.badge}
           </h1>
         </div>

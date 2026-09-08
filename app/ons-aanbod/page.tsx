@@ -39,7 +39,7 @@ export default function OnsAanbodPage() {
         {/* Section badge — same style as homepage */}
         <div
           ref={badgeRef}
-          className="flex w-fit px-5 md:px-14 py-3 sm:py-4 md:py-4 pl-10 md:pl-24 items-center relative justify-center mx-auto mt-12 md:mt-28 bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible"
+          className="flex w-fit px-5 md:px-14 py-3 sm:py-4 md:py-4 pl-10 md:pl-24 items-center relative justify-center mx-auto mt-12 md:mt-28 bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-tr-[10px] rounded-br-[60px] overflow-visible"
         >
           <img
             loading="lazy"
@@ -55,7 +55,7 @@ export default function OnsAanbodPage() {
             style={{ width: "145px", left: -95 }}
             alt=""
           />
-          <h1 className="font-bold md:text-2xl text-center text-[#FDF9EF] md:pl-2 pl-6 whitespace-nowrap rounded-br-4xl">
+          <h1 className="font-bold md:text-2xl text-center text-[#FDF9EF] md:pl-2 pl-6 whitespace-nowrap">
             ONS AANBOD
           </h1>
         </div>

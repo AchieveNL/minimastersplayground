@@ -73,7 +73,7 @@ export default function MobileSection() {
         ref={leftRef}
         className="relative flex flex-col items-center gap-10 sm:gap-10 lg:gap-8 w-full sm:w-auto lg:flex-1"
       >
-        <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
+        <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-tr-[10px] rounded-br-[60px] overflow-visible">
           <img
             loading="lazy"
             src="/assets/badges/klok.svg"
@@ -88,7 +88,7 @@ export default function MobileSection() {
             style={{ width: "100px", left: -55 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap rounded-br-4xl">
+          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap">
             {tijdsloten.badgeLeft}
           </h1>
         </div>
@@ -179,7 +179,7 @@ export default function MobileSection() {
         ref={rightRef}
         className="relative flex flex-col items-center gap-10 sm:gap-10 lg:gap-8 w-full sm:w-auto lg:flex-1 lg:mt-0 mt-2"
       >
-        <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl overflow-visible">
+        <div className="flex w-fit px-5 md:px-10 py-3 sm:py-4 md:py-3 pl-10 md:pl-20 items-center relative justify-center mx-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-tr-[10px] rounded-br-[60px] overflow-visible">
           <img
             loading="lazy"
             src="/assets/badges/loyalty.svg"
@@ -194,7 +194,7 @@ export default function MobileSection() {
             style={{ width: "100px", left: -45 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap rounded-br-4xl">
+          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap">
             {tijdsloten.badgeRight}
           </h1>
         </div>

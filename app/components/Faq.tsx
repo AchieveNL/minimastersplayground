@@ -216,7 +216,7 @@ export default function Faq() {
 
       <div
         ref={badgeRef}
-        className="flex w-fit md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative z-10 justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-br-4xl"
+        className="flex w-fit md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative z-10 justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-tr-[10px] rounded-br-[60px]"
       >
         <img
           loading="lazy"
@@ -233,7 +233,7 @@ export default function Faq() {
           alt=""
         />
 
-        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 whitespace-nowrap rounded-br-4xl">
+        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 whitespace-nowrap">
           {faq.badge}
         </h1>
       </div>
