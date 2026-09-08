@@ -163,16 +163,16 @@ export default function Hero() {
       >
         <div ref={gearsRef}>
           <div
-            className="absolute top-0 right-0 md:w-60 w-30"
+            className="absolute top-0 right-0 w-36 md:w-64 xl:w-80"
             style={{ animation: "heroIconFloat 4.2s ease-in-out infinite" }}
           >
-            <img src="/assets/icons/gear.svg" className="w-full" style={{ opacity: 0 }} alt="" />
+            <img src="/assets/aanbod/gereedschap.png" className="w-full" style={{ opacity: 0 }} alt="" />
           </div>
           <div
-            className="absolute left-0 md:w-60 w-30"
+            className="absolute left-0 top-10 md:top-6 w-36 md:w-72 xl:w-88"
             style={{ animation: "heroIconFloat 3.7s ease-in-out 0.6s infinite" }}
           >
-            <img src="/assets/icons/gear2.svg" className="w-full" style={{ opacity: 0 }} alt="" />
+            <img src="/assets/aanbod/politiepet.png" className="w-full" style={{ opacity: 0 }} alt="" />
           </div>
         </div>
         <style>{`
