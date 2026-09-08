@@ -7,7 +7,7 @@ import { useContent } from "../content-context";
 
 
 // Blur-in wordmark: letters drop in once, staggered, then stay.
-const TITLE_STEP = 0.15; // s between letters
+const TITLE_STEP = 0.1; // s between letters
 const TITLE_RISE = 0.55; // s per letter
 
 function BlurLine({
@@ -172,7 +172,7 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
         />
         <BlurLine
           text="BIG ADVENTURES"
-          offset={2.9}
+          offset={2.3}
           ready={ready}
           className="justify-center whitespace-nowrap text-[#FFCA58] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
