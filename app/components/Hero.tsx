@@ -2,13 +2,12 @@
 import gsap from "gsap";
 import AnimatedSilder from "./AnimatedSilder";
 import InfoCard from "./InfoCard";
+import BlurText from "./BlurText";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { useContent } from "../content-context";
 
 export default function Hero() {
   const sliderRef = useRef<HTMLDivElement>(null);
-  const tinyRef = useRef<HTMLHeadingElement>(null);
-  const bigRef = useRef<HTMLHeadingElement>(null);
   const gearsRef = useRef<HTMLDivElement>(null);
   const cardsRef = useScrollAnimation<HTMLDivElement>({
     type: "staggerUp",
@@ -28,22 +27,6 @@ export default function Hero() {
         sliderRef.current,
         { scale: 1.05, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1 },
-      );
-
-      // Title text: TINY HEROES slides up
-      tl.fromTo(
-        tinyRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9 },
-        "-=0.4",
-      );
-
-      // BIG ADVENTURES slides up with slight delay
-      tl.fromTo(
-        bigRef.current,
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9 },
-        "-=0.6",
       );
 
       // Gear icons fade in from sides
@@ -135,36 +118,36 @@ export default function Hero() {
             <img src="/assets/icons/gear2.svg" className="w-full" style={{ opacity: 0 }} alt="" />
           </div>
         </div>
-        <h1
-          ref={tinyRef}
+        <BlurText
+          text="TINY HEROES"
+          delay={200}
+          animateBy="letters"
+          direction="top"
+          className="justify-center whitespace-nowrap bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
           style={{
-            opacity: 0,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontFamily: "'Frankfurter', sans-serif",
             fontWeight: 400,
             letterSpacing: "0.01em",
-            fontSize: "clamp(2.25rem, 7vw, 8.5rem)",
+            fontSize: "clamp(2.25rem, 8vw, 9.5rem)",
           }}
-          className="whitespace-nowrap text-center bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
-        >
-          TINY HEROES
-        </h1>
-        <h1
-          ref={bigRef}
+        />
+        <BlurText
+          text="BIG ADVENTURES"
+          delay={200}
+          animateBy="letters"
+          direction="top"
+          className="justify-center whitespace-nowrap bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
           style={{
-            opacity: 0,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             fontFamily: "'Frankfurter', sans-serif",
             fontWeight: 400,
             letterSpacing: "0.01em",
-            fontSize: "clamp(2.25rem, 7vw, 8.5rem)",
+            fontSize: "clamp(2.25rem, 8vw, 9.5rem)",
           }}
-          className="whitespace-nowrap text-center bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
-        >
-          BIG ADVENTURES
-        </h1>
+        />
       </div>
       <div
         ref={cardsRef}
