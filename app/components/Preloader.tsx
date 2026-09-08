@@ -111,7 +111,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           />
           <img
             ref={logoRef}
-            src="/assets/branding/logo-navbar.svg"
+            src="/assets/branding/logo-footer.png"
             alt="Minimasters"
             className="w-52 sm:w-72 md:w-[24rem] pointer-events-auto relative"
             style={{
