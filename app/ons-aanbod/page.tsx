@@ -114,7 +114,7 @@ export default function OnsAanbodPage() {
               />
               {/* overlaid inside the card's empty zone, scaled with the card */}
               <div
-                className="absolute left-[8%] right-[8%] flex flex-col items-center gap-[1vw] sm:gap-4 text-center bottom-[10%] sm:bottom-[12.5%]"
+                className="absolute left-[8%] right-[8%] flex flex-col items-center gap-[2.2vw] sm:gap-4 text-center bottom-[11.5%] sm:bottom-[12.5%]"
               >
                 <p className="text-[#5FB8AE] font-medium leading-snug text-[2.1vw] sm:text-sm md:text-base">
                   Geef het feest <b>een persoonlijke touch!</b>
