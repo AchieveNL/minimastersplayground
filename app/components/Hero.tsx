@@ -161,6 +161,12 @@ export default function Hero() {
         id="over-ons"
         className="pt-2 md:pt-1 relative flex flex-col items-center justify-center gap-5"
       >
+        <style>{`
+          @keyframes heroIconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+          }
+        `}</style>
         <div ref={gearsRef}>
           <div
             className="absolute top-0 right-0 w-36 md:w-64 xl:w-80"
