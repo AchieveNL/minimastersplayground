@@ -1,10 +1,44 @@
-"use client";import { useEffect, useRef, useState } from "react";
+"use client";import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import AnimatedSilder from "./AnimatedSilder";
 import InfoCard from "./InfoCard";
-import BlurText from "@/components/BlurText";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { useContent } from "../content-context";
+
+
+// Looping blur-in wordmark: pure CSS so it can never stall or desync.
+// One shared cycle clock; line two starts after line one finishes.
+const TITLE_STEP = 0.2; // s between letters
+const TITLE_RISE = 0.7; // s per letter
+const TITLE_PAUSE = 1.8; // s both lines visible before restart
+function LoopBlurLine({
+  text,
+  offset,
+  cycle,
+  className,
+}: {
+  text: string;
+  offset: number;
+  cycle: number;
+  className: string;
+}) {
+  return (
+    <p className={`flex flex-wrap ${className}`} aria-label={text}>
+      {text.split("").map((ch, i) => (
+        <span
+          key={i}
+          aria-hidden
+          className="inline-block will-change-[transform,filter,opacity] opacity-0"
+          style={{
+            animation: `titleLetter ${cycle}s linear ${offset + i * TITLE_STEP}s infinite`,
+          }}
+        >
+          {ch === " " ? " " : ch}
+        </span>
+      ))}
+    </p>
+  );
+}
 
 export default function Hero() {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -49,8 +83,6 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
   const { hero } = useContent();
-  const [titlePhase, setTitlePhase] = useState<0 | 1>(0);
-  const [titleCycle, setTitleCycle] = useState(0);
   const cardMeta = [
     {
       iconWidthMobile: 95,
@@ -120,32 +152,25 @@ export default function Hero() {
             <img src="/assets/icons/gear2.svg" className="w-full" style={{ opacity: 0 }} alt="" />
           </div>
         </div>
-        <BlurText
-          key={`tiny-${titleCycle}`}
+        <style>{`
+          @keyframes titleLetter {
+            0% { opacity: 0; filter: blur(10px); transform: translateY(-50px); }
+            4% { opacity: 0.5; filter: blur(5px); transform: translateY(5px); }
+            8% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+            93% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+            100% { opacity: 0; filter: blur(8px); transform: translateY(-30px); }
+          }
+        `}</style>
+        <LoopBlurLine
           text="TINY HEROES"
-          delay={200}
-          animateBy="letters"
-          direction="top"
-          threshold={0.6}
-          rootMargin="0px 0px -80px 0px"
-          active={titlePhase === 0}
-          onAnimationComplete={() => setTitlePhase(1)}
+          offset={0}
+          cycle={8.4}
           className="justify-center whitespace-nowrap text-[#67CD8A] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
-        <BlurText
-          key={`big-${titleCycle}`}
+        <LoopBlurLine
           text="BIG ADVENTURES"
-          delay={200}
-          animateBy="letters"
-          direction="top"
-          threshold={0.1}
-          active={titlePhase === 1}
-          onAnimationComplete={() => {
-            setTimeout(() => {
-              setTitlePhase(0);
-              setTitleCycle((c) => c + 1);
-            }, 1800);
-          }}
+          offset={3.3}
+          cycle={8.4}
           className="justify-center whitespace-nowrap text-[#FFCA58] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
       </div>
