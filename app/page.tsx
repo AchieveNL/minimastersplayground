@@ -22,7 +22,7 @@ export default function Home() {
         style={{ visibility: loaded ? "visible" : "hidden" }}
       >
         <Nav />
-        <Hero />
+        <Hero ready={loaded} />
         <Slider />
         <MobileSection />
         <Location />

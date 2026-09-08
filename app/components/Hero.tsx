@@ -7,17 +7,19 @@ import { useContent } from "../content-context";
 
 
 // Blur-in wordmark: letters drop in once, staggered, then stay.
-const TITLE_STEP = 0.14; // s between letters
+const TITLE_STEP = 0.15; // s between letters
 const TITLE_RISE = 0.55; // s per letter
 
 function BlurLine({
   text,
   offset,
   className,
+  ready = true,
 }: {
   text: string;
   offset: number;
   className: string;
+  ready?: boolean;
 }) {
   return (
     <p className={`flex flex-wrap ${className}`} aria-label={text}>
@@ -26,11 +28,15 @@ function BlurLine({
           key={i}
           aria-hidden
           className="inline-block will-change-[transform,filter,opacity] opacity-0"
-          style={{
-            animation: `titleLetterIn ${TITLE_RISE}s ease-out ${
-              offset + i * TITLE_STEP
-            }s both`,
-          }}
+          style={
+            ready
+              ? {
+                  animation: `titleLetterIn ${TITLE_RISE}s ease-out ${
+                    offset + i * TITLE_STEP
+                  }s both`,
+                }
+              : undefined
+          }
         >
           {ch === " " ? " " : ch}
         </span>
@@ -39,7 +45,7 @@ function BlurLine({
   );
 }
 
-export default function Hero() {
+export default function Hero({ ready = true }: { ready?: boolean }) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const gearsRef = useRef<HTMLDivElement>(null);
   const cardsRef = useScrollAnimation<HTMLDivElement>({
@@ -160,12 +166,14 @@ export default function Hero() {
         `}</style>
         <BlurLine
           text="TINY HEROES"
-          offset={3.2}
+          offset={0.5}
+          ready={ready}
           className="justify-center whitespace-nowrap text-[#67CD8A] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
         <BlurLine
           text="BIG ADVENTURES"
-          offset={5.3}
+          offset={2.9}
+          ready={ready}
           className="justify-center whitespace-nowrap text-[#FFCA58] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
       </div>
