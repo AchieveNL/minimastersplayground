@@ -205,7 +205,7 @@ export default function Hero() {
       </div>
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 -bottom-14 md:bottom-0 z-10 w-40 md:w-64 xl:w-80 translate-y-1/2 md:translate-y-1/4 -translate-x-[12%] select-none"
+        className="pointer-events-none absolute left-0 -bottom-14 md:-bottom-10 z-10 w-40 md:w-56 xl:w-64 translate-y-1/2 md:translate-y-[70%] -translate-x-[12%] select-none"
         style={{ animation: "heroIconFloat 4.5s ease-in-out 0.8s infinite" }}
       >
         <img src="/assets/icons/hek.png" className="w-full" alt="" />
