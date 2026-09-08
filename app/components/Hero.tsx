@@ -6,66 +6,36 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { useContent } from "../content-context";
 
 
-// Looping blur-in wordmark, pure CSS on one shared clock.
-// Sequence per cycle: blank -> line 1 letters in -> line 2 letters in ->
-// hold complete -> everything fades out together -> blank -> repeat.
-const TITLE_STEP = 0.2; // s between letters
-const TITLE_RISE = 0.7; // s per letter
-const TITLE_CYCLE = 9.6; // s full cycle
-const TITLE_OUT = 0.5; // s synchronized fade-out
-const TITLE_BLANK = 0.6; // s of nothing before restart
+// Blur-in wordmark: letters drop in once, staggered, then stay.
+const TITLE_STEP = 0.14; // s between letters
+const TITLE_RISE = 0.55; // s per letter
 
-function LoopBlurLine({
+function BlurLine({
   text,
   offset,
-  idPrefix,
   className,
 }: {
   text: string;
   offset: number;
-  idPrefix: string;
   className: string;
 }) {
-  const T = TITLE_CYCLE;
-  const p = (x: number) => +((x / T) * 100).toFixed(3);
-  const hidden = "opacity: 0; filter: blur(10px); transform: translateY(-50px);";
-  const half = "opacity: 0.5; filter: blur(5px); transform: translateY(5px);";
-  const shown = "opacity: 1; filter: blur(0px); transform: translateY(0);";
-  const gone = "opacity: 0; filter: blur(8px); transform: translateY(-30px);";
-  const outStart = T - TITLE_BLANK - TITLE_OUT;
-  const outEnd = T - TITLE_BLANK;
-
-  const css = text
-    .split("")
-    .map((_, i) => {
-      const start = offset + i * TITLE_STEP;
-      const mid = start + TITLE_RISE / 2;
-      const end = start + TITLE_RISE;
-      return `@keyframes ${idPrefix}${i} {
-        0%, ${p(start)}% { ${hidden} }
-        ${p(mid)}% { ${half} }
-        ${p(end)}%, ${p(outStart)}% { ${shown} }
-        ${p(outEnd)}%, 100% { ${gone} }
-      }`;
-    })
-    .join("\n");
-
   return (
-    <>
-      <style>{css}</style>
-      <p className={`flex flex-wrap ${className}`} aria-label={text}>
-        {text.split("").map((ch, i) => (
-          <span
-            key={i}
-            aria-hidden
-            className="inline-block will-change-[transform,filter,opacity] opacity-0"
-            style={{ animation: `${idPrefix}${i} ${T}s linear infinite` }}
-          >
-            {ch === " " ? " " : ch}
-          </span>
-        ))}
-      </p>
-    </>
+    <p className={`flex flex-wrap ${className}`} aria-label={text}>
+      {text.split("").map((ch, i) => (
+        <span
+          key={i}
+          aria-hidden
+          className="inline-block will-change-[transform,filter,opacity] opacity-0"
+          style={{
+            animation: `titleLetterIn ${TITLE_RISE}s ease-out ${
+              offset + i * TITLE_STEP
+            }s both`,
+          }}
+        >
+          {ch === " " ? " " : ch}
+        </span>
+      ))}
+    </p>
   );
 }
 
@@ -182,24 +152,20 @@ export default function Hero() {
           </div>
         </div>
         <style>{`
-          @keyframes titleLetter {
+          @keyframes titleLetterIn {
             0% { opacity: 0; filter: blur(10px); transform: translateY(-50px); }
-            4% { opacity: 0.5; filter: blur(5px); transform: translateY(5px); }
-            8% { opacity: 1; filter: blur(0px); transform: translateY(0); }
-            93% { opacity: 1; filter: blur(0px); transform: translateY(0); }
-            100% { opacity: 0; filter: blur(8px); transform: translateY(-30px); }
+            50% { opacity: 0.5; filter: blur(5px); transform: translateY(5px); }
+            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
           }
         `}</style>
-        <LoopBlurLine
+        <BlurLine
           text="TINY HEROES"
-          offset={0.4}
-          idPrefix="th"
+          offset={3.2}
           className="justify-center whitespace-nowrap text-[#67CD8A] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
-        <LoopBlurLine
+        <BlurLine
           text="BIG ADVENTURES"
-          offset={3.7}
-          idPrefix="ba"
+          offset={5.3}
           className="justify-center whitespace-nowrap text-[#FFCA58] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
         />
       </div>
