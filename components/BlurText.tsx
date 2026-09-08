@@ -14,6 +14,8 @@ type BlurTextProps = {
   easing?: Easing | Easing[];
   onAnimationComplete?: () => void;
   stepDuration?: number;
+  loop?: boolean;
+  loopDelay?: number;
 };
 
 const buildKeyframes = (
@@ -41,10 +43,13 @@ const BlurText: React.FC<BlurTextProps> = ({
   animationTo,
   easing = (t: number) => t,
   onAnimationComplete,
-  stepDuration = 0.35
+  stepDuration = 0.35,
+  loop = false,
+  loopDelay = 1000
 }) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
   const [inView, setInView] = useState(false);
+  const [cycle, setCycle] = useState(0);
   const ref = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
@@ -101,11 +106,18 @@ const BlurText: React.FC<BlurTextProps> = ({
 
         return (
           <motion.span
-            key={index}
+            key={`${cycle}-${index}`}
             initial={fromSnapshot}
             animate={inView ? animateKeyframes : fromSnapshot}
             transition={spanTransition}
-            onAnimationComplete={index === elements.length - 1 ? onAnimationComplete : undefined}
+            onAnimationComplete={
+              index === elements.length - 1
+                ? () => {
+                    onAnimationComplete?.();
+                    if (loop) setTimeout(() => setCycle(c => c + 1), loopDelay);
+                  }
+                : undefined
+            }
             style={{
               display: 'inline-block',
               willChange: 'transform, filter, opacity'
