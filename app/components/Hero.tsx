@@ -204,6 +204,13 @@ export default function Hero() {
         />
       </div>
       <div
+        aria-hidden
+        className="pointer-events-none absolute left-0 -bottom-14 md:bottom-0 z-10 w-40 md:w-64 xl:w-80 translate-y-1/2 md:translate-y-1/4 -translate-x-[12%] select-none"
+        style={{ animation: "heroIconFloat 4.5s ease-in-out 0.8s infinite" }}
+      >
+        <img src="/assets/icons/hek.png" className="w-full" alt="" />
+      </div>
+      <div
         ref={cardsRef}
         className="my-20 md:my-28 flex flex-col lg:flex-row items-center lg:items-start justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-6 2xl:gap-10 md:mx-24 lg:mx-10 xl:mx-12 2xl:mx-24 mx-4 sm:mx-5"
       >
