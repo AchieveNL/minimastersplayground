@@ -199,7 +199,7 @@ export default function Hero() {
       </div>
       <div
         ref={cardsRef}
-        className="my-20 md:mt-32 md:mb-28 flex flex-col lg:flex-row items-center lg:items-start justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-6 2xl:gap-10 md:mx-24 lg:mx-10 xl:mx-12 2xl:mx-24 mx-4 sm:mx-5"
+        className="my-20 md:my-28 flex flex-col lg:flex-row items-center lg:items-start justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-6 2xl:gap-10 md:mx-24 lg:mx-10 xl:mx-12 2xl:mx-24 mx-4 sm:mx-5"
       >
         {infoCards.map((card, index) => {
           return (
