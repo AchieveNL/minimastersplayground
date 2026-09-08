@@ -39,6 +39,10 @@ export default function MobileSection() {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-10px); }
         }
+        @keyframes msIconFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-12px); }
+        }
       `}</style>
 
       {/* Decorative icons */}
@@ -46,18 +50,21 @@ export default function MobileSection() {
         loading="lazy"
         src="/assets/mobile/icon1.svg"
         className="absolute right-0 -top-20 w-20 sm:w-24 md:w-30 lg:w-48 xl:w-60"
+        style={{ animation: "msIconFloat 4s ease-in-out infinite" }}
         alt=""
       />
       <img
         loading="lazy"
         src="/assets/mobile/icon2.svg"
         className="absolute -z-10 w-20 sm:w-24 md:w-30 lg:w-60 xl:w-80 right-0 bottom-[60%] translate-y-[30%] lg:left-1/2 lg:-translate-x-[80%] lg:right-auto lg:-bottom-40 lg:translate-y-0"
+        style={{ animation: "msIconFloat 4.4s ease-in-out 0.9s infinite" }}
         alt=""
       />
       <img
         loading="lazy"
         src="/assets/mobile/icon3.svg"
         className="absolute left-0 top-20 w-20 sm:w-24 md:w-30 lg:w-32 xl:w-40"
+        style={{ animation: "msIconFloat 3.6s ease-in-out 0.5s infinite" }}
         alt=""
       />
 

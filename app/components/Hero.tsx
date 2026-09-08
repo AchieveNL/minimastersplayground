@@ -115,19 +115,25 @@ export default function Hero() {
         id="over-ons"
         className="pt-2 md:pt-1 relative flex flex-col items-center justify-center gap-5"
       >
+        <style>{`
+          @keyframes heroIconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+          }
+        `}</style>
         <div ref={gearsRef}>
-          <img
-            src="/assets/icons/gear.svg"
+          <div
             className="absolute top-0 right-0 md:w-60 w-30"
-            style={{ opacity: 0 }}
-            alt=""
-          />
-          <img
-            src="/assets/icons/gear2.svg"
+            style={{ animation: "heroIconFloat 4.2s ease-in-out infinite" }}
+          >
+            <img src="/assets/icons/gear.svg" className="w-full" style={{ opacity: 0 }} alt="" />
+          </div>
+          <div
             className="absolute left-0 md:w-60 w-30"
-            style={{ opacity: 0 }}
-            alt=""
-          />
+            style={{ animation: "heroIconFloat 3.7s ease-in-out 0.6s infinite" }}
+          >
+            <img src="/assets/icons/gear2.svg" className="w-full" style={{ opacity: 0 }} alt="" />
+          </div>
         </div>
         <h1
           ref={tinyRef}

@@ -67,14 +67,20 @@ export default function OnsAanbodPage() {
             aria-hidden
             className="absolute inset-0 pointer-events-none select-none hidden lg:block"
           >
-            <img src="/assets/aanbod/politiepet.png" alt="" className="absolute w-44 xl:w-56 left-0 top-[0.5%]" />
-            <img src="/assets/aanbod/gereedschap.png" alt="" className="absolute w-40 xl:w-52 right-0 top-[13%]" />
-            <img src="/assets/aanbod/vuur.png" alt="" className="absolute w-52 xl:w-64 left-0 top-[31%]" />
-            <img src="/assets/aanbod/fire-alarm.png" alt="" className="absolute w-36 xl:w-44 right-0 top-[38%]" />
-            <img src="/assets/aanbod/brandslang.png" alt="" className="absolute w-80 xl:w-[440px] left-[34%] top-[63.4%] rotate-[150deg]" />
-            <img src="/assets/aanbod/boerderij.png" alt="" className="absolute w-48 xl:w-60 left-0 top-[70%]" />
-            <img src="/assets/aanbod/molen.png" alt="" className="absolute w-40 xl:w-52 right-0 top-[84%]" />
-            <img src="/assets/aanbod/kuiken.png" alt="" className="absolute w-40 xl:w-48 left-0 bottom-[-4%]" />
+            <style>{`
+              @keyframes wmFloat {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-12px); }
+              }
+            `}</style>
+            <img src="/assets/aanbod/politiepet.png" alt="" className="absolute w-44 xl:w-56 left-0 top-[0.5%]" style={{ animation: "wmFloat 4.2s ease-in-out 0s infinite" }} />
+            <img src="/assets/aanbod/gereedschap.png" alt="" className="absolute w-40 xl:w-52 right-0 top-[13%]" style={{ animation: "wmFloat 3.8s ease-in-out 0.4s infinite" }} />
+            <img src="/assets/aanbod/vuur.png" alt="" className="absolute w-52 xl:w-64 left-0 top-[31%]" style={{ animation: "wmFloat 4.6s ease-in-out 0.8s infinite" }} />
+            <img src="/assets/aanbod/fire-alarm.png" alt="" className="absolute w-36 xl:w-44 right-0 top-[38%]" style={{ animation: "wmFloat 3.6s ease-in-out 1.1s infinite" }} />
+            <img src="/assets/aanbod/brandslang.png" alt="" className="absolute w-80 xl:w-[440px] left-[34%] top-[63.4%] rotate-[150deg]" style={{ animation: "wmFloat 4.3s ease-in-out 0.7s infinite" }} />
+            <img src="/assets/aanbod/boerderij.png" alt="" className="absolute w-48 xl:w-60 left-0 top-[70%]" style={{ animation: "wmFloat 4.4s ease-in-out 0.6s infinite" }} />
+            <img src="/assets/aanbod/molen.png" alt="" className="absolute w-40 xl:w-52 right-0 top-[84%]" style={{ animation: "wmFloat 4s ease-in-out 1.3s infinite" }} />
+            <img src="/assets/aanbod/kuiken.png" alt="" className="absolute w-40 xl:w-48 left-0 bottom-[-4%]" style={{ animation: "wmFloat 4.8s ease-in-out 0.2s infinite" }} />
           </div>
           <CardWrap>
             <div className="relative">

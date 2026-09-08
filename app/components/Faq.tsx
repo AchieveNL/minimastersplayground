@@ -186,22 +186,31 @@ export default function Faq() {
       className="mt-4 md:-mt-10 md:mb-24 mb-16 relative overflow-x-clip"
       style={{ fontFamily: "Quicksand" }}
     >
+      <style>{`
+        @keyframes faqIconFloat {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-12px); }
+        }
+      `}</style>
       <img
         loading="lazy"
         src="/assets/faq/icon1.svg"
         className="absolute md:w-60 w-30 top-1/2 md:-translate-y-1/2"
+        style={{ animation: "faqIconFloat 4.1s ease-in-out infinite" }}
         alt=""
       />
       <img
         loading="lazy"
         src="/assets/faq/icon2.svg"
         className="absolute md:w-50 w-20 right-0 md:-top-10 top-10 "
+        style={{ animation: "faqIconFloat 3.6s ease-in-out 0.5s infinite" }}
         alt=""
       />
       <img
         loading="lazy"
         src="/assets/faq/icon3.svg"
         className="absolute md:w-50 w-20 right-0 top-[70%]"
+        style={{ animation: "faqIconFloat 4.5s ease-in-out 1s infinite" }}
         alt=""
       />
 
