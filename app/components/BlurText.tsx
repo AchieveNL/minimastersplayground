@@ -56,17 +56,30 @@ const BlurText: React.FC<BlurTextProps> = ({
 
   useEffect(() => {
     if (!ref.current) return;
+    let raf = 0;
+    const startWhenVisible = () => {
+      const el = ref.current;
+      if (!el) return;
+      if (getComputedStyle(el).visibility !== "hidden") {
+        setInView(true);
+      } else {
+        raf = requestAnimationFrame(startWhenVisible);
+      }
+    };
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true);
+          startWhenVisible();
           observer.unobserve(ref.current as Element);
         }
       },
       { threshold, rootMargin },
     );
     observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [threshold, rootMargin]);
 
   const defaultFrom = useMemo(

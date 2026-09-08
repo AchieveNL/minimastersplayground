@@ -123,7 +123,7 @@ export default function Hero() {
           delay={200}
           animateBy="letters"
           direction="top"
-          className="justify-center whitespace-nowrap bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
+          className="justify-center whitespace-nowrap bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#97d5ad] bg-clip-text text-transparent w-full px-5 md:drop-shadow-lg"
           style={{
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -138,7 +138,7 @@ export default function Hero() {
           delay={200}
           animateBy="letters"
           direction="top"
-          className="justify-center whitespace-nowrap bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-fit md:m-auto mx-5 md:drop-shadow-lg"
+          className="justify-center whitespace-nowrap bg-linear-to-r from-[#FFCA58] via-[#FFCA58] to-[#FFCA58] bg-clip-text text-transparent w-full px-5 md:drop-shadow-lg"
           style={{
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
