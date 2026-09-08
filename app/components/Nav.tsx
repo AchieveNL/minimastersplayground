@@ -104,7 +104,7 @@ export default function Nav() {
         .to(
           logoImgRef.current,
           {
-            width: isMobile ? "8rem" : "12rem",
+            width: isMobile ? "6.5rem" : "8.5rem",
             marginTop: isMobile ? "auto" : 0,
             marginBottom: isMobile ? "auto" : 0,
           },
@@ -124,7 +124,7 @@ export default function Nav() {
         .to(
           logoImgRef.current,
           {
-            width: isMobile ? "10rem" : "14rem",
+            width: isMobile ? "8rem" : "11rem",
             clearProps: "marginTop,marginBottom",
           },
           0,
@@ -213,13 +213,13 @@ export default function Nav() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex-shrink-0 my-3  md:my-0 md:mt-6"
+              className="flex-shrink-0 my-2 md:my-0 md:mt-3"
               ref={logoRef}
             >
               <img
                 ref={logoImgRef}
                 src="/assets/branding/logo-footer.png"
-                className="w-36 sm:w-44 md:w-56 xl:w-56 2xl:w-72 md:[filter:drop-shadow(0_0_30px_rgba(255,255,255,0.55))]"
+                className="w-32 sm:w-36 md:w-44 2xl:w-52 md:[filter:drop-shadow(0_0_30px_rgba(255,255,255,0.55))]"
                 alt=""
               />
             </Link>
