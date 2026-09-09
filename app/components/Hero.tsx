@@ -179,7 +179,7 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
       </div>
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 -bottom-10 md:-bottom-16 z-10 w-64 md:w-80 xl:w-96 translate-y-[40%] md:translate-y-[58%] -translate-x-[12%] select-none"
+        className="pointer-events-none absolute left-0 -bottom-10 md:-bottom-16 z-10 w-64 md:w-80 xl:w-96 translate-y-[37%] md:translate-y-[52%] -translate-x-[12%] select-none"
         style={{ animation: "heroIconFloat 4.5s ease-in-out 0.8s infinite" }}
       >
         <img src="/assets/icons/hek.png" className="w-full" alt="" />
