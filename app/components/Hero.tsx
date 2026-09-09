@@ -179,14 +179,14 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
       </div>
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 -bottom-28 md:-bottom-24 z-10 w-40 md:w-56 xl:w-64 translate-y-1/2 md:translate-y-[70%] -translate-x-[12%] select-none"
+        className="pointer-events-none absolute left-0 -bottom-10 md:-bottom-16 z-10 w-64 md:w-80 xl:w-96 translate-y-1/4 md:translate-y-1/3 -translate-x-[12%] select-none"
         style={{ animation: "heroIconFloat 4.5s ease-in-out 0.8s infinite" }}
       >
         <img src="/assets/icons/hek.png" className="w-full" alt="" />
       </div>
       <div
         ref={cardsRef}
-        className="mt-20 mb-34 md:mt-28 md:mb-42 flex flex-col lg:flex-row items-center lg:items-start justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-6 2xl:gap-10 md:mx-24 lg:mx-10 xl:mx-12 2xl:mx-24 mx-4 sm:mx-5"
+        className="relative z-20 mt-20 mb-34 md:mt-28 md:mb-42 flex flex-col lg:flex-row items-center lg:items-start justify-center gap-12 md:gap-10 lg:gap-6 xl:gap-6 2xl:gap-10 md:mx-24 lg:mx-10 xl:mx-12 2xl:mx-24 mx-4 sm:mx-5"
       >
         {infoCards.map((card, index) => {
           return (
