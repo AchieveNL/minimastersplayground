@@ -27,11 +27,11 @@ function BlurLine({
         <span
           key={i}
           aria-hidden
-          className="inline-block will-change-[transform,filter,opacity] opacity-0"
+          className="inline-block will-change-[transform,opacity] opacity-0"
           style={
             ready
               ? {
-                  animation: `titleLetterIn ${TITLE_RISE}s ease-out ${
+                  animation: `titleLetterIn ${TITLE_RISE}s cubic-bezier(0.34, 1.56, 0.64, 1) ${
                     offset + i * TITLE_STEP
                   }s both`,
                 }
@@ -159,9 +159,10 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
         </div>
         <style>{`
           @keyframes titleLetterIn {
-            0% { opacity: 0; filter: blur(10px); transform: translateY(-50px); }
-            50% { opacity: 0.5; filter: blur(5px); transform: translateY(5px); }
-            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+            0% { opacity: 0; transform: scale(0.3); }
+            60% { opacity: 1; transform: scale(1.18); }
+            80% { transform: scale(0.94); }
+            100% { opacity: 1; transform: scale(1); }
           }
         `}</style>
         <BlurLine
