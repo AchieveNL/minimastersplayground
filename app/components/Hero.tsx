@@ -135,7 +135,7 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
       </div>
       <div
         id="over-ons"
-        className="pt-2 md:pt-1 relative flex flex-col items-center justify-center gap-5"
+        className="pt-2 md:pt-1 relative flex flex-col items-center justify-center gap-1 md:gap-5"
       >
         <style>{`
           @keyframes heroIconFloat {
@@ -168,13 +168,13 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
           text="TINY HEROES"
           offset={0.5}
           ready={ready}
-          className="justify-center whitespace-nowrap text-[#67CD8A] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
+          className="justify-center whitespace-nowrap text-[#67CD8A] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[11vw] leading-[1.05] sm:text-[length:clamp(2.25rem,8vw,9.5rem)] sm:leading-normal"
         />
         <BlurLine
           text="BIG ADVENTURES"
           offset={1.9}
           ready={ready}
-          className="justify-center whitespace-nowrap text-[#FFCA58] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[length:clamp(2.25rem,8vw,9.5rem)]"
+          className="justify-center whitespace-nowrap text-[#FFCA58] w-full px-5 md:drop-shadow-lg [font-family:'Frankfurter',sans-serif] font-normal tracking-[0.01em] text-[11vw] leading-[1.05] sm:text-[length:clamp(2.25rem,8vw,9.5rem)] sm:leading-normal"
         />
       </div>
       <div
