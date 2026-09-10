@@ -218,7 +218,7 @@ export default function Nav() {
             >
               <img
                 ref={logoImgRef}
-                src="/assets/branding/logo-footer.png"
+                src="/assets/branding/logo-outline.svg"
                 className="w-32 sm:w-36 md:w-44 2xl:w-52 md:[filter:drop-shadow(0_0_30px_rgba(255,255,255,0.55))]"
                 alt=""
               />
@@ -373,7 +373,7 @@ export default function Nav() {
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[170%] max-w-none opacity-50"
             />
             <img
-              src="/assets/branding/logo-footer.png"
+              src="/assets/branding/logo-outline.svg"
               className="w-3/4 p-2 relative"
               alt=""
             />
