@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import SmoothScroll from "../components/SmoothScroll";
@@ -10,10 +10,16 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const TICKETS_URL = "https://tickets.minimastersplayground.nl/";
 
-function CardWrap({ children }: { children: React.ReactNode }) {
+function CardWrap({
+  id,
+  children,
+}: {
+  id?: string;
+  children: React.ReactNode;
+}) {
   const ref = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1 });
   return (
-    <div ref={ref} className="w-full max-w-3xl mx-auto">
+    <div id={id} ref={ref} className="w-full max-w-3xl mx-auto scroll-mt-32">
       {children}
     </div>
   );
@@ -25,6 +31,19 @@ export default function OnsAanbodPage() {
     type: "scaleIn",
     duration: 1,
   });
+
+  // Scroll to the card named in the URL hash once the preloader is gone
+  useEffect(() => {
+    if (!loaded) return;
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) {
+      requestAnimationFrame(() =>
+        el.scrollIntoView({ behavior: "smooth", block: "start" }),
+      );
+    }
+  }, [loaded]);
 
   return (
     <>
@@ -82,7 +101,7 @@ export default function OnsAanbodPage() {
             <img src="/assets/aanbod/molen.png" alt="" className="absolute w-40 xl:w-52 right-0 top-[84%]" style={{ animation: "wmFloat 4s ease-in-out 1.3s infinite" }} />
             <img src="/assets/aanbod/kuiken.png" alt="" className="absolute w-40 xl:w-48 left-0 bottom-[-4%]" style={{ animation: "wmFloat 4.8s ease-in-out 0.2s infinite" }} />
           </div>
-          <CardWrap>
+          <CardWrap id="verjaardag">
             <div className="relative">
               <img
                 src="/assets/aanbod/verjaardag.webp"
@@ -105,7 +124,7 @@ export default function OnsAanbodPage() {
             </div>
           </CardWrap>
 
-          <CardWrap>
+          <CardWrap id="prive-feestje">
             <div className="relative">
               <img
                 src="/assets/aanbod/prive-feestje.webp"
@@ -141,7 +160,7 @@ export default function OnsAanbodPage() {
             </div>
           </CardWrap>
 
-          <CardWrap>
+          <CardWrap id="schoolreisje">
             <div className="relative">
               <img
                 src="/assets/aanbod/schoolreisje.webp"

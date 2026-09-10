@@ -13,19 +13,19 @@ export default function Slider() {
     {
       bg: "kinderfeestje.jpg",
       text1: slider.cards[0]?.title ?? "Kinderfeestje",
-      link: "https://tickets.minimastersplayground.nl/",
+      link: "/ons-aanbod#verjaardag",
       disabled: false,
     },
     {
       bg: "zaalhuur.jpg",
       text1: slider.cards[2]?.title ?? "Zaalhuur",
-      link: "https://tickets.minimastersplayground.nl/",
+      link: "/ons-aanbod#prive-feestje",
       disabled: false,
     },
     {
       bg: "scholen-bso.jpg",
       text1: slider.cards[3]?.title ?? "Scholen & BSO",
-      link: "https://tickets.minimastersplayground.nl/",
+      link: "/ons-aanbod#schoolreisje",
       disabled: false,
     },
   ] as Array<{
@@ -236,9 +236,9 @@ export default function Slider() {
                 {item.link ? (
                   <a
                     href={item.link}
-                    {...(item.link.startsWith("#")
-                      ? {}
-                      : { target: "_blank", rel: "noopener noreferrer" })}
+                    {...(item.link.startsWith("http")
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     className={`${cardClass} group`}
                   >
                     {inner}
