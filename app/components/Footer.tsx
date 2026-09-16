@@ -289,7 +289,7 @@ export default function Footer() {
               />
               <img
                 loading="lazy"
-                src="/assets/branding/logo-footer.png"
+                src="/assets/branding/logo-outline.svg"
                 alt=""
                 className="mx-auto w-60 sm:w-80 md:w-[28rem] lg:w-[28rem] xl:w-[36rem] 2xl:w-[42rem] relative"
               />
