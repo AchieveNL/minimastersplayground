@@ -10,6 +10,11 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const TICKETS_URL = "https://tickets.minimastersplayground.nl/";
 
+// One pill for every card: sized in container units so the shape stays
+// identical from phone to desktop.
+const BOEK_NU_CLASS =
+  "inline-flex items-center justify-center min-w-[34cqw] px-[5cqw] py-[1.7cqw] rounded-[2.2cqw] font-bold text-white text-[3.4cqw] tracking-widest shadow-md hover:scale-105 transition-transform";
+
 function CardWrap({
   id,
   children,
@@ -102,7 +107,7 @@ export default function OnsAanbodPage() {
             <img src="/assets/aanbod/kuiken.png" alt="" className="absolute w-40 xl:w-48 left-0 bottom-[-4%]" style={{ animation: "wmFloat 4.8s ease-in-out 0.2s infinite" }} />
           </div>
           <CardWrap id="verjaardag">
-            <div className="relative">
+            <div className="relative @container">
               <img
                 src="/assets/aanbod/verjaardag.webp"
                 alt="Verjaardag — €19,95 per kind, €15,95 per volwassene: 2,5 uur lang spelen, opgedekte tafel, onbeperkt limonade, zakje chips, zakje snoep bij vertrek, cadeautje voor de jarige, ouders 1 frisdrank en 1 gebak naar keuze. Vanaf 10 personen."
@@ -113,7 +118,7 @@ export default function OnsAanbodPage() {
                 href={TICKETS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center min-w-[34%] px-[4vw] sm:px-8 py-[1.5vw] sm:py-3 rounded-xl sm:rounded-2xl font-bold text-white text-[3.5vw] sm:text-xl md:text-2xl tracking-widest hover:scale-105 transition-transform"
+                className={`absolute left-1/2 -translate-x-1/2 -translate-y-1/2 ${BOEK_NU_CLASS}`}
                 style={{
                   top: "88%",
                   background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
@@ -125,17 +130,15 @@ export default function OnsAanbodPage() {
           </CardWrap>
 
           <CardWrap id="prive-feestje">
-            <div className="relative">
+            <div className="relative @container">
               <img
                 src="/assets/aanbod/prive-feestje.webp"
                 alt="Privé feestje — exclusieve belevenis met de volledige locatie voor jullie alleen. 2,5 uur €1.000 of 3 uur €1.200, min. café afname €500, maximaal 70 gasten."
                 className="w-full h-auto rounded-[40px]"
               />
-              {/* overlaid inside the card's empty zone, scaled with the card */}
-              <div
-                className="absolute left-[8%] right-[8%] flex flex-col items-center gap-[2.2vw] sm:gap-4 text-center bottom-[11.5%] sm:bottom-[12.5%]"
-              >
-                <p className="text-[#5FB8AE] font-medium leading-snug text-[2.1vw] sm:text-sm md:text-base">
+              {/* note fits inside the card from sm up; on phones it sits below */}
+              <div className="absolute left-[8%] right-[8%] bottom-[12.5%] hidden sm:block text-center">
+                <p className="text-[#5FB8AE] font-medium leading-snug text-[2.2cqw] mb-[2.4cqw]">
                   Geef het feest <b>een persoonlijke touch!</b>
                   <br />
                   Jullie zijn van harte welkom om <b>het zitgedeelte</b> te
@@ -144,24 +147,29 @@ export default function OnsAanbodPage() {
                   <b>Let op!</b> vuurwerk, confetti en gezichtsschmink is{" "}
                   <b>niet toegestaan.</b> ⭐
                 </p>
-                <a
-                  href={TICKETS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-[6vw] sm:px-12 md:px-14 py-[1.2vw] sm:py-3 rounded-xl sm:rounded-2xl font-bold text-white text-[2.7vw] sm:text-xl md:text-2xl tracking-widest hover:scale-105 transition-transform shadow-md"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
-                  }}
-                >
-                  BOEK NU
-                </a>
               </div>
+              <a
+                href={TICKETS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`absolute left-1/2 -translate-x-1/2 -translate-y-1/2 ${BOEK_NU_CLASS}`}
+                style={{
+                  top: "88%",
+                  background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
+                }}
+              >
+                BOEK NU
+              </a>
             </div>
+            <p className="sm:hidden mt-4 px-2 text-center text-sm font-medium leading-relaxed text-[#5FB8AE]">
+              Geef het feest <b>een persoonlijke touch!</b> Jullie zijn van
+              harte welkom om <b>het zitgedeelte</b> te versieren. <b>Let op!</b>{" "}
+              vuurwerk, confetti en gezichtsschmink is <b>niet toegestaan.</b> ⭐
+            </p>
           </CardWrap>
 
           <CardWrap id="schoolreisje">
-            <div className="relative">
+            <div className="relative @container">
               <img
                 src="/assets/aanbod/schoolreisje.webp"
                 alt="Schoolreisje — €14,95 per kind en per volwassene: 2,5 uur lang spelen, onbeperkt limonade, begeleiders 1 koffie of thee en 1 gebak naar keuze. Vanaf 10 personen."
@@ -172,7 +180,7 @@ export default function OnsAanbodPage() {
                 href={TICKETS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center min-w-[34%] px-[4vw] sm:px-8 py-[1.5vw] sm:py-3 rounded-xl sm:rounded-2xl font-bold text-white text-[3.5vw] sm:text-xl md:text-2xl tracking-widest hover:scale-105 transition-transform"
+                className={`absolute left-1/2 -translate-x-1/2 -translate-y-1/2 ${BOEK_NU_CLASS}`}
                 style={{
                   top: "79.3%",
                   background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
