@@ -136,8 +136,8 @@ export default function OnsAanbodPage() {
                 alt="Privé feestje — exclusieve belevenis met de volledige locatie voor jullie alleen. 2,5 uur €1.000 of 3 uur €1.200, min. café afname €500, maximaal 70 gasten."
                 className="w-full h-auto rounded-[40px]"
               />
-              {/* sm and up: note and button stacked inside the card's empty zone */}
-              <div className="absolute left-[8%] right-[8%] bottom-[11%] hidden sm:flex flex-col items-center gap-[2.4cqw] text-center">
+              {/* note and button stacked inside the card's empty zone */}
+              <div className="absolute left-[8%] right-[8%] bottom-[9.5%] flex flex-col items-center gap-[2.4cqw] text-center">
                 <p className="text-[#5FB8AE] font-medium leading-snug text-[2.2cqw]">
                   Geef het feest <b>een persoonlijke touch!</b>
                   <br />
@@ -160,25 +160,7 @@ export default function OnsAanbodPage() {
                   BOEK NU
                 </a>
               </div>
-              {/* phones: note sits below the card, so the button stands alone */}
-              <a
-                href={TICKETS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`absolute left-1/2 -translate-x-1/2 -translate-y-1/2 sm:hidden ${BOEK_NU_CLASS}`}
-                style={{
-                  top: "88%",
-                  background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
-                }}
-              >
-                BOEK NU
-              </a>
             </div>
-            <p className="sm:hidden mt-4 px-2 text-center text-sm font-medium leading-relaxed text-[#5FB8AE]">
-              Geef het feest <b>een persoonlijke touch!</b> Jullie zijn van
-              harte welkom om <b>het zitgedeelte</b> te versieren. <b>Let op!</b>{" "}
-              vuurwerk, confetti en gezichtsschmink is <b>niet toegestaan.</b> ⭐
-            </p>
           </CardWrap>
 
           <CardWrap id="schoolreisje">
