@@ -137,7 +137,7 @@ export default function OnsAanbodPage() {
                 className="w-full h-auto rounded-[40px]"
               />
               {/* note and button stacked inside the card's empty zone */}
-              <div className="absolute left-[8%] right-[8%] bottom-[9.5%] flex flex-col items-center gap-[2.4cqw] text-center">
+              <div className="absolute left-[8%] right-[8%] bottom-[12%] flex flex-col items-center gap-[1.6cqw] text-center">
                 <p className="text-[#5FB8AE] font-medium leading-snug text-[2.2cqw]">
                   Geef het feest <b>een persoonlijke touch!</b>
                   <br />
