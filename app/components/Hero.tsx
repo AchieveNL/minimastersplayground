@@ -27,7 +27,7 @@ function BlurLine({
         <span
           key={i}
           aria-hidden
-          className="inline-block will-change-[transform,opacity] opacity-0"
+          className="relative inline-block will-change-[transform,opacity] opacity-0"
           style={
             ready
               ? {
@@ -38,7 +38,15 @@ function BlurLine({
               : undefined
           }
         >
-          {ch === " " ? " " : ch}
+          {/* white backer: stroked copy fills the font's inline highlight gaps */}
+          <span
+            aria-hidden
+            className="absolute left-0 top-0 text-white"
+            style={{ WebkitTextStroke: "0.035em #fff" }}
+          >
+            {ch === " " ? " " : ch}
+          </span>
+          <span className="relative">{ch === " " ? " " : ch}</span>
         </span>
       ))}
     </p>
