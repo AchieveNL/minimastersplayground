@@ -29,10 +29,21 @@ export const contentDefaults = {
   slider: {
     badge: "ONS AANBOD",
     cards: [
-      { title: "Kinderfeestje" },
-      { title: "Entreeticket" },
-      { title: "Zaalhuur" },
-      { title: "Scholen & BSO" },
+      { title: "Kinderfeestje", afbeelding: "/assets/slider/kinderfeestje.jpg" },
+      { title: "Entreeticket", afbeelding: "/assets/slider/entreeticket.webp" },
+      { title: "Zaalhuur", afbeelding: "/assets/slider/zaalhuur.jpg" },
+      { title: "Scholen & BSO", afbeelding: "/assets/slider/scholen-bso.jpg" },
+    ],
+  },
+
+  fotostrook: {
+    afbeeldingen: [
+      { afbeelding: "/assets/hero-imgs/img1.webp" },
+      { afbeelding: "/assets/hero-imgs/img2.jpg" },
+      { afbeelding: "/assets/hero-imgs/img3.jpg" },
+      { afbeelding: "/assets/hero-imgs/img4.jpg" },
+      { afbeelding: "/assets/hero-imgs/img5.webp" },
+      { afbeelding: "/assets/hero-imgs/img6.jpg" },
     ],
   },
 

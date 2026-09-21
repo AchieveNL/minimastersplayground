@@ -21,7 +21,7 @@ export default function Home() {
         className="overflow-x-clip"
         style={{ visibility: loaded ? "visible" : "hidden" }}
       >
-        <Nav />
+        <Nav ready={loaded} />
         <Hero ready={loaded} />
         <Slider />
         <MobileSection />

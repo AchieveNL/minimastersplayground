@@ -17,6 +17,8 @@ import {
   Trash2,
   Plus,
   Save,
+  Upload,
+  Images,
   CheckCircle2,
   AlertCircle,
   Lock,
@@ -25,6 +27,11 @@ import {
 } from "lucide-react";
 import { createClient } from "../../lib/supabase/client";
 import { contentDefaults, type SiteContent } from "../../content/defaults";
+import {
+  IMAGE_SLOTS,
+  MAX_SOURCE_MB,
+  uploadSiteImage,
+} from "../../lib/image-upload";
 import { revalidateSite } from "./actions";
 
 type SectionKey = keyof SiteContent;
@@ -38,6 +45,7 @@ const SECTIONS: {
   { key: "banner", label: "Notificatiebalk", hint: "Groene balk bovenaan", icon: Megaphone },
   { key: "hero", label: "Infokaarten", hint: "Homepage introductie", icon: LayoutGrid },
   { key: "slider", label: "Aanbod", hint: "Kaarten op homepage", icon: Ticket },
+  { key: "fotostrook", label: "Fotostrook", hint: "Bewegende foto's", icon: Images },
   { key: "tijdsloten", label: "Tijdsloten & Loyalty", hint: "Telefoons sectie", icon: Clock },
   { key: "openingstijden", label: "Openingstijden", hint: "Tijden per dag", icon: Star },
   { key: "parkeren", label: "Parkeren", hint: "Parkeer tip blok", icon: Car },
@@ -53,6 +61,8 @@ const FIELD_LABELS: Record<string, string> = {
   description: "Beschrijving",
   infocards: "Infokaart",
   cards: "Kaart",
+  afbeelding: "Afbeelding",
+  afbeeldingen: "Foto",
   badge: "Badge tekst",
   badgeLeft: "Badge links",
   badgeRight: "Badge rechts",
@@ -109,15 +119,116 @@ function emptyLike(item: unknown): unknown {
 const inputCls =
   "w-full rounded-xl border border-[#E8E0C8] bg-white px-3.5 py-2.5 text-[15px] text-slate-800 placeholder-slate-400 transition-colors duration-200 focus:outline-none focus:border-[#67CD8A] focus:ring-2 focus:ring-[#67CD8A]/30";
 
+function ImageField({
+  value,
+  onChange,
+  section,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  section: string;
+}) {
+  const supabase = useMemo(() => createClient(), []);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  const [note, setNote] = useState("");
+  const slot = IMAGE_SLOTS[section];
+
+  const handleFile = async (file?: File | null) => {
+    if (!file) return;
+    setError("");
+    setNote("");
+    setBusy(true);
+    try {
+      const { url, sizeKb, ratio } = await uploadSiteImage(
+        supabase,
+        file,
+        section,
+        value,
+      );
+      onChange(url);
+      const off =
+        slot && Math.abs(ratio - slot.ratio) / slot.ratio > 0.12
+          ? " Let op: de verhouding wijkt af, de randen worden bijgesneden."
+          : "";
+      setNote(`Geüpload (${sizeKb} KB).${off} Vergeet niet op te slaan.`);
+    } catch (e) {
+      setError(
+        e instanceof Error ? e.message : "Uploaden mislukt, probeer opnieuw.",
+      );
+    }
+    setBusy(false);
+  };
+
+  return (
+    <div>
+      <span className="mb-1.5 block text-[13px] font-bold uppercase tracking-wide text-slate-500">
+        Afbeelding
+      </span>
+      <div className="flex items-start gap-4 rounded-2xl border border-[#E8E0C8] bg-white p-3">
+        <img
+          src={value}
+          alt=""
+          className="h-24 w-24 shrink-0 rounded-xl object-cover"
+        />
+        <div className="min-w-0 flex-1">
+          <label className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#5763FF] px-4 py-2 text-sm font-bold text-white transition-opacity duration-200 hover:opacity-90">
+            <Upload className="h-4 w-4" />
+            {busy ? "Bezig…" : "Vervang afbeelding"}
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              disabled={busy}
+              onChange={(e) => handleFile(e.target.files?.[0])}
+            />
+          </label>
+          <p className="mt-2 text-xs text-slate-500">
+            {slot && (
+              <>
+                Aanbevolen: <b>{slot.hint}</b>.{" "}
+              </>
+            )}
+            Maximaal <b>{MAX_SOURCE_MB} MB</b> per foto — grotere bestanden
+            worden geweigerd, kleinere worden automatisch verkleind.
+          </p>
+          {note && (
+            <p className="mt-1.5 text-xs font-semibold text-[#3fa060]">
+              {note}
+            </p>
+          )}
+          {error && (
+            <p className="mt-1.5 text-xs font-semibold text-[#d63c3c]">
+              {error}
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function FieldEditor({
   value,
   onChange,
   fieldKey,
+  section,
 }: {
   value: unknown;
   onChange: (v: unknown) => void;
   fieldKey: string;
+  section: string;
 }) {
+  if (fieldKey === "afbeelding" && typeof value === "string") {
+    return (
+      <ImageField
+        value={value}
+        section={section}
+        onChange={(v) => onChange(v)}
+      />
+    );
+  }
+
   if (typeof value === "string") {
     const long = value.length > 60 || value.includes("\n");
     return (
@@ -169,6 +280,7 @@ function FieldEditor({
               <FieldEditor
                 value={item}
                 fieldKey={fieldKey}
+                section={section}
                 onChange={(v) =>
                   onChange(value.map((x, j) => (j === i ? v : x)))
                 }
@@ -195,6 +307,7 @@ function FieldEditor({
           <FieldEditor
             key={k}
             fieldKey={k}
+            section={section}
             value={v}
             onChange={(nv) => onChange({ ...(value as object), [k]: nv })}
           />
@@ -686,6 +799,7 @@ export default function BeheerPage() {
             <div className="rounded-3xl border border-[#EEE5CF] bg-white p-5 shadow-sm sm:p-7">
               <FieldEditor
                 fieldKey={active}
+                section={active}
                 value={content[active]}
                 onChange={(v) =>
                   setContent({ ...content, [active]: v } as SiteContent)

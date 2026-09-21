@@ -55,7 +55,7 @@ export default function OnsAanbodPage() {
       {!loaded && <Preloader onComplete={() => setLoaded(true)} />}
       <SmoothScroll />
       <div style={{ visibility: loaded ? "visible" : "hidden" }}>
-        <Nav />
+        <Nav ready={loaded} />
         <main
           className="overflow-x-clip"
           style={{ fontFamily: "Quicksand, sans-serif" }}

@@ -5,25 +5,25 @@ export default function Slider() {
   const { slider } = useContent();
   const data = [
     {
-      bg: "entreeticket.webp",
+      bg: slider.cards[1]?.afbeelding ?? "/assets/slider/entreeticket.webp",
       text1: slider.cards[1]?.title ?? "Entreeticket",
       link: "https://tickets.minimastersplayground.nl/",
       disabled: false,
     },
     {
-      bg: "kinderfeestje.jpg",
+      bg: slider.cards[0]?.afbeelding ?? "/assets/slider/kinderfeestje.jpg",
       text1: slider.cards[0]?.title ?? "Kinderfeestje",
       link: "/ons-aanbod#verjaardag",
       disabled: false,
     },
     {
-      bg: "zaalhuur.jpg",
+      bg: slider.cards[2]?.afbeelding ?? "/assets/slider/zaalhuur.jpg",
       text1: slider.cards[2]?.title ?? "Zaalhuur",
       link: "/ons-aanbod#prive-feestje",
       disabled: false,
     },
     {
-      bg: "scholen-bso.jpg",
+      bg: slider.cards[3]?.afbeelding ?? "/assets/slider/scholen-bso.jpg",
       text1: slider.cards[3]?.title ?? "Scholen & BSO",
       link: "/ons-aanbod#schoolreisje",
       disabled: false,
@@ -184,7 +184,7 @@ export default function Slider() {
                 <div
                   className="absolute inset-0 rounded-[10px_42px_10px_42px] md:rounded-[15px_70px_15px_70px]"
                   style={{
-                    background: `url('/assets/slider/${item.bg}') no-repeat center/cover`,
+                    background: `url('${item.bg}') no-repeat center/cover`,
                   }}
                 />
                 {/* Bottom pill — category title */}

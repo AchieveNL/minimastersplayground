@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import NotificationBanner from "./NotificationBanner";
 
-export default function Nav() {
+export default function Nav({ ready = true }: { ready?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -144,7 +144,7 @@ export default function Nav() {
         style={{ fontFamily: "Quicksand, sans-serif", opacity: 0 }}
         className="sticky top-0 z-50"
       >
-        <NotificationBanner />
+        <NotificationBanner ready={ready} />
         <div className="relative overflow-visible">
           {/* Cream solid background — independent height layer, only this controls the cream */}
           <div

@@ -1,9 +1,9 @@
 "use client";
 import Marquee from "react-fast-marquee";
-import { useEffect, useState, useRef } from "react";
-import gsap from "gsap";
+import { useEffect, useState } from "react";
+import { useContent } from "../content-context";
 
-const images = [
+const FALLBACK_IMAGES = [
   "/assets/hero-imgs/img1.webp",
   "/assets/hero-imgs/img2.jpg",
   "/assets/hero-imgs/img3.jpg",
@@ -12,6 +12,9 @@ const images = [
   "/assets/hero-imgs/img6.jpg",
 ];
 
+// Every third tile gets the same vertical offset, giving the strip its stagger.
+const OFFSETS = ["md:-mt-5 mt-3", "md:-mt-10", "md:mt-0 mt-5"];
+
 export default function AnimatedSlider({
   direction = "left",
   variant = "hero",
@@ -19,14 +22,18 @@ export default function AnimatedSlider({
   direction?: "left" | "right";
   variant?: "hero" | "footer";
 }) {
+  const { fotostrook } = useContent();
   const [marqueeSpeed, setMarqueeSpeed] = useState(100);
-  const [isMobile, setIsMobile] = useState(false);
+
+  const images: string[] =
+    fotostrook?.afbeeldingen?.map((item) => item?.afbeelding).filter(Boolean) ??
+    [];
+  const source = images.length ? images : FALLBACK_IMAGES;
+  // The grid is 3x3 and the marquee loops it, so repeat until it is filled.
+  const tiles = Array.from({ length: 18 }, (_, i) => source[i % source.length]);
 
   useEffect(() => {
-    const update = () => {
-      setMarqueeSpeed(window.innerWidth < 768 ? 50 : 50);
-      setIsMobile(window.innerWidth < 768);
-    };
+    const update = () => setMarqueeSpeed(window.innerWidth < 768 ? 50 : 50);
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
@@ -50,13 +57,6 @@ export default function AnimatedSlider({
     C 0.3214,0.9933  0.2905,1.0031  0.2397,1
     C 0.1893,0.9969  0.1557,0.9927  0.106,0.9768
     C 0.0577,0.9614  0,0.9262       0,0.9262
-    Z
-  `;
-  const mobilePath = `
-    M 0,0.04
-    C 0.25,0.06 0.55,0.01 1,0.04
-    L 1,0.96
-    C 0.75,0.94 0.45,0.99 0,0.96
     Z
   `;
 
@@ -94,108 +94,14 @@ export default function AnimatedSlider({
           className="h-full overflow-hidden"
         >
           <div className="grid grid-cols-3 grid-rows-3 md:gap-3 gap-1 h-full md:p-1.5 p-0.75 md:w-[120vw] w-[160vw]">
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img1.webp"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img2.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-10"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img3.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img4.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img5.webp"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-10"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img6.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img1.webp"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img2.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-10"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img3.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img4.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img5.webp"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-10"
-            />
-            <img
-              // key={i}
-              src="/assets/hero-imgs/img6.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
-            />
-            <img
-              src="/assets/hero-imgs/img1.webp"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
-            />
-            <img
-              src="/assets/hero-imgs/img2.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-10"
-            />
-            <img
-              src="/assets/hero-imgs/img3.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
-            />
-            <img
-              src="/assets/hero-imgs/img4.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-5 mt-3"
-            />
-            <img
-              src="/assets/hero-imgs/img5.webp"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:-mt-10"
-            />
-            <img
-              src="/assets/hero-imgs/img6.jpg"
-              alt=""
-              className="w-full h-full object-cover rounded-sm md:mt-0 mt-5"
-            />
+            {tiles.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt=""
+                className={`w-full h-full object-cover rounded-sm ${OFFSETS[i % 3]}`}
+              />
+            ))}
           </div>
         </Marquee>
       </div>
