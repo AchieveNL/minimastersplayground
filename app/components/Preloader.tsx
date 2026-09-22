@@ -120,7 +120,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             ref={logoRef}
             src="/assets/branding/logo-outline.svg"
             alt="Minimasters"
-            className="w-60 sm:w-72 md:w-[24rem] pointer-events-auto relative"
+            className="w-72 sm:w-80 md:w-[24rem] pointer-events-auto relative"
             style={{
               transform: "scale(0)",
             }}
