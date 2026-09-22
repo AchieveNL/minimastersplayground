@@ -1,5 +1,6 @@
 "use client";import { useEffect, useMemo, useState, useRef } from "react";
 import { useContent } from "../content-context";
+import ScrollHint from "./ScrollHint";
 
 export default function Slider() {
   const { slider } = useContent();
@@ -36,7 +37,48 @@ export default function Slider() {
   }>;
   const [screenW, setScreenW] = useState(1440);
   const containerRef = useRef<HTMLDivElement>(null);
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [showHint, setShowHint] = useState(false);
   const [containerSize, setContainerSize] = useState({ w: 1440, h: 800 });
+
+  // Cards grow towards the middle of the row and shrink towards the edges, so
+  // swiping through the offers reads as small, big, small, big.
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+
+    let frame = 0;
+    const paint = () => {
+      frame = 0;
+      const rowBox = row.getBoundingClientRect();
+      const rowCenter = rowBox.left + rowBox.width / 2;
+      const reach = rowBox.width / 2;
+      row.querySelectorAll<HTMLElement>("[data-card]").forEach((card) => {
+        const box = card.getBoundingClientRect();
+        const distance = Math.abs(box.left + box.width / 2 - rowCenter);
+        const falloff = Math.min(1, distance / reach);
+        card.style.setProperty("--focus", (1 - falloff * 0.13).toFixed(3));
+      });
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(paint);
+    };
+
+    paint();
+    setShowHint(row.scrollWidth > row.clientWidth + 8);
+
+    const onScroll = () => {
+      schedule();
+      setShowHint(false);
+    };
+    row.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      row.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", schedule);
+    };
+  }, []);
 
   useEffect(() => {
     const updateScreen = () => setScreenW(window.innerWidth);
@@ -157,7 +199,8 @@ export default function Slider() {
 
         {/* Cards Row */}
         <div
-          className="flex lg:justify-center items-center gap-8 lg:gap-10 xl:gap-16 mt-0 pt-10 md:mt-10 md:pt-0 md:mb-44 mb-12 pl-8 md:pl-10 pr-4 md:pr-10 flex-nowrap overflow-x-auto lg:overflow-visible [&::-webkit-scrollbar]:hidden"
+          ref={rowRef}
+          className="flex lg:justify-center items-center gap-8 lg:gap-10 xl:gap-16 mt-0 pt-10 md:mt-10 md:pt-0 md:mb-44 mb-12 pl-8 md:pl-10 pr-4 md:pr-10 flex-nowrap overflow-x-auto lg:overflow-visible [&::-webkit-scrollbar]:hidden snap-x snap-mandatory lg:snap-none"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {data.map((item, index) => {
@@ -168,8 +211,10 @@ export default function Slider() {
               borderRadius: isMobile ? "10px 42px 10px 42px" : "15px 70px 15px 70px",
             };
 
+            // --focus is written by the scroll handler: 1 in the middle of the
+            // row, a little smaller towards the edges.
             const wrapperClass =
-              "relative flex-shrink-0 cursor-pointer transition-transform duration-400 ease-out hover:scale-105";
+              "relative flex-shrink-0 cursor-pointer snap-center transition-transform duration-500 ease-out scale-[var(--focus,1)] hover:scale-[calc(var(--focus,1)*1.05)]";
 
             const cardClass =
               "rounded-[10px_42px_10px_42px] md:rounded-[15px_70px_15px_70px] absolute inset-0 z-10 overflow-hidden text-white font-semibold flex flex-col items-center justify-start pt-5 md:pt-7 gap-2 md:gap-2.5";
@@ -231,7 +276,12 @@ export default function Slider() {
             );
 
             return (
-              <div key={index} className={wrapperClass} style={wrapperStyle}>
+              <div
+                key={index}
+                data-card
+                className={wrapperClass}
+                style={wrapperStyle}
+              >
                 {ribbon}
                 {item.link ? (
                   <a
@@ -250,6 +300,7 @@ export default function Slider() {
             );
           })}
         </div>
+        <ScrollHint visible={showHint} />
       </div>
     </>
   );
