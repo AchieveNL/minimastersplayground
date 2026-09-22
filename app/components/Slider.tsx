@@ -200,7 +200,9 @@ export default function Slider() {
         {/* Cards Row */}
         <div
           ref={rowRef}
-          className="flex lg:justify-center items-center gap-8 lg:gap-10 xl:gap-16 mt-0 pt-10 md:mt-10 md:pt-0 md:mb-44 mb-12 pl-8 md:pl-10 pr-4 md:pr-10 flex-nowrap overflow-x-auto lg:overflow-visible [&::-webkit-scrollbar]:hidden snap-x snap-mandatory lg:snap-none"
+          // The padding keeps the card shadows inside the scroll box; an
+          // overflow-x container clips whatever sticks out vertically.
+          className="flex lg:justify-center items-center gap-8 lg:gap-10 xl:gap-16 mt-0 pt-10 pb-10 mb-2 md:mt-6 md:pt-4 md:pb-12 md:mb-32 pl-8 md:pl-10 pr-8 md:pr-10 flex-nowrap overflow-x-auto lg:overflow-visible [&::-webkit-scrollbar]:hidden snap-x snap-mandatory lg:snap-none"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {data.map((item, index) => {
