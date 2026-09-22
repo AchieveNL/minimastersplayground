@@ -205,7 +205,9 @@ export default function Slider() {
         >
           {data.map((item, index) => {
             const wrapperStyle: React.CSSProperties = {
-              boxShadow: isMobile ? "none" : "4px 8px 24px 0px #00000055",
+              boxShadow: isMobile
+                ? "0 6px 16px rgba(0,0,0,0.18), 0 2px 5px rgba(0,0,0,0.10)"
+                : "0 14px 30px rgba(0,0,0,0.22), 0 4px 10px rgba(0,0,0,0.12)",
               height: `${CARD_HEIGHT}px`,
               width: `${CARD_WIDTH}px`,
               borderRadius: isMobile ? "10px 42px 10px 42px" : "15px 70px 15px 70px",
