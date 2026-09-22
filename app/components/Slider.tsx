@@ -205,9 +205,10 @@ export default function Slider() {
         >
           {data.map((item, index) => {
             const wrapperStyle: React.CSSProperties = {
+              // Warm brown reads much stronger than black against the yellow.
               boxShadow: isMobile
-                ? "0 6px 16px rgba(0,0,0,0.18), 0 2px 5px rgba(0,0,0,0.10)"
-                : "0 14px 30px rgba(0,0,0,0.22), 0 4px 10px rgba(0,0,0,0.12)",
+                ? "0 10px 20px rgba(118, 74, 8, 0.38), 0 3px 8px rgba(118, 74, 8, 0.26)"
+                : "0 20px 38px rgba(118, 74, 8, 0.42), 0 6px 14px rgba(118, 74, 8, 0.28)",
               height: `${CARD_HEIGHT}px`,
               width: `${CARD_WIDTH}px`,
               borderRadius: isMobile ? "10px 42px 10px 42px" : "15px 70px 15px 70px",
