@@ -50,7 +50,9 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         },
       });
 
-      // Logo bounces in
+      // Logo bounces in. Clearing the transform afterwards makes the browser
+      // re-render the SVG at full resolution instead of stretching the
+      // low-res texture it rasterised while the logo was scaled down.
       tl.fromTo(
         logoRef.current,
         { scale: 0, rotate: -15 },
@@ -59,6 +61,11 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           rotate: 0,
           duration: 0.8,
           ease: "back.out(1.7)",
+          onComplete: () => {
+            if (logoRef.current) {
+              gsap.set(logoRef.current, { clearProps: "transform,willChange" });
+            }
+          },
         },
       );
 
@@ -107,13 +114,13 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             src="/assets/branding/yellow-glow.png"
             alt=""
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[320%] sm:w-[280%] md:w-[240%] lg:w-[220%] xl:w-[200%] 2xl:w-[180%] max-w-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[210%] opacity-70 sm:w-[240%] sm:opacity-100 md:w-[240%] lg:w-[220%] xl:w-[200%] 2xl:w-[180%] max-w-none"
           />
           <img
             ref={logoRef}
             src="/assets/branding/logo-outline.svg"
             alt="Minimasters"
-            className="w-52 sm:w-72 md:w-[24rem] pointer-events-auto relative"
+            className="w-60 sm:w-72 md:w-[24rem] pointer-events-auto relative"
             style={{
               transform: "scale(0)",
             }}
