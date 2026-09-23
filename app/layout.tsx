@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 import { getSiteContent } from "../lib/content";
 import { ContentProvider } from "./content-context";
@@ -47,6 +48,8 @@ export const metadata: Metadata = {
   },
 };
 
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -68,8 +71,21 @@ export default async function RootLayout({
         ></link>
       </head>
       <body className="bg-[#F8F5E3] overflow-x-clip">
+        {/* GoogleTagManager only injects the script tag, so the no-JS
+            iframe fallback from the container snippet goes here. */}
+        {gtmId ? (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        ) : null}
         <ContentProvider content={content}>{children}</ContentProvider>
       </body>
+      {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
     </html>
   );
 }
