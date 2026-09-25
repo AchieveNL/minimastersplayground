@@ -23,6 +23,9 @@ import {
   AlertCircle,
   Lock,
   ArrowRight,
+  Shield,
+  FileText,
+  Scale,
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "../../lib/supabase/client";
@@ -52,6 +55,9 @@ const SECTIONS: {
   { key: "faq", label: "Veelgestelde vragen", hint: "Vragen & antwoorden", icon: HelpCircle },
   { key: "footer", label: "Footer & reviews", hint: "Nieuwsbrief, reviews, adres", icon: Mail },
   { key: "popup", label: "Nieuwsbrief popup", hint: "Popup na 5 seconden", icon: MessageSquare },
+  { key: "privacy", label: "Privacyverklaring", hint: "Pagina /privacy", icon: Shield },
+  { key: "voorwaarden", label: "Algemene voorwaarden", hint: "Pagina /algemene-voorwaarden", icon: Scale },
+  { key: "disclaimer", label: "Disclaimer", hint: "Pagina /disclaimer", icon: FileText },
 ];
 
 const FIELD_LABELS: Record<string, string> = {
@@ -101,6 +107,11 @@ const FIELD_LABELS: Record<string, string> = {
   knopBezig: "Knop (bezig)",
   succes: "Succes bericht",
   fout: "Fout bericht",
+  ondertitel: "Ondertitel",
+  intro: "Inleiding",
+  infoblokTitel: "Infoblok titel",
+  infoblokTekst: "Infoblok tekst",
+  secties: "Artikel",
 };
 
 const labelFor = (key: string) => FIELD_LABELS[key] ?? key;
@@ -239,7 +250,7 @@ function FieldEditor({
         {long ? (
           <textarea
             value={value}
-            rows={Math.min(9, Math.max(2, Math.ceil(value.length / 70)))}
+            rows={Math.min(20, Math.max(2, Math.ceil(value.length / 70)))}
             onChange={(e) => onChange(e.target.value)}
             className={inputCls + " leading-relaxed"}
           />
