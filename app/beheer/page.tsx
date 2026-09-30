@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import {
   Megaphone,
@@ -26,6 +26,7 @@ import {
   Shield,
   FileText,
   Scale,
+  Loader,
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "../../lib/supabase/client";
@@ -33,6 +34,9 @@ import { contentDefaults, type SiteContent } from "../../content/defaults";
 import {
   IMAGE_SLOTS,
   MAX_SOURCE_MB,
+  deleteSiteImage,
+  isStoredImage,
+  listSiteImages,
   uploadSiteImage,
 } from "../../lib/image-upload";
 import { revalidateSite } from "./actions";
@@ -55,6 +59,7 @@ const SECTIONS: {
   { key: "faq", label: "Veelgestelde vragen", hint: "Vragen & antwoorden", icon: HelpCircle },
   { key: "footer", label: "Footer & reviews", hint: "Nieuwsbrief, reviews, adres", icon: Mail },
   { key: "popup", label: "Nieuwsbrief popup", hint: "Popup na 5 seconden", icon: MessageSquare },
+  { key: "laadscherm", label: "Laadscherm", hint: "Logo en gloed bij opstarten", icon: Loader },
   { key: "privacy", label: "Privacyverklaring", hint: "Pagina /privacy", icon: Shield },
   { key: "voorwaarden", label: "Algemene voorwaarden", hint: "Pagina /algemene-voorwaarden", icon: Scale },
   { key: "disclaimer", label: "Disclaimer", hint: "Pagina /disclaimer", icon: FileText },
@@ -112,6 +117,11 @@ const FIELD_LABELS: Record<string, string> = {
   infoblokTitel: "Infoblok titel",
   infoblokTekst: "Infoblok tekst",
   secties: "Artikel",
+  logo: "Logo",
+  gloedKern: "Gloed — kern (midden)",
+  gloedRand: "Gloed — rand (buitenkant)",
+  achtergrondBasis: "Achtergrond — hoofdkleur",
+  achtergrondLicht: "Achtergrond — lichte vlek",
 };
 
 const labelFor = (key: string) => FIELD_LABELS[key] ?? key;
@@ -130,20 +140,97 @@ function emptyLike(item: unknown): unknown {
 const inputCls =
   "w-full rounded-xl border border-[#E8E0C8] bg-white px-3.5 py-2.5 text-[15px] text-slate-800 placeholder-slate-400 transition-colors duration-200 focus:outline-none focus:border-[#67CD8A] focus:ring-2 focus:ring-[#67CD8A]/30";
 
+const HEX_COLOR = /^#[0-9a-fA-F]{6}$/;
+const IMAGE_PATH = /^(\/|https?:).*\.(webp|jpe?g|png|svg|gif|avif)$/i;
+
+/**
+ * The images a section ships with. They seed the picker so there is something
+ * to choose from before anything has been uploaded, and they double as a way
+ * back to the original artwork.
+ */
+function bundledImages(section: string): string[] {
+  const found: string[] = [];
+  const walk = (node: unknown) => {
+    if (typeof node === "string") {
+      if (IMAGE_PATH.test(node)) found.push(node);
+    } else if (Array.isArray(node)) {
+      node.forEach(walk);
+    } else if (node && typeof node === "object") {
+      Object.values(node).forEach(walk);
+    }
+  };
+  walk((contentDefaults as Record<string, unknown>)[section]);
+  return found;
+}
+
+function ColorField({
+  value,
+  onChange,
+  fieldKey,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  fieldKey: string;
+}) {
+  return (
+    <div>
+      <span className="mb-1.5 block text-[13px] font-bold uppercase tracking-wide text-slate-500">
+        {labelFor(fieldKey)}
+      </span>
+      <div className="flex items-center gap-3 rounded-2xl border border-[#E8E0C8] bg-white p-3">
+        <input
+          type="color"
+          value={value}
+          onChange={(e) => onChange(e.target.value.toUpperCase())}
+          className="h-12 w-16 shrink-0 cursor-pointer rounded-lg border border-[#E8E0C8] bg-white p-1"
+        />
+        <input
+          type="text"
+          value={value}
+          spellCheck={false}
+          onChange={(e) => {
+            const next = e.target.value.toUpperCase();
+            // Let her type freely; only valid hex reaches the site.
+            if (/^#[0-9A-F]{0,6}$/.test(next)) onChange(next);
+          }}
+          className={inputCls + " font-mono uppercase"}
+        />
+      </div>
+    </div>
+  );
+}
+
 function ImageField({
   value,
   onChange,
   section,
+  fieldKey = "afbeelding",
 }: {
   value: string;
   onChange: (v: string) => void;
   section: string;
+  fieldKey?: string;
 }) {
   const supabase = useMemo(() => createClient(), []);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [note, setNote] = useState("");
+  const [library, setLibrary] = useState<string[]>([]);
   const slot = IMAGE_SLOTS[section];
+
+  const [libraryTick, setLibraryTick] = useState(0);
+  const refreshLibrary = useCallback(() => setLibraryTick((n) => n + 1), []);
+
+  useEffect(() => {
+    let alive = true;
+    listSiteImages(supabase, section).then((stored) => {
+      // Switching sections mid-request must not overwrite the newer list.
+      if (alive) setLibrary([...new Set([...stored, ...bundledImages(section)])]);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [supabase, section, libraryTick]);
 
   const handleFile = async (file?: File | null) => {
     if (!file) return;
@@ -155,11 +242,12 @@ function ImageField({
         supabase,
         file,
         section,
-        value,
       );
       onChange(url);
+      refreshLibrary();
+      // ratio is 0 for SVG uploads, which have no fixed aspect to check.
       const off =
-        slot && Math.abs(ratio - slot.ratio) / slot.ratio > 0.12
+        ratio && slot && Math.abs(ratio - slot.ratio) / slot.ratio > 0.12
           ? " Let op: de verhouding wijkt af, de randen worden bijgesneden."
           : "";
       setNote(`Geüpload (${sizeKb} KB).${off} Vergeet niet op te slaan.`);
@@ -174,13 +262,18 @@ function ImageField({
   return (
     <div>
       <span className="mb-1.5 block text-[13px] font-bold uppercase tracking-wide text-slate-500">
-        Afbeelding
+        {labelFor(fieldKey)}
       </span>
       <div className="flex items-start gap-4 rounded-2xl border border-[#E8E0C8] bg-white p-3">
         <img
           src={value}
           alt=""
-          className="h-24 w-24 shrink-0 rounded-xl object-cover"
+          className={
+            "h-24 w-24 shrink-0 rounded-xl " +
+            (fieldKey === "logo"
+              ? "bg-[#FFCA58] object-contain p-1.5"
+              : "object-cover")
+          }
         />
         <div className="min-w-0 flex-1">
           <label className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#5763FF] px-4 py-2 text-sm font-bold text-white transition-opacity duration-200 hover:opacity-90">
@@ -215,6 +308,68 @@ function ImageField({
           )}
         </div>
       </div>
+
+      {library.length > 0 && (
+        <div className="mt-3 rounded-2xl border border-[#E8E0C8] bg-white p-3">
+          <p className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500">
+            Eerder gebruikt — klik om te kiezen
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {library.map((url) => {
+              const active = url === value;
+              return (
+                <div key={url} className="group relative">
+                  <button
+                    type="button"
+                    title={active ? "Huidige afbeelding" : "Kies deze"}
+                    onClick={() => {
+                      onChange(url);
+                      setError("");
+                      setNote("Gekozen. Vergeet niet op te slaan.");
+                    }}
+                    className={
+                      "block h-16 w-16 cursor-pointer overflow-hidden rounded-xl border-2 transition-colors duration-200 " +
+                      (active
+                        ? "border-[#5763FF]"
+                        : "border-transparent hover:border-[#5763FF]/40")
+                    }
+                  >
+                    <img
+                      src={url}
+                      alt=""
+                      className={
+                        "h-full w-full " +
+                        (fieldKey === "logo"
+                          ? "bg-[#FFCA58] object-contain p-1"
+                          : "object-cover")
+                      }
+                    />
+                  </button>
+                  {!active && isStoredImage(url) && (
+                    <button
+                      type="button"
+                      aria-label="Afbeelding verwijderen"
+                      onClick={async () => {
+                        if (!confirm("Deze afbeelding definitief verwijderen?"))
+                          return;
+                        try {
+                          await deleteSiteImage(supabase, url);
+                          refreshLibrary();
+                        } catch {
+                          setError("Verwijderen mislukt, probeer opnieuw.");
+                        }
+                      }}
+                      className="absolute -right-1.5 -top-1.5 hidden h-6 w-6 items-center justify-center rounded-full bg-[#FF5757] text-white shadow group-hover:flex"
+                    >
+                      <Trash2 className="h-3 w-3" />
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -230,14 +385,22 @@ function FieldEditor({
   fieldKey: string;
   section: string;
 }) {
-  if (fieldKey === "afbeelding" && typeof value === "string") {
+  if (
+    (fieldKey === "afbeelding" || fieldKey === "logo") &&
+    typeof value === "string"
+  ) {
     return (
       <ImageField
         value={value}
         section={section}
+        fieldKey={fieldKey}
         onChange={(v) => onChange(v)}
       />
     );
+  }
+
+  if (typeof value === "string" && HEX_COLOR.test(value)) {
+    return <ColorField value={value} fieldKey={fieldKey} onChange={onChange} />;
   }
 
   if (typeof value === "string") {

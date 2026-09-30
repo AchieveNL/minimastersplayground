@@ -241,6 +241,14 @@ export const contentDefaults = {
     fout: "Er ging iets mis, probeer het opnieuw.",
   },
 
+  laadscherm: {
+    logo: "/assets/branding/logo-outline.svg",
+    gloedKern: "#FFEECF",
+    gloedRand: "#FFCC5D",
+    achtergrondBasis: "#FFCA58",
+    achtergrondLicht: "#FFDB8D",
+  },
+
   // Juridische pagina's. `tekst` gebruikt een kleine opmaak-set:
   //   ### Kopje        -> tussenkopje
   //   - punt           -> opsomming

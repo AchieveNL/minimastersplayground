@@ -2,8 +2,53 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useContent } from "../content-context";
+
+const HEX = /^#[0-9a-fA-F]{6}$/;
+
+/** Falls back to the default when the dashboard holds a half-typed hex. */
+function channels(hex: string, fallback: string) {
+  const n = parseInt((HEX.test(hex) ? hex : fallback).slice(1), 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+
+function rgba(hex: string, fallback: string, alpha: number) {
+  return `rgba(${channels(hex, fallback).join(", ")}, ${alpha})`;
+}
+
+function solid(hex: string, fallback: string) {
+  return `rgb(${channels(hex, fallback).join(", ")})`;
+}
+
+/** Halfway between the two background colours, for the gradient's last stop. */
+function blend(a: string, aFallback: string, b: string, bFallback: string) {
+  const x = channels(a, aFallback);
+  const y = channels(b, bFallback);
+  return `rgb(${x.map((c, i) => Math.round((c + y[i]) / 2)).join(", ")})`;
+}
+
+/** Same four-stop sweep as before, driven by two editable colours. */
+function backgroundGradient(basis: string, licht: string) {
+  const b = solid(basis, "#FFCA58");
+  const l = solid(licht, "#FFDB8D");
+  const mid = blend(basis, "#FFCA58", licht, "#FFDB8D");
+  return `linear-gradient(135deg, ${b} 0%, ${l} 30%, ${b} 60%, ${mid} 100%)`;
+}
+
+/**
+ * Rebuilds the glow that used to be a flat PNG. Same ellipse and the same
+ * alpha falloff, but the two colours come from the dashboard.
+ */
+function glowGradient(kern: string, rand: string) {
+  const k = (a: number) => rgba(kern, "#FFEECF", a);
+  const r = (a: number) => rgba(rand, "#FFCC5D", a);
+  return `radial-gradient(ellipse at center, ${k(0.9)} 0%, ${k(0.9)} 22%, ${r(
+    0.88,
+  )} 34%, ${r(0.7)} 42%, ${r(0.41)} 50%, ${r(0.12)} 60%, ${r(0)} 66%)`;
+}
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
+  const { laadscherm } = useContent();
   const overlayRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
   const centerRef = useRef<HTMLDivElement>(null);
@@ -99,8 +144,10 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       ref={overlayRef}
       className="fixed inset-0 z-[9999] overflow-hidden"
       style={{
-        background:
-          "linear-gradient(135deg, #FFCA58 0%, #FFDB8D 30%, #FFCA58 60%, #FFD074 100%)",
+        background: backgroundGradient(
+          laadscherm.achtergrondBasis,
+          laadscherm.achtergrondLicht,
+        ),
       }}
     >
       {/* Centered content — uses inset+margin:auto so GSAP transforms don't break centering */}
@@ -110,15 +157,19 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         style={{ margin: 0 }}
       >
         <div className="relative flex items-center justify-center">
-          <img
-            src="/assets/branding/yellow-glow.png"
-            alt=""
+          <div
             aria-hidden="true"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[210%] opacity-70 sm:w-[240%] sm:opacity-100 md:w-[240%] lg:w-[220%] xl:w-[200%] 2xl:w-[180%] max-w-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[210%] aspect-[5924/2846] opacity-70 sm:w-[240%] sm:opacity-100 md:w-[240%] lg:w-[220%] xl:w-[200%] 2xl:w-[180%] max-w-none"
+            style={{
+              backgroundImage: glowGradient(
+                laadscherm.gloedKern,
+                laadscherm.gloedRand,
+              ),
+            }}
           />
           <img
             ref={logoRef}
-            src="/assets/branding/logo-outline.svg"
+            src={laadscherm.logo}
             alt="Minimasters"
             className="w-72 sm:w-80 md:w-[24rem] pointer-events-auto relative"
             style={{

@@ -18,7 +18,14 @@ export type ImageSlot = {
 export const IMAGE_SLOTS: Record<string, ImageSlot> = {
   slider: { hint: "900 × 1200 px (staand, 3:4)", ratio: 3 / 4 },
   fotostrook: { hint: "1200 × 800 px (liggend, 3:2)", ratio: 3 / 2 },
+  laadscherm: {
+    hint: "SVG, of PNG van minimaal 1200 px breed met transparante achtergrond",
+    ratio: 385 / 186,
+  },
 };
+
+/** SVG is already resolution-independent, so it skips the canvas step. */
+const isVector = (file: File) => file.type === "image/svg+xml";
 
 function loadImage(file: File): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
@@ -62,14 +69,16 @@ export function isStoredImage(url: string) {
 }
 
 /**
- * Compresses, uploads and returns the public URL. Replacing an image also
- * removes the previous upload so the bucket does not grow without bound.
+ * Compresses, uploads and returns the public URL.
+ *
+ * Replaced images are deliberately kept: the dashboard lists everything a
+ * section has ever used so the client can re-pick an earlier photo instead of
+ * uploading it again. Removing one is an explicit action there.
  */
 export async function uploadSiteImage(
   supabase: SupabaseClient,
   file: File,
   section: string,
-  previousUrl?: string,
 ): Promise<{ url: string; sizeKb: number; ratio: number }> {
   if (file.size > MAX_SOURCE_MB * 1024 * 1024) {
     throw new Error(
@@ -78,15 +87,17 @@ export async function uploadSiteImage(
       )} MB. Maximaal ${MAX_SOURCE_MB} MB toegestaan.`,
     );
   }
-  const { blob, ratio } = await compress(file);
-  const name = `${section}-${Date.now()}-${Math.random()
-    .toString(36)
-    .slice(2, 8)}.webp`;
+  const vector = isVector(file);
+  const { blob, ratio } = vector
+    ? { blob: file as Blob, ratio: 0 }
+    : await compress(file);
+  const stamp = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  const name = `${section}-${stamp}.${vector ? "svg" : "webp"}`;
 
   const { error } = await supabase.storage
     .from(IMAGE_BUCKET)
     .upload(name, blob, {
-      contentType: "image/webp",
+      contentType: vector ? "image/svg+xml" : "image/webp",
       cacheControl: "31536000",
       upsert: false,
     });
@@ -96,10 +107,40 @@ export async function uploadSiteImage(
     data: { publicUrl },
   } = supabase.storage.from(IMAGE_BUCKET).getPublicUrl(name);
 
-  if (previousUrl && isStoredImage(previousUrl)) {
-    const oldName = previousUrl.split(`/${IMAGE_BUCKET}/`)[1];
-    if (oldName) await supabase.storage.from(IMAGE_BUCKET).remove([oldName]);
-  }
-
   return { url: publicUrl, sizeKb: Math.round(blob.size / 1024), ratio };
+}
+
+/**
+ * Every image this section has uploaded, newest first. Files are named
+ * `<section>-<stamp>.<ext>`, so the prefix is enough to keep the logo slot
+ * from listing photo-strip pictures and vice versa.
+ */
+export async function listSiteImages(
+  supabase: SupabaseClient,
+  section: string,
+): Promise<string[]> {
+  const { data, error } = await supabase.storage.from(IMAGE_BUCKET).list("", {
+    limit: 100,
+    search: `${section}-`,
+    sortBy: { column: "created_at", order: "desc" },
+  });
+  if (error || !data) return [];
+  return data
+    .filter((f) => f.name.startsWith(`${section}-`))
+    .map(
+      (f) => supabase.storage.from(IMAGE_BUCKET).getPublicUrl(f.name).data
+        .publicUrl,
+    );
+}
+
+/** Removes an uploaded image. Bundled images under /assets are left alone. */
+export async function deleteSiteImage(
+  supabase: SupabaseClient,
+  url: string,
+): Promise<void> {
+  if (!isStoredImage(url)) return;
+  const name = url.split(`/${IMAGE_BUCKET}/`)[1];
+  if (!name) return;
+  const { error } = await supabase.storage.from(IMAGE_BUCKET).remove([name]);
+  if (error) throw error;
 }
