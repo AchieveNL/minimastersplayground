@@ -159,7 +159,7 @@ export default function LocationMobile() {
             className="w-[240px]"
             alt="Map showing Waddinxveen location"
           />
-          <div className="flex flex-col gap-2 text-sm leading-tight w-fit text-center">
+          <div className="flex flex-col gap-2 text-sm leading-tight w-fit max-w-full text-center break-words">
             <h2 className="text-base font-bold">{parkeren.titel}</h2>
             <div>
               <h3 className="font-bold">{parkeren.garageNaam}</h3>

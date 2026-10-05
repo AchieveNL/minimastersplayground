@@ -151,7 +151,9 @@ export default function LocationDesktop() {
             className="w-75 lg:w-90 xl:w-110"
             alt="Map showing Waddinxveen location"
           />
-          <div className="flex flex-col gap-3 text-base lg:text-lg leading-tight w-fit">
+          {/* Capped so a long sentence typed in the dashboard wraps instead
+              of stretching the column and pushing the whole section apart. */}
+          <div className="flex flex-col gap-3 text-base lg:text-lg leading-tight w-fit max-w-md lg:max-w-lg break-words">
             <h2 className="text-2xl font-bold">{parkeren.titel}</h2>
             <div>
               <h3 className="font-bold">{parkeren.garageNaam}</h3>
