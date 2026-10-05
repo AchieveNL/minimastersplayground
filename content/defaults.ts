@@ -241,12 +241,82 @@ export const contentDefaults = {
     fout: "Er ging iets mis, probeer het opnieuw.",
   },
 
+  // Kaarten op /ons-aanbod. Tekst gebruikt **vet** en een enter voor een
+  // nieuwe regel.
+  aanbodVerjaardag: {
+    titel: "VERJAARDAG",
+    intro:
+      "Start met het **basis feest** en breidt het feestje daarna uit met **leuke opties** van **ons menukaart.**\nBekijk ons menu nu online! (vanaf 10 personen)",
+    prijzen: [
+      { bedrag: "€19,95", label: "per kind" },
+      { bedrag: "€15,95", label: "per volw." },
+    ],
+    inbegrepen: [
+      "2,5 uur lang spelen",
+      "Opgedekte tafel",
+      "Onbeperkt limonade",
+      "Zakje chips",
+      "Bij vertrek een zakje snoep",
+      "Cadeautje voor de jarige",
+      "Ouders 1 frisdrank naar keuze",
+      "Ouders 1 gebak naar keuze",
+    ],
+    voetnoot: "",
+    knop: "BOEK NU",
+  },
+
+  aanbodPrive: {
+    titel: "Privé feestje",
+    intro:
+      "Maak van jullie feest een **exclusieve belevenis.**\nBoek een privéfeest, geniet en speel met jullie gezelschap van de **volledige locatie**, helemaal voor **jullie alleen!**",
+    opties: [
+      {
+        titel: "2,5 uur",
+        regels: [
+          "Prijs: € 1.000,-",
+          "Min. café afname: € 500,-",
+          "Maximaal 70 gasten",
+        ],
+        sessiesTitel: "Boekbare sessies:",
+        sessies: ["09:00 - 11:30", "12:00 - 14:30", "15:00 tot 17:30"],
+      },
+      {
+        titel: "3 uur",
+        regels: [
+          "Prijs: €1200",
+          "Min. café afname: € 500,-",
+          "Maximaal 70 gasten",
+        ],
+        sessiesTitel: "Boekbare sessie:",
+        sessies: ["15:00 tot 18:00"],
+      },
+    ],
+    notitie:
+      "Geef het feest **een persoonlijke touch!**\nJullie zijn van harte welkom om **het zitgedeelte** te versieren.\n**Let op!** vuurwerk, confetti en gezichtsschmink is **niet toegestaan.** ⭐",
+    knop: "BOEK NU",
+  },
+
+  aanbodSchoolreisje: {
+    titel: "SCHOOLREISJE",
+    intro:
+      "Start met het **basis reisje** en breidt het reisje daarna uit met **leuke opties** van **ons menukaart.**\nBekijk ons menu **nu online!** (Vanaf 10 personen)",
+    prijzen: [{ bedrag: "€14,95", label: "per kind      per volw." }],
+    inbegrepen: [
+      "2,5 uur lang spelen",
+      "Onbeperkt limonade",
+      "Begeleiders 1 koffie of thee",
+      "Begeleiders 1 gebak naar keuze",
+    ],
+    voetnoot:
+      "*bij aankomst wordt een geldige lerarenpas of schoollegitimatie getoond.",
+    knop: "BOEK NU",
+  },
+
   laadscherm: {
     logo: "/assets/branding/logo-outline.svg",
     gloedKern: "#FFEECF",
     gloedRand: "#FFCC5D",
     achtergrondBasis: "#FFCA58",
-    achtergrondLicht: "#FFDB8D",
   },
 
   // Juridische pagina's. `tekst` gebruikt een kleine opmaak-set:

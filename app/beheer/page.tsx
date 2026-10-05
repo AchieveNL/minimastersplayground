@@ -27,6 +27,9 @@ import {
   FileText,
   Scale,
   Loader,
+  Cake,
+  PartyPopper,
+  School,
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "../../lib/supabase/client";
@@ -59,6 +62,9 @@ const SECTIONS: {
   { key: "faq", label: "Veelgestelde vragen", hint: "Vragen & antwoorden", icon: HelpCircle },
   { key: "footer", label: "Footer & reviews", hint: "Nieuwsbrief, reviews, adres", icon: Mail },
   { key: "popup", label: "Nieuwsbrief popup", hint: "Popup na 5 seconden", icon: MessageSquare },
+  { key: "aanbodVerjaardag", label: "Aanbod — Verjaardag", hint: "Kaart op /ons-aanbod", icon: Cake },
+  { key: "aanbodPrive", label: "Aanbod — Privé feestje", hint: "Kaart op /ons-aanbod", icon: PartyPopper },
+  { key: "aanbodSchoolreisje", label: "Aanbod — Schoolreisje", hint: "Kaart op /ons-aanbod", icon: School },
   { key: "laadscherm", label: "Laadscherm", hint: "Logo en gloed bij opstarten", icon: Loader },
   { key: "privacy", label: "Privacyverklaring", hint: "Pagina /privacy", icon: Shield },
   { key: "voorwaarden", label: "Algemene voorwaarden", hint: "Pagina /algemene-voorwaarden", icon: Scale },
@@ -117,11 +123,19 @@ const FIELD_LABELS: Record<string, string> = {
   infoblokTitel: "Infoblok titel",
   infoblokTekst: "Infoblok tekst",
   secties: "Artikel",
+  prijzen: "Prijs",
+  bedrag: "Bedrag",
+  inbegrepen: "Inbegrepen",
+  voetnoot: "Voetnoot",
+  opties: "Optie",
+  regels: "Regel",
+  sessiesTitel: "Sessies kopje",
+  sessies: "Sessie",
+  notitie: "Notitie onderaan",
   logo: "Logo",
   gloedKern: "Gloed — kern (midden)",
   gloedRand: "Gloed — rand (buitenkant)",
-  achtergrondBasis: "Achtergrond — hoofdkleur",
-  achtergrondLicht: "Achtergrond — lichte vlek",
+  achtergrondBasis: "Achtergrond (buitenrand)",
 };
 
 const labelFor = (key: string) => FIELD_LABELS[key] ?? key;

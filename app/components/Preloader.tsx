@@ -12,39 +12,20 @@ function channels(hex: string, fallback: string) {
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 
-function rgba(hex: string, fallback: string, alpha: number) {
-  return `rgba(${channels(hex, fallback).join(", ")}, ${alpha})`;
-}
-
 function solid(hex: string, fallback: string) {
   return `rgb(${channels(hex, fallback).join(", ")})`;
 }
 
-/** Halfway between the two background colours, for the gradient's last stop. */
-function blend(a: string, aFallback: string, b: string, bFallback: string) {
-  const x = channels(a, aFallback);
-  const y = channels(b, bFallback);
-  return `rgb(${x.map((c, i) => Math.round((c + y[i]) / 2)).join(", ")})`;
-}
-
-/** Same four-stop sweep as before, driven by two editable colours. */
-function backgroundGradient(basis: string, licht: string) {
-  const b = solid(basis, "#FFCA58");
-  const l = solid(licht, "#FFDB8D");
-  const mid = blend(basis, "#FFCA58", licht, "#FFDB8D");
-  return `linear-gradient(135deg, ${b} 0%, ${l} 30%, ${b} 60%, ${mid} 100%)`;
-}
-
 /**
- * Rebuilds the glow that used to be a flat PNG. Same ellipse and the same
- * alpha falloff, but the two colours come from the dashboard.
+ * One even glow, centred behind the logo, fading into a flat background.
+ * This replaced a diagonal background sweep plus a separate wide ellipse,
+ * which together read as several blotchy glows instead of one.
  */
-function glowGradient(kern: string, rand: string) {
-  const k = (a: number) => rgba(kern, "#FFEECF", a);
-  const r = (a: number) => rgba(rand, "#FFCC5D", a);
-  return `radial-gradient(ellipse at center, ${k(0.9)} 0%, ${k(0.9)} 22%, ${r(
-    0.88,
-  )} 34%, ${r(0.7)} 42%, ${r(0.41)} 50%, ${r(0.12)} 60%, ${r(0)} 66%)`;
+function glowBackground(kern: string, rand: string, basis: string) {
+  const k = solid(kern, "#FFEECF");
+  const r = solid(rand, "#FFCC5D");
+  const b = solid(basis, "#FFCA58");
+  return `radial-gradient(circle at 50% 46%, ${k} 0%, ${r} 42%, ${b} 82%)`;
 }
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
@@ -144,9 +125,10 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       ref={overlayRef}
       className="fixed inset-0 z-[9999] overflow-hidden"
       style={{
-        background: backgroundGradient(
+        background: glowBackground(
+          laadscherm.gloedKern,
+          laadscherm.gloedRand,
           laadscherm.achtergrondBasis,
-          laadscherm.achtergrondLicht,
         ),
       }}
     >
@@ -157,16 +139,6 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         style={{ margin: 0 }}
       >
         <div className="relative flex items-center justify-center">
-          <div
-            aria-hidden="true"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[210%] aspect-[5924/2846] opacity-70 sm:w-[240%] sm:opacity-100 md:w-[240%] lg:w-[220%] xl:w-[200%] 2xl:w-[180%] max-w-none"
-            style={{
-              backgroundImage: glowGradient(
-                laadscherm.gloedKern,
-                laadscherm.gloedRand,
-              ),
-            }}
-          />
           <img
             ref={logoRef}
             src={laadscherm.logo}

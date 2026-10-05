@@ -6,31 +6,29 @@ import Footer from "../components/Footer";
 import SmoothScroll from "../components/SmoothScroll";
 import AnimatedSlider from "../components/AnimatedSilder";
 import Preloader from "../components/Preloader";
+import { FRAMES, PakketCard, PriveCard } from "../components/AanbodCard";
+import { useContent } from "../content-context";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-
-const TICKETS_URL = "https://tickets.minimastersplayground.nl/";
-
-// One pill for every card: sized in container units so the shape stays
-// identical from phone to desktop.
-const BOEK_NU_CLASS =
-  "inline-flex items-center justify-center min-w-[34cqw] px-[5cqw] py-[1.7cqw] rounded-[2.2cqw] font-bold text-white text-[3.4cqw] tracking-widest shadow-md hover:scale-105 transition-transform";
 
 function CardWrap({
   id,
+  className = "",
   children,
 }: {
   id?: string;
+  className?: string;
   children: React.ReactNode;
 }) {
   const ref = useScrollAnimation<HTMLDivElement>({ type: "fadeUp", duration: 1 });
   return (
-    <div id={id} ref={ref} className="w-full max-w-3xl mx-auto scroll-mt-32">
+    <div id={id} ref={ref} className={`w-full scroll-mt-32 ${className}`}>
       {children}
     </div>
   );
 }
 
 export default function OnsAanbodPage() {
+  const { aanbodVerjaardag, aanbodPrive, aanbodSchoolreisje } = useContent();
   const [loaded, setLoaded] = useState(false);
   const badgeRef = useScrollAnimation<HTMLDivElement>({
     type: "scaleIn",
@@ -84,8 +82,10 @@ export default function OnsAanbodPage() {
           </h1>
         </div>
 
-        {/* Cards — exported from Figma, whole card clicks through to tickets */}
-        <div className="relative flex flex-col gap-14 md:gap-20 px-4 sm:px-8 mt-12 md:mt-24 mb-16 md:mb-24">
+        {/* Cards — Figma artwork with the words painted out; the text is
+            HTML from the dashboard. Two across on desktop, the third centred
+            underneath at the same width. */}
+        <div className="relative px-4 sm:px-8 mt-12 md:mt-24 mb-16 md:mb-24">
           {/* Faded background watermarks in the side gutters */}
           <div
             aria-hidden
@@ -106,85 +106,26 @@ export default function OnsAanbodPage() {
             <img src="/assets/aanbod/molen.png" alt="" className="absolute w-40 xl:w-52 right-0 top-[84%]" style={{ animation: "wmFloat 4s ease-in-out 1.3s infinite" }} />
             <img src="/assets/aanbod/kuiken.png" alt="" className="absolute w-40 xl:w-48 left-0 bottom-[-4%]" style={{ animation: "wmFloat 4.8s ease-in-out 0.2s infinite" }} />
           </div>
-          <CardWrap id="verjaardag">
-            <div className="relative @container">
-              <img
-                src="/assets/aanbod/verjaardag.webp"
-                alt="Verjaardag — €19,95 per kind, €15,95 per volwassene: 2,5 uur lang spelen, opgedekte tafel, onbeperkt limonade, zakje chips, zakje snoep bij vertrek, cadeautje voor de jarige, ouders 1 frisdrank en 1 gebak naar keuze. Vanaf 10 personen."
-                className="w-full h-auto rounded-[40px]"
-              />
-              {/* Real button covering the baked-in one */}
-              <a
-                href={TICKETS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`absolute left-1/2 -translate-x-1/2 -translate-y-1/2 ${BOEK_NU_CLASS}`}
-                style={{
-                  top: "88%",
-                  background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
-                }}
-              >
-                BOEK NU
-              </a>
-            </div>
-          </CardWrap>
+          <div className="relative mx-auto grid max-w-xl gap-12 md:gap-16 lg:max-w-6xl lg:grid-cols-2 lg:gap-x-12 lg:gap-y-16">
+            <CardWrap id="verjaardag">
+              <PakketCard frame={FRAMES.verjaardag} content={aanbodVerjaardag} />
+            </CardWrap>
 
-          <CardWrap id="prive-feestje">
-            <div className="relative @container">
-              <img
-                src="/assets/aanbod/prive-feestje.webp"
-                alt="Privé feestje — exclusieve belevenis met de volledige locatie voor jullie alleen. 2,5 uur €1.000 of 3 uur €1.200, min. café afname €500, maximaal 70 gasten."
-                className="w-full h-auto rounded-[40px]"
-              />
-              {/* note and button stacked inside the card's empty zone */}
-              <div className="absolute left-[8%] right-[8%] bottom-[12%] flex flex-col items-center gap-[1.6cqw] text-center">
-                <p className="text-[#5FB8AE] font-medium leading-snug text-[2.2cqw]">
-                  Geef het feest <b>een persoonlijke touch!</b>
-                  <br />
-                  Jullie zijn van harte welkom om <b>het zitgedeelte</b> te
-                  versieren.
-                  <br />
-                  <b>Let op!</b> vuurwerk, confetti en gezichtsschmink is{" "}
-                  <b>niet toegestaan.</b> ⭐
-                </p>
-                <a
-                  href={TICKETS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={BOEK_NU_CLASS}
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
-                  }}
-                >
-                  BOEK NU
-                </a>
-              </div>
-            </div>
-          </CardWrap>
+            <CardWrap id="prive-feestje">
+              <PriveCard frame={FRAMES.prive} content={aanbodPrive} />
+            </CardWrap>
 
-          <CardWrap id="schoolreisje">
-            <div className="relative @container">
-              <img
-                src="/assets/aanbod/schoolreisje.webp"
-                alt="Schoolreisje — €14,95 per kind en per volwassene: 2,5 uur lang spelen, onbeperkt limonade, begeleiders 1 koffie of thee en 1 gebak naar keuze. Vanaf 10 personen."
-                className="w-full h-auto rounded-[40px]"
+            {/* Same width as one column: (100% - gap-x-12) / 2 */}
+            <CardWrap
+              id="schoolreisje"
+              className="lg:col-span-2 lg:mx-auto lg:max-w-[calc((100%-3rem)/2)]"
+            >
+              <PakketCard
+                frame={FRAMES.schoolreisje}
+                content={aanbodSchoolreisje}
               />
-              {/* Real button covering the baked-in one */}
-              <a
-                href={TICKETS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`absolute left-1/2 -translate-x-1/2 -translate-y-1/2 ${BOEK_NU_CLASS}`}
-                style={{
-                  top: "79.3%",
-                  background: "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)",
-                }}
-              >
-                BOEK NU
-              </a>
-            </div>
-          </CardWrap>
+            </CardWrap>
+          </div>
         </div>
 
         {/* Photo strip before footer */}
