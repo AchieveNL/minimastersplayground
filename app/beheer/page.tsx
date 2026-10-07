@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { Session } from "@supabase/supabase-js";
 import {
   Megaphone,
@@ -15,6 +16,8 @@ import {
   LogOut,
   ExternalLink,
   Trash2,
+  X,
+  ZoomIn,
   Plus,
   Save,
   Upload,
@@ -62,9 +65,9 @@ const SECTIONS: {
   { key: "faq", label: "Veelgestelde vragen", hint: "Vragen & antwoorden", icon: HelpCircle },
   { key: "footer", label: "Footer & reviews", hint: "Nieuwsbrief, reviews, adres", icon: Mail },
   { key: "popup", label: "Nieuwsbrief popup", hint: "Popup na 5 seconden", icon: MessageSquare },
-  { key: "aanbodVerjaardag", label: "Aanbod — Verjaardag", hint: "Kaart op /ons-aanbod", icon: Cake },
-  { key: "aanbodPrive", label: "Aanbod — Privé feestje", hint: "Kaart op /ons-aanbod", icon: PartyPopper },
-  { key: "aanbodSchoolreisje", label: "Aanbod — Schoolreisje", hint: "Kaart op /ons-aanbod", icon: School },
+  { key: "kaartVerjaardag", label: "Aanbod — Verjaardag", hint: "Kaart en knop op /ons-aanbod", icon: Cake },
+  { key: "kaartPrive", label: "Aanbod — Privé feestje", hint: "Kaart en knop op /ons-aanbod", icon: PartyPopper },
+  { key: "kaartSchoolreisje", label: "Aanbod — Schoolreisje", hint: "Kaart en knop op /ons-aanbod", icon: School },
   { key: "laadscherm", label: "Laadscherm", hint: "Logo en gloed bij opstarten", icon: Loader },
   { key: "privacy", label: "Privacyverklaring", hint: "Pagina /privacy", icon: Shield },
   { key: "voorwaarden", label: "Algemene voorwaarden", hint: "Pagina /algemene-voorwaarden", icon: Scale },
@@ -123,15 +126,8 @@ const FIELD_LABELS: Record<string, string> = {
   infoblokTitel: "Infoblok titel",
   infoblokTekst: "Infoblok tekst",
   secties: "Artikel",
-  prijzen: "Prijs",
-  bedrag: "Bedrag",
-  inbegrepen: "Inbegrepen",
-  voetnoot: "Voetnoot",
-  opties: "Optie",
-  regels: "Regel",
-  sessiesTitel: "Sessies kopje",
-  sessies: "Sessie",
-  notitie: "Notitie onderaan",
+  link: "Link van de BOEK NU knop",
+  notitie: "Tekst boven de knop (leeg = verbergen)",
   logo: "Logo",
   gloedKern: "Gloed — kern (midden)",
   gloedRand: "Gloed — rand (buitenkant)",
@@ -214,6 +210,82 @@ function ColorField({
   );
 }
 
+const ZOOM_MS = 260;
+
+/**
+ * Full-size preview. Fades the backdrop in and scales the photo up from
+ * slightly smaller; closing plays the same in reverse before unmounting.
+ * Closes on Escape, the close button or a backdrop click.
+ */
+function ImageZoom({ src, onClose }: { src: string; onClose: () => void }) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const [shown, setShown] = useState(false);
+  const closing = useRef(false);
+
+  const close = useCallback(() => {
+    if (closing.current) return;
+    closing.current = true;
+    setShown(false);
+    window.setTimeout(onClose, ZOOM_MS);
+  }, [onClose]);
+
+  useEffect(() => {
+    // Next frame, so the browser paints the start state before animating.
+    const frame = requestAnimationFrame(() => setShown(true));
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKey);
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = overflow;
+    };
+  }, [close]);
+
+  // Portalled so no transformed ancestor can trap the fixed overlay.
+  return createPortal(
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Afbeelding vergroot"
+      onClick={close}
+      style={{ transitionDuration: `${ZOOM_MS}ms` }}
+      className={
+        "fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/75 p-4 backdrop-blur-sm transition-opacity ease-out motion-reduce:transition-none sm:p-8 " +
+        (shown ? "opacity-100" : "opacity-0")
+      }
+    >
+      <button
+        ref={closeRef}
+        type="button"
+        aria-label="Sluiten"
+        onClick={close}
+        className="absolute right-4 top-4 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white text-slate-700 shadow-lg transition-colors duration-200 hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5763FF]"
+      >
+        <X className="h-5 w-5" />
+      </button>
+      <img
+        src={src}
+        alt=""
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          transitionDuration: `${ZOOM_MS}ms`,
+          transitionTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1)",
+        }}
+        className={
+          "max-h-full max-w-full rounded-2xl bg-white object-contain shadow-2xl transition-[opacity,transform] motion-reduce:transition-none " +
+          (shown ? "scale-100 opacity-100" : "scale-90 opacity-0")
+        }
+      />
+    </div>,
+    document.body,
+  );
+}
+
 function ImageField({
   value,
   onChange,
@@ -230,6 +302,8 @@ function ImageField({
   const [error, setError] = useState("");
   const [note, setNote] = useState("");
   const [library, setLibrary] = useState<string[]>([]);
+  const [zoom, setZoom] = useState<string | null>(null);
+  const closeZoom = useCallback(() => setZoom(null), []);
   const slot = IMAGE_SLOTS[section];
 
   const [libraryTick, setLibraryTick] = useState(0);
@@ -279,16 +353,27 @@ function ImageField({
         {labelFor(fieldKey)}
       </span>
       <div className="flex items-start gap-4 rounded-2xl border border-[#E8E0C8] bg-white p-3">
-        <img
-          src={value}
-          alt=""
-          className={
-            "h-24 w-24 shrink-0 rounded-xl " +
-            (fieldKey === "logo"
-              ? "bg-[#FFCA58] object-contain p-1.5"
-              : "object-cover")
-          }
-        />
+        <button
+          type="button"
+          aria-label="Afbeelding vergroten"
+          title="Klik om te vergroten"
+          onClick={() => setZoom(value)}
+          className="group relative h-24 w-24 shrink-0 cursor-zoom-in overflow-hidden rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5763FF]"
+        >
+          <img
+            src={value}
+            alt=""
+            className={
+              "h-full w-full " +
+              (fieldKey === "logo"
+                ? "bg-[#FFCA58] object-contain p-1.5"
+                : "object-cover")
+            }
+          />
+          <span className="absolute inset-0 flex items-center justify-center bg-slate-900/0 text-white opacity-0 transition-all duration-200 group-hover:bg-slate-900/35 group-hover:opacity-100">
+            <ZoomIn className="h-6 w-6" />
+          </span>
+        </button>
         <div className="min-w-0 flex-1">
           <label className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#5763FF] px-4 py-2 text-sm font-bold text-white transition-opacity duration-200 hover:opacity-90">
             <Upload className="h-4 w-4" />
@@ -378,12 +463,22 @@ function ImageField({
                       <Trash2 className="h-3 w-3" />
                     </button>
                   )}
+                  <button
+                    type="button"
+                    aria-label="Afbeelding vergroten"
+                    onClick={() => setZoom(url)}
+                    className="absolute -bottom-1.5 -left-1.5 hidden h-6 w-6 cursor-zoom-in items-center justify-center rounded-full bg-[#5763FF] text-white shadow group-hover:flex group-focus-within:flex"
+                  >
+                    <ZoomIn className="h-3 w-3" />
+                  </button>
                 </div>
               );
             })}
           </div>
         </div>
       )}
+
+      {zoom && <ImageZoom src={zoom} onClose={closeZoom} />}
     </div>
   );
 }

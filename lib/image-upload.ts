@@ -15,9 +15,18 @@ export type ImageSlot = {
   ratio: number;
 };
 
+// The BOEK NU button is laid over the bottom of every /ons-aanbod card.
+const AANBOD_KAART: ImageSlot = {
+  hint: "1400 × 1647 px (staand) — houd onderaan ruimte vrij voor de BOEK NU knop",
+  ratio: 1400 / 1647,
+};
+
 export const IMAGE_SLOTS: Record<string, ImageSlot> = {
   slider: { hint: "900 × 1200 px (staand, 3:4)", ratio: 3 / 4 },
   fotostrook: { hint: "1200 × 800 px (liggend, 3:2)", ratio: 3 / 2 },
+  kaartVerjaardag: AANBOD_KAART,
+  kaartPrive: AANBOD_KAART,
+  kaartSchoolreisje: AANBOD_KAART,
   laadscherm: {
     hint: "SVG, of PNG van minimaal 1200 px breed met transparante achtergrond",
     ratio: 385 / 186,

@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import SmoothScroll from "../components/SmoothScroll";
 import AnimatedSlider from "../components/AnimatedSilder";
 import Preloader from "../components/Preloader";
-import { FRAMES, PakketCard, PriveCard } from "../components/AanbodCard";
+import { AanbodKaart } from "../components/AanbodCard";
 import { useContent } from "../content-context";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
@@ -28,7 +28,7 @@ function CardWrap({
 }
 
 export default function OnsAanbodPage() {
-  const { aanbodVerjaardag, aanbodPrive, aanbodSchoolreisje } = useContent();
+  const { kaartVerjaardag, kaartPrive, kaartSchoolreisje } = useContent();
   const [loaded, setLoaded] = useState(false);
   const badgeRef = useScrollAnimation<HTMLDivElement>({
     type: "scaleIn",
@@ -82,9 +82,9 @@ export default function OnsAanbodPage() {
           </h1>
         </div>
 
-        {/* Cards — Figma artwork with the words painted out; the text is
-            HTML from the dashboard. Two across on desktop, the third centred
-            underneath at the same width. */}
+        {/* Cards — one image per card with its BOEK NU link, both set in the
+            dashboard. Two across on desktop, the third centred underneath at
+            the same width. */}
         <div className="relative px-4 sm:px-8 mt-12 md:mt-24 mb-16 md:mb-24">
           {/* Faded background watermarks in the side gutters */}
           <div
@@ -108,11 +108,11 @@ export default function OnsAanbodPage() {
           </div>
           <div className="relative mx-auto grid max-w-xl gap-12 md:gap-16 lg:max-w-6xl lg:grid-cols-2 lg:gap-x-12 lg:gap-y-16">
             <CardWrap id="verjaardag">
-              <PakketCard frame={FRAMES.verjaardag} content={aanbodVerjaardag} />
+              <AanbodKaart content={kaartVerjaardag} alt="Verjaardag" />
             </CardWrap>
 
             <CardWrap id="prive-feestje">
-              <PriveCard frame={FRAMES.prive} content={aanbodPrive} />
+              <AanbodKaart content={kaartPrive} alt="Privé feestje" />
             </CardWrap>
 
             {/* Same width as one column: (100% - gap-x-12) / 2 */}
@@ -120,10 +120,7 @@ export default function OnsAanbodPage() {
               id="schoolreisje"
               className="lg:col-span-2 lg:mx-auto lg:max-w-[calc((100%-3rem)/2)]"
             >
-              <PakketCard
-                frame={FRAMES.schoolreisje}
-                content={aanbodSchoolreisje}
-              />
+              <AanbodKaart content={kaartSchoolreisje} alt="Schoolreisje" />
             </CardWrap>
           </div>
         </div>
