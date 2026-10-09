@@ -4,6 +4,8 @@ import AnimatedSilder from "./AnimatedSilder";
 import InfoCard from "./InfoCard";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { useContent } from "../content-context";
+import { coiny } from "../fonts";
+import OutlinedText, { GOLD_FROM, GOLD_TO } from "./OutlinedText";
 
 
 // Blur-in wordmark: letters drop in once, staggered, then stay.
@@ -126,9 +128,11 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
     ...meta,
     title: (
       <h1
-        className={`font-bold md:text-lg text-center text-[#FDF9EF] ${meta.titlePad} pl-8 whitespace-nowrap rounded-br-4xl`}
+        className={`${coiny.className} font-normal md:text-lg text-center text-[#FDF9EF] ${meta.titlePad} pl-8 whitespace-nowrap rounded-br-4xl`}
       >
-        {hero.infocards[i]?.title}
+        <OutlinedText from={GOLD_FROM} to={GOLD_TO}>
+          {hero.infocards[i]?.title ?? ""}
+        </OutlinedText>
       </h1>
     ),
     description: hero.infocards[i]?.description,

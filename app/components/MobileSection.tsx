@@ -1,5 +1,7 @@
 "use client";import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { useContent } from "../content-context";
+import { coiny } from "../fonts";
+import OutlinedText, { GOLD_FROM, GOLD_TO } from "./OutlinedText";
 
 export default function MobileSection() {
   const { tijdsloten } = useContent();
@@ -88,8 +90,10 @@ export default function MobileSection() {
             style={{ width: "100px", left: -55 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap">
-            {tijdsloten.badgeLeft}
+          <h1 className={`${coiny.className} font-normal md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap`}>
+            <OutlinedText from={GOLD_FROM} to={GOLD_TO}>
+              {tijdsloten.badgeLeft}
+            </OutlinedText>
           </h1>
         </div>
         <div
@@ -144,23 +148,23 @@ export default function MobileSection() {
             href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 lg:px-8 xl:px-10 py-2 lg:py-2.5 xl:py-3 rounded-full font-bold text-white text-sm lg:text-base xl:text-lg tracking-wider hover:opacity-90 transition-opacity"
+            className={`${coiny.className} px-6 lg:px-8 xl:px-10 py-2 lg:py-2.5 xl:py-3 rounded-full font-normal text-white text-sm lg:text-base xl:text-lg tracking-wider hover:opacity-90 transition-opacity`}
             style={{
               background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
             }}
           >
-            {tijdsloten.knopAanmelden}
+            <OutlinedText from={GOLD_FROM} to={GOLD_TO}>{tijdsloten.knopAanmelden}</OutlinedText>
           </a>
           <a
             href="https://minimasters-playground.app.leat.com/login"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 lg:px-8 xl:px-10 py-2 lg:py-2.5 xl:py-3 rounded-full font-bold text-white text-sm lg:text-base xl:text-lg tracking-wider hover:opacity-90 transition-opacity"
+            className={`${coiny.className} px-6 lg:px-8 xl:px-10 py-2 lg:py-2.5 xl:py-3 rounded-full font-normal text-white text-sm lg:text-base xl:text-lg tracking-wider hover:opacity-90 transition-opacity`}
             style={{
               background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
             }}
           >
-            {tijdsloten.knopInloggen}
+            <OutlinedText from={GOLD_FROM} to={GOLD_TO}>{tijdsloten.knopInloggen}</OutlinedText>
           </a>
         </div>
         <div className="flex-shrink-0">
@@ -194,8 +198,10 @@ export default function MobileSection() {
             style={{ width: "100px", left: -45 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap">
-            {tijdsloten.badgeRight}
+          <h1 className={`${coiny.className} font-normal md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap`}>
+            <OutlinedText from={GOLD_FROM} to={GOLD_TO}>
+              {tijdsloten.badgeRight}
+            </OutlinedText>
           </h1>
         </div>
         <div
@@ -227,23 +233,23 @@ export default function MobileSection() {
               href="https://forms.leat.com/forms/e5b7f95c-00b6-4d33-bf47-d34b5c297d07?account-uuid=350d3f16-a03d-4d4c-8fd9-470070d815b1"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-2.5 rounded-full font-bold text-white text-sm sm:text-base tracking-wider hover:opacity-90 transition-opacity"
+              className={`${coiny.className} px-8 py-2.5 rounded-full font-normal text-white text-sm sm:text-base tracking-wider hover:opacity-90 transition-opacity`}
               style={{
                 background: "linear-gradient(135deg, #BB76FF 0%, #9B5FE0 100%)",
               }}
             >
-              {tijdsloten.knopAanmelden}
+              <OutlinedText from={GOLD_FROM} to={GOLD_TO}>{tijdsloten.knopAanmelden}</OutlinedText>
             </a>
             <a
               href="https://minimasters-playground.app.leat.com/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-2.5 rounded-full font-bold text-white text-sm sm:text-base tracking-wider hover:opacity-90 transition-opacity"
+              className={`${coiny.className} px-8 py-2.5 rounded-full font-normal text-white text-sm sm:text-base tracking-wider hover:opacity-90 transition-opacity`}
               style={{
                 background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
               }}
             >
-              {tijdsloten.knopInloggen}
+              <OutlinedText from={GOLD_FROM} to={GOLD_TO}>{tijdsloten.knopInloggen}</OutlinedText>
             </a>
           </div>
         </div>

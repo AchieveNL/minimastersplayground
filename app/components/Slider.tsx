@@ -1,5 +1,7 @@
 "use client";import { useEffect, useMemo, useState, useRef } from "react";
 import { useContent } from "../content-context";
+import { coiny } from "../fonts";
+import OutlinedText, { GOLD_FROM, GOLD_TO } from "./OutlinedText";
 import ScrollHint from "./ScrollHint";
 
 export default function Slider() {
@@ -192,8 +194,10 @@ export default function Slider() {
             style={{ width: "100px", left: -65 }}
             alt=""
           />
-          <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap">
-            {slider.badge}
+          <h1 className={`${coiny.className} font-normal md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-6 whitespace-nowrap`}>
+            <OutlinedText from={GOLD_FROM} to={GOLD_TO}>
+              {slider.badge}
+            </OutlinedText>
           </h1>
         </div>
 

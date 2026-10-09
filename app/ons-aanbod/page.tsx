@@ -8,6 +8,8 @@ import AnimatedSlider from "../components/AnimatedSilder";
 import Preloader from "../components/Preloader";
 import { AanbodKaart } from "../components/AanbodCard";
 import { useContent } from "../content-context";
+import { coiny } from "../fonts";
+import OutlinedText, { GOLD_FROM, GOLD_TO } from "../components/OutlinedText";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 function CardWrap({
@@ -77,8 +79,10 @@ export default function OnsAanbodPage() {
             style={{ width: "145px", left: -95 }}
             alt=""
           />
-          <h1 className="font-bold md:text-2xl text-center text-[#FDF9EF] md:pl-2 pl-6 whitespace-nowrap">
-            ONS AANBOD
+          <h1 className={`${coiny.className} font-normal md:text-2xl text-center text-[#FDF9EF] md:pl-2 pl-6 whitespace-nowrap`}>
+            <OutlinedText from={GOLD_FROM} to={GOLD_TO}>
+              ONS AANBOD
+            </OutlinedText>
           </h1>
         </div>
 

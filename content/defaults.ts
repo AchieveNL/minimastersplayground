@@ -9,17 +9,17 @@ export const contentDefaults = {
   hero: {
     infocards: [
       {
-        title: "DE MINI MAATSCHAPPIJ",
+        title: "De mini maatschappij",
         description:
           "Binnen minimasters stappen kinderen in een wereld die volledig is afgestemd op hun eigen belevingswereld. Zij krijgen de ruimte om spelenderwijs te ontdekken hoe vormen van samenwerking een belangrijke rol spelen in het dagelijks leven.",
       },
       {
-        title: "HET EDUCATIEVE KARAKTER",
+        title: "Het educatieve karakter",
         description:
           "Ons doel is om kinderen te laten leren door te doen, door actief deel te nemen aan herkenbare beroepen. Zelfvertrouwen en creativiteit krijgen de ruimte omdat er geen goed of fout bestaat: elk kind mag op zijn eigen manier ontdekken.",
       },
       {
-        title: "DE NIEUWE STANDAARD",
+        title: "De nieuwe standaard",
         description:
           "MiniMasters biedt een hoogwaardige, schone en begeleide speelomgeving waarin kinderen worden uitgedaagd om te ontdekken en te creeëren. Geen drukke of chaotische speelplekken, maar rust, overzicht en aandacht.",
       },

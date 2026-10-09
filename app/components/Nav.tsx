@@ -3,6 +3,31 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import NotificationBanner from "./NotificationBanner";
+import { coiny } from "../fonts";
+import OutlinedText, { GOLD_FROM, GOLD_TO } from "./OutlinedText";
+
+/** Mixes a hex colour toward white; `amount` 0 = unchanged, 1 = white. */
+function tint(hex: string, amount: number) {
+  const n = parseInt(hex.slice(1), 16);
+  const mix = (c: number) => Math.round(c + (255 - c) * amount);
+  return `rgb(${mix((n >> 16) & 255)}, ${mix((n >> 8) & 255)}, ${mix(n & 255)})`;
+}
+
+const NAV_GREEN = "#67CD8A";
+
+/** Nav word: very subtle green gradient, white outline. */
+function NavLabel({ children }: { children: string }) {
+  return (
+    <OutlinedText
+      from={tint(NAV_GREEN, 0.28)}
+      to={NAV_GREEN}
+      outline="#FFFFFF"
+      stroke="0.18em"
+    >
+      {children}
+    </OutlinedText>
+  );
+}
 
 export default function Nav({ ready = true }: { ready?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -227,7 +252,7 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
             {/* Desktop Nav */}
             <div
               ref={linksRef}
-              className="xl:flex hidden gap-5 2xl:gap-8 text-base 2xl:text-lg font-bold flex-1 justify-center items-center text-nowrap flex-nowrap"
+              className={`${coiny.className} xl:flex hidden gap-5 2xl:gap-8 text-base 2xl:text-lg font-normal flex-1 justify-center items-center text-nowrap flex-nowrap`}
             >
               <a
                 href="#"
@@ -237,25 +262,25 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
                 }}
                 className="text-[#FF5757] cursor-pointer"
               >
-                HOME
+                <NavLabel>HOME</NavLabel>
               </a>
               <Link href="/#over-ons" className="text-[#5763FF] text-nowrap">
-                OVER ONS
+                <NavLabel>OVER ONS</NavLabel>
               </Link>
               <Link href="/ons-aanbod" className="text-[#BB76FF] text-nowrap">
-                AANBOD
+                <NavLabel>AANBOD</NavLabel>
               </Link>
               <Link href="/#loyalty" className="text-[#67CD8A]">
-                LOYALTY
+                <NavLabel>LOYALTY</NavLabel>
               </Link>
               <Link href="/#openingstijden" className="text-[#BB76FF]">
-                OPENINGSTIJDEN
+                <NavLabel>OPENINGSTIJDEN</NavLabel>
               </Link>
               <Link href="/#faq" className="text-[#67CD8A]">
-                FAQ
+                <NavLabel>FAQ</NavLabel>
               </Link>
               <Link href="/#contact" className="text-[#5763FF]">
-                CONTACT
+                <NavLabel>CONTACT</NavLabel>
               </Link>
               <Link
                 href="https://online.byonesix.com/minimasters-playground-waddinxveen"
@@ -263,7 +288,7 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
                 rel="noopener noreferrer"
                 className="text-[#FF5757]"
               >
-                CAFÉ
+                <NavLabel>CAFÉ</NavLabel>
               </Link>
               <Link
                 href="https://tickets.minimastersplayground.nl/"
@@ -275,7 +300,9 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
                     "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
                 }}
               >
-                TICKETS
+                <OutlinedText from={GOLD_FROM} to={GOLD_TO} outline="#FFFFFF" stroke="0.18em">
+              TICKETS
+            </OutlinedText>
               </Link>
             </div>
 
@@ -312,14 +339,15 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
                 href="https://tickets.minimastersplayground.nl/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white text-sm font-bold px-4 h-10 inline-flex items-center rounded-full leading-none"
+                className={`${coiny.className} text-white text-sm font-normal px-4 h-10 inline-flex items-center rounded-full leading-none`}
                 style={{
                   background:
                     "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
-                  fontFamily: "Quicksand, sans-serif",
                 }}
               >
-                Tickets
+                <OutlinedText from={GOLD_FROM} to={GOLD_TO} outline="#FFFFFF" stroke="0.18em">
+                  Tickets
+                </OutlinedText>
               </Link>
             </div>
           </div>
@@ -339,12 +367,10 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
           translateX(100%) can't extend past the viewport (iOS horizontal-scroll bug). */}
       <div className="xl:hidden fixed inset-0 overflow-hidden pointer-events-none z-[999]">
         <div
-          className={`flex flex-col items-center gap-5 sm:gap-6 text-base sm:text-lg absolute top-0 right-0 h-full w-2/3 sm:w-1/2 px-6 py-8 transition-transform duration-300 pointer-events-auto ${
+          className={`${coiny.className} flex flex-col items-center gap-5 sm:gap-6 text-base sm:text-lg font-normal absolute top-0 right-0 h-full w-2/3 sm:w-1/2 px-6 py-8 transition-transform duration-300 pointer-events-auto ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
           style={{
-            fontFamily: "Quicksand, sans-serif",
-            fontWeight: "bold",
             background:
               "linear-gradient(180deg, #FFCA58 0%, #FFDB8D 50%, #FFE9B5 100%)",
             boxShadow: isOpen ? "-4px 0 20px rgba(0,0,0,0.15)" : "none",
@@ -387,49 +413,49 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
           >
-            HOME
+            <NavLabel>HOME</NavLabel>
           </a>
           <Link
             href="/#over-ons"
             className="text-[#5763FF]"
             onClick={() => setIsOpen(false)}
           >
-            OVER ONS
+            <NavLabel>OVER ONS</NavLabel>
           </Link>
           <Link
             href="/ons-aanbod"
             className="text-[#BB76FF]"
             onClick={() => setIsOpen(false)}
           >
-            AANBOD
+            <NavLabel>AANBOD</NavLabel>
           </Link>
           <Link
             href="/#loyalty"
             className="text-[#67CD8A]"
             onClick={() => setIsOpen(false)}
           >
-            LOYALTY
+            <NavLabel>LOYALTY</NavLabel>
           </Link>
           <Link
             href="/#openingstijden"
             className="text-[#BB76FF]"
             onClick={() => setIsOpen(false)}
           >
-            OPENINGSTIJDEN
+            <NavLabel>OPENINGSTIJDEN</NavLabel>
           </Link>
           <Link
             href="/#faq"
             className="text-[#67CD8A]"
             onClick={() => setIsOpen(false)}
           >
-            FAQ
+            <NavLabel>FAQ</NavLabel>
           </Link>
           <Link
             href="/#contact"
             className="text-[#5763FF]"
             onClick={() => setIsOpen(false)}
           >
-            CONTACT
+            <NavLabel>CONTACT</NavLabel>
           </Link>
           <Link
             href="https://online.byonesix.com/minimasters-playground-waddinxveen"
@@ -438,7 +464,7 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
             className="text-[#FF5757]"
             onClick={() => setIsOpen(false)}
           >
-            CAFÉ
+            <NavLabel>CAFÉ</NavLabel>
           </Link>
           <Link
             href="https://tickets.minimastersplayground.nl/"
@@ -450,7 +476,9 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
             }}
             onClick={() => setIsOpen(false)}
           >
-            TICKETS
+            <OutlinedText from={GOLD_FROM} to={GOLD_TO} outline="#FFFFFF" stroke="0.18em">
+              TICKETS
+            </OutlinedText>
           </Link>
         </div>
       </div>

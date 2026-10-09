@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { useContent } from "../content-context";
+import { coiny } from "../fonts";
+import OutlinedText, { GOLD_FROM, GOLD_TO } from "./OutlinedText";
 
 type FaqItem = {
   question: string;
@@ -233,8 +235,10 @@ export default function Faq() {
           alt=""
         />
 
-        <h1 className="font-bold md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 whitespace-nowrap">
-          {faq.badge}
+        <h1 className={`${coiny.className} font-normal md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 whitespace-nowrap`}>
+          <OutlinedText from={GOLD_FROM} to={GOLD_TO}>
+            {faq.badge}
+          </OutlinedText>
         </h1>
       </div>
       <div
