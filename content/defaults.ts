@@ -272,6 +272,20 @@ export const contentDefaults = {
     achtergrondBasis: "#FFCA58",
   },
 
+  // Zet `aan` op true om de hele website (behalve /beheer) te vervangen door
+  // deze pagina. Teksten: **vet** en een enter voor een nieuwe regel.
+  gesloten: {
+    aan: false as boolean,
+    afbeelding: "/assets/branding/logo-footer.png",
+    pill: "KLEINE PAUZE, GROOT SPEELPLEZIER",
+    titel: "We zijn even offline!",
+    tekst:
+      "We werken achter de schermen aan onze website. Binnenkort vind je hier weer alle informatie over spelen, ontdekken en samen genieten.",
+    contactTitel: "Wil je tickets reserveren of heb je een vraag?",
+    contactTekst: "Neem gerust contact met ons op via",
+    email: "hero@minimastersplayground.nl",
+  },
+
   // Juridische pagina's. `tekst` gebruikt een kleine opmaak-set:
   //   ### Kopje        -> tussenkopje
   //   - punt           -> opsomming

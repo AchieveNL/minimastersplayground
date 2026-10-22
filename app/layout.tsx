@@ -4,6 +4,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 import { getSiteContent } from "../lib/content";
 import { ContentProvider } from "./content-context";
+import SiteGate from "./components/ClosedPage";
 
 export const revalidate = 300;
 
@@ -83,7 +84,9 @@ export default async function RootLayout({
             />
           </noscript>
         ) : null}
-        <ContentProvider content={content}>{children}</ContentProvider>
+        <ContentProvider content={content}>
+          <SiteGate>{children}</SiteGate>
+        </ContentProvider>
       </body>
       {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
     </html>

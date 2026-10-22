@@ -27,6 +27,10 @@ export const IMAGE_SLOTS: Record<string, ImageSlot> = {
   kaartVerjaardag: AANBOD_KAART,
   kaartPrive: AANBOD_KAART,
   kaartSchoolreisje: AANBOD_KAART,
+  gesloten: {
+    hint: "800 × 800 px (vierkant), PNG met transparante achtergrond",
+    ratio: 1,
+  },
   laadscherm: {
     hint: "SVG, of PNG van minimaal 1200 px breed met transparante achtergrond",
     ratio: 385 / 186,

@@ -33,6 +33,7 @@ import {
   Cake,
   PartyPopper,
   School,
+  Power,
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "../../lib/supabase/client";
@@ -55,6 +56,7 @@ const SECTIONS: {
   hint: string;
   icon: LucideIcon;
 }[] = [
+  { key: "gesloten", label: "Website gesloten", hint: "Sluit de site met één knop", icon: Power },
   { key: "banner", label: "Notificatiebalk", hint: "Groene balk bovenaan", icon: Megaphone },
   { key: "hero", label: "Infokaarten", hint: "Homepage introductie", icon: LayoutGrid },
   { key: "slider", label: "Aanbod", hint: "Kaarten op homepage", icon: Ticket },
@@ -132,12 +134,17 @@ const FIELD_LABELS: Record<string, string> = {
   gloedKern: "Gloed — kern (midden)",
   gloedRand: "Gloed — rand (buitenkant)",
   achtergrondBasis: "Achtergrond (buitenrand)",
+  aan: "Website gesloten",
+  contactTitel: "Contactblok titel",
+  contactTekst: "Contactblok tekst",
+  email: "E-mailadres (leeg = verbergen)",
 };
 
 const labelFor = (key: string) => FIELD_LABELS[key] ?? key;
 
 function emptyLike(item: unknown): unknown {
   if (typeof item === "string") return "";
+  if (typeof item === "boolean") return false;
   if (Array.isArray(item)) return [];
   if (item && typeof item === "object") {
     return Object.fromEntries(
@@ -508,6 +515,45 @@ function FieldEditor({
     );
   }
 
+  if (typeof value === "boolean") {
+    return (
+      <div
+        className={`flex items-center justify-between gap-4 rounded-2xl border-2 p-4 transition-colors duration-200 ${
+          value
+            ? "border-[#FF5757]/40 bg-[#FF5757]/5"
+            : "border-[#E8E0C8] bg-[#FDFAF1]"
+        }`}
+      >
+        <div>
+          <span className="block text-[15px] font-bold text-slate-800">
+            {labelFor(fieldKey)}
+          </span>
+          <span className="mt-0.5 block text-sm text-slate-500">
+            {value
+              ? "AAN — bezoekers zien alleen deze pagina (na opslaan)."
+              : "UIT — de website is gewoon bereikbaar."}
+          </span>
+        </div>
+        <button
+          type="button"
+          role="switch"
+          aria-checked={value}
+          aria-label={labelFor(fieldKey)}
+          onClick={() => onChange(!value)}
+          className={`relative h-8 w-14 shrink-0 cursor-pointer rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5763FF]/40 ${
+            value ? "bg-[#FF5757]" : "bg-slate-300"
+          }`}
+        >
+          <span
+            className={`absolute top-1 left-1 h-6 w-6 rounded-full bg-white shadow transition-transform duration-200 ${
+              value ? "translate-x-6" : ""
+            }`}
+          />
+        </button>
+      </div>
+    );
+  }
+
   if (typeof value === "string" && HEX_COLOR.test(value)) {
     return <ColorField value={value} fieldKey={fieldKey} onChange={onChange} />;
   }
@@ -686,12 +732,19 @@ export default function BeheerPage() {
     if (error) {
       setToast({ ok: false, msg: "Opslaan mislukt: " + error.message });
     } else {
-      await revalidateSite();
+      const revalidated = await revalidateSite();
       const saved = JSON.parse(savedSnapshot.current);
       saved[active] = content[active];
       savedSnapshot.current = JSON.stringify(saved);
       setContent({ ...content });
-      setToast({ ok: true, msg: "Opgeslagen — wijzigingen staan live." });
+      setToast(
+        revalidated.ok
+          ? { ok: true, msg: "Opgeslagen — wijzigingen staan live." }
+          : {
+              ok: false,
+              msg: "Opgeslagen, maar de website ververst pas binnen 5 minuten.",
+            },
+      );
     }
     setSaving(false);
   };
