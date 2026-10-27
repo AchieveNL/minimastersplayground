@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
-import { getSiteContent } from "../lib/content";
+import { draftMode } from "next/headers";
+import { getPreviewContent, getSiteContent } from "../lib/content";
 import { ContentProvider } from "./content-context";
 import SiteGate from "./components/ClosedPage";
 
@@ -56,7 +57,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const content = await getSiteContent();
+  // Draft Mode is only switched on by /api/preview for a logged-in admin.
+  // Visitors keep getting the cached live site.
+  const { isEnabled: previewing } = await draftMode();
+  const preview = previewing ? await getPreviewContent() : null;
+  const content = preview?.content ?? (await getSiteContent());
   return (
     <html lang="en">
       <head>
@@ -85,7 +90,15 @@ export default async function RootLayout({
           </noscript>
         ) : null}
         <ContentProvider content={content}>
-          <SiteGate>{children}</SiteGate>
+          <SiteGate
+            preview={
+              preview
+                ? { concepten: preview.concepten, weergave: preview.weergave }
+                : null
+            }
+          >
+            {children}
+          </SiteGate>
         </ContentProvider>
       </body>
       {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}

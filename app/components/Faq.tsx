@@ -6,6 +6,7 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { useContent } from "../content-context";
 import { coiny } from "../fonts";
 import OutlinedText, { GOLD_FROM, GOLD_TO } from "./OutlinedText";
+import { renderInline } from "../../lib/inline-markup";
 
 type FaqItem = {
   question: string;
@@ -17,13 +18,19 @@ type FaqCategory = {
   title: string;
   items: FaqItem[];
   text: string;
+  openText: string;
 };
 
+/** Used while the dashboard holds a half-typed colour. */
 const categoryPalette = [
   { text: "#BB76FF", bg: "#F5EBFF" },
   { text: "#67CD8A", bg: "#FFFCF6" },
   { text: "#5763FF", bg: "#EAECFF" },
 ];
+
+const HEX = /^#[0-9a-fA-F]{6}$/;
+const colorOr = (value: string | undefined, fallback: string) =>
+  value && HEX.test(value) ? value : fallback;
 
 // Framer Motion variants
 const containerVariants = {
@@ -61,9 +68,11 @@ const AccordionItem = ({
   answer,
   text,
   bg,
+  openText,
 }: {
   text: string;
   bg: string;
+  openText: string;
   question: string;
   answer: React.ReactNode;
 }) => {
@@ -90,7 +99,7 @@ const AccordionItem = ({
           <h2
             className="font-bold text-lg md:text-xl"
             style={{
-              color: open ? "#ffffff" : text,
+              color: open ? openText : text,
               transition: "color 0.3s ease",
             }}
           >
@@ -98,7 +107,7 @@ const AccordionItem = ({
           </h2>
           <ChevronDown
             style={{
-              color: open ? "#ffffff" : text,
+              color: open ? openText : text,
               transform: open ? "rotate(180deg)" : "rotate(0deg)",
               transition: "transform 0.3s ease, color 0.3s ease",
               flexShrink: 0,
@@ -116,8 +125,9 @@ const AccordionItem = ({
         >
           <div style={{ overflow: "hidden" }}>
             <div
-              className="text-white font-medium text-base md:text-lg mt-3"
+              className="font-medium text-base md:text-lg mt-3"
               style={{
+                color: openText,
                 opacity: open ? 1 : 0,
                 transform: open ? "translateY(0)" : "translateY(8px)",
                 transition:
@@ -133,7 +143,7 @@ const AccordionItem = ({
   );
 };
 
-const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
+const CategoryCard = ({ title, items, text, bg, openText }: FaqCategory) => {
   return (
     <motion.div
       className="flex flex-col items-center mt-5 w-full"
@@ -153,6 +163,7 @@ const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
         <AccordionItem
           text={text}
           bg={bg}
+          openText={openText}
           key={index}
           question={item.question}
           answer={item.answer}
@@ -164,14 +175,19 @@ const CategoryCard = ({ title, items, text, bg }: FaqCategory) => {
 
 export default function Faq() {
   const { faq } = useContent();
-  const data: FaqCategory[] = faq.categorieen.map((cat, i) => ({
-    ...categoryPalette[i % categoryPalette.length],
-    title: cat.titel,
-    items: cat.items.map((item) => ({
-      question: item.vraag,
-      answer: <span className="whitespace-pre-line">{item.antwoord}</span>,
-    })),
-  }));
+  const data: FaqCategory[] = faq.categorieen.map((cat, i) => {
+    const palette = categoryPalette[i % categoryPalette.length];
+    return {
+      text: colorOr(cat.kleur, palette.text),
+      bg: colorOr(cat.achtergrond, palette.bg),
+      openText: colorOr(cat.tekstOpen, "#FFFFFF"),
+      title: cat.titel,
+      items: cat.items.map((item) => ({
+        question: item.vraag,
+        answer: renderInline(item.antwoord, "font-bold"),
+      })),
+    };
+  });
   const badgeRef = useScrollAnimation<HTMLDivElement>({
     type: "scaleIn",
     duration: 1,
@@ -249,6 +265,7 @@ export default function Faq() {
           <CategoryCard
             bg={category.bg}
             text={category.text}
+            openText={category.openText}
             key={index}
             title={category.title}
             items={category.items}

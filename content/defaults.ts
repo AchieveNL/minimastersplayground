@@ -78,11 +78,17 @@ export const contentDefaults = {
     wijk: "Parkeergelegenheid in de omliggende wijk - ca. 5 min lopen",
   },
 
+  // Per categorie: `kleur` = titel, vraagtekst en de achtergrond van een
+  // geopende vraag; `achtergrond` = dichte vraag; `tekstOpen` = tekst in een
+  // geopende vraag. Antwoorden: **vet** en enters werken.
   faq: {
     badge: "Veelgestelde vragen",
     categorieen: [
       {
         titel: "Nieuw bij Minimasters",
+        kleur: "#BB76FF",
+        achtergrond: "#F5EBFF",
+        tekstOpen: "#FFFFFF",
         items: [
           {
             vraag: "Hoe werken de arrangementen?",
@@ -113,6 +119,9 @@ export const contentDefaults = {
       },
       {
         titel: "Tickets",
+        kleur: "#67CD8A",
+        achtergrond: "#FFFCF6",
+        tekstOpen: "#FFFFFF",
         items: [
           {
             vraag: "Zijn er tickets aan de deur verkrijgbaar?",
@@ -133,6 +142,9 @@ export const contentDefaults = {
       },
       {
         titel: "Algemene vragen",
+        kleur: "#5763FF",
+        achtergrond: "#EAECFF",
+        tekstOpen: "#FFFFFF",
         items: [
           {
             vraag: "Mag ik eigen eten en drinken meenemen?",

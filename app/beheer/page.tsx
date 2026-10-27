@@ -1,6 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 import type { Session } from "@supabase/supabase-js";
 import {
@@ -34,6 +42,11 @@ import {
   PartyPopper,
   School,
   Power,
+  Eye,
+  Rocket,
+  Undo2,
+  ChevronUp,
+  ChevronDown,
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "../../lib/supabase/client";
@@ -46,7 +59,8 @@ import {
   listSiteImages,
   uploadSiteImage,
 } from "../../lib/image-upload";
-import { revalidateSite } from "./actions";
+import { publishDrafts } from "./actions";
+import { fillMissing } from "../../lib/fill-defaults";
 
 type SectionKey = keyof SiteContent;
 
@@ -134,6 +148,9 @@ const FIELD_LABELS: Record<string, string> = {
   gloedKern: "Gloed — kern (midden)",
   gloedRand: "Gloed — rand (buitenkant)",
   achtergrondBasis: "Achtergrond (buitenrand)",
+  kleur: "Hoofdkleur (titel, vraag en geopende vraag)",
+  achtergrond: "Achtergrond dichte vraag",
+  tekstOpen: "Tekstkleur geopende vraag",
   aan: "Website gesloten",
   contactTitel: "Contactblok titel",
   contactTekst: "Contactblok tekst",
@@ -143,7 +160,7 @@ const FIELD_LABELS: Record<string, string> = {
 const labelFor = (key: string) => FIELD_LABELS[key] ?? key;
 
 function emptyLike(item: unknown): unknown {
-  if (typeof item === "string") return "";
+  if (typeof item === "string") return HEX_COLOR.test(item) ? item : "";
   if (typeof item === "boolean") return false;
   if (Array.isArray(item)) return [];
   if (item && typeof item === "object") {
@@ -158,6 +175,15 @@ const inputCls =
   "w-full rounded-xl border border-[#E8E0C8] bg-white px-3.5 py-2.5 text-[15px] text-slate-800 placeholder-slate-400 transition-colors duration-200 focus:outline-none focus:border-[#67CD8A] focus:ring-2 focus:ring-[#67CD8A]/30";
 
 const HEX_COLOR = /^#[0-9a-fA-F]{6}$/;
+/** Colour fields stay colour pickers while a half-typed hex is invalid. */
+const COLOR_FIELDS = new Set([
+  "gloedKern",
+  "gloedRand",
+  "achtergrondBasis",
+  "kleur",
+  "achtergrond",
+  "tekstOpen",
+]);
 const IMAGE_PATH = /^(\/|https?:).*\.(webp|jpe?g|png|svg|gif|avif)$/i;
 
 /**
@@ -197,7 +223,7 @@ function ColorField({
       <div className="flex items-center gap-3 rounded-2xl border border-[#E8E0C8] bg-white p-3">
         <input
           type="color"
-          value={value}
+          value={HEX_COLOR.test(value) ? value : "#000000"}
           onChange={(e) => onChange(e.target.value.toUpperCase())}
           className="h-12 w-16 shrink-0 cursor-pointer rounded-lg border border-[#E8E0C8] bg-white p-1"
         />
@@ -490,6 +516,26 @@ function ImageField({
   );
 }
 
+/**
+ * Lets a FAQ question move to another category. The categories list provides
+ * it per category, so the questions list inside knows where it lives.
+ */
+const MoveTargetContext = createContext<{
+  titles: string[];
+  current: number;
+  moveTo: (itemIndex: number, target: number) => void;
+} | null>(null);
+
+const iconBtnCls =
+  "inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg text-slate-400 transition-colors duration-200 hover:bg-[#5763FF]/10 hover:text-[#5763FF] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5763FF]/40 disabled:cursor-default disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-400";
+
+function move<T>(list: T[], from: number, to: number): T[] {
+  const next = [...list];
+  const [item] = next.splice(from, 1);
+  next.splice(to, 0, item);
+  return next;
+}
+
 function FieldEditor({
   value,
   onChange,
@@ -501,6 +547,7 @@ function FieldEditor({
   fieldKey: string;
   section: string;
 }) {
+  const moveTarget = useContext(MoveTargetContext);
   if (
     (fieldKey === "afbeelding" || fieldKey === "logo") &&
     typeof value === "string"
@@ -554,7 +601,10 @@ function FieldEditor({
     );
   }
 
-  if (typeof value === "string" && HEX_COLOR.test(value)) {
+  if (
+    typeof value === "string" &&
+    (COLOR_FIELDS.has(fieldKey) || HEX_COLOR.test(value))
+  ) {
     return <ColorField value={value} fieldKey={fieldKey} onChange={onChange} />;
   }
 
@@ -585,27 +635,14 @@ function FieldEditor({
   }
 
   if (Array.isArray(value)) {
+    const label = labelFor(fieldKey);
+    const isFaqCategories = section === "faq" && fieldKey === "categorieen";
+    const isFaqQuestions = section === "faq" && fieldKey === "items";
     return (
       <div>
         <div className="space-y-4">
-          {value.map((item, i) => (
-            <div
-              key={i}
-              className="rounded-2xl border border-[#E8E0C8] bg-[#FDFAF1] p-4"
-            >
-              <div className="mb-3 flex items-center justify-between">
-                <span className="inline-flex items-center gap-2 rounded-full bg-[#5763FF]/10 px-3 py-1 text-xs font-bold text-[#5763FF]">
-                  {labelFor(fieldKey)} {i + 1}
-                </span>
-                <button
-                  type="button"
-                  aria-label={`${labelFor(fieldKey)} ${i + 1} verwijderen`}
-                  onClick={() => onChange(value.filter((_, j) => j !== i))}
-                  className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg text-slate-400 transition-colors duration-200 hover:bg-[#FF5757]/10 hover:text-[#FF5757] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5757]/40"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </button>
-              </div>
+          {value.map((item, i) => {
+            const editor = (
               <FieldEditor
                 value={item}
                 fieldKey={fieldKey}
@@ -614,8 +651,100 @@ function FieldEditor({
                   onChange(value.map((x, j) => (j === i ? v : x)))
                 }
               />
-            </div>
-          ))}
+            );
+            return (
+              <div
+                key={i}
+                className="rounded-2xl border border-[#E8E0C8] bg-[#FDFAF1] p-4"
+              >
+                <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-[#5763FF]/10 px-3 py-1 text-xs font-bold text-[#5763FF]">
+                    {label} {i + 1}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    {isFaqQuestions && moveTarget && moveTarget.titles.length > 1 && (
+                      <select
+                        aria-label={`${label} ${i + 1} verplaatsen naar categorie`}
+                        value=""
+                        onChange={(e) => moveTarget.moveTo(i, Number(e.target.value))}
+                        className="mr-1 h-9 max-w-[11rem] cursor-pointer rounded-lg border border-[#E8E0C8] bg-white px-2 text-xs font-bold text-slate-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5763FF]/40"
+                      >
+                        <option value="" disabled>
+                          Verplaats naar…
+                        </option>
+                        {moveTarget.titles.map((t, ci) =>
+                          ci === moveTarget.current ? null : (
+                            <option key={ci} value={ci}>
+                              {t || `Categorie ${ci + 1}`}
+                            </option>
+                          ),
+                        )}
+                      </select>
+                    )}
+                    <button
+                      type="button"
+                      aria-label={`${label} ${i + 1} omhoog`}
+                      disabled={i === 0}
+                      onClick={() => onChange(move(value, i, i - 1))}
+                      className={iconBtnCls}
+                    >
+                      <ChevronUp className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={`${label} ${i + 1} omlaag`}
+                      disabled={i === value.length - 1}
+                      onClick={() => onChange(move(value, i, i + 1))}
+                      className={iconBtnCls}
+                    >
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label={`${label} ${i + 1} verwijderen`}
+                      onClick={() => {
+                        if (
+                          typeof item === "string" ||
+                          window.confirm(`${label} ${i + 1} verwijderen?`)
+                        ) {
+                          onChange(value.filter((_, j) => j !== i));
+                        }
+                      }}
+                      className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg text-slate-400 transition-colors duration-200 hover:bg-[#FF5757]/10 hover:text-[#FF5757] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5757]/40"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+                {isFaqCategories ? (
+                  <MoveTargetContext.Provider
+                    value={{
+                      titles: value.map((c) => (c as { titel?: string }).titel ?? ""),
+                      current: i,
+                      moveTo: (itemIndex, target) => {
+                        type Cat = { items: unknown[] };
+                        const cats = value as Cat[];
+                        const moved = cats[i].items[itemIndex];
+                        onChange(
+                          cats.map((c, ci) =>
+                            ci === i
+                              ? { ...c, items: c.items.filter((_, j) => j !== itemIndex) }
+                              : ci === target
+                                ? { ...c, items: [...c.items, moved] }
+                                : c,
+                          ),
+                        );
+                      },
+                    }}
+                  >
+                    {editor}
+                  </MoveTargetContext.Provider>
+                ) : (
+                  editor
+                )}
+              </div>
+            );
+          })}
         </div>
         <button
           type="button"
@@ -648,6 +777,17 @@ function FieldEditor({
   return null;
 }
 
+/** Sections whose content differs between two versions. */
+function differingKeys(a: SiteContent | null, b: SiteContent | null) {
+  const set = new Set<string>();
+  if (!a || !b) return set;
+  for (const k of Object.keys(a)) {
+    const key = k as SectionKey;
+    if (JSON.stringify(a[key]) !== JSON.stringify(b[key])) set.add(k);
+  }
+  return set;
+}
+
 export default function BeheerPage() {
   const supabase = useMemo(() => createClient(), []);
   const [session, setSession] = useState<Session | null>(null);
@@ -657,10 +797,14 @@ export default function BeheerPage() {
   const [loginError, setLoginError] = useState("");
   const [loggingIn, setLoggingIn] = useState(false);
   const [content, setContent] = useState<SiteContent | null>(null);
+  // What visitors see now, and that plus the saved concepts. `content` is the
+  // editor's working copy on top of `saved`.
+  const [live, setLive] = useState<SiteContent | null>(null);
+  const [saved, setSaved] = useState<SiteContent | null>(null);
   const [active, setActive] = useState<SectionKey>("banner");
   const [saving, setSaving] = useState(false);
+  const [publishing, setPublishing] = useState(false);
   const [toast, setToast] = useState<{ ok: boolean; msg: string } | null>(null);
-  const savedSnapshot = useRef<string>("");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
@@ -674,20 +818,58 @@ export default function BeheerPage() {
     return () => subscription.unsubscribe();
   }, [supabase]);
 
-  useEffect(() => {
-    if (!session) return;
-    (async () => {
-      const merged = structuredClone(contentDefaults) as SiteContent;
-      const { data } = await supabase.from("site_content").select("key, value");
-      for (const row of data ?? []) {
-        if (row.key in merged && row.value) {
-          (merged as Record<string, unknown>)[row.key] = row.value;
+  const loadContent = useCallback(async () => {
+    const [liveRows, draftRows] = await Promise.all([
+      supabase.from("site_content").select("key, value"),
+      supabase.from("site_content_draft").select("key, value"),
+    ]);
+    const apply = (target: SiteContent, rows: { key: string; value: unknown }[] | null) => {
+      for (const row of rows ?? []) {
+        if (row.key in target && row.value) {
+          (target as Record<string, unknown>)[row.key] = fillMissing(
+            row.value,
+            (contentDefaults as Record<string, unknown>)[row.key],
+          );
         }
       }
-      savedSnapshot.current = JSON.stringify(merged);
-      setContent(merged);
-    })();
-  }, [session, supabase]);
+    };
+    const nextLive = structuredClone(contentDefaults) as SiteContent;
+    apply(nextLive, liveRows.data);
+    const nextSaved = structuredClone(nextLive);
+    apply(nextSaved, draftRows.data);
+    return { nextLive, nextSaved };
+  }, [supabase]);
+
+  useEffect(() => {
+    if (!session) return;
+    loadContent().then(({ nextLive, nextSaved }) => {
+      setLive(nextLive);
+      setSaved(nextSaved);
+      setContent(structuredClone(nextSaved));
+    });
+  }, [session, loadContent]);
+
+  // Re-reads the DB after a publish, or when she comes back from the preview
+  // tab (which can publish too). Unsaved edits are never overwritten: then
+  // only the live state refreshes, which is all a publish changes. A load that
+  // started before a local save finished is stale and is dropped.
+  const hasUnsaved = useRef(false);
+  const saveCount = useRef(0);
+  const refresh = useCallback(async () => {
+    const started = saveCount.current;
+    const { nextLive, nextSaved } = await loadContent();
+    if (started !== saveCount.current) return;
+    setLive(nextLive);
+    if (hasUnsaved.current) return;
+    setSaved(nextSaved);
+    setContent(structuredClone(nextSaved));
+  }, [loadContent]);
+
+  useEffect(() => {
+    if (!session) return;
+    window.addEventListener("focus", refresh);
+    return () => window.removeEventListener("focus", refresh);
+  }, [session, refresh]);
 
   useEffect(() => {
     if (!toast) return;
@@ -695,19 +877,13 @@ export default function BeheerPage() {
     return () => clearTimeout(t);
   }, [toast]);
 
-  const dirtyKeys = useMemo(() => {
-    if (!content || !savedSnapshot.current) return new Set<string>();
-    const saved = JSON.parse(savedSnapshot.current) as Record<string, unknown>;
-    const set = new Set<string>();
-    for (const k of Object.keys(content)) {
-      if (
-        JSON.stringify(content[k as SectionKey]) !== JSON.stringify(saved[k])
-      ) {
-        set.add(k);
-      }
-    }
-    return set;
-  }, [content]);
+  /** Edited here but not saved as a concept yet. */
+  const dirtyKeys = useMemo(() => differingKeys(content, saved), [content, saved]);
+  /** Saved as a concept but not live yet. */
+  const conceptKeys = useMemo(() => differingKeys(saved, live), [saved, live]);
+  useEffect(() => {
+    hasUnsaved.current = dirtyKeys.size > 0;
+  }, [dirtyKeys]);
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -722,31 +898,94 @@ export default function BeheerPage() {
   };
 
   const saveActive = async () => {
-    if (!content) return;
+    if (!content || !saved || !live) return;
     setSaving(true);
-    const { error } = await supabase.from("site_content").upsert({
-      key: active,
-      value: content[active],
-      updated_at: new Date().toISOString(),
-    });
+    saveCount.current += 1;
+    const value = content[active];
+    // Saving the live text back is not a concept, so drop the row instead.
+    const sameAsLive = JSON.stringify(value) === JSON.stringify(live[active]);
+    const { error } = sameAsLive
+      ? await supabase.from("site_content_draft").delete().eq("key", active)
+      : await supabase.from("site_content_draft").upsert({
+          key: active,
+          value,
+          updated_at: new Date().toISOString(),
+        });
     if (error) {
       setToast({ ok: false, msg: "Opslaan mislukt: " + error.message });
     } else {
-      const revalidated = await revalidateSite();
-      const saved = JSON.parse(savedSnapshot.current);
-      saved[active] = content[active];
-      savedSnapshot.current = JSON.stringify(saved);
-      setContent({ ...content });
-      setToast(
-        revalidated.ok
-          ? { ok: true, msg: "Opgeslagen — wijzigingen staan live." }
-          : {
-              ok: false,
-              msg: "Opgeslagen, maar de website ververst pas binnen 5 minuten.",
-            },
-      );
+      setSaved({ ...saved, [active]: structuredClone(value) } as SiteContent);
+      setToast({
+        ok: true,
+        msg: sameAsLive
+          ? "Opgeslagen — gelijk aan de live versie."
+          : "Concept opgeslagen — nog niet live.",
+      });
     }
     setSaving(false);
+  };
+
+  const discardActive = async () => {
+    if (!content || !saved || !live) return;
+    if (!window.confirm("Concept weggooien en terug naar de live versie?")) return;
+    const { error } = await supabase
+      .from("site_content_draft")
+      .delete()
+      .eq("key", active);
+    if (error) {
+      setToast({ ok: false, msg: "Verwijderen mislukt: " + error.message });
+      return;
+    }
+    saveCount.current += 1;
+    const liveValue = structuredClone(live[active]);
+    setSaved({ ...saved, [active]: liveValue } as SiteContent);
+    setContent({ ...content, [active]: structuredClone(liveValue) } as SiteContent);
+    setToast({ ok: true, msg: "Concept verwijderd." });
+  };
+
+  // Also ends Draft Mode in this browser, so a preview tab left open does not
+  // keep a preview cookie without a way to close it.
+  const logout = async () => {
+    await fetch("/api/preview?actie=uit").catch(() => {});
+    await supabase.auth.signOut();
+  };
+
+  const openPreview = () => {
+    if (
+      dirtyKeys.size > 0 &&
+      !window.confirm(
+        "Je hebt wijzigingen die nog niet als concept zijn opgeslagen. Die zie je niet in het voorbeeld. Toch openen?",
+      )
+    ) {
+      return;
+    }
+    window.open("/api/preview", "_blank", "noopener");
+  };
+
+  const publish = async () => {
+    if (!saved) return;
+    const n = conceptKeys.size;
+    const unsavedNote =
+      dirtyKeys.size > 0
+        ? "\n\nLet op: wijzigingen die niet als concept zijn opgeslagen gaan niet mee."
+        : "";
+    if (
+      !window.confirm(
+        `${n} ${n === 1 ? "onderdeel" : "onderdelen"} live zetten? Bezoekers zien de wijzigingen daarna direct.${unsavedNote}`,
+      )
+    ) {
+      return;
+    }
+    setPublishing(true);
+    const result = await publishDrafts();
+    setToast(
+      result.ok
+        ? { ok: true, msg: "Gepubliceerd — de wijzigingen staan live." }
+        : { ok: false, msg: "Publiceren: " + result.error },
+    );
+    // Whatever was in the DB went live, including concepts from other tabs.
+    await refresh();
+    setPublishing(false);
   };
 
   if (!authChecked) return null;
@@ -809,8 +1048,8 @@ export default function BeheerPage() {
               Tiny Heroes, Big Adventures
             </p>
             <p className="mt-1 max-w-sm text-sm font-semibold text-white/85">
-              Beheer alle teksten van de website — wijzigingen staan direct
-              live.
+              Beheer alle teksten van de website — en bekijk ze eerst in een
+              voorbeeld voordat ze live gaan.
             </p>
 
             <div className="mt-10 flex items-end justify-center">
@@ -861,7 +1100,7 @@ export default function BeheerPage() {
               </p>
               <ul className="mt-5 space-y-2.5">
                 {[
-                  "Wijzigingen staan direct live",
+                  "Eerst bekijken, dan pas publiceren",
                   "Geen technische kennis nodig",
                   "Veilig ingelogd via je eigen account",
                 ].map((f) => (
@@ -1002,19 +1241,36 @@ export default function BeheerPage() {
                     {hint}
                   </span>
                 </span>
-                {dirty && (
+                {dirty ? (
                   <span
                     title="Niet opgeslagen"
-                    className={`h-2.5 w-2.5 shrink-0 rounded-full ${
-                      isActive ? "bg-[#FFCA58]" : "bg-[#FFCA58]"
-                    }`}
+                    className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#FFCA58]"
                   />
-                )}
+                ) : conceptKeys.has(key) ? (
+                  <span
+                    title="Concept — nog niet live"
+                    className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${
+                      isActive
+                        ? "bg-white/20 text-white"
+                        : "bg-[#5763FF]/10 text-[#5763FF]"
+                    }`}
+                  >
+                    Concept
+                  </span>
+                ) : null}
               </button>
             );
           })}
         </nav>
         <div className="space-y-1 border-t border-[#EEE5CF] px-3 py-4">
+          <button
+            type="button"
+            onClick={openPreview}
+            className="flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-bold text-slate-600 transition-colors duration-200 hover:bg-[#F8F5E3] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5763FF]/40"
+          >
+            <Eye className="h-5 w-5 text-[#5763FF]" />
+            Bekijk voorbeeld
+          </button>
           <a
             href="/"
             target="_blank"
@@ -1022,11 +1278,11 @@ export default function BeheerPage() {
             className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-bold text-slate-600 transition-colors duration-200 hover:bg-[#F8F5E3] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#5763FF]/40"
           >
             <ExternalLink className="h-5 w-5 text-[#67CD8A]" />
-            Bekijk website
+            Bekijk live website
           </a>
           <button
             type="button"
-            onClick={() => supabase.auth.signOut()}
+            onClick={logout}
             className="flex w-full cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-bold text-slate-600 transition-colors duration-200 hover:bg-[#FF5757]/10 hover:text-[#FF5757] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5757]/40"
           >
             <LogOut className="h-5 w-5" />
@@ -1060,20 +1316,20 @@ export default function BeheerPage() {
               </div>
             </div>
             <div className="flex shrink-0 items-center gap-2">
-              <a
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden cursor-pointer items-center gap-2 rounded-full border border-[#EEE5CF] px-4 py-2 text-sm font-bold text-slate-600 transition-colors duration-200 hover:border-[#67CD8A] hover:text-[#3fa060] sm:inline-flex lg:hidden"
+              <button
+                type="button"
+                onClick={openPreview}
+                aria-label="Bekijk voorbeeld"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#EEE5CF] px-3 py-2.5 text-sm font-bold text-slate-600 transition-colors duration-200 hover:border-[#5763FF] hover:text-[#5763FF] sm:px-4 lg:hidden"
               >
-                <ExternalLink className="h-4 w-4" />
-                Site
-              </a>
+                <Eye className="h-4 w-4" />
+                <span className="hidden sm:inline">Voorbeeld</span>
+              </button>
               <button
                 type="button"
                 onClick={saveActive}
-                disabled={saving || !dirtyKeys.has(active)}
-                className="inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white shadow-md transition-opacity duration-200 hover:opacity-90 disabled:cursor-default disabled:opacity-40"
+                disabled={saving || publishing || !dirtyKeys.has(active)}
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full px-4 py-2.5 text-sm font-bold text-white shadow-md transition-opacity duration-200 hover:opacity-90 disabled:cursor-default disabled:opacity-40 sm:px-5"
                 style={{
                   background:
                     "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
@@ -1081,6 +1337,24 @@ export default function BeheerPage() {
               >
                 <Save className="h-4 w-4" />
                 {saving ? "Opslaan…" : "Opslaan"}
+                <span className="hidden sm:inline">als concept</span>
+              </button>
+              <button
+                type="button"
+                onClick={publish}
+                disabled={publishing || conceptKeys.size === 0}
+                aria-label="Publiceren"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#5763FF] px-3 py-2.5 text-sm font-bold text-white shadow-md shadow-[#5763FF]/20 transition-opacity duration-200 hover:opacity-90 disabled:cursor-default disabled:opacity-40 sm:px-5"
+              >
+                <Rocket className="h-4 w-4" />
+                <span className="hidden sm:inline">
+                  {publishing ? "Bezig…" : "Publiceren"}
+                </span>
+                {conceptKeys.size > 0 && (
+                  <span className="rounded-full bg-white/25 px-1.5 text-xs">
+                    {conceptKeys.size}
+                  </span>
+                )}
               </button>
             </div>
           </div>
@@ -1104,14 +1378,20 @@ export default function BeheerPage() {
                 >
                   <Icon className="h-4 w-4 shrink-0" />
                   <span className="truncate">{label}</span>
-                  {dirtyKeys.has(key) && (
+                  {dirtyKeys.has(key) ? (
                     <span className="ml-auto h-2 w-2 shrink-0 rounded-full bg-[#FFCA58]" />
-                  )}
+                  ) : conceptKeys.has(key) ? (
+                    <span
+                      className={`ml-auto h-2 w-2 shrink-0 rounded-full ${
+                        active === key ? "bg-white" : "bg-[#5763FF]"
+                      }`}
+                    />
+                  ) : null}
                 </button>
               ))}
               <button
                 type="button"
-                onClick={() => supabase.auth.signOut()}
+                onClick={logout}
                 className="flex cursor-pointer items-center gap-2 rounded-xl bg-[#FF5757]/10 px-3 py-2.5 text-left text-sm font-bold text-[#FF5757]"
               >
                 <LogOut className="h-4 w-4" /> Uitloggen
@@ -1132,6 +1412,37 @@ export default function BeheerPage() {
               ))}
             </div>
           ) : (
+            <>
+            {conceptKeys.size > 0 && (
+              <div className="mb-5 flex flex-col gap-3 rounded-2xl border border-[#5763FF]/20 bg-[#5763FF]/5 p-4 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-sm font-semibold text-slate-700">
+                  <b className="text-[#5763FF]">
+                    {conceptKeys.size}{" "}
+                    {conceptKeys.size === 1 ? "onderdeel" : "onderdelen"}
+                  </b>{" "}
+                  met wijzigingen die nog niet live staan.
+                </p>
+                <div className="flex shrink-0 gap-2">
+                  <button
+                    type="button"
+                    onClick={openPreview}
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-[#5763FF]/30 bg-white px-4 py-2 text-sm font-bold text-[#5763FF] transition-colors duration-200 hover:border-[#5763FF]"
+                  >
+                    <Eye className="h-4 w-4" />
+                    Bekijk voorbeeld
+                  </button>
+                  <button
+                    type="button"
+                    onClick={publish}
+                    disabled={publishing}
+                    className="inline-flex cursor-pointer items-center gap-1.5 rounded-full bg-[#5763FF] px-4 py-2 text-sm font-bold text-white transition-opacity duration-200 hover:opacity-90 disabled:opacity-60"
+                  >
+                    <Rocket className="h-4 w-4" />
+                    {publishing ? "Bezig…" : "Publiceren"}
+                  </button>
+                </div>
+              </div>
+            )}
             <div className="rounded-3xl border border-[#EEE5CF] bg-white p-5 shadow-sm sm:p-7">
               <FieldEditor
                 fieldKey={active}
@@ -1141,16 +1452,30 @@ export default function BeheerPage() {
                   setContent({ ...content, [active]: v } as SiteContent)
                 }
               />
-              <div className="mt-8 flex items-center justify-between border-t border-[#EEE5CF] pt-5">
-                <p className="text-xs text-slate-400">
-                  {dirtyKeys.has(active)
-                    ? "Niet-opgeslagen wijzigingen"
-                    : "Alles opgeslagen"}
-                </p>
+              <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-[#EEE5CF] pt-5">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <p className="text-xs text-slate-400">
+                    {dirtyKeys.has(active)
+                      ? "Niet-opgeslagen wijzigingen"
+                      : conceptKeys.has(active)
+                        ? "Concept opgeslagen — nog niet live"
+                        : "Gelijk aan de live website"}
+                  </p>
+                  {conceptKeys.has(active) && (
+                    <button
+                      type="button"
+                      onClick={discardActive}
+                      className="inline-flex cursor-pointer items-center gap-1 text-xs font-bold text-slate-500 underline-offset-2 transition-colors duration-200 hover:text-[#FF5757] hover:underline"
+                    >
+                      <Undo2 className="h-3.5 w-3.5" />
+                      Concept verwijderen
+                    </button>
+                  )}
+                </div>
                 <button
                   type="button"
                   onClick={saveActive}
-                  disabled={saving || !dirtyKeys.has(active)}
+                  disabled={saving || publishing || !dirtyKeys.has(active)}
                   className="inline-flex cursor-pointer items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold text-white shadow-md transition-opacity duration-200 hover:opacity-90 disabled:cursor-default disabled:opacity-40"
                   style={{
                     background:
@@ -1158,10 +1483,11 @@ export default function BeheerPage() {
                   }}
                 >
                   <Save className="h-4 w-4" />
-                  {saving ? "Opslaan…" : "Opslaan"}
+                  {saving ? "Opslaan…" : "Opslaan als concept"}
                 </button>
               </div>
             </div>
+            </>
           )}
         </main>
       </div>

@@ -4,16 +4,38 @@ import { usePathname } from "next/navigation";
 import { useContent } from "../content-context";
 import { coiny } from "../fonts";
 import { renderInline } from "../../lib/inline-markup";
+import PreviewBar, { type PreviewInfo } from "./PreviewBar";
 
 /**
  * Swaps every public page for the closed page while the dashboard switch is
  * on. /beheer stays reachable, otherwise the switch could never be turned off.
+ *
+ * In the admin preview the switch is ignored: the preview bar picks whether
+ * the full site or the closed page is shown, so concepts can be checked while
+ * the public still sees the closed page.
  */
-export default function SiteGate({ children }: { children: React.ReactNode }) {
+export default function SiteGate({
+  preview,
+  children,
+}: {
+  preview: PreviewInfo | null;
+  children: React.ReactNode;
+}) {
   const { gesloten } = useContent();
   const pathname = usePathname();
   const isDashboard = pathname === "/beheer" || pathname.startsWith("/beheer/");
-  if (gesloten.aan === true && !isDashboard) {
+  if (isDashboard) return <>{children}</>;
+
+  if (preview) {
+    return (
+      <>
+        {preview.weergave === "gesloten" ? <ClosedPage /> : children}
+        <PreviewBar preview={preview} />
+      </>
+    );
+  }
+
+  if (gesloten.aan === true) {
     return <ClosedPage />;
   }
   return <>{children}</>;
