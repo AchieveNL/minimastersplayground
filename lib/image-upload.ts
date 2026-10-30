@@ -21,6 +21,12 @@ const AANBOD_KAART: ImageSlot = {
   ratio: 1400 / 1647,
 };
 
+/** The conditions image beside each /ons-aanbod card; same size lines up. */
+export const VOORWAARDEN_SLOT: ImageSlot = {
+  hint: "1400 × 1647 px (staand), zelfde formaat als de kaart zodat ze naast elkaar gelijk lopen",
+  ratio: 1400 / 1647,
+};
+
 export const IMAGE_SLOTS: Record<string, ImageSlot> = {
   slider: { hint: "900 × 1200 px (staand, 3:4)", ratio: 3 / 4 },
   fotostrook: { hint: "1200 × 800 px (liggend, 3:2)", ratio: 3 / 2 },

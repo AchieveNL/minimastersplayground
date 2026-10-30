@@ -255,10 +255,12 @@ export const contentDefaults = {
 
   // Kaarten op /ons-aanbod: één afbeelding per kaart met de BOEK NU knop
   // eroverheen. Houd onderaan de afbeelding ruimte vrij voor de knop.
+  // `voorwaardenAfbeelding` staat naast de kaart (leeg = verbergen).
   kaartVerjaardag: {
     afbeelding: "/assets/aanbod/verjaardag.webp",
     link: "https://tickets.minimastersplayground.nl/",
     knop: "BOEK NU",
+    voorwaardenAfbeelding: "",
   },
 
   kaartPrive: {
@@ -269,12 +271,14 @@ export const contentDefaults = {
     // tekst zelf al bevat. **vet** en een enter voor een nieuwe regel.
     notitie:
       "Geef het feest **een persoonlijke touch!**\nJullie zijn van harte welkom om **het zitgedeelte** te versieren.\n**Let op!** vuurwerk, confetti en gezichtsschmink is **niet toegestaan.** ⭐",
+    voorwaardenAfbeelding: "",
   },
 
   kaartSchoolreisje: {
     afbeelding: "/assets/aanbod/schoolreisje.webp",
     link: "https://tickets.minimastersplayground.nl/",
     knop: "BOEK NU",
+    voorwaardenAfbeelding: "",
   },
 
   laadscherm: {

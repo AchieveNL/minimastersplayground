@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import SmoothScroll from "../components/SmoothScroll";
 import AnimatedSlider from "../components/AnimatedSilder";
 import Preloader from "../components/Preloader";
-import { AanbodKaart } from "../components/AanbodCard";
+import { AanbodKaart, type KaartContent } from "../components/AanbodCard";
 import { useContent } from "../content-context";
 import { coiny } from "../fonts";
 import OutlinedText, { GOLD_FROM, GOLD_TO } from "../components/OutlinedText";
@@ -26,6 +26,45 @@ function CardWrap({
     <div id={id} ref={ref} className={`w-full scroll-mt-32 ${className}`}>
       {children}
     </div>
+  );
+}
+
+/**
+ * One offer: the card, with its conditions image beside it on desktop and
+ * underneath on phones. Without a conditions image the card keeps the width
+ * of one column, centred.
+ */
+function AanbodRij({
+  id,
+  content,
+  alt,
+}: {
+  id: string;
+  content: KaartContent & { voorwaardenAfbeelding?: string };
+  alt: string;
+}) {
+  const voorwaarden = content.voorwaardenAfbeelding?.trim();
+  return (
+    <CardWrap
+      id={id}
+      className={
+        voorwaarden
+          ? "grid gap-6 md:gap-8 lg:grid-cols-2 lg:items-start lg:gap-12"
+          : "lg:mx-auto lg:max-w-[calc((100%-3rem)/2)]"
+      }
+    >
+      <AanbodKaart content={content} alt={alt} />
+      {voorwaarden && (
+        <div className="@container">
+          <img
+            src={voorwaarden}
+            alt={`Voorwaarden ${alt.toLowerCase()}`}
+            loading="lazy"
+            className="block h-auto w-full rounded-[5cqw]"
+          />
+        </div>
+      )}
+    </CardWrap>
   );
 }
 
@@ -86,9 +125,9 @@ export default function OnsAanbodPage() {
           </h1>
         </div>
 
-        {/* Cards — one image per card with its BOEK NU link, both set in the
-            dashboard. Two across on desktop, the third centred underneath at
-            the same width. */}
+        {/* One row per offer: the card (image + BOEK NU link) with its
+            conditions image beside it, all set in the dashboard. A card
+            without a conditions image stays centred at the same width. */}
         <div className="relative px-4 sm:px-8 mt-12 md:mt-24 mb-16 md:mb-24">
           {/* Faded background watermarks in the side gutters */}
           <div
@@ -110,22 +149,10 @@ export default function OnsAanbodPage() {
             <img src="/assets/aanbod/molen.png" alt="" className="absolute w-40 xl:w-52 right-0 top-[84%]" style={{ animation: "wmFloat 4s ease-in-out 1.3s infinite" }} />
             <img src="/assets/aanbod/kuiken.png" alt="" className="absolute w-40 xl:w-48 left-0 bottom-[-4%]" style={{ animation: "wmFloat 4.8s ease-in-out 0.2s infinite" }} />
           </div>
-          <div className="relative mx-auto grid max-w-xl gap-12 md:gap-16 lg:max-w-6xl lg:grid-cols-2 lg:gap-x-12 lg:gap-y-16">
-            <CardWrap id="verjaardag">
-              <AanbodKaart content={kaartVerjaardag} alt="Verjaardag" />
-            </CardWrap>
-
-            <CardWrap id="prive-feestje">
-              <AanbodKaart content={kaartPrive} alt="Privé feestje" />
-            </CardWrap>
-
-            {/* Same width as one column: (100% - gap-x-12) / 2 */}
-            <CardWrap
-              id="schoolreisje"
-              className="lg:col-span-2 lg:mx-auto lg:max-w-[calc((100%-3rem)/2)]"
-            >
-              <AanbodKaart content={kaartSchoolreisje} alt="Schoolreisje" />
-            </CardWrap>
+          <div className="relative mx-auto flex max-w-xl flex-col gap-12 md:gap-16 lg:max-w-6xl">
+            <AanbodRij id="verjaardag" content={kaartVerjaardag} alt="Verjaardag" />
+            <AanbodRij id="prive-feestje" content={kaartPrive} alt="Privé feestje" />
+            <AanbodRij id="schoolreisje" content={kaartSchoolreisje} alt="Schoolreisje" />
           </div>
         </div>
 

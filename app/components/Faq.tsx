@@ -175,7 +175,10 @@ const CategoryCard = ({ title, items, text, bg, openText }: FaqCategory) => {
 
 export default function Faq() {
   const { faq } = useContent();
-  const data: FaqCategory[] = faq.categorieen.map((cat, i) => {
+  // A category without questions yet stays hidden, so a half-built one in
+  // the dashboard does not show a lone title on the site.
+  const data: FaqCategory[] = faq.categorieen.flatMap((cat, i) => {
+    if (!cat.items?.length) return [];
     const palette = categoryPalette[i % categoryPalette.length];
     return {
       text: colorOr(cat.kleur, palette.text),

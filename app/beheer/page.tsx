@@ -54,13 +54,14 @@ import { contentDefaults, type SiteContent } from "../../content/defaults";
 import {
   IMAGE_SLOTS,
   MAX_SOURCE_MB,
+  VOORWAARDEN_SLOT,
   deleteSiteImage,
   isStoredImage,
   listSiteImages,
   uploadSiteImage,
 } from "../../lib/image-upload";
 import { publishDrafts } from "./actions";
-import { fillMissing } from "../../lib/fill-defaults";
+import { emptyLike, fillMissing } from "../../lib/fill-defaults";
 
 type SectionKey = keyof SiteContent;
 
@@ -81,9 +82,9 @@ const SECTIONS: {
   { key: "faq", label: "Veelgestelde vragen", hint: "Vragen & antwoorden", icon: HelpCircle },
   { key: "footer", label: "Footer & reviews", hint: "Nieuwsbrief, reviews, adres", icon: Mail },
   { key: "popup", label: "Nieuwsbrief popup", hint: "Popup na 5 seconden", icon: MessageSquare },
-  { key: "kaartVerjaardag", label: "Aanbod — Verjaardag", hint: "Kaart en knop op /ons-aanbod", icon: Cake },
-  { key: "kaartPrive", label: "Aanbod — Privé feestje", hint: "Kaart en knop op /ons-aanbod", icon: PartyPopper },
-  { key: "kaartSchoolreisje", label: "Aanbod — Schoolreisje", hint: "Kaart en knop op /ons-aanbod", icon: School },
+  { key: "kaartVerjaardag", label: "Aanbod — Verjaardag", hint: "Kaart, knop en voorwaarden", icon: Cake },
+  { key: "kaartPrive", label: "Aanbod — Privé feestje", hint: "Kaart, knop en voorwaarden", icon: PartyPopper },
+  { key: "kaartSchoolreisje", label: "Aanbod — Schoolreisje", hint: "Kaart, knop en voorwaarden", icon: School },
   { key: "laadscherm", label: "Laadscherm", hint: "Logo en gloed bij opstarten", icon: Loader },
   { key: "privacy", label: "Privacyverklaring", hint: "Pagina /privacy", icon: Shield },
   { key: "voorwaarden", label: "Algemene voorwaarden", hint: "Pagina /algemene-voorwaarden", icon: Scale },
@@ -143,6 +144,7 @@ const FIELD_LABELS: Record<string, string> = {
   infoblokTekst: "Infoblok tekst",
   secties: "Artikel",
   link: "Link van de BOEK NU knop",
+  voorwaardenAfbeelding: "Voorwaarden — afbeelding naast de kaart (optioneel)",
   notitie: "Tekst boven de knop (leeg = verbergen)",
   logo: "Logo",
   gloedKern: "Gloed — kern (midden)",
@@ -158,18 +160,6 @@ const FIELD_LABELS: Record<string, string> = {
 };
 
 const labelFor = (key: string) => FIELD_LABELS[key] ?? key;
-
-function emptyLike(item: unknown): unknown {
-  if (typeof item === "string") return HEX_COLOR.test(item) ? item : "";
-  if (typeof item === "boolean") return false;
-  if (Array.isArray(item)) return [];
-  if (item && typeof item === "object") {
-    return Object.fromEntries(
-      Object.entries(item).map(([k, v]) => [k, emptyLike(v)]),
-    );
-  }
-  return "";
-}
 
 const inputCls =
   "w-full rounded-xl border border-[#E8E0C8] bg-white px-3.5 py-2.5 text-[15px] text-slate-800 placeholder-slate-400 transition-colors duration-200 focus:outline-none focus:border-[#67CD8A] focus:ring-2 focus:ring-[#67CD8A]/30";
@@ -337,21 +327,26 @@ function ImageField({
   const [library, setLibrary] = useState<string[]>([]);
   const [zoom, setZoom] = useState<string | null>(null);
   const closeZoom = useCallback(() => setZoom(null), []);
-  const slot = IMAGE_SLOTS[section];
+  // The conditions image is optional and keeps its own uploads, so its
+  // "Eerder gebruikt" list does not mix with the card artwork.
+  const optional = fieldKey === "voorwaardenAfbeelding";
+  const storageKey = optional ? `${section}Voorwaarden` : section;
+  const slot = optional ? VOORWAARDEN_SLOT : IMAGE_SLOTS[section];
 
   const [libraryTick, setLibraryTick] = useState(0);
   const refreshLibrary = useCallback(() => setLibraryTick((n) => n + 1), []);
 
   useEffect(() => {
     let alive = true;
-    listSiteImages(supabase, section).then((stored) => {
+    listSiteImages(supabase, storageKey).then((stored) => {
       // Switching sections mid-request must not overwrite the newer list.
-      if (alive) setLibrary([...new Set([...stored, ...bundledImages(section)])]);
+      const bundled = optional ? [] : bundledImages(section);
+      if (alive) setLibrary([...new Set([...stored, ...bundled])]);
     });
     return () => {
       alive = false;
     };
-  }, [supabase, section, libraryTick]);
+  }, [supabase, section, storageKey, optional, libraryTick]);
 
   const handleFile = async (file?: File | null) => {
     if (!file) return;
@@ -362,7 +357,7 @@ function ImageField({
       const { url, sizeKb, ratio } = await uploadSiteImage(
         supabase,
         file,
-        section,
+        storageKey,
       );
       onChange(url);
       refreshLibrary();
@@ -386,6 +381,12 @@ function ImageField({
         {labelFor(fieldKey)}
       </span>
       <div className="flex items-start gap-4 rounded-2xl border border-[#E8E0C8] bg-white p-3">
+        {!value ? (
+          <div className="flex h-24 w-24 shrink-0 flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-[#E8E0C8] text-center text-[11px] font-semibold text-slate-400">
+            <Images className="h-5 w-5" />
+            Geen afbeelding
+          </div>
+        ) : (
         <button
           type="button"
           aria-label="Afbeelding vergroten"
@@ -407,18 +408,35 @@ function ImageField({
             <ZoomIn className="h-6 w-6" />
           </span>
         </button>
+        )}
         <div className="min-w-0 flex-1">
-          <label className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#5763FF] px-4 py-2 text-sm font-bold text-white transition-opacity duration-200 hover:opacity-90">
-            <Upload className="h-4 w-4" />
-            {busy ? "Bezig…" : "Vervang afbeelding"}
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              disabled={busy}
-              onChange={(e) => handleFile(e.target.files?.[0])}
-            />
-          </label>
+          <div className="flex flex-wrap items-center gap-2">
+            <label className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-[#5763FF] px-4 py-2 text-sm font-bold text-white transition-opacity duration-200 hover:opacity-90">
+              <Upload className="h-4 w-4" />
+              {busy ? "Bezig…" : value ? "Vervang afbeelding" : "Upload afbeelding"}
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                disabled={busy}
+                onChange={(e) => handleFile(e.target.files?.[0])}
+              />
+            </label>
+            {optional && value && (
+              <button
+                type="button"
+                onClick={() => {
+                  onChange("");
+                  setError("");
+                  setNote("Weggehaald. De kaart staat nu alleen.");
+                }}
+                className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-[#E8E0C8] px-4 py-2 text-sm font-bold text-slate-500 transition-colors duration-200 hover:border-[#FF5757] hover:text-[#FF5757]"
+              >
+                <X className="h-4 w-4" />
+                Weghalen
+              </button>
+            )}
+          </div>
           <p className="mt-2 text-xs text-slate-500">
             {slot && (
               <>
@@ -536,20 +554,40 @@ function move<T>(list: T[], from: number, to: number): T[] {
   return next;
 }
 
+/** The matching part of content/defaults.ts, or undefined. */
+function templateAt(template: unknown, key: string | number): unknown {
+  if (Array.isArray(template)) {
+    return template[key as number] ?? template[0];
+  }
+  if (template && typeof template === "object") {
+    return (template as Record<string, unknown>)[key];
+  }
+  return undefined;
+}
+
 function FieldEditor({
   value,
   onChange,
   fieldKey,
   section,
+  template,
 }: {
   value: unknown;
   onChange: (v: unknown) => void;
   fieldKey: string;
   section: string;
+  /**
+   * The same spot in content/defaults.ts. New list items copy its shape, so
+   * adding to an emptied list still creates a full item (an FAQ category
+   * with questions and colours, not a bare text field).
+   */
+  template?: unknown;
 }) {
   const moveTarget = useContext(MoveTargetContext);
   if (
-    (fieldKey === "afbeelding" || fieldKey === "logo") &&
+    (fieldKey === "afbeelding" ||
+      fieldKey === "logo" ||
+      fieldKey === "voorwaardenAfbeelding") &&
     typeof value === "string"
   ) {
     return (
@@ -609,7 +647,11 @@ function FieldEditor({
   }
 
   if (typeof value === "string") {
-    const long = value.length > 60 || value.includes("\n");
+    // Judged on the default text as well, so an empty answer field is
+    // already a textarea instead of turning into one mid-typing.
+    const isLong = (t: unknown) =>
+      typeof t === "string" && (t.length > 60 || t.includes("\n"));
+    const long = isLong(value) || isLong(template);
     return (
       <label className="block">
         <span className="mb-1.5 block text-[13px] font-bold uppercase tracking-wide text-slate-500">
@@ -618,7 +660,7 @@ function FieldEditor({
         {long ? (
           <textarea
             value={value}
-            rows={Math.min(20, Math.max(2, Math.ceil(value.length / 70)))}
+            rows={Math.min(20, Math.max(3, Math.ceil(value.length / 70)))}
             onChange={(e) => onChange(e.target.value)}
             className={inputCls + " leading-relaxed"}
           />
@@ -647,6 +689,7 @@ function FieldEditor({
                 value={item}
                 fieldKey={fieldKey}
                 section={section}
+                template={templateAt(template, i)}
                 onChange={(v) =>
                   onChange(value.map((x, j) => (j === i ? v : x)))
                 }
@@ -748,7 +791,12 @@ function FieldEditor({
         </div>
         <button
           type="button"
-          onClick={() => onChange([...value, emptyLike(value[0] ?? "")])}
+          onClick={() =>
+            onChange([
+              ...value,
+              emptyLike(templateAt(template, 0) ?? value[0] ?? ""),
+            ])
+          }
           className="mt-3 inline-flex cursor-pointer items-center gap-1.5 rounded-full border-2 border-dashed border-[#67CD8A]/50 px-4 py-2 text-sm font-bold text-[#3fa060] transition-colors duration-200 hover:border-[#67CD8A] hover:bg-[#67CD8A]/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#67CD8A]/40"
         >
           <Plus className="h-4 w-4" />
@@ -766,6 +814,7 @@ function FieldEditor({
             key={k}
             fieldKey={k}
             section={section}
+            template={templateAt(template, k)}
             value={v}
             onChange={(nv) => onChange({ ...(value as object), [k]: nv })}
           />
@@ -1320,7 +1369,7 @@ export default function BeheerPage() {
                 type="button"
                 onClick={openPreview}
                 aria-label="Bekijk voorbeeld"
-                className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#EEE5CF] px-3 py-2.5 text-sm font-bold text-slate-600 transition-colors duration-200 hover:border-[#5763FF] hover:text-[#5763FF] sm:px-4 lg:hidden"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#EEE5CF] px-3 py-2.5 text-sm font-bold text-slate-600 transition-colors duration-200 hover:border-[#5763FF] hover:text-[#5763FF] sm:px-4"
               >
                 <Eye className="h-4 w-4" />
                 <span className="hidden sm:inline">Voorbeeld</span>
@@ -1447,6 +1496,7 @@ export default function BeheerPage() {
               <FieldEditor
                 fieldKey={active}
                 section={active}
+                template={contentDefaults[active]}
                 value={content[active]}
                 onChange={(v) =>
                   setContent({ ...content, [active]: v } as SiteContent)
