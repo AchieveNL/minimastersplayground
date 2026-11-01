@@ -12,8 +12,21 @@ const FALLBACK_IMAGES = [
   "/assets/hero-imgs/img6.jpg",
 ];
 
-// Every third tile gets the same vertical offset, giving the strip its stagger.
-const OFFSETS = ["md:-mt-5 mt-3", "md:-mt-10", "md:mt-0 mt-5"];
+// Every third column gets the same vertical offset, giving the strip its stagger.
+const OFFSETS = [
+  "",
+  "-translate-y-2.5 md:-translate-y-5",
+  "translate-y-2.5 md:translate-y-5",
+];
+
+// Strip height per screen size. The padding keeps photos clear of the wavy
+// edges; the rows below are sized from all three.
+const STRIP_SIZE =
+  "h-(--strip-h) [--strip-h:18rem] md:[--strip-h:420px] lg:[--strip-h:60vh] xl:[--strip-h:70vh] 2xl:[--strip-h:80vh] [--strip-pad:10px] md:[--strip-pad:calc(var(--strip-h)*0.07)] [--strip-gap:4px] md:[--strip-gap:12px]";
+
+// Two rows that exactly fill the strip, so no photo is cut off at the bottom.
+const ROW =
+  "calc((var(--strip-h) - 2 * var(--strip-pad) - var(--strip-gap)) / 2)";
 
 export default function AnimatedSlider({
   direction = "left",
@@ -29,8 +42,9 @@ export default function AnimatedSlider({
     fotostrook?.afbeeldingen?.map((item) => item?.afbeelding).filter(Boolean) ??
     [];
   const source = images.length ? images : FALLBACK_IMAGES;
-  // The grid is 3x3 and the marquee loops it, so repeat until it is filled.
-  const tiles = Array.from({ length: 18 }, (_, i) => source[i % source.length]);
+  // Filled column by column, two photos each; an odd count borrows the first
+  // photo so the last column is not half empty.
+  const tiles = source.length % 2 ? [...source, source[0]] : source;
 
   useEffect(() => {
     const update = () => setMarqueeSpeed(window.innerWidth < 768 ? 50 : 50);
@@ -86,20 +100,30 @@ export default function AnimatedSlider({
           position: "relative",
           zIndex: 0,
         }}
-        className={`w-full overflow-hidden bg-[#FDF9EF] relative ${variant === "hero" ? "mt-2 md:mt-8 xl:mt-0 xl:h-[70vh] lg:h-[60vh] md:h-[420px] h-72 2xl:h-[80vh] mb-4 md:mb-22" : "xl:h-[70vh] lg:h-[60vh] md:h-[420px] h-72 2xl:h-[80vh] mb-18 md:mb-26"}`}
+        className={`w-full overflow-hidden bg-[#FDF9EF] relative ${STRIP_SIZE} ${variant === "hero" ? "mt-2 md:mt-8 xl:mt-0 mb-4 md:mb-22" : "mb-18 md:mb-26"}`}
       >
         <Marquee
           speed={marqueeSpeed}
           direction={direction}
+          autoFill
           className="h-full overflow-hidden"
         >
-          <div className="grid grid-cols-3 grid-rows-3 md:gap-3 gap-1 h-full md:p-1.5 p-0.75 md:w-[120vw] w-[160vw]">
+          <div
+            className="grid grid-flow-col"
+            style={{
+              gridTemplateRows: `repeat(2, ${ROW})`,
+              // 3:2, the shape the dashboard asks for, so photos show whole.
+              gridAutoColumns: `calc(${ROW} * 1.5)`,
+              gap: "var(--strip-gap)",
+              padding: "var(--strip-pad) calc(var(--strip-gap) / 2)",
+            }}
+          >
             {tiles.map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt=""
-                className={`w-full h-full object-cover rounded-sm ${OFFSETS[i % 3]}`}
+                className={`w-full h-full object-cover rounded-sm ${OFFSETS[Math.floor(i / 2) % 3]}`}
               />
             ))}
           </div>
