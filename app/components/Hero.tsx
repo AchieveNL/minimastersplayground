@@ -105,7 +105,7 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
       pos: -60,
       iconWidth: 92,
       icon: "/assets/badges/groep.svg",
-      titlePad: "md:pl-6",
+      titlePad: "md:pl-6 lg:pl-2 2xl:pl-6",
     },
     {
       iconWidthMobile: 120,
@@ -113,7 +113,7 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
       pos: -90,
       iconWidth: 120,
       icon: "/assets/badges/educatie.svg",
-      titlePad: "md:pl-8",
+      titlePad: "md:pl-8 lg:pl-2 2xl:pl-8",
     },
     {
       iconWidthMobile: 95,
@@ -121,14 +121,14 @@ export default function Hero({ ready = true }: { ready?: boolean }) {
       pos: -85,
       iconWidth: 96,
       icon: "/assets/badges/standaard.svg",
-      titlePad: "md:pl-6",
+      titlePad: "md:pl-6 lg:pl-2 2xl:pl-6",
     },
   ];
   const infoCards = cardMeta.map((meta, i) => ({
     ...meta,
     title: (
       <h1
-        className={`${coiny.className} font-normal md:text-lg text-center text-[#FDF9EF] ${meta.titlePad} pl-8 whitespace-nowrap rounded-br-4xl`}
+        className={`${coiny.className} font-normal md:text-lg lg:text-[clamp(0.8125rem,1.15vw,1.125rem)] text-center text-balance text-[#FDF9EF] ${meta.titlePad} pl-8 rounded-br-4xl`}
       >
         <OutlinedText from={GOLD_FROM} to={GOLD_TO}>
           {hero.infocards[i]?.title ?? ""}

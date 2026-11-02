@@ -51,7 +51,7 @@ export function AanbodKaart({
       <img
         src={content.afbeelding}
         alt={alt}
-        className="block w-full h-auto rounded-[5cqw]"
+        className="block w-full h-auto rounded-[5cqw] shadow-lg"
       />
 
       <div className="absolute left-[8%] right-[8%] bottom-[10.5%] flex flex-col items-center gap-[1.6cqw] text-center">
