@@ -19,12 +19,13 @@ const OFFSETS = [
   "translate-y-2.5 md:translate-y-5",
 ];
 
-// Strip height per screen size. The padding keeps photos clear of the wavy
-// edges; the rows below are sized from all three.
+// Strip height per screen size. The padding keeps the two main rows clear of
+// the wavy edges; the rows below are sized from all three.
 const STRIP_SIZE =
   "h-(--strip-h) [--strip-h:18rem] md:[--strip-h:420px] lg:[--strip-h:60vh] xl:[--strip-h:70vh] 2xl:[--strip-h:80vh] [--strip-pad:10px] md:[--strip-pad:calc(var(--strip-h)*0.07)] [--strip-gap:4px] md:[--strip-gap:12px]";
 
-// Two rows that exactly fill the strip, so no photo is cut off at the bottom.
+// The two main rows exactly fill the strip inside the padding, so no photo
+// is cut off at the bottom.
 const ROW =
   "calc((var(--strip-h) - 2 * var(--strip-pad) - var(--strip-gap)) / 2)";
 
@@ -42,9 +43,19 @@ export default function AnimatedSlider({
     fotostrook?.afbeeldingen?.map((item) => item?.afbeelding).filter(Boolean) ??
     [];
   const source = images.length ? images : FALLBACK_IMAGES;
-  // Filled column by column, two photos each; an odd count borrows the first
-  // photo so the last column is not half empty.
-  const tiles = source.length % 2 ? [...source, source[0]] : source;
+  // Two photos per column; an odd count borrows the first photo so the last
+  // column is not half empty.
+  const photos = source.length % 2 ? [...source, source[0]] : source;
+  // Each column also gets a filler photo above and below, sitting mostly
+  // outside the strip, so the wave cuts through a photo instead of leaving an
+  // empty band where it is shallow. Fillers come from other columns so a
+  // column never shows the same photo twice.
+  const tiles = Array.from({ length: photos.length / 2 }, (_, c) => [
+    photos[(2 * c + 3) % photos.length],
+    photos[2 * c],
+    photos[2 * c + 1],
+    photos[(2 * c + photos.length - 2) % photos.length],
+  ]).flat();
 
   useEffect(() => {
     const update = () => setMarqueeSpeed(window.innerWidth < 768 ? 50 : 50);
@@ -111,11 +122,14 @@ export default function AnimatedSlider({
           <div
             className="grid grid-flow-col"
             style={{
-              gridTemplateRows: `repeat(2, ${ROW})`,
+              gridTemplateRows: `repeat(4, ${ROW})`,
               // 3:2, the shape the dashboard asks for, so photos show whole.
               gridAutoColumns: `calc(${ROW} * 1.5)`,
               gap: "var(--strip-gap)",
               padding: "var(--strip-pad) calc(var(--strip-gap) / 2)",
+              // Pulls the filler rows outside the strip, keeping the main
+              // rows where they were.
+              marginBlock: `calc(-1 * (${ROW} + var(--strip-gap)))`,
             }}
           >
             {tiles.map((src, i) => (
@@ -123,7 +137,7 @@ export default function AnimatedSlider({
                 key={i}
                 src={src}
                 alt=""
-                className={`w-full h-full object-cover rounded-sm ${OFFSETS[Math.floor(i / 2) % 3]}`}
+                className={`w-full h-full object-cover rounded-sm ${OFFSETS[Math.floor(i / 4) % 3]}`}
               />
             ))}
           </div>

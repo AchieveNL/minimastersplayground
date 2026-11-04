@@ -49,8 +49,8 @@ function AanbodRij({
       id={id}
       className={
         voorwaarden
-          ? "grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-16"
-          : "lg:mx-auto lg:max-w-[calc((100%-4rem)/2)]"
+          ? "grid gap-16 lg:grid-cols-2 lg:items-start lg:gap-20"
+          : "lg:mx-auto lg:max-w-[calc((100%-5rem)/2)]"
       }
     >
       <AanbodKaart content={content} alt={alt} />
@@ -149,7 +149,7 @@ export default function OnsAanbodPage() {
             <img src="/assets/aanbod/molen.png" alt="" className="absolute w-40 xl:w-52 right-0 top-[84%]" style={{ animation: "wmFloat 4s ease-in-out 1.3s infinite" }} />
             <img src="/assets/aanbod/kuiken.png" alt="" className="absolute w-40 xl:w-48 left-0 bottom-[-4%]" style={{ animation: "wmFloat 4.8s ease-in-out 0.2s infinite" }} />
           </div>
-          <div className="relative mx-auto flex max-w-xl flex-col gap-20 lg:gap-24 lg:max-w-6xl">
+          <div className="relative mx-auto flex max-w-xl flex-col gap-16 lg:gap-20 lg:max-w-6xl">
             <AanbodRij id="verjaardag" content={kaartVerjaardag} alt="Verjaardag" />
             <AanbodRij id="prive-feestje" content={kaartPrive} alt="Privé feestje" />
             <AanbodRij id="schoolreisje" content={kaartSchoolreisje} alt="Schoolreisje" />
