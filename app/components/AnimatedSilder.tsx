@@ -22,7 +22,7 @@ const OFFSETS = [
 // Strip height per screen size. The padding keeps the two main rows clear of
 // the wavy edges; the rows below are sized from all three.
 const STRIP_SIZE =
-  "h-(--strip-h) [--strip-h:18rem] md:[--strip-h:420px] lg:[--strip-h:60vh] xl:[--strip-h:70vh] 2xl:[--strip-h:80vh] [--strip-pad:10px] md:[--strip-pad:calc(var(--strip-h)*0.07)] [--strip-gap:4px] md:[--strip-gap:12px]";
+  "h-(--strip-h) [--strip-h:18rem] md:[--strip-h:420px] lg:[--strip-h:60vh] xl:[--strip-h:70vh] 2xl:[--strip-h:80vh] [--strip-pad:10px] md:[--strip-pad:calc(var(--strip-h)*0.07)] [--strip-gap:4px] md:[--strip-gap:6px]";
 
 // The two main rows exactly fill the strip inside the padding, so no photo
 // is cut off at the bottom.
