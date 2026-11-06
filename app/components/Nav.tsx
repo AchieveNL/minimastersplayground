@@ -15,6 +15,55 @@ function tint(hex: string, amount: number) {
 
 const NAV_GREEN = "#67CD8A";
 
+const TICKETS_URL = "https://tickets.minimastersplayground.nl/";
+/**
+ * Minimasters is temporarily closed, so the tickets button is shown greyed
+ * out and leads nowhere. Set back to true when ticket sales reopen.
+ */
+const TICKETS_OPEN = false;
+
+const TICKETS_BG = "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)";
+
+function TicketsButton({
+  className,
+  onClick,
+  children,
+}: {
+  className: string;
+  onClick?: () => void;
+  children: string;
+}) {
+  const label = (
+    <OutlinedText from={GOLD_FROM} to={GOLD_TO} outline="#FFFFFF" stroke="0.18em">
+      {children}
+    </OutlinedText>
+  );
+  if (!TICKETS_OPEN) {
+    return (
+      <span
+        aria-disabled="true"
+        title="Tijdelijk gesloten"
+        className={`${className} cursor-not-allowed select-none opacity-60 grayscale`}
+        style={{ background: TICKETS_BG }}
+      >
+        {label}
+      </span>
+    );
+  }
+  return (
+    <Link
+      href={TICKETS_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+      style={{ background: TICKETS_BG }}
+      onClick={onClick}
+    >
+      {label}
+    </Link>
+  );
+}
+
 /** Nav word: very subtle green gradient, white outline. */
 function NavLabel({ children }: { children: string }) {
   return (
@@ -290,20 +339,9 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
               >
                 <NavLabel>CAFÉ</NavLabel>
               </Link>
-              <Link
-                href="https://tickets.minimastersplayground.nl/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white px-6 py-1.5 rounded-full"
-                style={{
-                  background:
-                    "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
-                }}
-              >
-                <OutlinedText from={GOLD_FROM} to={GOLD_TO} outline="#FFFFFF" stroke="0.18em">
-              TICKETS
-            </OutlinedText>
-              </Link>
+              <TicketsButton className="text-white px-6 py-1.5 rounded-full">
+                TICKETS
+              </TicketsButton>
             </div>
 
             {/* Mobile: Hamburger + Tickets button */}
@@ -335,20 +373,11 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
                   }`}
                 />
               </button>
-              <Link
-                href="https://tickets.minimastersplayground.nl/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <TicketsButton
                 className={`${coiny.className} text-white text-sm font-normal px-4 h-10 inline-flex items-center rounded-full leading-none`}
-                style={{
-                  background:
-                    "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
-                }}
               >
-                <OutlinedText from={GOLD_FROM} to={GOLD_TO} outline="#FFFFFF" stroke="0.18em">
-                  Tickets
-                </OutlinedText>
-              </Link>
+                Tickets
+              </TicketsButton>
             </div>
           </div>
         </div>
@@ -466,20 +495,12 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
           >
             <NavLabel>CAFÉ</NavLabel>
           </Link>
-          <Link
-            href="https://tickets.minimastersplayground.nl/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <TicketsButton
             className="text-white px-6 py-1.5 rounded-full"
-            style={{
-              background: "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)",
-            }}
             onClick={() => setIsOpen(false)}
           >
-            <OutlinedText from={GOLD_FROM} to={GOLD_TO} outline="#FFFFFF" stroke="0.18em">
-              TICKETS
-            </OutlinedText>
-          </Link>
+            TICKETS
+          </TicketsButton>
         </div>
       </div>
     </>

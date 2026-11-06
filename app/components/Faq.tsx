@@ -243,7 +243,9 @@ export default function Faq() {
           loading="lazy"
           src="/assets/badges/vragen.svg"
           className="absolute z-20 md:hidden"
-          style={{ width: "120px", left: "-20%" }}
+          // Fixed, not a % of the bar: a short badge like "FAQ" makes the
+          // bar narrow and a % offset would put the icon over the text.
+          style={{ width: "110px", left: -55 }}
           alt=""
         />
         <img
