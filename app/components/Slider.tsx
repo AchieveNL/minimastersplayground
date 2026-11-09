@@ -3,6 +3,13 @@ import { useContent } from "../content-context";
 import { coiny } from "../fonts";
 import OutlinedText, { GOLD_FROM, GOLD_TO } from "./OutlinedText";
 import ScrollHint from "./ScrollHint";
+import {
+  CLOSED_CLASS,
+  CLOSED_TITLE,
+  TICKETS_OPEN,
+  TICKETS_URL,
+  isTicketsLink,
+} from "../../lib/tickets";
 
 export default function Slider() {
   const { slider } = useContent();
@@ -10,7 +17,7 @@ export default function Slider() {
     {
       bg: slider.cards[1]?.afbeelding ?? "/assets/slider/entreeticket.webp",
       text1: slider.cards[1]?.title ?? "Entreeticket",
-      link: "https://tickets.minimastersplayground.nl/",
+      link: TICKETS_URL,
       disabled: false,
     },
     {
@@ -292,7 +299,15 @@ export default function Slider() {
                 style={wrapperStyle}
               >
                 {ribbon}
-                {item.link ? (
+                {item.link && !TICKETS_OPEN && isTicketsLink(item.link) ? (
+                  <div
+                    aria-disabled="true"
+                    title={CLOSED_TITLE}
+                    className={`${cardClass} ${CLOSED_CLASS}`}
+                  >
+                    {inner}
+                  </div>
+                ) : item.link ? (
                   <a
                     href={item.link}
                     {...(item.link.startsWith("http")

@@ -1,13 +1,18 @@
 "use client";
 
 import { renderInline } from "../../lib/inline-markup";
-
-const TICKETS_URL = "https://tickets.minimastersplayground.nl/";
+import {
+  CLOSED_CLASS,
+  CLOSED_TITLE,
+  TICKETS_OPEN,
+  TICKETS_URL,
+  isTicketsLink,
+} from "../../lib/tickets";
 
 // One pill for every card, sized in container units so it keeps its shape
 // at every card width.
 const BOEK_NU_CLASS =
-  "inline-flex items-center justify-center min-w-[34cqw] px-[5cqw] py-[1.7cqw] rounded-[2.2cqw] font-bold text-white text-[3.4cqw] tracking-widest shadow-md hover:scale-105 transition-transform";
+  "inline-flex items-center justify-center min-w-[34cqw] px-[5cqw] py-[1.7cqw] rounded-[2.2cqw] font-bold text-white text-[3.4cqw] tracking-widest shadow-md";
 const BOEK_NU_BG = "linear-gradient(135deg, #A5DEB9 0%, #8BC34A 100%)";
 
 export type KaartContent = {
@@ -64,14 +69,25 @@ export function AanbodKaart({
           </p>
         ) : null}
 
-        <a
-          href={href}
-          {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-          className={BOEK_NU_CLASS}
-          style={{ background: BOEK_NU_BG }}
-        >
-          {content.knop || "BOEK NU"}
-        </a>
+        {!TICKETS_OPEN && isTicketsLink(href) ? (
+          <span
+            aria-disabled="true"
+            title={CLOSED_TITLE}
+            className={`${BOEK_NU_CLASS} ${CLOSED_CLASS}`}
+            style={{ background: BOEK_NU_BG }}
+          >
+            {content.knop || "BOEK NU"}
+          </span>
+        ) : (
+          <a
+            href={href}
+            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            className={`${BOEK_NU_CLASS} hover:scale-105 transition-transform`}
+            style={{ background: BOEK_NU_BG }}
+          >
+            {content.knop || "BOEK NU"}
+          </a>
+        )}
       </div>
     </div>
   );

@@ -5,6 +5,12 @@ import gsap from "gsap";
 import NotificationBanner from "./NotificationBanner";
 import { coiny } from "../fonts";
 import OutlinedText, { GOLD_FROM, GOLD_TO } from "./OutlinedText";
+import {
+  CLOSED_CLASS,
+  CLOSED_TITLE,
+  TICKETS_OPEN,
+  TICKETS_URL,
+} from "../../lib/tickets";
 
 /** Mixes a hex colour toward white; `amount` 0 = unchanged, 1 = white. */
 function tint(hex: string, amount: number) {
@@ -14,13 +20,6 @@ function tint(hex: string, amount: number) {
 }
 
 const NAV_GREEN = "#67CD8A";
-
-const TICKETS_URL = "https://tickets.minimastersplayground.nl/";
-/**
- * Minimasters is temporarily closed, so the tickets button is shown greyed
- * out and leads nowhere. Set back to true when ticket sales reopen.
- */
-const TICKETS_OPEN = false;
 
 const TICKETS_BG = "linear-gradient(135deg, #A5DEB9 0%, #67CD8A 100%)";
 
@@ -42,8 +41,8 @@ function TicketsButton({
     return (
       <span
         aria-disabled="true"
-        title="Tijdelijk gesloten"
-        className={`${className} cursor-not-allowed select-none opacity-60 grayscale`}
+        title={CLOSED_TITLE}
+        className={`${className} ${CLOSED_CLASS}`}
         style={{ background: TICKETS_BG }}
       >
         {label}
