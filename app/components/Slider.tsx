@@ -240,6 +240,11 @@ export default function Slider() {
             const ribbonFontSize = isMobile ? 10 : 11;
             const ribbonPadding = isMobile ? "0.45em 2.3em" : "0.45em 2.5em";
 
+            // While ticket sales are closed only the pill greys out; the photo
+            // keeps its colour.
+            const closed =
+              !TICKETS_OPEN && !!item.link && isTicketsLink(item.link);
+
             const inner = (
               <>
                 <div
@@ -250,7 +255,7 @@ export default function Slider() {
                 />
                 {/* Bottom pill — category title */}
                 <span
-                  className="relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap"
+                  className={`relative z-10 px-3 py-1.5 md:px-5 md:py-2 rounded-full font-bold text-white text-[11px] md:text-sm tracking-wider whitespace-nowrap ${closed ? CLOSED_CLASS : ""}`}
                   style={{
                     background:
                       "linear-gradient(135deg, #FFDB8D 0%, #FFCA58 100%)",
@@ -299,11 +304,11 @@ export default function Slider() {
                 style={wrapperStyle}
               >
                 {ribbon}
-                {item.link && !TICKETS_OPEN && isTicketsLink(item.link) ? (
+                {closed ? (
                   <div
                     aria-disabled="true"
                     title={CLOSED_TITLE}
-                    className={`${cardClass} ${CLOSED_CLASS}`}
+                    className={`${cardClass} cursor-not-allowed`}
                   >
                     {inner}
                   </div>
