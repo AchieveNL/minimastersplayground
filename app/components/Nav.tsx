@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import NotificationBanner from "./NotificationBanner";
@@ -78,7 +79,15 @@ function NavLabel({ children }: { children: string }) {
 }
 
 export default function Nav({ ready = true }: { ready?: boolean }) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  // HOME leads to the homepage; already there, it scrolls back to the top.
+  const scrollHomeToTop = (e: React.MouseEvent) => {
+    if (pathname !== "/") return;
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -302,16 +311,9 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
               ref={linksRef}
               className={`${coiny.className} xl:flex hidden gap-5 2xl:gap-8 text-base 2xl:text-lg font-normal flex-1 justify-center items-center text-nowrap flex-nowrap`}
             >
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
-                className="text-[#FF5757] cursor-pointer"
-              >
+              <Link href="/" onClick={scrollHomeToTop} className="text-[#FF5757] cursor-pointer">
                 <NavLabel>HOME</NavLabel>
-              </a>
+              </Link>
               <Link href="/#over-ons" className="text-[#5763FF] text-nowrap">
                 <NavLabel>OVER ONS</NavLabel>
               </Link>
@@ -432,17 +434,16 @@ export default function Nav({ ready = true }: { ready?: boolean }) {
               alt=""
             />
           </Link>
-          <a
-            href="#"
+          <Link
+            href="/"
             className="text-[#FF5757]"
             onClick={(e) => {
-              e.preventDefault();
               setIsOpen(false);
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              scrollHomeToTop(e);
             }}
           >
             <NavLabel>HOME</NavLabel>
-          </a>
+          </Link>
           <Link
             href="/#over-ons"
             className="text-[#5763FF]"
