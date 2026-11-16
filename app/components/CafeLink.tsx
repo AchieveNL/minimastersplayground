@@ -40,7 +40,7 @@ export default function CafeLink({ className }: { className: string }) {
     >
       <img loading="lazy" src="/assets/location/foto.svg" className="w-full" alt="" />
       <div
-        className="absolute w-[120%] -left-[6.5%] top-[-30%]"
+        className="absolute w-[120%] -left-[6.5%] top-[-40%]"
         style={{ transformOrigin: "center top", animation: "flagWave 3s ease-in-out infinite" }}
       >
         <img loading="lazy" src="/assets/location/vlag.svg" className="w-full" alt="" />
