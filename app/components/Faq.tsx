@@ -237,7 +237,7 @@ export default function Faq() {
 
       <div
         ref={badgeRef}
-        className="flex w-fit min-w-44 md:min-w-0 md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative z-10 justify-center mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-tr-[10px] rounded-br-[60px]"
+        className="flex w-fit min-w-44 md:min-w-0 md:px-10 px-5 py-3 sm:py-4 md:pl-20 pl-10 items-center relative z-10 justify-start mx-auto m-auto bg-linear-to-r from-[#67CD8A] via-[#67CD8A] to-[#A5DEB9] rounded-tr-[10px] rounded-br-[60px]"
       >
         <img
           loading="lazy"
@@ -256,7 +256,7 @@ export default function Faq() {
           alt=""
         />
 
-        <h1 className={`${coiny.className} font-normal md:text-lg text-center text-[#FDF9EF] md:pl-0 pl-8 whitespace-nowrap`}>
+        <h1 className={`${coiny.className} font-normal md:text-lg text-center text-[#FDF9EF] md:pl-8 pl-12 whitespace-nowrap`}>
           <OutlinedText from={GOLD_FROM} to={GOLD_TO}>
             {faq.badge}
           </OutlinedText>
