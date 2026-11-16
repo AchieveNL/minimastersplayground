@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { useContent } from "../content-context";
+import CafeLink from "./CafeLink";
 
 export default function LocationMobile() {
   const { openingstijden, parkeren } = useContent();
@@ -117,24 +118,7 @@ export default function LocationMobile() {
           ref={openingsRef}
           className="flex flex-col items-center text-[#5763FF] font-bold gap-2"
         >
-          <div className="relative w-64" style={{ overflow: "visible" }}>
-            <img
-              loading="lazy"
-              src="/assets/location/foto.svg"
-              className="w-full"
-              alt="Restaurant foto"
-            />
-            <img
-              loading="lazy"
-              src="/assets/location/vlag.svg"
-              className="absolute w-[120%] -left-[6.5%] top-[-30%]"
-              style={{
-                transformOrigin: "center top",
-                animation: "flagWave 3s ease-in-out infinite",
-              }}
-              alt="Vlag"
-            />
-          </div>
+          <CafeLink className="w-64" />
           <h1 className="text-lg mt-2">{openingstijden.titel}</h1>
           <div className="flex gap-6 -mt-1 text-sm">
             <div>
