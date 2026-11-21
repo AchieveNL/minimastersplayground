@@ -78,6 +78,15 @@ export const contentDefaults = {
     wijk: "Parkeergelegenheid in de omliggende wijk - ca. 5 min lopen",
   },
 
+  // Ronde café-foto met de groene vlag; foto en vlag linken samen naar de
+  // menukaart. De vlagtekst komt vanzelf op twee regels en wordt kleiner als
+  // hij lang is; een enter in de tekst kiest zelf waar de tweede regel begint.
+  cafe: {
+    afbeelding: "/assets/location/cafe.webp",
+    vlagTekst:
+      "Maak heerlijk gebruik van ons café. Klik hier om ons menukaart te bekijken!",
+  },
+
   // Per categorie: `kleur` = titel, vraagtekst en de achtergrond van een
   // geopende vraag; `achtergrond` = dichte vraag; `tekstOpen` = tekst in een
   // geopende vraag. Antwoorden: **vet** en enters werken.
