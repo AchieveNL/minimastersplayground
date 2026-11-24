@@ -1,11 +1,11 @@
 export const TICKETS_URL = "https://tickets.minimastersplayground.nl/";
 
 /**
- * Minimasters is temporarily closed, so every button that leads straight to
- * the ticket shop is shown greyed out and leads nowhere. Set back to true
- * when ticket sales reopen.
+ * Ticket sales are open: every button that leads straight to the ticket shop
+ * works. Set to false to grey them all out again (e.g. while temporarily
+ * closed).
  */
-export const TICKETS_OPEN = false;
+export const TICKETS_OPEN = true;
 
 /** True for links into the ticket shop, which close along with it. */
 export function isTicketsLink(href: string) {
