@@ -106,9 +106,12 @@ export default function CafeLink({ className }: { className: string }) {
         className="mx-auto block aspect-square w-[94.6%] rounded-full object-cover"
         alt=""
       />
+      {/* Centred over the photo: -10% puts the 120%-wide flag's middle on the
+          photo's middle, and waving around the ribbon's own middle (not its
+          top) keeps the tilt from pushing it sideways. */}
       <div
-        className="absolute w-[120%] -left-[6.5%] top-[-40%]"
-        style={{ transformOrigin: "center top", animation: "flagWave 3s ease-in-out infinite" }}
+        className="absolute w-[120%] -left-[10%] top-[-40%]"
+        style={{ transformOrigin: "center", animation: "flagWave 3s ease-in-out infinite" }}
       >
         <img loading="lazy" src="/assets/location/vlag.svg" className="w-full" alt="" />
         <svg
